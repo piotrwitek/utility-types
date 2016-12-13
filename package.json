@@ -5,8 +5,8 @@
   "repository": "https://github.com/piotrwitek/react-redux-typescript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "license": "MIT",
-  "main": "index.js",
-  "jsnext:main": "index.es2015.js",
+  "main": "dist/index.js",
+  "jsnext:main": "es2015/index.js",
   "engines": {
     "node": ">= 0.10.x"
   },

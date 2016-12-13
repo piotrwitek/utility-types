@@ -28,6 +28,7 @@ build/Release
 node_modules
 public
 dist
+es2015
 
 # Custom
 .tmp

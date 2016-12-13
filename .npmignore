@@ -1,3 +1,5 @@
+.vscode
 tslint.json
 tsconfig.json
 index.ts
+lib
