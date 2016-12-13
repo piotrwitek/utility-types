@@ -1,0 +1,41 @@
+{
+  "name": "react-redux-typescript",
+  "version": "0.1.0",
+  "description": "React / Redux / TypeScript Utils",
+  "repository": "https://github.com/piotrwitek/react-redux-typescript",
+  "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
+  "license": "MIT",
+  "main": "index.ts",
+  "jsnext:main": "index.ts",
+  "typings": "index.ts",
+  "engines": {
+    "node": ">= 0.10.x"
+  },
+  "scripts": {
+    "prepublishOnly": "yarn run clean",
+    "clean": "rm -rf node_modules/",
+    "start": "npm run tsc",
+    "test": "npm run lint && npm run tsc",
+    "lint": "tslint '*.ts'",
+    "tsc": "tsc -p ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tslint": "^4.0.2",
+    "typescript": "^2.1.4"
+  },
+  "files": [
+    "index.js",
+    "index.ts",
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "yarn.lock"
+  ],
+  "keywords": [
+    "react",
+    "redux",
+    "typescript",
+    "utils"
+  ]
+}
