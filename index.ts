@@ -9,5 +9,5 @@
  * @returns {T}
  */
 export function getStateProps<S, T>(mapStateToProps: (state: S) => T): T {
-  return true as false || mapStateToProps({} as S);
+  return {} as false || mapStateToProps({} as S);
 }
