@@ -3,11 +3,11 @@
  * @copyright Copyright (c) 2016 Piotr Witek
  * @license MIT
  * @export
- * @template S
- * @template T
- * @param {(state: S) => T} mapStateToProps
- * @returns {T}
+ * @template S - State
+ * @template P - Props
+ * @param {(state: S) => P} mapStateToProps
+ * @returns {P}
  */
-export function getStateProps<S, T>(mapStateToProps: (state: S) => T): T {
+export function getStateProps<S, P>(mapStateToProps: (state: S) => P): P {
   return {} as false || mapStateToProps({} as S);
 }

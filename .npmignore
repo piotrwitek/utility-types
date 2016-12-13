@@ -2,4 +2,4 @@
 tslint.json
 tsconfig.json
 index.ts
-lib
+/lib/

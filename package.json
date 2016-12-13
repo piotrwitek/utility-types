@@ -1,11 +1,12 @@
 {
   "name": "react-redux-typescript",
-  "version": "0.2.3",
+  "version": "0.4.0",
   "description": "React / Redux / TypeScript Utils",
   "repository": "https://github.com/piotrwitek/react-redux-typescript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "license": "MIT",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "jsnext:main": "es2015/index.js",
   "engines": {
     "node": ">= 0.10.x"

@@ -1,1 +1,1 @@
-export { getStateProps } from './lib/get-state-props';
+export * from './lib/utils';
