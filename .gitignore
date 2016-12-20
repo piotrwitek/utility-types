@@ -28,7 +28,7 @@ build/Release
 node_modules
 public
 dist
-es2015
+jsnext
 
 # Custom
 .tmp

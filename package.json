@@ -5,24 +5,25 @@
   "repository": "https://github.com/piotrwitek/react-redux-typescript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "license": "MIT",
-  "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "jsnext:main": "es2015/index.js",
+  "main": "dist/index.js",
+  "jsnext:main": "jsnext/index.js",
   "engines": {
     "node": ">= 0.10.x"
   },
   "scripts": {
-    "prepublishOnly": "yarn run clean && yarn && yarn run test && yarn run build",
+    "prepublishOnly": "yarn run clean && yarn && yarn run test && yarn run build && yarn run build:jsnext",
     "clean": "rm -rf node_modules/",
-    "build": "tsc -p . && tsc -p . -t 'ES2015' --outDir es2015",
-    "start": "npm run tsc",
-    "test": "npm run lint && npm run tsc",
-    "lint": "tslint '*.ts'",
-    "tsc": "tsc -p . --noEmit"
+    "build": "rm -rf dist && tsc -p .",
+    "build:jsnext": "rm -rf jsnext && tsc -p . -t 'ES2015' --outDir jsnext",
+    "lint": "tslint 'lib/**/*.ts'",
+    "tsc": "tsc -p . --noEmit",
+    "test": "npm run lint && npm run tsc"
   },
   "dependencies": {},
   "devDependencies": {
-    "tslint": "^4.0.2",
+    "tslib": "^1.2.0",
+    "tslint": "^4.1.1",
     "typescript": "^2.1.4"
   },
   "keywords": [
