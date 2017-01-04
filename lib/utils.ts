@@ -5,7 +5,7 @@
  */
 
 /**
- * @export
+ * @export get function return object type
  * @template S - State
  * @template P - Props
  * @param {(state: S) => P} mapStateToProps
@@ -16,12 +16,28 @@ export function getStateProps<S, P>(mapStateToProps: (state: S) => P): P {
 }
 
 /**
- * @export
- * @template S - State
- * @template P - Props
- * @param {(state: S) => P} mapStateToProps
- * @returns {P}
+ * @export FluxStandardAction generic interface
+ * @interface FluxStandardAction
+ * @template Type
+ * @template Payload
  */
-// declare class Object {
-//   assign<T>(target: T, ...sources: Partial<T>[]): T;
-// }
+export interface FluxStandardAction<Type, Payload> {
+  type: Type;
+  payload?: Payload;
+  error?: boolean;
+}
+
+/**
+ * @export createAction helper for FSA actions
+ * @template Type
+ * @template Payload
+ * @param {Type} type
+ * @returns
+ */
+export function createAction<Type, Payload>(type: Type) {
+  return (payload?: Payload): FluxStandardAction<Type, Payload> => ({
+    type,
+    payload,
+  });
+}
+
