@@ -1,6 +1,6 @@
 {
   "name": "react-redux-typescript",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React / Redux / TypeScript Utils",
   "repository": "https://github.com/piotrwitek/react-redux-typescript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
@@ -12,7 +12,7 @@
     "node": ">= 0.10.x"
   },
   "scripts": {
-    "prepublishOnly": "yarn run clean && yarn && yarn run test && yarn run build && yarn run build:jsnext",
+    "prepublish": "yarn run clean && yarn && yarn run test && yarn run build && yarn run build:jsnext",
     "clean": "rm -rf node_modules/",
     "build": "rm -rf dist && tsc -p .",
     "build:jsnext": "rm -rf jsnext && tsc -p . -t 'ES2015' --outDir jsnext",
