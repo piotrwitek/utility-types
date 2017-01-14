@@ -26,7 +26,7 @@
     "moduleResolution": "node",
     "noResolve": false,
     "newLine": "LF",
-    "removeComments": true,
+    "removeComments": false,
     "sourceMap": true,
     "target": "es5",
     "jsx": "react",
