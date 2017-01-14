@@ -12,19 +12,19 @@
     "node": ">= 0.10.x"
   },
   "scripts": {
-    "prepublishOnly": "yarn run clean && yarn && yarn run test && yarn run build && yarn run build:jsnext",
-    "clean": "rm -rf node_modules/",
-    "build": "rm -rf dist && tsc -p .",
-    "build:jsnext": "rm -rf jsnext && tsc -p . -t 'ES2015' --outDir jsnext",
-    "lint": "tslint 'lib/**/*.ts'",
-    "tsc": "tsc -p . --noEmit",
-    "test": "npm run lint && npm run tsc"
+    "prepublishOnly": "yarn run reinstall && yarn run test && yarn run build && yarn run build:jsnext",
+    "reinstall": "rm -rf node_modules/ && yarn install",
+    "test": "npm run lint && npm run tsc",
+    "build": "rm -rf dist && tsc -p src",
+    "build:jsnext": "rm -rf jsnext && tsc -p src -t 'ES2015' --outDir jsnext",
+    "lint": "tslint --project src/tsconfig.json",
+    "tsc": "tsc -p src --noEmit"
   },
   "dependencies": {},
   "devDependencies": {
-    "tslib": "^1.2.0",
-    "tslint": "^4.1.1",
-    "typescript": "^2.1.4"
+    "tslib": "^1.5.0",
+    "tslint": "^4.3.1",
+    "typescript": "^2.1.5"
   },
   "keywords": [
     "react",
