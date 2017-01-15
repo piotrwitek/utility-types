@@ -10,20 +10,23 @@
   "module": "jsnext/index.js",
   "jsnext:main": "jsnext/index.js",
   "engines": {
-    "node": ">= 0.10.x"
+    "node": ">= 4"
   },
   "scripts": {
-    "prepublishOnly": "yarn run reinstall && yarn run test && yarn run build",
+    "prepublishOnly": "yarn run reinstall && yarn run check && yarn run test && && yarn run build",
     "reinstall": "rm -rf node_modules/ && yarn install",
     "build": "yarn run build:es5 & yarn run build:jsnext",
     "build:es5": "rm -rf dist && tsc -p src",
     "build:jsnext": "rm -rf jsnext && tsc -p src --outDir jsnext -t 'ES2015'",
-    "test": "npm run lint && npm run tsc",
+    "check": "yarn run lint && yarn run tsc",
     "lint": "tslint --project src/tsconfig.json",
-    "tsc": "tsc -p src --noEmit"
+    "tsc": "tsc -p src --noEmit",
+    "test": "ts-node -P src src/specs/index.ts"
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/node": "^7.0.0",
+    "ts-node": "^2.0.0",
     "tslib": "^1.5.0",
     "tslint": "^4.3.1",
     "typescript": "^2.1.5"
