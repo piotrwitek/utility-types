@@ -1,5 +1,4 @@
 .vscode
+src
 tslint.json
-tsconfig.json
-index.ts
-/lib/
+yarn.lock

@@ -7,16 +7,18 @@
   "license": "MIT",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
+  "module": "jsnext/index.js",
   "jsnext:main": "jsnext/index.js",
   "engines": {
     "node": ">= 0.10.x"
   },
   "scripts": {
-    "prepublishOnly": "yarn run reinstall && yarn run test && yarn run build && yarn run build:jsnext",
+    "prepublishOnly": "yarn run reinstall && yarn run test && yarn run build",
     "reinstall": "rm -rf node_modules/ && yarn install",
+    "build": "yarn run build:es5 & yarn run build:jsnext",
+    "build:es5": "rm -rf dist && tsc -p src",
+    "build:jsnext": "rm -rf jsnext && tsc -p src --outDir jsnext -t 'ES2015'",
     "test": "npm run lint && npm run tsc",
-    "build": "rm -rf dist && tsc -p src",
-    "build:jsnext": "rm -rf jsnext && tsc -p src -t 'ES2015' --outDir jsnext",
     "lint": "tslint --project src/tsconfig.json",
     "tsc": "tsc -p src --noEmit"
   },
