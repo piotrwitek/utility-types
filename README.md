@@ -2,6 +2,7 @@
 - No dependencies!  
 - 100% test coverage!  
 - Fully typed Redux (action types, action creators, reducers)!
+- Futureproof - output es5 and es6 bundles.
 
 ### Types
 ```ts
