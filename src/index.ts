@@ -6,3 +6,6 @@
 
 export * from './types';
 export * from './helpers';
+
+// workarounds for missing features
+export * from './returntypeof';
