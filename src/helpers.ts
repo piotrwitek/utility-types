@@ -1,22 +1,22 @@
-import { IEmptyAction, IAction } from './types';
+import { EmptyAction, PayloadAction } from './types';
 
 /**
- * @export createAction - empty action creator constructor function
+ * @export createEmptyAction - empty action creator function
  * @template T - Type
- * @param {T} type
- * @returns () => IEmptyAction<T>
+ * @param type: T 
+ * @returns () => EmptyAction<T>
  */
-export function createEmptyAction<T>(type: T): () => IEmptyAction<T> {
+export function createEmptyAction<T>(type: T): () => EmptyAction<T> {
   return () => ({ type });
 };
 
 /**
- * @export createFSAction - FSA action creator constructor function
+ * @export createPayloadAction - FSA action creator function
  * @template T - Type
  * @template P - Payload
- * @param {T} type
- * @returns (payload?: P) => IAction<T, P>
+ * @param type: T
+ * @returns (payload: P) => PayloadAction<T, P>
  */
-export function createAction<T, P>(type: T): (payload: P) => IAction<T, P> {
+export function createPayloadAction<T, P>(type: T): (payload: P) => PayloadAction<T, P> {
   return (payload) => ({ type, payload });
 }

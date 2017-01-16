@@ -1,19 +1,18 @@
-
 /**
- * @interface IEmptyAction - Empty Action Interface
+ * @type EmptyAction - Empty Action Type
  * @template T - Type
  */
-export interface IEmptyAction<T> {
+export type EmptyAction<T> = {
   readonly type: T;
-}
+};
 
 /**
- * @interface IAction - Flux Standard Action Interface
+ * @type PayloadAction - Flux Standard Action Type
  * @template T - Type
  * @template P - Payload
  */
-export interface IAction<T, P> {
+export type PayloadAction<T, P> = {
   readonly type: T;
-  readonly payload?: P;
+  readonly payload: P;
   readonly error?: boolean;
-}
+};

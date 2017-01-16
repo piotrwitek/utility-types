@@ -1,4 +1,4 @@
-import { IEmptyAction, IAction, createEmptyAction, createAction } from '..';
+import { EmptyAction, PayloadAction, createEmptyAction, createPayloadAction } from '..';
 
 // testing createAction
 
@@ -7,13 +7,13 @@ const SHOW_MESSAGE = 'app/SHOW_MESSAGE';
 const HIDE_MESSAGE = 'app/HIDE_MESSAGE';
 
 type ActionsUnion =
-  IEmptyAction<typeof APP_STARTED> |
-  IAction<typeof SHOW_MESSAGE, string> |
-  IAction<typeof HIDE_MESSAGE, undefined>;
+  EmptyAction<typeof APP_STARTED> |
+  PayloadAction<typeof SHOW_MESSAGE, string> |
+  PayloadAction<typeof HIDE_MESSAGE, undefined>;
 
 const appStarted = createEmptyAction<typeof APP_STARTED>(APP_STARTED);
-const showMessage = createAction<typeof SHOW_MESSAGE, string>(SHOW_MESSAGE);
-const hideMessage = createAction<typeof HIDE_MESSAGE, undefined>(HIDE_MESSAGE);
+const showMessage = createPayloadAction<typeof SHOW_MESSAGE, string>(SHOW_MESSAGE);
+const hideMessage = createPayloadAction<typeof HIDE_MESSAGE, undefined>(HIDE_MESSAGE);
 
 interface IAppReducer {
   readonly isLoading: boolean;
