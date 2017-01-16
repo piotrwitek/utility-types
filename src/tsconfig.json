@@ -41,7 +41,8 @@
   ],
   "exclude": [
     "node_modules/**/",
-    "jspm_packages/**/"
+    "jspm_packages/**/",
+    "**/specs/*"
   ],
   "compileOnSave": false,
   "vscode": {
