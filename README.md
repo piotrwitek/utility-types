@@ -1,15 +1,26 @@
 # React / Redux / TypeScript Utils
+- No dependencies!  
+- 100% test coverage!  
+- Fully typed Redux (action types, action creators, reducers)!
 
-### Interfaces
+### Types
 ```ts
 /**
- * @interface IAction - FluxStandardAction Interface
+ * @type EmptyAction - Empty Action Type
+ * @template T - Type
+ */
+export type EmptyAction<T> = {
+  readonly type: T;
+}
+
+/**
+ * @type PayloadAction - Flux Standard Action Type
  * @template T - Type
  * @template P - Payload
  */
-interface IAction<T extends string, P> {
+export type PayloadAction<T, P> = {
   readonly type: T;
-  readonly payload?: P;
+  readonly payload: P;
   readonly error?: boolean;
 }
 
@@ -18,22 +29,35 @@ interface IAction<T extends string, P> {
 ### Helper Functions
 ```ts
 /**
- * @export createAction helper for FSA Actions
+ * @export createEmptyAction - empty action creator function
  * @template T - Type
- * @template P - Payload
- * @param {T} type
- * @returns (payload?: P): IAction<T, P>
+ * @param type: T
+ * @returns () => EmptyAction<T>
  */
-createAction<T, P>(type)
+createEmptyAction<T>(type)
 
 /**
- * @export get object type returned from mapStateToProps function
- * workaround until TS support getting return types from function
- * @template S - State
- * @template P - Props
- * @param {(state: S) => P} mapStateToProps
- * @returns {P}
+ * @export createPayloadAction - FSA action creator function
+ * @template T - Type
+ * @template P - Payload
+ * @param type: T
+ * @returns (payload: P) => PayloadAction<T, P>
  */
-getStateProps(mapStateToProps)
+createPayloadAction<T, P>(type)
 
 ```
+
+### TypeScript Patches
+```ts
+/**
+ * @export returntypeof - typeof patch to extract return type of "expression/function"
+ * Indispensable until native support will arrive in TS
+ * https://github.com/Microsoft/TypeScript/issues/6606
+ * @template RT - ReturnType
+ * @param expression: (...params: any[]) => RT
+ * @returns RT
+ */
+returntypeof(expression)
+```
+
+Copyright (c) 2016 Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)
