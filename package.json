@@ -5,23 +5,23 @@
   "repository": "https://github.com/piotrwitek/react-redux-typescript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "license": "MIT",
-  "types": "dist/index.d.ts",
-  "main": "dist/index.js",
-  "module": "jsnext/index.js",
-  "jsnext:main": "jsnext/index.js",
+  "types": "es5/index.d.ts",
+  "main": "es5/index.js",
+  "module": "es6/index.js",
+  "jsnext:main": "es6/index.js",
   "engines": {
     "node": ">= 4"
   },
   "scripts": {
-    "prepublishOnly": "yarn run reinstall && yarn run check && yarn run test && && yarn run build",
+    "prepublishOnly": "yarn run reinstall && yarn run check && yarn run test && yarn run build",
     "reinstall": "rm -rf node_modules/ && yarn install",
-    "build": "yarn run build:es5 & yarn run build:jsnext",
-    "build:es5": "rm -rf dist && tsc -p src",
-    "build:jsnext": "rm -rf jsnext && tsc -p src --outDir jsnext -t 'ES2015'",
     "check": "yarn run lint && yarn run tsc",
     "lint": "tslint --project src/tsconfig.json",
     "tsc": "tsc -p src --noEmit",
-    "test": "ts-node -P src src/specs/index.ts"
+    "test": "ts-node -P src src/specs/index.ts",
+    "build": "yarn run build:es5 & yarn run build:es6",
+    "build:es5": "rm -rf es5 && tsc -p src --outDir es5",
+    "build:es6": "rm -rf es6 && tsc -p src --outDir es6 -t 'ES2015'"
   },
   "dependencies": {},
   "devDependencies": {

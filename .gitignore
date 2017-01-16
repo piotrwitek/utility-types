@@ -25,14 +25,14 @@ build/Release
 node_modules
 
 # Custom
-.tmp/
-.idea/
-.vscode/
 .alm/
+.vscode/
+.idea/
+.tmp/
 .DS_Store/
 .env
 *.pyc
 
 # Build
-dist/
-jsnext/
+es5/
+es6/
