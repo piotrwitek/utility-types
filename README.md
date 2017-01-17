@@ -1,4 +1,5 @@
 # React / Redux / TypeScript Utils
+- Semantic Versioning
 - No dependencies!  
 - 100% test coverage!  
 - Fully typed Redux (action types, action creators, reducers)!
