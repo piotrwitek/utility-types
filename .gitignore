@@ -29,7 +29,7 @@ node_modules
 .vscode/
 .idea/
 .tmp/
-.DS_Store/
+.DS_Store
 .env
 *.pyc
 
