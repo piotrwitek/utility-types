@@ -19,7 +19,7 @@
     "build:es5": "rm -rf es5 && tsc -p src --outDir es5",
     "build:es6": "rm -rf es6 && tsc -p src --outDir es6 -t 'ES2015'",
     "build": "yarn run build:es5 & yarn run build:es6",
-    "check": "yarn run lint && yarn run tsc",
+    "check": "yarn run lint & yarn run tsc",
     "lint": "tslint --project src/tsconfig.json",
     "tsc": "tsc -p src --noEmit",
     "test": "ts-node -P src src/specs/index.ts"
