@@ -3,7 +3,7 @@ import { EmptyAction, PayloadAction } from './types';
 /**
  * @export createEmptyAction - empty action creator function
  * @template T - Type
- * @param type: T 
+ * @param type: T
  * @returns () => EmptyAction<T>
  */
 export function createEmptyAction<T>(type: T): () => EmptyAction<T> {
