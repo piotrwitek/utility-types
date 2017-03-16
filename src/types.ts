@@ -1,6 +1,6 @@
 /**
  * @type EmptyAction - Empty Action Type
- * @template T - Type
+ * @template T - Generic Type
  */
 export type EmptyAction<T> = {
   readonly type: T;
@@ -8,8 +8,8 @@ export type EmptyAction<T> = {
 
 /**
  * @type PayloadAction - Flux Standard Action Type
- * @template T - Type
- * @template P - Payload
+ * @template T - Generic Type
+ * @template P - Generic Type
  */
 export type PayloadAction<T, P> = {
   readonly type: T;
