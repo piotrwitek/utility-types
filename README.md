@@ -106,14 +106,16 @@ const dispatchToProps = {
   changeBaseCurrency: ActionCreators.ChangeBaseCurrency.create,
 };
 
-export default connect(mapStateToProps, dispatchToProps)(CurrencyConverterContainer);
-
 // Props types inferred from mapStateToProps & dispatchToProps
 const stateProps = returntypeof(mapStateToProps);
 type Props = typeof stateProps & typeof dispatchToProps;
 type State = {};
 
 class CurrencyConverterContainer extends React.Component<Props, State> {
+...
+}
+
+export default connect(mapStateToProps, dispatchToProps)(CurrencyConverterContainer);
 ```
 
 Copyright (c) 2016 Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)
