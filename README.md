@@ -6,9 +6,17 @@
 - output es5 and es6 bundles
 
 ### Table of Contents
-- [Helpers v3.0](#helpers-v30)
+- [Helpers v2.2](#helpers-v22)
 - [Helpers v2.0](#helpers-v20)
 - [returntypeof polyfill](#returntypeof-polyfill)
+
+---
+
+### Helpers v3.0
+```ts
+WIP
+...
+```
 
 ---
 
