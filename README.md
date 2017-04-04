@@ -125,5 +125,7 @@ class CurrencyConverterContainer extends React.Component<Props, State> {
 
 export default connect(mapStateToProps, dispatchToProps)(CurrencyConverterContainer);
 ```
+---
+MIT License
 
 Copyright (c) 2016 Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)
