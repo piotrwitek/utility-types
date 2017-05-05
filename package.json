@@ -8,22 +8,23 @@
   "license": "MIT",
   "types": "es5/index.d.ts",
   "main": "es5/index.js",
-  "module": "es6/index.js",
-  "jsnext:main": "es6/index.js",
+  "module": "module/index.js",
+  "jsnext:main": "jsnext/index.js",
   "engines": {
     "node": ">= 4"
   },
   "scripts": {
-    "clean": "rm -rf es5/ es6/ node_modules/",
+    "clean": "rm -rf node_modules/ es5/ module/ jsnext/",
     "reinstall": "rm -rf node_modules/ && yarn install",
     "prepublishOnly": "yarn run clean && yarn install && yarn run check && yarn run test && yarn run build",
     "check": "yarn run lint & yarn run tsc",
     "lint": "tslint --project src/tsconfig.json",
     "tsc": "tsc -p src --noEmit",
     "test": "ts-node -P src src/specs/index.ts",
-    "build": "yarn run build:es5 & yarn run build:es6",
+    "build": "yarn run build:es5 & yarn run build:module & yarn run build:jsnext",
     "build:es5": "rm -rf es5/ && tsc -p src --outDir es5/",
-    "build:es6": "rm -rf es6/ && tsc -p src --outDir es6/ -t 'ES2015'"
+    "build:module": "rm -rf module/ && tsc -p src --outDir module/ -m 'ES2015'",
+    "build:jsnext": "rm -rf jsnext/ && tsc -p src --outDir jsnext/ -t 'ES2015'"
   },
   "dependencies": {},
   "devDependencies": {
