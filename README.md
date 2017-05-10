@@ -92,6 +92,8 @@ export function createPayloadAction<T, P>(type: T): (payload: P) => PayloadActio
 ---
 
 ### returntypeof polyfill
+https://github.com/Microsoft/TypeScript/issues/6606
+
 ```ts
 // returntypeof() - extract return type of an "expression"
 // this polyfill exist because TypeScript does not support this feature yet 
