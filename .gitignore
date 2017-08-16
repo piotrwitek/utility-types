@@ -35,4 +35,5 @@ node_modules
 
 # Build
 es5/
-es6/
+jsnext/
+module/

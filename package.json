@@ -8,8 +8,8 @@
   "license": "MIT",
   "types": "es5/index.d.ts",
   "main": "es5/index.js",
-  "module": "module/index.js",
   "jsnext:main": "jsnext/index.js",
+  "module": "module/index.js",
   "engines": {
     "node": ">= 4"
   },
@@ -21,18 +21,20 @@
     "lint": "tslint --project src/tsconfig.json",
     "tsc": "tsc -p src --noEmit",
     "test": "ts-node -P src src/specs/index.ts",
-    "build": "yarn run build:es5 & yarn run build:module & yarn run build:jsnext",
+    "build": "yarn run build:es5 & yarn run build:jsnext & yarn run build:module",
     "build:es5": "rm -rf es5/ && tsc -p src --outDir es5/",
-    "build:module": "rm -rf module/ && tsc -p src --outDir module/ -m 'ES2015'",
-    "build:jsnext": "rm -rf jsnext/ && tsc -p src --outDir jsnext/ -t 'ES2015'"
+    "build:jsnext": "rm -rf jsnext/ && tsc -p src --outDir jsnext/ -t 'ES2015'",
+    "build:module": "rm -rf module/ && tsc -p src --outDir module/ -m 'ES2015'"
   },
-  "dependencies": {},
+  "dependencies": {
+    "redux": "^3.7.2"
+  },
   "devDependencies": {
-    "@types/node": "^7.0.0",
-    "ts-node": "^2.0.0",
-    "tslib": "^1.5.0",
-    "tslint": "^4.3.1",
-    "typescript": "^2.2.1"
+    "@types/node": "6",
+    "ts-node": "^3.3.0",
+    "tslib": "^1.7.1",
+    "tslint": "^5.6.0",
+    "typescript": "^2.4.2"
   },
   "keywords": [
     "react",

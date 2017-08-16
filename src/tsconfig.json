@@ -1,68 +1,39 @@
 {
   "compilerOptions": {
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "preserveConstEnums": true,
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-    "allowJs": false,
-    "allowSyntheticDefaultImports": false,
-    "noEmit": false,
-    "noEmitOnError": false,
-    "noEmitHelpers": true,
-    "importHelpers": true,
-    "experimentalDecorators": true,
+    "baseUrl": "src/", // enables relative imports to root
+    "outDir": "out/", // target for compiled files
+    "allowSyntheticDefaultImports": true, // no errors on commonjs default import
+    "allowJs": true, // include js files
+    "checkJs": true, // typecheck js files
+    "declaration": false, // don't emit declarations
     "emitDecoratorMetadata": true,
-    "pretty": true,
-    "declaration": true,
-    "isolatedModules": false,
-    "outDir": "../es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noResolve": false,
-    "newLine": "LF",
-    "removeComments": false,
-    "sourceMap": true,
-    "target": "es5",
-    "jsx": "react",
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true, // importing helper functions from tslib
+    "noEmitHelpers": true, // disable emitting inline helper functions
+    "jsx": "react", // process JSX
     "lib": [
       "dom",
       "es2016",
       "es2017.object"
-    ]
+    ],
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "pretty": true,
+    "removeComments": true,
+    "sourceMap": true
   },
   "include": [
     "**/*"
   ],
   "exclude": [
-    "node_modules/**/",
-    "jspm_packages/**/",
-    "**/specs/*"
-  ],
-  "compileOnSave": false,
-  "vscode": {
-    "rewriteTsconfig": true
-  },
-  "atom": {
-    "rewriteTsconfig": true
-  },
-  "formatCodeOptions": {
-    "indentSize": 2,
-    "tabSize": 2,
-    "newLineCharacter": "\r\n",
-    "convertTabsToSpaces": true,
-    "insertSpaceAfterCommaDelimiter": true,
-    "insertSpaceAfterSemicolonInForStatements": true,
-    "insertSpaceBeforeAndAfterBinaryOperators": true,
-    "insertSpaceAfterKeywordsInControlFlowStatements": true,
-    "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
-    "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
-    "placeOpenBraceOnNewLineForFunctions": false,
-    "placeOpenBraceOnNewLineForControlBlocks": false
-  }
+    "node_modules"
+  ]
 }
