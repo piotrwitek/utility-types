@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+export * from './mapped-types';
 export * from './redux-types';
 export * from './helpers';
 
