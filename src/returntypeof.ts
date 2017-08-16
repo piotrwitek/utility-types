@@ -16,3 +16,5 @@ export function returntypeof<RT>(expression: (...params: any[]) => RT): RT {
 
   return safeguard as any as RT;
 }
+
+export const returnOfExpression = returntypeof;
