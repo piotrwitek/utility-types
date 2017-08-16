@@ -7,5 +7,12 @@
  * @returns RT
  */
 export function returntypeof<RT>(expression: (...params: any[]) => RT): RT {
-  return {} as RT;
+  const safeguard = () => {
+    throw new Error(`
+      You have accidentally invoked returnOfExpression return value.
+      You should use it only to get inferred type using "typeof" operation.
+    `);
+  };
+
+  return safeguard as any as RT;
 }
