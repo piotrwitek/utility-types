@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-export * from './types';
+export * from './redux-types';
 export * from './helpers';
 
 // workarounds for missing features
