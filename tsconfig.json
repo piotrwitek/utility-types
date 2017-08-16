@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "src/", // enables relative imports to root
     "outDir": "out/", // target for compiled files
     "allowSyntheticDefaultImports": true, // no errors on commonjs default import
-    "allowJs": true, // include js files
-    "checkJs": true, // typecheck js files
-    "declaration": false, // don't emit declarations
+    "allowJs": false, // include js files
+    "checkJs": false, // typecheck js files
+    "declaration": true, // don't emit declarations
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
@@ -31,9 +30,10 @@
     "sourceMap": true
   },
   "include": [
-    "**/*"
+    "src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/specs/**/*"
   ]
 }

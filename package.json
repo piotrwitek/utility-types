@@ -6,25 +6,25 @@
   "repository": "https://github.com/piotrwitek/react-redux-typescript",
   "homepage": "https://github.com/piotrwitek/react-redux-typescript",
   "license": "MIT",
-  "types": "es5/index.d.ts",
-  "main": "es5/index.js",
+  "types": "es5-commonjs/index.d.ts",
+  "main": "es5-commonjs/index.js",
+  "module": "es5-module/index.js",
   "jsnext:main": "jsnext/index.js",
-  "module": "module/index.js",
   "engines": {
     "node": ">= 4"
   },
   "scripts": {
-    "clean": "rm -rf node_modules/ es5/ module/ jsnext/",
     "reinstall": "rm -rf node_modules/ && yarn install",
-    "prepublishOnly": "yarn run clean && yarn install && yarn run check && yarn run test && yarn run build",
+    "clean": "rm -rf es5-commonjs/ es5-module/ jsnext/",
+    "prepublishOnly": "yarn run clean && yarn run reinstall && yarn run check && yarn run test && yarn run build",
     "check": "yarn run lint & yarn run tsc",
-    "lint": "tslint --project src/tsconfig.json",
-    "tsc": "tsc -p src --noEmit",
-    "test": "ts-node -P src src/specs/index.ts",
-    "build": "yarn run build:es5 & yarn run build:jsnext & yarn run build:module",
-    "build:es5": "rm -rf es5/ && tsc -p src --outDir es5/",
-    "build:jsnext": "rm -rf jsnext/ && tsc -p src --outDir jsnext/ -t 'ES2015'",
-    "build:module": "rm -rf module/ && tsc -p src --outDir module/ -m 'ES2015'"
+    "lint": "tslint --project tsconfig.json",
+    "tsc": "tsc -p . --noEmit",
+    "test": "ts-node -P . src/specs/index.ts",
+    "build": "yarn run build:commonjs & yarn run build:module & yarn run build:jsnext",
+    "build:commonjs": "rm -rf es5-commonjs/ && tsc -p . --outDir es5-commonjs/",
+    "build:module": "rm -rf es5-module/ && tsc -p . --outDir es5-module/ -m 'ES2015'",
+    "build:jsnext": "rm -rf jsnext/ && tsc -p . --outDir jsnext/ -t 'ES2015'"
   },
   "dependencies": {
     "redux": "^3.7.2"
