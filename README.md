@@ -62,17 +62,19 @@ https://github.com/Microsoft/TypeScript/issues/6606
 ```ts
 // this polyfill exist because TypeScript does not support getting type of expression 
 // (tracking issue: https://github.com/Microsoft/TypeScript/issues/6606)
-export function returntypeof<RT>(expression: (...params: any[]) => RT): RT {
+export function getReturnOfExpression<RT>(
+  expression: (...params: any[]) => RT,
+): RT {
   return null as any as RT;
 }
 
 // Example:
 import { getReturnOfExpression } from 'react-redux-typescript';
 
-const increment = () => { type: 'INCREMENT' };
+const increment = () => ({ type: 'INCREMENT' as 'INCREMENT' });
 
 const returnOfIncrement = getReturnOfExpression(increment);
-type INCREMENT = typeof returnOfIncrement;
+type INCREMENT = typeof returnOfIncrement; // { type: "INCREMENT"; }
 ```
 
 ---

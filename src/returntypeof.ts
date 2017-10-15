@@ -7,9 +7,11 @@
  * @description Get return value of an "expression" with inferred return type
  * @template RT - Return Type
  * @param expression: (...params: any[]) => RT
- * @returns RT
+ * @returns null as RT
  */
-export function getReturnOfExpression<RT>(expression: (...params: any[]) => RT): RT {
+export function getReturnOfExpression<RT>(
+  expression: (...params: any[]) => RT,
+): RT {
   return null as any as RT;
 }
 
