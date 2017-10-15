@@ -91,41 +91,25 @@ export function createPayloadAction<T, P>(type: T): (payload: P) => PayloadActio
 
 ---
 
-### returntypeof polyfill
+### getReturnOfExpression
+> Get return value of an "expression" with inferred return type  
+> alias: returntypeof  
 https://github.com/Microsoft/TypeScript/issues/6606
 
 ```ts
-// returntypeof() - extract return type of an "expression"
-// this polyfill exist because TypeScript does not support this feature yet 
+// this polyfill exist because TypeScript does not support getting type of expression 
 // (tracking issue: https://github.com/Microsoft/TypeScript/issues/6606)
 export function returntypeof<RT>(expression: (...params: any[]) => RT): RT {
-  return {} as RT;
+  return null as any as RT;
 }
 
 // Example:
-import { returntypeof } from 'react-redux-typescript';
+import { getReturnOfExpression } from 'react-redux-typescript';
 
-const mapStateToProps = (state: RootState) => ({
-  counter: state.counter,
-  baseCurrency: state.baseCurrency,
-  currencies: CurrencyRatesSelectors.getCurrencies(state),
-});
+const increment = () => { type: 'INCREMENT' };
 
-const dispatchToProps = {
-  increaseCounter: ActionCreators.IncreaseCounter.create,
-  changeBaseCurrency: ActionCreators.ChangeBaseCurrency.create,
-};
-
-// Props types inferred from mapStateToProps & dispatchToProps
-const stateProps = returntypeof(mapStateToProps);
-type Props = typeof stateProps & typeof dispatchToProps;
-type State = {};
-
-class CurrencyConverterContainer extends React.Component<Props, State> {
-...
-}
-
-export default connect(mapStateToProps, dispatchToProps)(CurrencyConverterContainer);
+const returnOfIncrement = getReturnOfExpression(increment);
+type INCREMENT = typeof returnOfIncrement;
 ```
 ---
 MIT License
