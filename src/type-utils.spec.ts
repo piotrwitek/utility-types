@@ -1,6 +1,6 @@
 // testing getReturnOfExpression
-import { returntypeof } from '..';
-import { getReturnOfExpression } from '..';
+import { returntypeof } from '.';
+import { getReturnOfExpression } from '.';
 
 const increment = () => ({ type: 'INCREMENT' as 'INCREMENT' });
 

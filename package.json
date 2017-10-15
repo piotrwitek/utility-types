@@ -20,7 +20,7 @@
     "check": "yarn run lint & yarn run tsc",
     "lint": "tslint --project tsconfig.json",
     "tsc": "tsc -p . --noEmit",
-    "test": "ts-node -P . src/specs/index.ts",
+    "test": "ts-node -P . tests.ts",
     "build": "yarn run build:commonjs & yarn run build:module & yarn run build:jsnext",
     "build:commonjs": "rm -rf es5-commonjs/ && tsc -p . --outDir es5-commonjs/",
     "build:module": "rm -rf es5-module/ && tsc -p . --outDir es5-module/ -m 'ES2015'",
