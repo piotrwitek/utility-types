@@ -34,5 +34,6 @@ node_modules
 *.pyc
 
 # Build
-es5/
-es6/
+es5-commonjs/
+es5-module/
+jsnext/

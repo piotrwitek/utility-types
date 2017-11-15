@@ -1,4 +1,4 @@
-import { EmptyAction, PayloadAction } from './types';
+import { EmptyAction, PayloadAction } from './redux-types';
 
 /**
  * @export Action Creator helper factory function
@@ -22,7 +22,7 @@ export class ActionCreator<T, P> {
  */
 export function createEmptyAction<T>(type: T): () => EmptyAction<T> {
   return () => ({ type });
-};
+}
 
 /**
  * @export createPayloadAction - FSA action creator function

@@ -16,7 +16,7 @@ export namespace TestHelpers1 {
   const SHOW_MESSAGE = 'app/SHOW_MESSAGE';
   const HIDE_MESSAGE = 'app/HIDE_MESSAGE';
 
-  type AppActions =
+  type Action1 =
     EmptyAction<typeof APP_STARTED> |
     PayloadAction<typeof SHOW_MESSAGE, string> |
     PayloadAction<typeof HIDE_MESSAGE, undefined>;
@@ -25,26 +25,29 @@ export namespace TestHelpers1 {
   const showMessage = createPayloadAction<typeof SHOW_MESSAGE, string>(SHOW_MESSAGE);
   const hideMessage = createPayloadAction<typeof HIDE_MESSAGE, undefined>(HIDE_MESSAGE);
 
-  type AppState = {
+  type State1 = {
     readonly isLoading: boolean;
     readonly message: string | undefined;
   };
-  const initialState: AppState = {
+  const initialState: State1 = {
     isLoading: true,
     message: undefined,
   };
 
-  function appReducer(state = initialState, action: AppActions): AppState {
+  function appReducer(state: State1 = initialState, action: Action1): State1 {
     switch (action.type) {
-      case APP_STARTED: return {
-        ...state, isLoading: false,
-      };
-      case SHOW_MESSAGE: return {
-        ...state, message: action.payload,
-      };
-      case HIDE_MESSAGE: return {
-        ...state, message: action.payload,
-      };
+      case APP_STARTED:
+        return {
+          ...state, isLoading: false,
+        };
+      case SHOW_MESSAGE:
+        return {
+          ...state, message: action.payload,
+        };
+      case HIDE_MESSAGE:
+        return {
+          ...state, message: action.payload,
+        };
 
       default: return state;
     }
@@ -87,28 +90,26 @@ export namespace TestHelpers2 {
   };
 
   // Action Types
-  type Action = typeof ActionCreators[keyof typeof ActionCreators];
+  type Action2 = typeof ActionCreators[keyof typeof ActionCreators];
 
-  type State = {
+  type State2 = {
     readonly counter: number;
     readonly baseCurrency: string;
   };
-  const initialState: State = {
+  const initialState: State2 = {
     counter: 0,
     baseCurrency: 'EUR',
   };
 
-  function reducer(state = initialState, action: Action): State {
-    let partialState: Partial<State> | undefined;
-
+  function reducer(state: State2 = initialState, action: Action2): State2 {
     if (action.type === ActionCreators.IncreaseCounter.type) {
-      partialState = { counter: action.payload }; // number
+      return { ...state, counter: action.payload }; // number
     }
     if (action.type === ActionCreators.ChangeBaseCurrency.type) {
-      partialState = { baseCurrency: action.payload }; // string
+      return { ...state, baseCurrency: action.payload }; // string
     }
 
-    return partialState != null ? { ...state, ...partialState } : state;
+    return state;
   }
 
   const action1 = ActionCreators.IncreaseCounter.create(4);
