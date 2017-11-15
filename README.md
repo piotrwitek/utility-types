@@ -17,7 +17,7 @@
 ### Types Utils
 - [getReturnOfExpression](#getreturnofexpression)
 
-> [Docs v2.X](#READMEv2.0.md)
+> [Docs v2.X](/READMEv2.0.md)
 
 ---
 
