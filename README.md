@@ -1,60 +1,77 @@
 # React / Redux / TypeScript Utils
-> Redux helpers for Type-safety (action types, action creators, reducers)
+> Utility belt for React + Redux + TypeScript Projects
 - Semantic Versioning
 - No external dependencies
-- 100% test coverage
-- output es5 and es6 bundles
+- Output separate bundles for your specific workflow needs:
+  - ES5 + CommonJS - `main`
+  - ES5 + ES-Modules - `module` 
+  - ES2015 + CommonJS - `jsnext:main`
 
-## Table of Contents (v3.0)
+# Table of Contents (v3.0)
 
-### Redux Utils
+## TS Redux Actions
+> For advanced docs check here: https://github.com/piotrwitek/ts-redux-actions
+- [createAction](#createaction)
 
-### Mapped Types
+## Mapped Types
 - [Diff](#diff)
 - [Omit](#omit)
 - [Overwrite](#overwrite)
 
-### Types Utils
+## Type Utils
 - [getReturnOfExpression](#getreturnofexpression)
 
-> [Docs v2.X](/READMEv2.0.md)
+---
+
+Archived docs:
+- [Docs v2.X](#READMEv2.0.md)
 
 ---
 
-### Redux Utils
+## TS Redux Actions
+
+### createAction
 
 ```ts
-
-
+createAction(typeString, creatorFunction?)
+typeString: TS extends string,
+creatorFunction: (...args: any[]) => { type: TS, payload?: P, meta?: M, error?: boolean }
+return: (
+  (...args: any[]) => { type: TS, payload?: P, meta?: M, error?: boolean }
+) & { readonly type: TS }
 ```
 
 ---
 
-### Mapped Types
+## Mapped Types
 
-#### Diff
+
+### Diff
 ```ts
 // TestDiff expects: ('a' | 'b')
-type TestDiff = Diff<'a' | 'b' | 'c', 'c' | 'd'>;
+type TestDiff =
+  Diff<'a' | 'b' | 'c', 'c' | 'd'>;
 ```
 
-#### Omit
+### Omit
 ```ts
 // TestOmit expects: { b: number, c: boolean }
-type TestOmit = Omit<{ a: string, b: number, c: boolean }, 'a'>;
+type TestOmit =
+  Omit<{ a: string, b: number, c: boolean }, 'a'>;
 ```
 
-#### Overwrite
+### Overwrite
 ```ts
 // TestOverwrite expects: { b: number, c: boolean } & { a: number }
-type TestOverwrite = Overwrite<{ a: string, b: number, c: boolean }, { a: number }>;
+type TestOverwrite =
+  Overwrite<{ a: string, b: number, c: boolean }, { a: number }>;
 ```
 
 ---
 
-### Types Utils
+## Type Utils
 
-#### getReturnOfExpression
+### getReturnOfExpression
 > Get return value of an "expression" with inferred return type  
 > alias: returntypeof  
 https://github.com/Microsoft/TypeScript/issues/6606
@@ -62,11 +79,9 @@ https://github.com/Microsoft/TypeScript/issues/6606
 ```ts
 // this polyfill exist because TypeScript does not support getting type of expression 
 // (tracking issue: https://github.com/Microsoft/TypeScript/issues/6606)
-export function getReturnOfExpression<RT>(
-  expression: (...params: any[]) => RT,
-): RT {
-  return null as any as RT;
-}
+function getReturnOfExpression<T>(
+  expression: (...params: any[]) => T,
+): T;
 
 // Example:
 import { getReturnOfExpression } from 'react-redux-typescript';
