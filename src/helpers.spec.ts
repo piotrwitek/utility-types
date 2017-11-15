@@ -9,7 +9,7 @@ const failed = (describe: string, state: object) => {
 // Testing createEmptyAction, createPayloadAction
 import {
   EmptyAction, PayloadAction, createEmptyAction, createPayloadAction,
-} from '..';
+} from '.';
 
 export namespace TestHelpers1 {
   const APP_STARTED = 'app/APP_STARTED';
@@ -81,7 +81,7 @@ export namespace TestHelpers1 {
 // Testing ActionCreator
 import {
   ActionCreator,
-} from '..';
+} from '.';
 
 export namespace TestHelpers2 {
   export const ActionCreators = {

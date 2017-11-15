@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { createActionCreator } from '.';
+import { createActionCreator } from './create-action-creator';
 
 const store = createStore(() => ({}));
 
@@ -12,14 +12,14 @@ export const actionCreators = {
 };
 
 // Examples
-store.dispatch(actionCreators.incrementCounter(4));
+// store.dispatch(actionCreators.incrementCounter(4));
 // Error: Expected 0 arguments, but got 1.
 store.dispatch(actionCreators.incrementCounter());
 // OK: { type: "INCREMENT_COUNTER" }
 console.log(actionCreators.incrementCounter.type === 'INCREMENT_COUNTER');
 // true
 
-store.dispatch(actionCreators.showNotification());
+// store.dispatch(actionCreators.showNotification());
 // Error: Expected 1 arguments, but got 0.
 store.dispatch(actionCreators.showNotification('Hello!'));
 // OK: { type: "SHOW_NOTIFICATION", payload: { message: 'Hello!' } }
