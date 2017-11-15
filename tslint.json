@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:latest"],
+  "extends": ["tslint:recommended"],
   "rules": {
     "arrow-parens": false,
     "arrow-return-shorthand": [false],
@@ -31,7 +31,7 @@
     "no-this-assignment": [true, {
       "allow-destructuring": true
     }],
-    "no-unused-variable": [true, "react"],
+    "no-unused-variable": [false],
     "object-literal-sort-keys": false,
     "object-literal-shorthand": false,
     "one-variable-per-declaration": [false],

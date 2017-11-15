@@ -5,8 +5,9 @@
  */
 
 export * from './mapped-types';
-export * from './redux-types';
-export * from './helpers';
 
-// workarounds for missing features
-export * from './returntypeof';
+// deprecated - remove on next major
+export * from './v2/helpers';
+
+// reexport ts-redux-actions
+export * from 'ts-redux-actions';

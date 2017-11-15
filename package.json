@@ -1,6 +1,6 @@
 {
   "name": "react-redux-typescript",
-  "version": "2.4.0",
+  "version": "3.0.0-beta1",
   "description": "React / Redux / TypeScript Utils",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "repository": "https://github.com/piotrwitek/react-redux-typescript",
@@ -17,24 +17,31 @@
     "reinstall": "rm -rf node_modules/ && yarn install",
     "clean": "rm -rf es5-commonjs/ es5-module/ jsnext/",
     "prepublishOnly": "yarn run clean && yarn run reinstall && yarn run check && yarn run test && yarn run build",
-    "check": "yarn run lint & yarn run tsc",
-    "lint": "tslint --project tsconfig.json",
+    "check": "npm run lint & npm run tsc",
+    "lint": "tslint --project './tsconfig.json'",
     "tsc": "tsc -p . --noEmit",
-    "test": "ts-node -P . tests.ts",
+    "tsc:watch": "tsc -p . --noEmit -w",
+    "test": "jest --config jest.config.json",
+    "test:watch": "jest --config jest.config.json --watch",
+    "test:v2": "ts-node ./src/v2/helpers-test.ts",
     "build": "yarn run build:commonjs & yarn run build:module & yarn run build:jsnext",
     "build:commonjs": "rm -rf es5-commonjs/ && tsc -p . --outDir es5-commonjs/",
     "build:module": "rm -rf es5-module/ && tsc -p . --outDir es5-module/ -m 'ES2015'",
     "build:jsnext": "rm -rf jsnext/ && tsc -p . --outDir jsnext/ -t 'ES2015'"
   },
   "dependencies": {
-    "redux": "^3.7.2"
+    "ts-redux-actions": "1.0.0-beta5"
   },
   "devDependencies": {
-    "@types/node": "6",
-    "ts-node": "^3.3.0",
+    "@types/jest": "21.1.6",
+    "@types/node": "6.0",
+    "jest-cli": "21.2.1",
+    "redux": "^3.7.2",
+    "ts-jest": "21.2.2",
+    "ts-node": "3.3.0",
     "tslib": "1.8.0",
-    "tslint": "5.7.0",
-    "typescript": "2.5.3"
+    "tslint": "5.8.0",
+    "typescript": "2.6.1"
   },
   "keywords": [
     "react",
