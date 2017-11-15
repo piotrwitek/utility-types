@@ -1,5 +1,8 @@
 .alm
 .vscode
 src
+.editorconfig
+jest.config.json
 tslint.json
+tsconfig.json
 yarn.lock
