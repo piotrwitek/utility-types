@@ -31,6 +31,7 @@ Archived docs:
 ## TS Redux Actions
 
 ### createAction
+> https://github.com/piotrwitek/ts-redux-actions#createaction
 
 ```ts
 createAction(typeString, creatorFunction?)
