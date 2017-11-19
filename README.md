@@ -1,7 +1,7 @@
 # React / Redux / TypeScript Utils
 > Utility belt for React + Redux + TypeScript Projects
+
 - Semantic Versioning
-- No external dependencies
 - Output separate bundles for your specific workflow needs:
   - ES5 + CommonJS - `main`
   - ES5 + ES-Modules - `module` 
