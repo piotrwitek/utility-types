@@ -46,26 +46,32 @@ return: (
 
 ## Mapped Types
 
-
-### Diff<T, U>
+### KeyDiff<T extends string, U extends string>
 ```ts
-// DiffTestResult expect: 'a' | 'b'
-type DiffTestResult =
-  Diff<'a' | 'b' | 'c', 'c' | 'd'>;
+// KeyDiffTest expect: 'a' | 'b'
+type KeyDiffTest =
+  KeyDiff<'a' | 'b' | 'c', 'c' | 'd'>;
 ```
 
-### Omit<T, U>
+### Omit<T, K extends keyof T>
 ```ts
-// OmitTestResult expect: { b?: number | undefined, c: boolean }
-type OmitTestResult =
+// OmitTest expect: { b?: number | undefined, c: boolean }
+type OmitTest =
   Omit<{ a: string, b?: number, c: boolean }, 'a'>;
+```
+
+### Minus<T, U>
+```ts
+// MinusTest expect { b?: number | undefined, c: boolean }
+type MinusTest =
+  Minus<{ a: string, b?: number, c: boolean }, { a: any }>;
 ```
 
 ### Overwrite<T, U>
 ```ts
-// OverwriteTestResult expect: { b: number, c: boolean } & { a: number }
-type OverwriteTestResult =
-  Overwrite<{ a: string, b: number, c: boolean }, { a: number }>;
+// OverwriteTest expect: { b?: number | undefined, c: boolean } & { a: number }
+type OverwriteTest =
+  Overwrite<{ a: string, b?: number, c: boolean }, { a: number }>;
 ```
 
 ---
