@@ -47,24 +47,24 @@ return: (
 ## Mapped Types
 
 
-### Diff
+### Diff<T, U>
 ```ts
-// TestDiff expects: ('a' | 'b')
-type TestDiff =
+// DiffTestResult expect: 'a' | 'b'
+type DiffTestResult =
   Diff<'a' | 'b' | 'c', 'c' | 'd'>;
 ```
 
-### Omit
+### Omit<T, U>
 ```ts
-// TestOmit expects: { b: number, c: boolean }
-type TestOmit =
-  Omit<{ a: string, b: number, c: boolean }, 'a'>;
+// OmitTestResult expect: { b?: number | undefined, c: boolean }
+type OmitTestResult =
+  Omit<{ a: string, b?: number, c: boolean }, 'a'>;
 ```
 
-### Overwrite
+### Overwrite<T, U>
 ```ts
-// TestOverwrite expects: { b: number, c: boolean } & { a: number }
-type TestOverwrite =
+// OverwriteTestResult expect: { b: number, c: boolean } & { a: number }
+type OverwriteTestResult =
   Overwrite<{ a: string, b: number, c: boolean }, { a: number }>;
 ```
 

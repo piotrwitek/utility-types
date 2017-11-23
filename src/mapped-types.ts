@@ -15,22 +15,20 @@ export type Diff<T extends string, U extends string> = (
   & {[P in U]: never }
   & { [x: string]: never }
 )[T];
-// TestDiff expects: 'a' | 'b'
-type TestDiff =
+// DiffTestResult expect: 'a' | 'b'
+type DiffTestResult =
   Diff<'a' | 'b' | 'c', 'c' | 'd'>;
 
 /** Omit */
-export type Omit<T, K extends keyof T> = {
-  [P in Diff<keyof T, K>]: T[P]
-};
-// TestOmit expects: { b: number, c: boolean }
-type TestOmit =
-  Omit<{ a: string, b: number, c: boolean }, 'a'>;
+export type Omit<T, K extends keyof T> = Pick<T, Diff<keyof T, K>>;
+// OmitTestResult expect: { b?: number | undefined, c: boolean }
+type OmitTestResult =
+  Omit<{ a: string, b?: number, c: boolean }, 'a'>;
 
 /** Overwrite */
 export type Overwrite<T, U> = {
   [P in Diff<keyof T, keyof U>]: T[P]
 } & U;
-// TestOverwrite expects: { b: number, c: boolean } & { a: number }
-type TestOverwrite =
+// OverwriteTestResult expect: { b: number, c: boolean } & { a: number }
+type OverwriteTestResult =
   Overwrite<{ a: string, b: number, c: boolean }, { a: number }>;
