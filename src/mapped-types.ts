@@ -18,6 +18,15 @@ export type DiffKeys<T extends string, U extends string> = (
 
 /** Diff */
 export type Diff<T, U> = Pick<T, DiffKeys<keyof T, keyof U>>;
+/**
+ * OmitKeys
+ * @desc Omit part of string literal union with constraint to existing literals
+ * by -
+ */
+
+export type OmitKeys<T extends string, U extends T> = (
+  DiffKeys<T, U>
+);
 
 /** Omit */
 export type Omit<T, K extends keyof T> = Pick<T, DiffKeys<keyof T, K>>;
