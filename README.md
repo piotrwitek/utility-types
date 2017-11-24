@@ -14,8 +14,9 @@
 - [createAction](#createaction)
 
 ## Mapped Types
-- [Diff](#diff)
+- [KeyDiff](#keydiff)
 - [Omit](#omit)
+- [Minus](#minus)
 - [Overwrite](#overwrite)
 
 ## Type Utils
@@ -46,28 +47,32 @@ return: (
 
 ## Mapped Types
 
-### KeyDiff<T extends string, U extends string>
+### KeyDiff
+> KeyDiff<T extends string, U extends string>
 ```ts
 type KeyDiffTest =
   KeyDiff<'a' | 'b' | 'c', 'c' | 'd'>;
 // Expect: 'a' | 'b'
 ```
 
-### Omit<T, K extends keyof T>
+### Omit
+> Omit<T, K extends keyof T>
 ```ts
 type OmitTest =
   Omit<{ a: string, b?: number, c: boolean }, 'a'>;
 // Expect: { b?: number | undefined, c: boolean }
 ```
 
-### Minus<T, U>
+### Minus
+> Minus<T, U>
 ```ts
 type MinusTest =
   Minus<{ a: string, b?: number, c: boolean }, { a: any }>;
 // Expect { b?: number | undefined, c: boolean }
 ```
 
-### Overwrite<T, U>
+### Overwrite
+> Overwrite<T, U>
 ```ts
 type OverwriteTest =
   Overwrite<{ a: string, b?: number, c: boolean }, { a: number }>;
