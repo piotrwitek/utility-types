@@ -1,7 +1,7 @@
 # React / Redux / TypeScript Utils
 > Utility belt for React + Redux + TypeScript Projects
+
 - Semantic Versioning
-- No external dependencies
 - Output separate bundles for your specific workflow needs:
   - ES5 + CommonJS - `main`
   - ES5 + ES-Modules - `module` 
@@ -46,26 +46,32 @@ return: (
 
 ## Mapped Types
 
-
-### Diff
+### KeyDiff<T extends string, U extends string>
 ```ts
-// TestDiff expects: ('a' | 'b')
-type TestDiff =
-  Diff<'a' | 'b' | 'c', 'c' | 'd'>;
+type KeyDiffTest =
+  KeyDiff<'a' | 'b' | 'c', 'c' | 'd'>;
+// Expect: 'a' | 'b'
 ```
 
-### Omit
+### Omit<T, K extends keyof T>
 ```ts
-// TestOmit expects: { b: number, c: boolean }
-type TestOmit =
-  Omit<{ a: string, b: number, c: boolean }, 'a'>;
+type OmitTest =
+  Omit<{ a: string, b?: number, c: boolean }, 'a'>;
+// Expect: { b?: number | undefined, c: boolean }
 ```
 
-### Overwrite
+### Minus<T, U>
 ```ts
-// TestOverwrite expects: { b: number, c: boolean } & { a: number }
-type TestOverwrite =
-  Overwrite<{ a: string, b: number, c: boolean }, { a: number }>;
+type MinusTest =
+  Minus<{ a: string, b?: number, c: boolean }, { a: any }>;
+// Expect { b?: number | undefined, c: boolean }
+```
+
+### Overwrite<T, U>
+```ts
+type OverwriteTest =
+  Overwrite<{ a: string, b?: number, c: boolean }, { a: number }>;
+// Expect: { b?: number | undefined, c: boolean } & { a: number }
 ```
 
 ---

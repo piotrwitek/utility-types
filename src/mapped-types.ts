@@ -10,24 +10,33 @@
 // }
 
 /** Diff */
-export type Diff<T extends string, U extends string> = (
-  & {[P in T]: P }
-  & {[P in U]: never }
-  & { [x: string]: never }
+export type KeyDiff<T extends string, U extends string> = (
+  & {[K in T]: K }
+  & {[K in U]: never }
+  & { [k: string]: never }
 )[T];
-// TestDiff expects: 'a' | 'b'
-type TestDiff = Diff<'a' | 'b' | 'c', 'c' | 'd'>;
+
+type KeyDiffTest =
+  KeyDiff<'a' | 'b' | 'c', 'c' | 'd'>;
+// Expect: 'a' | 'b'
 
 /** Omit */
-export type Omit<T, K extends keyof T> = {
-  [P in Diff<keyof T, K>]: T[P]
-};
-// TestOmit expects: { b: number, c: boolean }
-type TestOmit = Omit<{ a: string, b: number, c: boolean }, 'a'>;
+export type Omit<T, K extends keyof T> = Pick<T, KeyDiff<keyof T, K>>;
+
+type OmitTest =
+  Omit<{ a: string, b?: number, c: boolean }, 'a'>;
+// Expect: { b?: number | undefined, c: boolean }
+
+/** Minus */
+export type Minus<T, U> = Pick<T, KeyDiff<keyof T, keyof U>>;
+
+type MinusTest =
+  Minus<{ a: string, b?: number, c: boolean }, { a: any }>;
+// Expect { b?: number | undefined, c: boolean }
 
 /** Overwrite */
-export type Overwrite<T, U> = {
-  [P in Diff<keyof T, keyof U>]: T[P]
-} & U;
-// TestOverwrite expects: { b: number, c: boolean } & { a: number }
-type TestOverwrite = Overwrite<{ a: string, b: number, c: boolean }, { a: number }>;
+export type Overwrite<T, U> = Pick<T, KeyDiff<keyof T, keyof U>> & U;
+
+type OverwriteTest =
+  Overwrite<{ a: string, b?: number, c: boolean }, { a: number }>;
+// Expect: { b?: number | undefined, c: boolean } & { a: number }
