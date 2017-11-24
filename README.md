@@ -9,15 +9,17 @@
 
 # Table of Contents (v3.0)
 
-## TS Redux Actions
+## Redux Actions Utils
 > For advanced docs check here: https://github.com/piotrwitek/ts-redux-actions
 - [createAction](#createaction)
 
 ## Mapped Types
 - [DiffKeys](#diffkeys)
+- [OmitKeys](#omitkeys)
 - [Diff](#diff)
 - [Omit](#omit)
 - [Overwrite](#overwrite)
+- [Assign](#assign)
 
 ## Type Utils
 - [getReturnOfExpression](#getreturnofexpression)
@@ -29,7 +31,7 @@ Archived docs:
 
 ---
 
-## TS Redux Actions
+## Redux Actions Utils
 
 ### createAction
 > https://github.com/piotrwitek/ts-redux-actions#createaction
@@ -48,41 +50,91 @@ return: (
 ## Mapped Types
 
 ### DiffKeys
-> DiffKeys<T extends string, U extends string>
+> Return a difference of non-related string literal unions
 ```ts
-interface Shape { a: string, b?: number, c: boolean }
-interface Shape2 { a: number, d: number }
+type DiffKeys<T extends string, U extends string>
+```
 
-type DiffKeysTest = DiffKeys<keyof Shape, keyof Shape2>;
+Usage:
+```ts
+interface BaseProps { a: string, b?: number, c: boolean }
+interface Props { a: number, d: number }
+
+type Diffed_Keys = DiffKeys<keyof Props, keyof Props2>;
+// Expect: 'b' | 'c'
+```
+
+### OmitKeys
+> Omit part of string literal union with constraint to existing literals
+```ts
+type OmitKeys<T extends string, U extends T>
+```
+
+Usage:
+```ts
+interface BaseProps { a: string, b?: number, c: boolean }
+
+type Omitted_Keys = OmitKeys<keyof BaseProps, 'a'>;
 // Expect: 'b' | 'c'
 ```
 
 ### Diff
-> Diff<T, U>
+> Return an object containing non-intersecting properties of non-related objects
 ```ts
-interface Shape { a: string, b?: number, c: boolean }
-interface Shape2 { a: number, d: number }
+type Diff<T extends object, U extends object>
+```
 
-type DiffTest = Diff<Shape, Shape2>;
+Usage:
+```ts
+interface BaseProps { a: string, b?: number, c: boolean }
+interface Props { a: number, d: number }
+
+type Diffed_Props = Diff<BaseProps, Props>;
 // Expect { b?: number | undefined, c: boolean }
 ```
 
 ### Omit
-> Omit<T, K extends keyof T>
+> Omit object property with constraint to existing keys
 ```ts
-interface Shape { a: string, b?: number, c: boolean }
+type Omit<T extends object, K extends keyof T>
+```
 
-type OmitTest = Omit<Shape, 'a'>;
+Usage:
+```ts
+interface BaseProps { a: string, b?: number, c: boolean }
+
+type Omitted_Props = Omit<BaseProps, 'a'>;
 // Expect: { b?: number | undefined, c: boolean }
 ```
 
 ### Overwrite
-> Overwrite<T, U>
+> Overwrite intersecting properties from <U> to <T>
 ```ts
-interface Shape { a: string, b?: number, c: boolean }
+type Overwrite<T extends object, U extends object>
+```
 
-type OverwriteTest = Overwrite<Shape, { a: number }>;
+Usage:
+```ts
+interface BaseProps { a: string, b?: number, c: boolean }
+interface Props { a: number, d: number }
+
+type Overwritten_Props = Overwrite<BaseProps, Props>;
 // Expect: { a: number, b?: number | undefined, c: boolean }
+```
+
+### Assign
+> Assign properties from <U> to <T> (overwrite intersecting)
+```ts
+type Assign<T extends object, U extends object>
+```
+
+Usage:
+```ts
+interface BaseProps { a: string, b?: number, c: boolean }
+interface Props { a: number, d: number }
+
+type Assigned_Props = Assign<BaseProps, Props>;
+// Expect: { a: number, b?: number | undefined, c: boolean, d: number }
 ```
 
 ---
@@ -91,8 +143,8 @@ type OverwriteTest = Overwrite<Shape, { a: number }>;
 
 ### getReturnOfExpression
 > Get return value of an "expression" with inferred return type  
-> alias: returntypeof  
-https://github.com/Microsoft/TypeScript/issues/6606
+Alias: `returntypeof`
+https://github.com/Microsoft/TypeScript/issues/6606  
 
 ```ts
 // this polyfill exist because TypeScript does not support getting type of expression 
