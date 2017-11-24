@@ -48,30 +48,30 @@ return: (
 
 ### KeyDiff<T extends string, U extends string>
 ```ts
-// KeyDiffTest expect: 'a' | 'b'
 type KeyDiffTest =
   KeyDiff<'a' | 'b' | 'c', 'c' | 'd'>;
+// Expect: 'a' | 'b'
 ```
 
 ### Omit<T, K extends keyof T>
 ```ts
-// OmitTest expect: { b?: number | undefined, c: boolean }
 type OmitTest =
   Omit<{ a: string, b?: number, c: boolean }, 'a'>;
+// Expect: { b?: number | undefined, c: boolean }
 ```
 
 ### Minus<T, U>
 ```ts
-// MinusTest expect { b?: number | undefined, c: boolean }
 type MinusTest =
   Minus<{ a: string, b?: number, c: boolean }, { a: any }>;
+// Expect { b?: number | undefined, c: boolean }
 ```
 
 ### Overwrite<T, U>
 ```ts
-// OverwriteTest expect: { b?: number | undefined, c: boolean } & { a: number }
 type OverwriteTest =
   Overwrite<{ a: string, b?: number, c: boolean }, { a: number }>;
+// Expect: { b?: number | undefined, c: boolean } & { a: number }
 ```
 
 ---

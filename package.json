@@ -1,6 +1,6 @@
 {
   "name": "react-redux-typescript",
-  "version": "3.0.0-beta1",
+  "version": "3.0.0-rc",
   "description": "React / Redux / TypeScript Utils",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "repository": "https://github.com/piotrwitek/react-redux-typescript",

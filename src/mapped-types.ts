@@ -15,27 +15,28 @@ export type KeyDiff<T extends string, U extends string> = (
   & {[K in U]: never }
   & { [k: string]: never }
 )[T];
-// KeyDiffTest expect: 'a' | 'b'
+
 type KeyDiffTest =
   KeyDiff<'a' | 'b' | 'c', 'c' | 'd'>;
+// Expect: 'a' | 'b'
 
 /** Omit */
 export type Omit<T, K extends keyof T> = Pick<T, KeyDiff<keyof T, K>>;
-// OmitTest expect: { b?: number | undefined, c: boolean }
+
 type OmitTest =
   Omit<{ a: string, b?: number, c: boolean }, 'a'>;
+// Expect: { b?: number | undefined, c: boolean }
 
 /** Minus */
 export type Minus<T, U> = Pick<T, KeyDiff<keyof T, keyof U>>;
-// MinusTest expect { b?: number | undefined, c: boolean }
+
 type MinusTest =
   Minus<{ a: string, b?: number, c: boolean }, { a: any }>;
+// Expect { b?: number | undefined, c: boolean }
 
 /** Overwrite */
-export type Overwrite<T, U> = {
-  [K in KeyDiff<keyof T, keyof U>]: T[K]
-} & U;
-// OverwriteTest expect: { b?: number | undefined, c: boolean } & { a: number }
-// FIX EDGE CASE: Optional prop
+export type Overwrite<T, U> = Pick<T, KeyDiff<keyof T, keyof U>> & U;
+
 type OverwriteTest =
   Overwrite<{ a: string, b?: number, c: boolean }, { a: number }>;
+// Expect: { b?: number | undefined, c: boolean } & { a: number }
