@@ -21,7 +21,14 @@ export type Diff<T, U> = Pick<T, DiffKeys<keyof T, keyof U>>;
 
 /** Omit */
 export type Omit<T, K extends keyof T> = Pick<T, DiffKeys<keyof T, K>>;
+/**
+ * Overwrite
+ * @desc Overwrite intersecting properties from <U> to <T>
+ * by @ahejlsberg
+ */
+export type Overwrite<T extends object, U extends object> =
+  Pick<
+  (Diff<T, U> & U),
+  OmitKeys<keyof T, never>
+  >;
 
-/** Overwrite */
-export type Overwrite<T, U> =
-  Pick<(Diff<T, U> & U), keyof (Diff<T, U> & U)>;
