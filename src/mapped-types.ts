@@ -32,3 +32,13 @@ export type Overwrite<T extends object, U extends object> =
   OmitKeys<keyof T, never>
   >;
 
+/**
+ * Assign
+ * @desc Assign properties from <U> to <T> (overwrite intersecting)
+ * by -
+ */
+export type Assign<T extends object, U extends object> =
+  Pick<
+  (Diff<T, U> & U),
+  OmitKeys<keyof (T & U), never>
+  >;
