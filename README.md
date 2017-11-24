@@ -14,9 +14,9 @@
 - [createAction](#createaction)
 
 ## Mapped Types
-- [KeyDiff](#keydiff)
+- [DiffKeys](#diffkeys)
+- [Diff](#diff)
 - [Omit](#omit)
-- [Minus](#minus)
 - [Overwrite](#overwrite)
 
 ## Type Utils
@@ -47,36 +47,42 @@ return: (
 
 ## Mapped Types
 
-### KeyDiff
-> KeyDiff<T extends string, U extends string>
+### DiffKeys
+> DiffKeys<T extends string, U extends string>
 ```ts
-type KeyDiffTest =
-  KeyDiff<'a' | 'b' | 'c', 'c' | 'd'>;
-// Expect: 'a' | 'b'
+interface Shape { a: string, b?: number, c: boolean }
+interface Shape2 { a: number, d: number }
+
+type DiffKeysTest = DiffKeys<keyof Shape, keyof Shape2>;
+// Expect: 'b' | 'c'
+```
+
+### Diff
+> Diff<T, U>
+```ts
+interface Shape { a: string, b?: number, c: boolean }
+interface Shape2 { a: number, d: number }
+
+type DiffTest = Diff<Shape, Shape2>;
+// Expect { b?: number | undefined, c: boolean }
 ```
 
 ### Omit
 > Omit<T, K extends keyof T>
 ```ts
-type OmitTest =
-  Omit<{ a: string, b?: number, c: boolean }, 'a'>;
-// Expect: { b?: number | undefined, c: boolean }
-```
+interface Shape { a: string, b?: number, c: boolean }
 
-### Minus
-> Minus<T, U>
-```ts
-type MinusTest =
-  Minus<{ a: string, b?: number, c: boolean }, { a: any }>;
-// Expect { b?: number | undefined, c: boolean }
+type OmitTest = Omit<Shape, 'a'>;
+// Expect: { b?: number | undefined, c: boolean }
 ```
 
 ### Overwrite
 > Overwrite<T, U>
 ```ts
-type OverwriteTest =
-  Overwrite<{ a: string, b?: number, c: boolean }, { a: number }>;
-// Expect: { b?: number | undefined, c: boolean } & { a: number }
+interface Shape { a: string, b?: number, c: boolean }
+
+type OverwriteTest = Overwrite<Shape, { a: number }>;
+// Expect: { a: number, b?: number | undefined, c: boolean }
 ```
 
 ---

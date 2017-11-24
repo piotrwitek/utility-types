@@ -1,6 +1,6 @@
 /**
  * TypeScript type-mapping utilities to complement Pick and Record.
- * I'm not the author, please check linked issue to find more
+ * Credits to people that shared some of below code snippets in this github issue:
  * @see https://github.com/Microsoft/TypeScript/issues/12215
  */
 
@@ -9,34 +9,18 @@
 //   (v: any): '0';
 // }
 
-/** Diff */
-export type KeyDiff<T extends string, U extends string> = (
+/** DiffKeys */
+export type DiffKeys<T extends string, U extends string> = (
   & {[K in T]: K }
   & {[K in U]: never }
   & { [k: string]: never }
 )[T];
 
-type KeyDiffTest =
-  KeyDiff<'a' | 'b' | 'c', 'c' | 'd'>;
-// Expect: 'a' | 'b'
+/** Diff */
+export type Diff<T, U> = Pick<T, DiffKeys<keyof T, keyof U>>;
 
 /** Omit */
-export type Omit<T, K extends keyof T> = Pick<T, KeyDiff<keyof T, K>>;
-
-type OmitTest =
-  Omit<{ a: string, b?: number, c: boolean }, 'a'>;
-// Expect: { b?: number | undefined, c: boolean }
-
-/** Minus */
-export type Minus<T, U> = Pick<T, KeyDiff<keyof T, keyof U>>;
-
-type MinusTest =
-  Minus<{ a: string, b?: number, c: boolean }, { a: any }>;
-// Expect { b?: number | undefined, c: boolean }
+export type Omit<T, K extends keyof T> = Pick<T, DiffKeys<keyof T, K>>;
 
 /** Overwrite */
 export type Overwrite<T, U> = Pick<T, KeyDiff<keyof T, keyof U>> & U;
-
-type OverwriteTest =
-  Overwrite<{ a: string, b?: number, c: boolean }, { a: number }>;
-// Expect: { b?: number | undefined, c: boolean } & { a: number }
