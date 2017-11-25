@@ -12,41 +12,41 @@
 
 /**
  * DiffKeys
- * @desc Return a difference of non-related string literal unions
+ * @desc Compare set of keys `K` and `L` and return a subset with a difference
  * by @ahejlsberg
  */
-export type DiffKeys<T extends string, U extends string> = (
-  & {[K in T]: K }
-  & {[K in U]: never }
+export type DiffKeys<K extends string, L extends string> = (
+  & {[P in K]: P }
+  & {[P in L]: never }
   & { [k: string]: never }
-)[T];
+)[K];
 
 /**
  * OmitKeys
- * @desc Omit part of string literal union with constraint to existing literals
+ * @desc From set of keys `K` subtract it's subset `K2`
  * by -
  */
 
-export type OmitKeys<T extends string, U extends T> = (
-  DiffKeys<T, U>
+export type OmitKeys<K extends string, K2 extends K> = (
+  DiffKeys<K, K2>
 );
 /**
  * Diff
- * @desc Return an object containing non-intersecting properties of non-related objects
+ * @desc From `T` remove intersecting properties with `U`
  * by -
  */
 export type Diff<T extends object, U extends object> = Pick<T, DiffKeys<keyof T, keyof U>>;
 
 /**
  * Omit
- * @desc Omit object property with constraint to existing keys
+ * @desc From `T` remove a set of properties `K`
  * by @ahejlsberg, @Pinpickle
  */
 export type Omit<T extends object, K extends keyof T> = Pick<T, DiffKeys<keyof T, K>>;
 
 /**
  * Overwrite
- * @desc Overwrite intersecting properties from <U> to <T>
+ * @desc Replace intersecting properties from `U` to `T`
  * by @ahejlsberg
  */
 export type Overwrite<T extends object, U extends object> =
@@ -57,7 +57,7 @@ export type Overwrite<T extends object, U extends object> =
 
 /**
  * Assign
- * @desc Assign properties from <U> to <T> (overwrite intersecting)
+ * @desc Copy and replace all properties from `U` to `T`
  * by -
  */
 export type Assign<T extends object, U extends object> =

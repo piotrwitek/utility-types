@@ -50,13 +50,13 @@ return: (
 ## Mapped Types
 
 ### DiffKeys
-> Return a difference of non-related string literal unions
-```ts
-type DiffKeys<T extends string, U extends string>
-```
+> `DiffKeys<K extends string, L extends string>`  
+> Compare set of keys `K` and `L` and return a subset with a difference  
 
 Usage:
 ```ts
+import { OmitKeys } from 'react-redux-typescript';
+
 interface BaseProps { a: string, b?: number, c: boolean }
 interface Props { a: number, d: number }
 
@@ -65,13 +65,13 @@ type Diffed_Keys = DiffKeys<keyof Props, keyof Props2>;
 ```
 
 ### OmitKeys
-> Omit part of string literal union with constraint to existing literals
-```ts
-type OmitKeys<T extends string, U extends T>
-```
+> `OmitKeys<K extends string, K2 extends K>`  
+> From set of keys `K` subtract it's subset `K2`  
 
 Usage:
 ```ts
+import { OmitKeys } from 'react-redux-typescript';
+
 interface BaseProps { a: string, b?: number, c: boolean }
 
 type Omitted_Keys = OmitKeys<keyof BaseProps, 'a'>;
@@ -79,13 +79,13 @@ type Omitted_Keys = OmitKeys<keyof BaseProps, 'a'>;
 ```
 
 ### Diff
-> Return an object containing non-intersecting properties of non-related objects
-```ts
-type Diff<T extends object, U extends object>
-```
+> `Diff<T extends object, U extends object>`  
+> From `T` remove intersecting properties with `U`  
 
 Usage:
 ```ts
+import { OmitKeys } from 'react-redux-typescript';
+
 interface BaseProps { a: string, b?: number, c: boolean }
 interface Props { a: number, d: number }
 
@@ -94,13 +94,13 @@ type Diffed_Props = Diff<BaseProps, Props>;
 ```
 
 ### Omit
-> Omit object property with constraint to existing keys
-```ts
-type Omit<T extends object, K extends keyof T>
-```
+> `Omit<T extends object, K extends keyof T>`  
+> From `T` remove a set of properties `K`  
 
 Usage:
 ```ts
+import { OmitKeys } from 'react-redux-typescript';
+
 interface BaseProps { a: string, b?: number, c: boolean }
 
 type Omitted_Props = Omit<BaseProps, 'a'>;
@@ -108,13 +108,13 @@ type Omitted_Props = Omit<BaseProps, 'a'>;
 ```
 
 ### Overwrite
-> Overwrite intersecting properties from <U> to <T>
-```ts
-type Overwrite<T extends object, U extends object>
-```
+> `Overwrite<T extends object, U extends object>`  
+> Replace intersecting properties from `U` to `T`  
 
 Usage:
 ```ts
+import { OmitKeys } from 'react-redux-typescript';
+
 interface BaseProps { a: string, b?: number, c: boolean }
 interface Props { a: number, d: number }
 
@@ -123,13 +123,13 @@ type Overwritten_Props = Overwrite<BaseProps, Props>;
 ```
 
 ### Assign
-> Assign properties from <U> to <T> (overwrite intersecting)
-```ts
-type Assign<T extends object, U extends object>
-```
+> `Assign<T extends object, U extends object>`  
+> Copy and replace all properties from `U` to `T`  
 
 Usage:
 ```ts
+import { Assign } from 'react-redux-typescript';
+
 interface BaseProps { a: string, b?: number, c: boolean }
 interface Props { a: number, d: number }
 
