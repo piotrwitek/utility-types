@@ -30,7 +30,7 @@
     "build:jsnext": "rm -rf jsnext/ && tsc -p . --outDir jsnext/ -t 'ES2015'"
   },
   "dependencies": {
-    "ts-redux-actions": "1.0.0-beta5"
+    "ts-redux-actions": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@types/jest": "21.1.6",

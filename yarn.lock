@@ -2441,9 +2441,9 @@ ts-node@3.3.0:
     v8flags "^3.0.0"
     yn "^2.0.0"
 
-ts-redux-actions@1.0.0-beta5:
-  version "1.0.0-beta5"
-  resolved "https://registry.yarnpkg.com/ts-redux-actions/-/ts-redux-actions-1.0.0-beta5.tgz#01329851a41154a8302c2a3a85fd99663db3d5a9"
+ts-redux-actions@1.0.0-rc.0:
+  version "1.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/ts-redux-actions/-/ts-redux-actions-1.0.0-rc.0.tgz#af7977e47a389d872e77e3825bed4010cd5d26c5"
 
 tsconfig@^6.0.0:
   version "6.0.0"

@@ -10,8 +10,10 @@
 # Table of Contents (v3.0)
 
 ## Redux Actions Utils
-> For advanced docs check here: https://github.com/piotrwitek/ts-redux-actions
-- [createAction](#createaction)
+> Reimporting from submodule [`ts-redux-actions`](https://github.com/piotrwitek/ts-redux-actions)  
+API Docs: https://github.com/piotrwitek/ts-redux-actions#api
+- [getType](https://github.com/piotrwitek/ts-redux-actions#gettype)
+- [createAction](https://github.com/piotrwitek/ts-redux-actions#createaction)
 
 ## Mapped Types
 - [DiffKeys](#diffkeys)
@@ -28,22 +30,6 @@
 
 Archived docs:
 - [Docs v2.X](#READMEv2.0.md)
-
----
-
-## Redux Actions Utils
-
-### createAction
-> https://github.com/piotrwitek/ts-redux-actions#createaction
-
-```ts
-createAction(typeString, creatorFunction?)
-typeString: TS extends string,
-creatorFunction: (...args: any[]) => { type: TS, payload?: P, meta?: M, error?: boolean }
-return: (
-  (...args: any[]) => { type: TS, payload?: P, meta?: M, error?: boolean }
-) & { readonly type: TS }
-```
 
 ---
 
