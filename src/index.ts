@@ -9,5 +9,5 @@ export * from './mapped-types';
 // deprecated - remove on next major
 export * from './v2/helpers';
 
-// reexport ts-redux-actions
-export * from 'ts-redux-actions';
+// reexport typesafe-actions
+export * from 'typesafe-actions';

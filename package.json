@@ -30,18 +30,18 @@
     "build:jsnext": "rm -rf jsnext/ && tsc -p . --outDir jsnext/ -t 'ES2015'"
   },
   "dependencies": {
-    "ts-redux-actions": "1.0.0-rc.0"
+    "typesafe-actions": "1.0.0"
   },
   "devDependencies": {
-    "@types/jest": "21.1.6",
-    "@types/node": "6.0",
-    "jest-cli": "21.2.1",
-    "redux": "^3.7.2",
-    "ts-jest": "21.2.2",
-    "ts-node": "3.3.0",
-    "tslib": "1.8.0",
+    "@types/jest": "21.1.10",
+    "@types/node": "6.0.95",
+    "jest-cli": "22.0.4",
+    "redux": "3.7.2",
+    "ts-jest": "22.0.0",
+    "ts-node": "4.1.0",
+    "tslib": "1.8.1",
     "tslint": "5.8.0",
-    "typescript": "2.6.1"
+    "typescript": "2.6.2"
   },
   "keywords": [
     "react",

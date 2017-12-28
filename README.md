@@ -1,19 +1,12 @@
-# React / Redux / TypeScript Utils
-> Utility belt for React + Redux + TypeScript Projects
+# Mapped Types
+> Mapped Types Utilities for TypeScript Projects
 
+- Thoroughly tested for type correctness
+- No third-party dependencies
 - Semantic Versioning
-- Output separate bundles for your specific workflow needs:
-  - ES5 + CommonJS - `main`
-  - ES5 + ES-Modules - `module` 
-  - ES2015 + CommonJS - `jsnext:main`
+- Output separate bundles for different workflow needs (es5-commonjs, es5-module, jsnext)
 
-# Table of Contents (v3.0)
-
-## Redux Actions Utils
-> Reimporting from submodule [`ts-redux-actions`](https://github.com/piotrwitek/ts-redux-actions)  
-API Docs: https://github.com/piotrwitek/ts-redux-actions#api
-- [getType](https://github.com/piotrwitek/ts-redux-actions#gettype)
-- [createAction](https://github.com/piotrwitek/ts-redux-actions#createaction)
+# Table of Contents
 
 ## Mapped Types
 - [DiffKeys](#diffkeys)
@@ -25,6 +18,15 @@ API Docs: https://github.com/piotrwitek/ts-redux-actions#api
 
 ## Type Utils
 - [getReturnOfExpression](#getreturnofexpression)
+
+## Redux Typesafe Actions
+> **DEPRECATION WARNING: this part will be removed in next major release, please use `typesafe-actions` directly instead!**
+
+### Reimported from [`typesafe-actions`](https://github.com/piotrwitek/typesafe-actions)  
+[API Docs](https://github.com/piotrwitek/typesafe-actions#table-of-contents)
+- [createAction](https://github.com/piotrwitek/typesafe-actions#createaction)
+- [getType](https://github.com/piotrwitek/typesafe-actions#gettype)
+- [isActionOf](https://github.com/piotrwitek/typesafe-actions#isactionof)
 
 ---
 
