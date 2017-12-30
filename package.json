@@ -1,10 +1,10 @@
 {
-  "name": "react-redux-typescript",
-  "version": "3.0.0-rc.3",
-  "description": "React / Redux / TypeScript Utils",
+  "name": "utility-types",
+  "version": "1.0.0-rc.0",
+  "description": "Utility Types Library for TypeScript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
-  "repository": "https://github.com/piotrwitek/react-redux-typescript",
-  "homepage": "https://github.com/piotrwitek/react-redux-typescript",
+  "repository": "https://github.com/piotrwitek/react-redux-typescript#utility-types",
+  "homepage": "https://github.com/piotrwitek/react-redux-typescript#utility-types",
   "license": "MIT",
   "types": "es5-commonjs/index.d.ts",
   "main": "es5-commonjs/index.js",
@@ -16,25 +16,25 @@
   "scripts": {
     "reinstall": "rm -rf node_modules/ && yarn install",
     "clean": "rm -rf es5-commonjs/ es5-module/ jsnext/",
-    "prepublishOnly": "yarn run clean && yarn run reinstall && yarn run check && yarn run test && yarn run build",
-    "check": "npm run lint & npm run tsc",
     "lint": "tslint --project './tsconfig.json'",
     "tsc": "tsc -p . --noEmit",
     "tsc:watch": "tsc -p . --noEmit -w",
-    "test": "jest --config jest.config.json",
-    "test:watch": "jest --config jest.config.json --watch",
-    "test:v2": "ts-node ./src/v2/helpers-test.ts",
+    "pretest": "tsc -p ./tsconfig.spec.json --noEmit",
+    "test": "jest --config jest.config.json ./src",
+    "test:watch": "jest --config jest.config.json --watch ./src",
     "build": "yarn run build:commonjs & yarn run build:module & yarn run build:jsnext",
     "build:commonjs": "rm -rf es5-commonjs/ && tsc -p . --outDir es5-commonjs/",
     "build:module": "rm -rf es5-module/ && tsc -p . --outDir es5-module/ -m 'ES2015'",
-    "build:jsnext": "rm -rf jsnext/ && tsc -p . --outDir jsnext/ -t 'ES2015'"
+    "build:jsnext": "rm -rf jsnext/ && tsc -p . --outDir jsnext/ -t 'ES2015'",
+    "precommit": "npm run lint",
+    "prepush": "npm run test",
+    "prepublishOnly": "npm run clean && npm run reinstall && npm run lint && npm run tsc && npm run test && npm run build"
   },
-  "dependencies": {
-    "typesafe-actions": "1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/jest": "21.1.10",
+    "@types/jest": "22.0.0",
     "@types/node": "6.0.95",
+    "husky": "0.14.3",
     "jest-cli": "22.0.4",
     "redux": "3.7.2",
     "ts-jest": "22.0.0",
@@ -44,9 +44,10 @@
     "typescript": "2.6.2"
   },
   "keywords": [
-    "react",
-    "redux",
+    "utility-types",
     "typescript",
-    "utils"
+    "utilities",
+    "static-typing",
+    "mapped-types"
   ]
 }

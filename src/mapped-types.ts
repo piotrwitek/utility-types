@@ -1,7 +1,6 @@
 /**
  * TypeScript type-mapping utilities to complement Pick and Record.
  * Credits to people who shared some of below snippets in the following github issue:
- * (mention in each definition)
  * @see https://github.com/Microsoft/TypeScript/issues/12215
  */
 

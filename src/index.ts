@@ -5,9 +5,4 @@
  */
 
 export * from './mapped-types';
-
-// deprecated - remove on next major
-export * from './v2/helpers';
-
-// reexport typesafe-actions
-export * from 'typesafe-actions';
+export * from './functional-helpers';

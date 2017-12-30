@@ -1,5 +1,5 @@
-# Mapped Types
-> Mapped Types Utilities for TypeScript Projects
+# Utility Types
+> Utility Types Library for TypeScript
 
 - Thoroughly tested for type correctness
 - No third-party dependencies
@@ -8,7 +8,7 @@
 
 # Table of Contents
 
-## Mapped Types
+## Utility Types
 - [DiffKeys](#diffkeys)
 - [OmitKeys](#omitkeys)
 - [Diff](#diff)
@@ -16,26 +16,12 @@
 - [Overwrite](#overwrite)
 - [Assign](#assign)
 
-## Type Utils
+## Functional helpers
 - [getReturnOfExpression](#getreturnofexpression)
 
-## Redux Typesafe Actions
-> **DEPRECATION WARNING: this part will be removed in next major release, please use `typesafe-actions` directly instead!**
-
-### Reimported from [`typesafe-actions`](https://github.com/piotrwitek/typesafe-actions)  
-[API Docs](https://github.com/piotrwitek/typesafe-actions#table-of-contents)
-- [createAction](https://github.com/piotrwitek/typesafe-actions#createaction)
-- [getType](https://github.com/piotrwitek/typesafe-actions#gettype)
-- [isActionOf](https://github.com/piotrwitek/typesafe-actions#isactionof)
-
 ---
 
-Archived docs:
-- [Docs v2.X](#READMEv2.0.md)
-
----
-
-## Mapped Types
+## Utility Types
 
 ### DiffKeys
 > `DiffKeys<K extends string, L extends string>`  
@@ -127,7 +113,7 @@ type Assigned_Props = Assign<BaseProps, Props>;
 
 ---
 
-## Type Utils
+## Functional helpers
 
 ### getReturnOfExpression
 > Get return value of an "expression" with inferred return type  
