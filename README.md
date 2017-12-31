@@ -29,7 +29,7 @@
 
 Usage:
 ```ts
-import { OmitKeys } from 'react-redux-typescript';
+import { OmitKeys } from 'utility-types';
 
 interface BaseProps { a: string, b?: number, c: boolean }
 interface Props { a: number, d: number }
@@ -44,7 +44,7 @@ type Diffed_Keys = DiffKeys<keyof Props, keyof Props2>;
 
 Usage:
 ```ts
-import { OmitKeys } from 'react-redux-typescript';
+import { OmitKeys } from 'utility-types';
 
 interface BaseProps { a: string, b?: number, c: boolean }
 
@@ -58,7 +58,7 @@ type Omitted_Keys = OmitKeys<keyof BaseProps, 'a'>;
 
 Usage:
 ```ts
-import { OmitKeys } from 'react-redux-typescript';
+import { OmitKeys } from 'utility-types';
 
 interface BaseProps { a: string, b?: number, c: boolean }
 interface Props { a: number, d: number }
@@ -73,7 +73,7 @@ type Diffed_Props = Diff<BaseProps, Props>;
 
 Usage:
 ```ts
-import { OmitKeys } from 'react-redux-typescript';
+import { OmitKeys } from 'utility-types';
 
 interface BaseProps { a: string, b?: number, c: boolean }
 
@@ -87,7 +87,7 @@ type Omitted_Props = Omit<BaseProps, 'a'>;
 
 Usage:
 ```ts
-import { OmitKeys } from 'react-redux-typescript';
+import { OmitKeys } from 'utility-types';
 
 interface BaseProps { a: string, b?: number, c: boolean }
 interface Props { a: number, d: number }
@@ -102,7 +102,7 @@ type Overwritten_Props = Overwrite<BaseProps, Props>;
 
 Usage:
 ```ts
-import { Assign } from 'react-redux-typescript';
+import { Assign } from 'utility-types';
 
 interface BaseProps { a: string, b?: number, c: boolean }
 interface Props { a: number, d: number }
@@ -128,7 +128,7 @@ function getReturnOfExpression<T>(
 ): T;
 
 // Example:
-import { getReturnOfExpression } from 'react-redux-typescript';
+import { getReturnOfExpression } from 'utility-types';
 
 const increment = () => ({ type: 'INCREMENT' as 'INCREMENT' });
 
