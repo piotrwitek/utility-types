@@ -4,5 +4,6 @@
  * @license MIT
  */
 
+export * from './utility-types';
 export * from './mapped-types';
 export * from './functional-helpers';

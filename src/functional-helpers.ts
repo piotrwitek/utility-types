@@ -2,18 +2,18 @@
 // (tracking issue: https://github.com/Microsoft/TypeScript/issues/6606)
 
 /**
- * @function getReturnOfExpression
- * @deprecated returntypeof
- * @description Get return value of an "expression" with inferred return type
+ * @function $call
+ * @alias getReturnOfExpression
+ * @description infer the return type from a given "expression" (at runtime it's equivalent of "noop")
  * @template RT - Return Type
  * @param expression: (...params: any[]) => RT
- * @returns null as RT
+ * @returns undefined as RT
  */
-export function getReturnOfExpression<RT>(
+export function $call<RT>(
   expression: (...params: any[]) => RT,
 ): RT {
-  return null as any as RT;
+  return undefined as any as RT;
 }
 
 // ALIAS
-export const returntypeof = getReturnOfExpression;
+export const getReturnOfExpression = $call;

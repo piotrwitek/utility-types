@@ -1,8 +1,11 @@
+import { testType } from './test-utils';
 import {
-  DiffKeys,
-  Diff,
-  OmitKeys,
+  SetDifference,
+  SetComplement,
+  SymmetricDifference,
   Omit,
+  Subtract,
+  Diff,
   Overwrite,
   Assign,
 } from '.';
@@ -10,45 +13,63 @@ import {
 /**
  * Fixtures
  */
-interface BaseProps { a: string, b?: number, c: boolean }
-interface Props { a: number, d: number }
+type Props = { name: string, age: number, visible: boolean };
+type DefaultProps = { age: number };
+type UpdatedProps = { age: string };
+type OtherProps = { other: string };
 
+/**
+ * Tests
+ */
 describe('mapped types', () => {
 
-  /**
-   * Tests
-   */
-
-  it('Diffed_Keys', () => {
-    type Diffed_Keys = DiffKeys<keyof BaseProps, keyof Props>;
-    // Expect: 'b' | 'c'
-    const value: Diffed_Keys = 'b' && 'c';
+  it('SetDifference', () => {
+    type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
+    // Expect: "1"
+    testType<ResultSet>('1');
   });
 
-  it('Omitted_Keys', () => {
-    type Omitted_Keys = OmitKeys<keyof BaseProps, 'a'>;
-    // Expect: 'b' | 'c'
-    const value: Omitted_Keys = 'b' && 'c';
+  it('SetComplement', () => {
+    type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
+    // Expect: "1"
+    testType<ResultSet>('1');
   });
 
-  it('Diffed_Props', () => {
-    type Diffed_Props = Diff<BaseProps, Props>;
-    // Expect { b?: number | undefined, c: boolean }
+  it('UnionDifference', () => {
+    type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
+    // Expect: "1" | "4"
+    testType<ResultSet>('1');
+    testType<ResultSet>('4');
   });
 
-  it('Omitted_Props', () => {
-    type Omitted_Props = Omit<BaseProps, 'a'>;
-    // Expect: { b?: number | undefined, c: boolean }
+  it('Omit', () => {
+    type RequiredProps = Omit<Props, keyof DefaultProps>;
+    // Expect: { name: string; visible: boolean; }
+    testType<RequiredProps>({ name: 'foo', visible: true });
   });
 
-  it('Overwritten_Props', () => {
-    type Overwritten_Props = Overwrite<BaseProps, Props>;
-    // Expect: { a: number, b?: number | undefined, c: boolean }
+  it('Subtract', () => {
+    type RequiredProps = Subtract<Props, DefaultProps>;
+    // Expect: { name: string; visible: boolean; }
+    testType<RequiredProps>({ name: 'foo', visible: true });
   });
 
-  it('Assigned_Props', () => {
-    type Assigned_Props = Assign<BaseProps, Props>;
-    // Expect: { a: number, b?: number | undefined, c: boolean, d: number }
+  it('Difference', () => {
+    type RequiredProps = Diff<Props, UpdatedProps & OtherProps>;
+    // Expect: { name: string; visible: boolean; }
+    testType<RequiredProps>({ name: 'foo', visible: true });
+  });
+
+  it('Overwrite', () => {
+    type ReplacedProps = Overwrite<Props, UpdatedProps>;
+    // Expect: { name: string; age: string; visible: boolean; }
+    testType<ReplacedProps>({ name: 'foo', age: '2', visible: true });
+  });
+
+  it('Assign', () => {
+    type ExtendedProps = Assign<Props, UpdatedProps & OtherProps>;
+    // Expect: { name: string; age: number; visible: boolean; other: string; }
+    testType<ExtendedProps>({ name: 'foo', age: '2', visible: true, other: 'baz' });
   });
 
 });
