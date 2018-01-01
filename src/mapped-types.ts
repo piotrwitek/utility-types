@@ -1,66 +1,73 @@
+// tslint:disable:max-line-length
 /**
- * TypeScript type-mapping utilities to complement Pick and Record.
- * Credits to people who shared some of below snippets in the following github issue:
- * @see https://github.com/Microsoft/TypeScript/issues/12215
+ * Credits to all the people who given inspiration and shared some very usefull code snippets
+ * in the following github issue: https://github.com/Microsoft/TypeScript/issues/12215
  */
 
-// export interface IsType<T> {
-//   (v: T): '1';
-//   (v: any): '0';
-// }
+/**
+ * SetDifference
+ * @desc Set difference of given literal union types `A` and `B`
+ */
+export type SetDifference<A extends string, B extends string> = (
+  {[P in A]: P } & {[P in B]: never } & { [k: string]: never }
+)[A];
 
 /**
- * DiffKeys
- * @desc Compare set of keys `K` and `L` and return a subset with a difference
- * by @ahejlsberg
+ * SetComplement
+ * @desc Set complement of given literal union types `A` and it's subset `A2`
  */
-export type DiffKeys<K extends string, L extends string> = (
-  & {[P in K]: P }
-  & {[P in L]: never }
-  & { [k: string]: never }
-)[K];
+export type SetComplement<A extends string, A2 extends A> =
+  SetDifference<A, A2>;
 
 /**
- * OmitKeys
- * @desc From set of keys `K` subtract it's subset `K2`
- * by -
+ * SymmetricDifference
+ * @desc Set difference of the union and the intersection of given literal union types `A` and `B`
  */
-
-export type OmitKeys<K extends string, K2 extends K> = (
-  DiffKeys<K, K2>
-);
-/**
- * Diff
- * @desc From `T` remove intersecting properties with `U`
- * by -
- */
-export type Diff<T extends object, U extends object> = Pick<T, DiffKeys<keyof T, keyof U>>;
+export type SymmetricDifference<A extends string, B extends string> =
+  SetDifference<A | B, A & B>;
 
 /**
  * Omit
- * @desc From `T` remove a set of properties `K`
- * by @ahejlsberg, @Pinpickle
+ * @desc From object type `T` remove a set of properties `K`
  */
-export type Omit<T extends object, K extends keyof T> = Pick<T, DiffKeys<keyof T, K>>;
+export type Omit<T extends object, K extends keyof T> = (
+  Pick<T, SetComplement<keyof T, K>>
+);
+
+/**
+ * Diff
+ * @desc From object type `T` pick a set of properties that doesn't exist in `U`
+ */
+export type Diff<T extends object, U extends object> = (
+  Pick<T, SetDifference<keyof T, keyof U>>
+);
+
+/**
+ * Subtract
+ * @desc From object type `T` pick a set of properties that doesn't exist in `U`, when `U` is a subtype of `T`
+ */
+export type Subtract<T extends U, U extends object> = (
+  Pick<T, SetComplement<keyof T, keyof U>>
+);
 
 /**
  * Overwrite
- * @desc Replace intersecting properties from `U` to `T`
- * by @ahejlsberg
+ * @desc From object type `T` pick a set of properties that doesn't exist in `U` and from `U` pick a set of properties that exist in both `T` & `U`
  */
-export type Overwrite<T extends object, U extends object> =
+export type Overwrite<T extends object, U extends object> = (
   Pick<
   (Diff<T, U> & U),
-  OmitKeys<keyof T, never>
-  >;
+  SetComplement<keyof T, never>
+  >
+);
 
 /**
  * Assign
- * @desc Copy and replace all properties from `U` to `T`
- * by -
+ * @desc From object type `T` pick a set of properties that doesn't exist in `U` and from `U` pick all properties
  */
-export type Assign<T extends object, U extends object> =
+export type Assign<T extends object, U extends object> = (
   Pick<
   (Diff<T, U> & U),
-  OmitKeys<keyof (T & U), never>
-  >;
+  SetComplement<keyof (T & U), never>
+  >
+);

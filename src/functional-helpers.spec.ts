@@ -1,20 +1,21 @@
-// testing getReturnOfExpression
-import { returntypeof } from '.';
-import { getReturnOfExpression } from '.';
+import { testType } from './test-utils';
+import { $call, getReturnOfExpression } from '.';
 
+//#region Docs Example
 const increment = () => ({ type: 'INCREMENT' as 'INCREMENT' });
 
-const returnOfIncrement = getReturnOfExpression(increment);
-type INCREMENT = typeof returnOfIncrement; // { type: "INCREMENT"; }
+const returnOfIncrement = $call(increment);
+type IncrementAction = typeof returnOfIncrement; // { type: "INCREMENT"; }
+//#endregion
 
 describe('Type Utils', () => {
-  describe('getReturnOfExpression', () => {
+  describe('$call', () => {
     it('should return null value', () => {
-      // better than undefined because will not trigger default values in functions and will be easier to spot an issue
-      expect(returnOfIncrement).toBe(null);
+      expect(returnOfIncrement).toBe(undefined);
+      testType<{ type: 'INCREMENT'; }>(returnOfIncrement);
     });
     it('should be equal with alias returntypeof', () => {
-      expect(getReturnOfExpression).toBe(returntypeof);
+      expect($call).toBe(getReturnOfExpression);
     });
   });
 });
