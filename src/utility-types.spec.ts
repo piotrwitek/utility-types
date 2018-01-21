@@ -54,10 +54,12 @@ describe('utility types', () => {
     testType<NameType>('foo');
 
     type Tuple = [boolean, number];
+    type A = $PropertyType<Tuple, '0'>;
     // Expect: boolean
-    testType<$PropertyType<Tuple, '0'>>(true);
+    type B = $PropertyType<Tuple, '1'>;
     // Expect: number
-    testType<$PropertyType<Tuple, '1'>>(42);
+    testType<A>(true);
+    testType<B>(42);
   });
 
   it('$ElementType', () => {
@@ -66,18 +68,22 @@ describe('utility types', () => {
     testType<NameType>('foo');
 
     type Tuple = [boolean, number];
+    type A = $ElementType<Tuple, 0>;
     // Expect: boolean
-    testType<$ElementType<Tuple, 0>>(true);
+    type B = $ElementType<Tuple, 1>;
     // Expect: number
-    testType<$ElementType<Tuple, 1>>(42);
+    testType<A>(true);
+    testType<B>(42);
 
-    // Expect: boolean
     type Arr = boolean[];
-    testType<$ElementType<Arr, number>>(true);
+    type ItemsType = $ElementType<Arr, number>;
+    // Expect: boolean
+    testType<ItemsType>(true);
 
     type Obj = { [key: string]: number };
+    type ValuesType = $ElementType<Obj, string>;
     // Expect: number
-    testType<$ElementType<Obj, string>>(42);
+    testType<ValuesType>(42);
   });
 
 });
