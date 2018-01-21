@@ -3,8 +3,8 @@
   "version": "1.0.0-rc.2",
   "description": "Utility Types Library for TypeScript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
-  "repository": "https://github.com/piotrwitek/react-redux-typescript/tree/utility-types",
-  "homepage": "https://github.com/piotrwitek/react-redux-typescript/tree/utility-types",
+  "repository": "https://github.com/piotrwitek/utility-types",
+  "homepage": "https://github.com/piotrwitek/utility-types",
   "license": "MIT",
   "types": "es5-commonjs/index.d.ts",
   "main": "es5-commonjs/index.js",
@@ -48,6 +48,8 @@
     "typescript",
     "utilities",
     "static-typing",
-    "mapped-types"
+    "mapped-types",
+    "flow",
+    "flow-typed"
   ]
 }
