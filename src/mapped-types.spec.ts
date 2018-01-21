@@ -35,7 +35,7 @@ describe('mapped types', () => {
     testType<ResultSet>('1');
   });
 
-  it('UnionDifference', () => {
+  it('SymmetricDifference', () => {
     type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
     // Expect: "1" | "4"
     testType<ResultSet>('1');
@@ -48,14 +48,14 @@ describe('mapped types', () => {
     testType<RequiredProps>({ name: 'foo', visible: true });
   });
 
-  it('Subtract', () => {
-    type RequiredProps = Subtract<Props, DefaultProps>;
+  it('Diff', () => {
+    type RequiredProps = Diff<Props, UpdatedProps & OtherProps>;
     // Expect: { name: string; visible: boolean; }
     testType<RequiredProps>({ name: 'foo', visible: true });
   });
 
-  it('Difference', () => {
-    type RequiredProps = Diff<Props, UpdatedProps & OtherProps>;
+  it('Subtract', () => {
+    type RequiredProps = Subtract<Props, DefaultProps>;
     // Expect: { name: string; visible: boolean; }
     testType<RequiredProps>({ name: 'foo', visible: true });
   });

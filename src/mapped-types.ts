@@ -28,7 +28,7 @@ export type SymmetricDifference<A extends string, B extends string> =
 
 /**
  * Omit
- * @desc From object type `T` remove a set of properties `K`
+ * @desc From `T` remove a set of properties `K`
  */
 export type Omit<T extends object, K extends keyof T> = (
   Pick<T, SetComplement<keyof T, K>>
@@ -36,7 +36,7 @@ export type Omit<T extends object, K extends keyof T> = (
 
 /**
  * Diff
- * @desc From object type `T` pick a set of properties that doesn't exist in `U`
+ * @desc From `T` pick properties that doesn't exist in `U`
  */
 export type Diff<T extends object, U extends object> = (
   Pick<T, SetDifference<keyof T, keyof U>>
@@ -44,7 +44,7 @@ export type Diff<T extends object, U extends object> = (
 
 /**
  * Subtract
- * @desc From object type `T` pick a set of properties that doesn't exist in `U`, when `U` is a subtype of `T`
+ * @desc From `T` pick properties that doesn't exist in `U`, when `U` is a subtype of `T`
  */
 export type Subtract<T extends U, U extends object> = (
   Pick<T, SetComplement<keyof T, keyof U>>
@@ -52,7 +52,7 @@ export type Subtract<T extends U, U extends object> = (
 
 /**
  * Overwrite
- * @desc From object type `T` pick a set of properties that doesn't exist in `U` and from `U` pick a set of properties that exist in both `T` & `U`
+ * @desc Overwrite intersecting properties in `T` with `U`.
  */
 export type Overwrite<T extends object, U extends object> = (
   Pick<
@@ -63,7 +63,7 @@ export type Overwrite<T extends object, U extends object> = (
 
 /**
  * Assign
- * @desc From object type `T` pick a set of properties that doesn't exist in `U` and from `U` pick all properties
+ * @desc Assign `U` to `T` just like object assign
  */
 export type Assign<T extends object, U extends object> = (
   Pick<
