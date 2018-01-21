@@ -159,6 +159,115 @@ type ExtendedProps = Assign<Props, UpdatedProps & OtherProps>;
 
 ## Utility Types
 
+### $Keys
+`$Keys<T extends object>`  
+get the union type of all the keys in an object type `T`  
+https://flow.org/en/docs/types/utilities/#toc-keys
+
+**Usage:**
+```ts
+import { $Keys } from 'utility-types';
+
+type Props = { name: string, age: number, visible: boolean };
+
+type PropsKeys = $Keys<Props>;
+// Expect: "name" | "age" | "visible"
+```
+
+### $Values
+`$Values<T extends object>`  
+get the union type of all the values in an object type `T`  
+https://flow.org/en/docs/types/utilities/#toc-values
+
+**Usage:**
+```ts
+import { $Values } from 'utility-types';
+
+type Props = { name: string, age: number, visible: boolean };
+
+type PropsValues = $Values<Props>;
+// Expect: string | number | boolean
+```
+
+### $ReadOnly
+`$ReadOnly<T extends object>`  
+get the read-only version of a given object type `T`  
+https://flow.org/en/docs/types/utilities/#toc-readonly
+
+**Usage:**
+```ts
+import { $ReadOnly } from 'utility-types';
+
+type Props = { name: string, age: number, visible: boolean };
+
+type ReadOnlyProps = $ReadOnly<Props>;
+// Expect: Readonly<{ name: string; age?: number | undefined; visible: boolean; }>
+```
+
+### $Diff
+`$Diff<T extends U, U extends object>`  
+get the set difference of a given object types `T` and `U` (`T \ U`)  
+https://flow.org/en/docs/types/utilities/#toc-diff
+
+**Usage:**
+```ts
+import { $Diff } from 'utility-types';
+
+type Props = { name: string, age: number, visible: boolean };
+type DefaultProps = { age: number };
+
+type RequiredProps = $Diff<Props, DefaultProps>;
+// Expect: { name: string; visible: boolean; }
+```
+
+### $PropertyType
+`$PropertyType<T extends object, K extends keyof T>`  
+desc get the type of property of an object at a given key `K`  
+https://flow.org/en/docs/types/utilities/#toc-propertytype
+
+**Usage:**
+```ts
+import { $PropertyType } from 'utility-types';
+
+type Props = { name: string, age: number, visible: boolean };
+type NameType = $PropertyType<Props, 'name'>;
+// Expect: string
+
+type Tuple = [boolean, number];
+type A = $PropertyType<Tuple, '0'>;
+// Expect: boolean
+type B = $PropertyType<Tuple, '1'>;
+// Expect: number
+```
+
+### $ElementType
+`$ElementType<T extends {}, K extends keyof T | number>`  
+get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`  
+https://flow.org/en/docs/types/utilities/#toc-elementtype
+
+**Usage:**
+```ts
+import { $ElementType } from 'utility-types';
+
+type Props = { name: string, age: number, visible: boolean };
+type NameType = $ElementType<Props, 'name'>;
+// Expect: string
+
+type Tuple = [boolean, number];
+type A = $ElementType<Tuple, 0>;
+// Expect: boolean
+type B = $ElementType<Tuple, 1>;
+// Expect: number
+
+type Arr = boolean[];
+type ItemsType = $ElementType<Arr, number>;
+// Expect: boolean
+
+type Obj = { [key: string]: number };
+type ValuesType = $ElementType<Obj, string>;
+// Expect: number
+```
+
 ---
 
 ## Functional helpers
@@ -167,9 +276,11 @@ type ExtendedProps = Assign<Props, UpdatedProps & OtherProps>;
 `function $call<T>(expression: (...params: any[]) => T): T;`  
 Infer the return type from a given "expression" (at runtime it's equivalent of "noop")  
 Alias: `getReturnOfExpression`  
+https://flow.org/en/docs/types/utilities/#toc-call
+
+> **WARNING**: `$call` function must work on a runtime level as opposed to Flow where it works on a type level. The current limitation exist due to TypeScript not supporting calling expressions on a type level, check this issue for more details: [#6606](https://github.com/Microsoft/TypeScript/issues/6606)
 
 **Usage:**
-> **WARNING**: `$call` function must work on a runtime level as opposed to Flow where it works on a type level. The current limitation exist due to TypeScript not supporting calling expressions on a type level, check this issue for more details: [#6606](https://github.com/Microsoft/TypeScript/issues/6606) 
 ```ts
 import { $call } from 'utility-types';
 
