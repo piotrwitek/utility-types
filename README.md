@@ -9,12 +9,12 @@
 
 ## Motivation
 
-The primary goal of this library is to provide a set of consistent Utility Types based on [Set Theory](https://en.wikipedia.org/wiki/Set_theory) that should be complementary to existing set of [Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html) and that should be idiomatic to use.
+The primary goal of this library is to provide a set of Utility Types (loosely based on [Set Theory](https://en.wikipedia.org/wiki/Set_theory))that should complement existing set of [Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html) and that are proven usefull in common use cases.
 
 The secondary goal is to port [Flow's Utility Types](https://flow.org/en/docs/types/utilities/) to TypeScript.
-[Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. I hope that by using this library you'll be able to become more familiar with "Flow" API and also extend your type level toolbelt for your "TypeScript" projects.
+[Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. I hope that by using this library TypeScript Developers will be able to become more familiar with "Flow" API while also extend their type level toolbelt.
 
-I believe this solution will help developers transition between "Flow" and "TypeScript" projects much easier from both sides and also make the refactoring of such codebases a smaller effort in case that you might decide in the future to switch from one to another.
+I hope that this solution will help transition process between "Flow" and "TypeScript" projects much easier from both sides and also make the refactoring of such codebases a smaller effort in case that one might decide in the future to migrate from one to another.
 
 - Thoroughly tested for type correctness
 - No third-party dependencies
