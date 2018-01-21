@@ -42,92 +42,117 @@ I believe this solution will help developers transition between "Flow" and "Type
 
 ## Mapped Types
 
-### DiffKeys
-`DiffKeys<K extends string, L extends string>`  
-Compare set of keys `K` and `L` and return a subset with a difference  
+### SetDifference
+`SetDifference<A extends string, B extends string>`  
+Set difference of given literal union types `A` and `B`
 
 **Usage:**
 ```ts
-import { OmitKeys } from 'utility-types';
+import { SetDifference } from 'utility-types';
 
-interface BaseProps { a: string, b?: number, c: boolean }
-interface Props { a: number, d: number }
-
-type Diffed_Keys = DiffKeys<keyof Props, keyof Props2>;
-// Expect: 'b' | 'c'
+type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
+// Expect: "1"
 ```
 
-### OmitKeys
-`OmitKeys<K extends string, K2 extends K>`  
-From set of keys `K` subtract it's subset `K2`  
+### SetComplement
+`SetComplement<A extends string, A2 extends A>`  
+Set complement of given literal union types `A` and it's subset `A2`
 
 **Usage:**
 ```ts
-import { OmitKeys } from 'utility-types';
+import { SetComplement } from 'utility-types';
 
-interface BaseProps { a: string, b?: number, c: boolean }
-
-type Omitted_Keys = OmitKeys<keyof BaseProps, 'a'>;
-// Expect: 'b' | 'c'
+type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
+// Expect: "1"
 ```
 
-### Diff
-`Diff<T extends object, U extends object>`  
-From `T` remove intersecting properties with `U`  
+### SymmetricDifference
+`SymmetricDifference<A extends string, B extends string>`  
+Set difference of the union and the intersection of given literal union types `A` and `B`
 
 **Usage:**
 ```ts
-import { OmitKeys } from 'utility-types';
+import { SymmetricDifference } from 'utility-types';
 
-interface BaseProps { a: string, b?: number, c: boolean }
-interface Props { a: number, d: number }
-
-type Diffed_Props = Diff<BaseProps, Props>;
-// Expect { b?: number | undefined, c: boolean }
+type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
+// Expect: "1" | "4"
 ```
 
 ### Omit
 `Omit<T extends object, K extends keyof T>`  
-From `T` remove a set of properties `K`  
+From `T` remove a set of properties `K`
 
 **Usage:**
 ```ts
-import { OmitKeys } from 'utility-types';
+import { Omit } from 'utility-types';
 
-interface BaseProps { a: string, b?: number, c: boolean }
+type Props = { name: string, age: number, visible: boolean };
+type DefaultProps = { age: number };
 
-type Omitted_Props = Omit<BaseProps, 'a'>;
-// Expect: { b?: number | undefined, c: boolean }
+type RequiredProps = Omit<Props, keyof DefaultProps>;
+// Expect: { name: string; visible: boolean; }
+```
+
+### Diff
+`Diff<T extends object, U extends object>`  
+From `T` pick properties that doesn't exist in `U`
+
+**Usage:**
+```ts
+import { Diff } from 'utility-types';
+
+type Props = { name: string, age: number, visible: boolean };
+type UpdatedProps = { age: string };
+type OtherProps = { other: string };
+
+type RequiredProps = Diff<Props, UpdatedProps & OtherProps>;
+// Expect: { name: string; visible: boolean; }
+```
+
+### Subtract
+`Subtract<T extends U, U extends object>`  
+From `T` pick properties that doesn't exist in `U`, when `U` is a subtype of `T`
+
+**Usage:**
+```ts
+import { Subtract } from 'utility-types';
+
+type Props = { name: string, age: number, visible: boolean };
+type DefaultProps = { age: number };
+
+type RequiredProps = Subtract<Props, DefaultProps>;
+// Expect: { name: string; visible: boolean; }
 ```
 
 ### Overwrite
 `Overwrite<T extends object, U extends object>`  
-Replace intersecting properties from `U` to `T`  
+Overwrite intersecting properties in `T` with `U`.
 
 **Usage:**
 ```ts
-import { OmitKeys } from 'utility-types';
+import { Overwrite } from 'utility-types';
 
-interface BaseProps { a: string, b?: number, c: boolean }
-interface Props { a: number, d: number }
+type Props = { name: string, age: number, visible: boolean };
+type UpdatedProps = { age: string };
 
-type Overwritten_Props = Overwrite<BaseProps, Props>;
-// Expect: { a: number, b?: number | undefined, c: boolean }
+type ReplacedProps = Overwrite<Props, UpdatedProps>;
+// Expect: { name: string; age: string; visible: boolean; }
 ```
 
 ### Assign
 `Assign<T extends object, U extends object>`  
-Copy and replace all properties from `U` to `T`  
+Assign `U` to `T` just like object assign
 
 **Usage:**
 ```ts
 import { Assign } from 'utility-types';
 
-interface BaseProps { a: string, b?: number, c: boolean }
-interface Props { a: number, d: number }
+type Props = { name: string, age: number, visible: boolean };
+type UpdatedProps = { age: string };
+type OtherProps = { other: string };
 
-type Assigned_Props = Assign<BaseProps, Props>;
-// Expect: { a: number, b?: number | undefined, c: boolean, d: number }
+type ExtendedProps = Assign<Props, UpdatedProps & OtherProps>;
+// Expect: { name: string; age: number; visible: boolean; other: string; }
 ```
 
 ---
@@ -155,6 +180,7 @@ type IncrementAction = typeof returnOfIncrement; // { type: "INCREMENT"; }
 ```
 
 ---
+
 MIT License
 
 Copyright (c) 2016 Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)
