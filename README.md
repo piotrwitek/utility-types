@@ -1,4 +1,4 @@
-# Utility Types
+# utility-types
 ## Utility Types for TypeScript inspired by [Flow](https://flow.org)
 (_Compatible with TS v2.6.2_)
 
@@ -20,6 +20,12 @@ I hope that this solution will help transition process between "Flow" and "TypeS
 - No third-party dependencies
 - Semantic Versioning
 - Output separate bundles for different workflow needs (es5-commonjs, es5-module, jsnext)
+
+## Installation
+
+```bash
+npm install --save utility-types
+```
 
 # Table of Contents
 
