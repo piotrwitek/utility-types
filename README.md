@@ -40,6 +40,12 @@ npm install --save utility-types
 - [Assign](#assign)
 
 ## Utility Types
+- [$Keys](#keys)
+- [$Values](#values)
+- [$ReadOnly](#readonly)
+- [$Diff](#diff2)
+- [$PropertyType](#propertytype)
+- [$ElementType](#elementtype)
 
 ## Functional helpers
 - [$call](#call)
@@ -210,7 +216,7 @@ type ReadOnlyProps = $ReadOnly<Props>;
 // Expect: Readonly<{ name: string; age?: number | undefined; visible: boolean; }>
 ```
 
-### $Diff
+### <a id="diff2"></a> $Diff
 `$Diff<T extends U, U extends object>`  
 get the set difference of a given object types `T` and `U` (`T \ U`)  
 https://flow.org/en/docs/types/utilities/#toc-diff
