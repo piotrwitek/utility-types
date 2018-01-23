@@ -16,10 +16,10 @@ I also hope that this solution will help transition between "Flow" and "TypeScri
 - port all currently possible [Flow's Utility Types](https://flow.org/en/docs/types/utilities/) - adding the rest when TypeScript got added [Conditional Types](https://github.com/Microsoft/TypeScript/pull/21316) and [Variadic Kinds](https://github.com/Microsoft/TypeScript/issues/5453)
 - clean idiomatic implementation based on composition of smaller generic types that are easy to follow and learn how they work
 
-- Thoroughly tested for type correctness
+## Features
+- Tested for type correctness
 - No third-party dependencies
-- Follow Semantic Versioning
-- Output separate bundles for different workflow needs (es5-commonjs, es5-module, jsnext)
+- Provide separate bundles for different workflow needs (es5-commonjs, es5-module, jsnext)
 
 ## Installation
 
