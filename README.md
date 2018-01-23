@@ -19,7 +19,7 @@ I also hope that this solution will help transition between "Flow" and "TypeScri
 ## Features
 - Tested for type correctness
 - No third-party dependencies
-- Provide separate bundles for different workflow needs (es5-commonjs, es5-module, jsnext)
+- Provides multiple output formats (es5-commonjs, es5-module, jsnext)
 
 ## Installation
 
