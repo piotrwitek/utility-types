@@ -1,5 +1,5 @@
 # utility-types
-## Utility-Types for TypeScript (trying to bridge TypeScript & [Flow](https://flow.org))
+## Utility Types for TypeScript (trying to bridge TypeScript & [Flow](https://flow.org))
 (_Compatible with TS v2.6.2_)
 
 ## Motivation
@@ -7,7 +7,7 @@
 The primary goal of this library is to provide a set of proven Utility Types (some are based on [Set Theory](https://en.wikipedia.org/wiki/Set_theory)) that should complement existing [Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
 
 The secondary goal is to port all currently possible [Flow's Utility Types](https://flow.org/en/docs/types/utilities/) to TypeScript.
-[Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. I hope that by using this library TypeScript Developers will be able to become more familiar with "Flow" while also extend their type level toolbelt.
+[Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. I hope that by using this library TypeScript Developers will be able to become more familiar with "Flow" while also extend their type-level toolbelt.
 
 I also hope that this solution will help transition between "Flow" and "TypeScript" projects much easier from both sides and also make the refactoring of such codebases a smaller effort in case that one might decide to migrate from one to another.
 
