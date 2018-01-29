@@ -1,19 +1,18 @@
 # utility-types
-## Utility Types for TypeScript (trying to bridge TypeScript & [Flow](https://flow.org))
+## Utility Types for TypeScript (provide compatibility with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/))
 (_Compatible with TS v2.6.2_)
 
 ## Motivation
 
-The primary goal of this library is to provide a set of proven Utility Types (some are based on [Set Theory](https://en.wikipedia.org/wiki/Set_theory)) that should complement existing [Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
+The primary goal of this library is to provide a set of proven Utility Types (inspired by [Set Theory](https://en.wikipedia.org/wiki/Set_theory) and functional languages) that should complement existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
 
-The secondary goal is to port all currently possible [Flow's Utility Types](https://flow.org/en/docs/types/utilities/) to TypeScript.
-[Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. I hope that by using this library TypeScript Developers will be able to become more familiar with "Flow" while also extend their type-level toolbelt.
-
-I also hope that this solution will help transition between "Flow" and "TypeScript" projects much easier from both sides and also make the refactoring of such codebases a smaller effort in case that one might decide to migrate from one to another.
+The secondary goal is to provide a compatibility layer with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/).
+[Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. By using this library TypeScript Developers will become more familiar with differences to "Flow" and extend their static-typing toolbelt.
+Moreover it can help to make a transition between "Flow" and "TypeScript" projects much easier.
 
 ## Goals
-- provide set of consistent Utility Types that are idiomatic and complementary to existing [Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
-- port all currently possible [Flow's Utility Types](https://flow.org/en/docs/types/utilities/) - adding the rest when TypeScript got added [Conditional Types](https://github.com/Microsoft/TypeScript/pull/21316) and [Variadic Kinds](https://github.com/Microsoft/TypeScript/issues/5453)
+- provide a set of consistent Utility Types that are idiomatic and complementary to existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
+- provide compatibility with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/)
 - clean idiomatic implementation based on composition of smaller generic types that are easy to follow and learn how they work
 
 ## Features
