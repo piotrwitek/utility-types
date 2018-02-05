@@ -12,7 +12,7 @@
 export function $call<RT>(
   expression: (...params: any[]) => RT,
 ): RT {
-  return undefined as any as RT;
+  return null as any as RT;
 }
 
 // ALIAS
