@@ -38,13 +38,19 @@ npm install --save utility-types
 - [Overwrite](#overwrite)
 - [Assign](#assign)
 
-## Utility Types
+## Flow's Utility Types
 - [$Keys](#keys)
 - [$Values](#values)
 - [$ReadOnly](#readonly)
 - [$Diff](#diff2)
 - [$PropertyType](#propertytype)
 - [$ElementType](#elementtype)
+- [$Call](#call2) (soon -> [#15](../../issues/15))
+- [Class](#class) (soon -> [#15](../../issues/15))
+
+## Flow to TypeScript Migration Guides
+- Mixed Types in TypeScript (soon -> [#15](../../issues/15))
+- Existential Type (*) in TypeScript (soon -> [#15](../../issues/15))
 
 ## Functional helpers
 - [$call](#call)
