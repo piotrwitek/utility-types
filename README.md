@@ -1,6 +1,6 @@
 # utility-types
 ## Utility Types for TypeScript (provide compatibility with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/))
-(_Compatible with TS v2.6.2_)
+(_Compatible with TS v2.7.2_)
 
 ## Motivation
 
