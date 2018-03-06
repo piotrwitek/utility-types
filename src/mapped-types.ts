@@ -54,20 +54,13 @@ export type Subtract<T extends U, U extends object> = (
  * Overwrite
  * @desc Overwrite intersecting properties in `T` with `U`.
  */
-export type Overwrite<T extends object, U extends object> = (
-  Pick<
-  (Diff<T, U> & U),
-  SetComplement<keyof T, never>
-  >
+export type Overwrite<T extends object, U extends object, N = Diff<T, U> & Omit<U, SetDifference<keyof U, keyof T>>> = (
+  Pick<N, keyof N>
 );
 
 /**
  * Assign
  * @desc Assign `U` to `T` just like object assign
  */
-export type Assign<T extends object, U extends object> = (
-  Pick<
-  (Diff<T, U> & U),
-  SetComplement<keyof (T & U), never>
-  >
-);
+export type Assign<T extends object, U extends object, N = (Diff<T, U> & U) & Omit<U, SetDifference<keyof U, keyof T>>> =
+  Pick<N, keyof N>;

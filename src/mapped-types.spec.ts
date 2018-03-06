@@ -68,7 +68,7 @@ describe('mapped types', () => {
 
   it('Assign', () => {
     type ExtendedProps = Assign<Props, UpdatedProps & OtherProps>;
-    // Expect: { name: string; age: number; visible: boolean; other: string; }
+    // Expect: { name: string; age: string; visible: boolean; other: string; }
     testType<ExtendedProps>({ name: 'foo', age: '2', visible: true, other: 'baz' });
   });
 
