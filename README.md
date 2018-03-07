@@ -8,7 +8,7 @@ The primary goal of this library is to provide a set of proven Utility Types (in
 
 The secondary goal is to provide a compatibility layer with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/).
 [Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. By using this library TypeScript Developers will become more familiar with differences to "Flow" and extend their static-typing toolbelt.
-Moreover it can help to make a transition between "Flow" and "TypeScript" projects much easier.
+Moreover it can help to migrate between "Flow" and "TypeScript" projects much easier.
 
 ## Goals
 - provide a set of consistent Utility Types that are idiomatic and complementary to existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
