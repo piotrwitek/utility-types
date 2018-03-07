@@ -1,5 +1,5 @@
 # utility-types
-## Utility Types for TypeScript (provide compatibility with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/))
+## Utility Types for TypeScript (provide migration from [Flow's Utility Types](https://flow.org/en/docs/types/utilities/))
 (_Compatible with TS v2.7.2_)
 
 ## Motivation
@@ -12,7 +12,7 @@ Moreover it can help to make a transition between "Flow" and "TypeScript" projec
 
 ## Goals
 - provide a set of consistent Utility Types that are idiomatic and complementary to existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
-- provide compatibility with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/)
+- provide migration from [Flow's Utility Types](https://flow.org/en/docs/types/utilities/)
 - clean idiomatic implementation based on composition of smaller generic types that are easy to follow and learn how they work
 
 ## Features
