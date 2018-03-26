@@ -32,16 +32,15 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "22.0.0",
-    "@types/node": "6.0.95",
+    "@types/jest": "22.2.2",
     "husky": "0.14.3",
-    "jest-cli": "22.0.4",
+    "jest": "22.4.3",
     "redux": "3.7.2",
-    "ts-jest": "22.0.0",
-    "ts-node": "4.1.0",
-    "tslib": "1.8.1",
-    "tslint": "5.8.0",
-    "typescript": "2.7.2"
+    "ts-jest": "22.4.2",
+    "ts-node": "5.0.1",
+    "tslib": "1.9.0",
+    "tslint": "5.9.1",
+    "typescript": "2.8.0-rc"
   },
   "keywords": [
     "utility-types",
