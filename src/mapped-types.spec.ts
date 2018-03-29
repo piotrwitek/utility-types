@@ -8,6 +8,11 @@ import {
   Diff,
   Overwrite,
   Assign,
+  FunctionKeys,
+  NonFunctionKeys,
+  DeepReadonly,
+  DeepReadonlyArray,
+  DeepReadonlyObject,
 } from '.';
 
 /**
@@ -17,6 +22,9 @@ type Props = { name: string, age: number, visible: boolean };
 type DefaultProps = { age: number };
 type UpdatedProps = { age: string };
 type OtherProps = { other: string };
+type MixedProps = { name: string; setName: (name: string) => void };
+type DeepArrayProps = { first: { second: MixedProps[]; }; };
+type DeepObjectProps = { first: { second: MixedProps; }; };
 
 /**
  * Tests
@@ -72,4 +80,16 @@ describe('mapped types', () => {
     testType<ExtendedProps>({ name: 'foo', age: '2', visible: true, other: 'baz' });
   });
 
+  it('FunctionKeys', () => {
+    type FunctionKeysProps = FunctionKeys<MixedProps>;
+  });
+
+  it('NonFunctionKeys', () => {
+    type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
+  });
+
+  it('DeepReadonly', () => {
+    type ReadonlyArrayProps = DeepReadonly<DeepArrayProps>;
+    type ReadonlyObjectProps = DeepReadonly<DeepObjectProps>;
+  });
 });

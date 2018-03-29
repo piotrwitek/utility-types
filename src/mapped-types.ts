@@ -1,3 +1,4 @@
+// tslint:disable:ban-types
 // tslint:disable:max-line-length
 /**
  * Credits to all the people who given inspiration and shared some very usefull code snippets
@@ -9,7 +10,7 @@
  * @desc Set difference of given literal union types `A` and `B`
  */
 export type SetDifference<A extends string, B extends string> = (
-  {[P in A]: P } & {[P in B]: never } & { [k: string]: never }
+  { [P in A]: P } & { [P in B]: never } & { [k: string]: never }
 )[A];
 
 /**
@@ -64,3 +65,36 @@ export type Overwrite<T extends object, U extends object, N = Diff<T, U> & Omit<
  */
 export type Assign<T extends object, U extends object, N = (Diff<T, U> & U) & Omit<U, SetDifference<keyof U, keyof T>>> =
   Pick<N, keyof N>;
+
+/**
+ * FunctionKeys
+ */
+export type FunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
+
+/**
+ * NonFunctionKeys
+ */
+export type NonFunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
+
+/**
+ * DeepReadonly
+ * @desc DeepReadonly - works for both Arrays and Objects
+ */
+export type DeepReadonly<T> =
+  T extends any[] ? DeepReadonlyArray<T[number]> :
+  T extends object ? DeepReadonlyObject<T> :
+  T;
+
+/**
+ * DeepReadonlyArray
+ * @desc DeepReadonlyArray - works for Arrays
+ */
+export interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> { }
+
+/**
+ * DeepReadonlyObject
+ * @desc DeepReadonlyObject - works for Objects
+ */
+export type DeepReadonlyObject<T> = {
+  readonly [P in NonFunctionKeys<T>]: DeepReadonly<T[P]>;
+};
