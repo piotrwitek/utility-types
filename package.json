@@ -1,6 +1,6 @@
 {
   "name": "utility-types",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Utility Types Library for TypeScript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "repository": "https://github.com/piotrwitek/utility-types",
@@ -40,7 +40,7 @@
     "ts-node": "5.0.1",
     "tslib": "1.9.0",
     "tslint": "5.9.1",
-    "typescript": "2.8.0-rc"
+    "typescript": "2.8.1"
   },
   "keywords": [
     "utility-types",
