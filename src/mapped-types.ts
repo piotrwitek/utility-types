@@ -30,14 +30,24 @@ export type SetComplement<A extends string, A2 extends A> = SetDifference<A, A2>
 export type SymmetricDifference<A extends string, B extends string> = SetDifference<A | B, A & B>;
 
 /**
- * Omit
+ * FunctionKeys
+ */
+export type FunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
+
+/**
+ * NonFunctionKeys
+ */
+export type NonFunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
+
+/**
+ * Omit (complements Pick)
  * @desc From `T` remove a set of properties `K`
  */
-export type Omit<T extends object, K extends keyof T> = Pick<T, SetComplement<keyof T, K>>;
+export type Omit<T, K extends keyof T> = Pick<T, SetComplement<keyof T, K>>;
 
 /**
  * Intersection
- * @desc From `T` pick properties that doesn't exist in `U`
+ * @desc From `T` pick properties that exist in `U`
  */
 export type Intersection<T extends object, U extends object> = Pick<
   T,
@@ -60,31 +70,19 @@ export type Subtract<T extends U, U extends object> = Pick<T, SetComplement<keyo
  * Overwrite
  * @desc Overwrite intersecting properties in `T` with `U`.
  */
-export type Overwrite<
-  T extends object,
-  U extends object,
-  Result = Diff<T, U> & Intersection<U, T>
-> = Pick<Result, keyof Result>;
+export type Overwrite<T extends object, U extends object> = Pick<
+  Diff<T, U> & Intersection<U, T>,
+  keyof Diff<T, U> & Intersection<U, T>
+>;
 
 /**
  * Assign
  * @desc Assign `U` to `T` just like object assign
  */
-export type Assign<
-  T extends object,
-  U extends object,
-  Result = Diff<T, U> & Intersection<U, T> & Diff<U, T>
-> = Pick<Result, keyof Result>;
-
-/**
- * FunctionKeys
- */
-export type FunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
-
-/**
- * NonFunctionKeys
- */
-export type NonFunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
+export type Assign<T extends object, U extends object> = Pick<
+  Diff<T, U> & Intersection<U, T> & Diff<U, T>,
+  keyof Diff<T, U> & Intersection<U, T> & Diff<U, T>
+>;
 
 /**
  * DeepReadonly
