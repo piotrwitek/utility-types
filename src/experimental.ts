@@ -1,10 +1,5 @@
 // tslint:disable:ban-types
-type FunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
-type FunctionProperties<T> = Pick<T, FunctionPropertyNames<T>>;
-
-type NonFunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
-type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
-
+type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 type Diff<T, U> = T extends U ? never : T;  // Remove types from T that are assignable to U
 type Filter<T, U> = T extends U ? T : never;  // Remove types from T that are not assignable to U
 
@@ -24,3 +19,7 @@ type PromiseType<T> = T extends Promise<infer U> ? U : T;
 //   T extends new (props: infer P) => any ? P :
 //   T extends (props: infer P & { children?: React.ReactNode }) => any ? P :
 //   any;
+
+type Unionize<T> = { [P in keyof T]: { [Q in P]: T[P] } }[keyof T];
+type obj = { a: string, c: number };
+type unionizedObj = Unionize<obj>;

@@ -1,5 +1,6 @@
 import { testType } from './test-utils';
 import {
+  SetIntersection,
   SetDifference,
   SetComplement,
   SymmetricDifference,
@@ -18,18 +19,24 @@ import {
 /**
  * Fixtures
  */
-type Props = { name: string, age: number, visible: boolean };
+type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 type UpdatedProps = { age: string };
 type OtherProps = { other: string };
 type MixedProps = { name: string; setName: (name: string) => void };
-type DeepArrayProps = { first: { second: MixedProps[]; }; };
-type DeepObjectProps = { first: { second: MixedProps; }; };
+type DeepArrayProps = { first: { second: MixedProps[] } };
+type DeepObjectProps = { first: { second: MixedProps } };
 
 /**
  * Tests
  */
 describe('mapped types', () => {
+  it('SetIntersection', () => {
+    type ResultSet = SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>;
+    // Expect: "2" | "3"
+    testType<ResultSet>('2');
+    testType<ResultSet>('3');
+  });
 
   it('SetDifference', () => {
     type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
@@ -69,7 +76,7 @@ describe('mapped types', () => {
   });
 
   it('Overwrite', () => {
-    type ReplacedProps = Overwrite<Props, UpdatedProps>;
+    type ReplacedProps = Overwrite<Props, UpdatedProps & OtherProps>;
     // Expect: { name: string; age: string; visible: boolean; }
     testType<ReplacedProps>({ name: 'foo', age: '2', visible: true });
   });
@@ -82,10 +89,12 @@ describe('mapped types', () => {
 
   it('FunctionKeys', () => {
     type FunctionKeysProps = FunctionKeys<MixedProps>;
+    // Expect: "setName"
   });
 
   it('NonFunctionKeys', () => {
     type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
+    // Expect: "name"
   });
 
   it('DeepReadonly', () => {
