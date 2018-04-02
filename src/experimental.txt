@@ -1,0 +1,6 @@
+// type Unionize<T> = { [P in keyof T]: { [Q in P]: T[P] } }[keyof T];
+
+// type GetComponentProps<T> =
+//   T extends new (props: infer P) => any ? P :
+//   T extends (props: infer P & { children?: React.ReactNode }) => any ? P :
+//   any;

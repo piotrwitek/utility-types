@@ -1,6 +1,6 @@
 {
   "name": "utility-types",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Utility Types Library for TypeScript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "repository": "https://github.com/piotrwitek/utility-types",
@@ -28,25 +28,24 @@
     "build:jsnext": "rm -rf jsnext/ && tsc -p . --outDir jsnext/ -t 'ES2015'",
     "precommit": "npm run lint",
     "prepush": "npm run test",
-    "prepublishOnly": "npm run clean && npm run reinstall && npm run lint && npm run tsc && npm run test && npm run build"
+    "prepublishOnly":
+      "npm run clean && npm run reinstall && npm run lint && npm run tsc && npm run test && npm run build"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "22.0.0",
-    "@types/node": "6.0.95",
+    "@types/jest": "22.2.2",
     "husky": "0.14.3",
-    "jest-cli": "22.0.4",
-    "redux": "3.7.2",
-    "ts-jest": "22.0.0",
-    "ts-node": "4.1.0",
-    "tslib": "1.8.1",
-    "tslint": "5.8.0",
-    "typescript": "2.7.2"
+    "jest": "22.4.3",
+    "ts-jest": "22.4.2",
+    "ts-node": "5.0.1",
+    "tslib": "1.9.0",
+    "tslint": "5.9.1",
+    "typescript": "2.8.1"
   },
   "keywords": [
-    "utility-types",
     "typescript",
-    "utilities",
+    "utility",
+    "types",
     "static-typing",
     "mapped-types",
     "flow",

@@ -1,17 +1,10 @@
 import { testType } from './test-utils';
-import {
-  $Keys,
-  $Values,
-  $ReadOnly,
-  $Diff,
-  $PropertyType,
-  $ElementType,
-} from '.';
+import { $Call, $Keys, $Values, $ReadOnly, $Diff, $PropertyType, $ElementType } from '.';
 
 /**
  * Fixtures
  */
-type Props = { name: string, age: number, visible: boolean };
+type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 type UpdatedProps = { age: string };
 type OtherProps = { other: string };
@@ -19,7 +12,6 @@ type OtherProps = { other: string };
  * Tests
  */
 describe('utility types', () => {
-
   it('$Keys', () => {
     type PropsKeys = $Keys<Props>;
     // Expect: "name" | "age" | "visible"
@@ -86,4 +78,20 @@ describe('utility types', () => {
     testType<ValuesType>(42);
   });
 
+  it('$Call', () => {
+    type ActionType = $Call<(amount: number) => { type: 'ADD'; payload: number }>;
+    // Expect: { type: 'ADD'; payload: number }
+    testType<ActionType>({ type: 'ADD', payload: 1 });
+
+    type ExtractPropType<T extends { prop: any }> = (arg: T) => T['prop'];
+    type Obj = { prop: number };
+    type PropType = $Call<ExtractPropType<Obj>>;
+    testType<PropType>(4);
+    // type Nope = $Call<ExtractPropType<{ nope: number }>>; // Error: argument doesn't match `Obj`.
+
+    type ExtractReturnType<T extends () => any> = (arg: T) => ReturnType<T>;
+    type Fn = () => number;
+    type FnReturnType = $Call<ExtractReturnType<Fn>>;
+    testType<FnReturnType>(4);
+  });
 });
