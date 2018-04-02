@@ -14,8 +14,6 @@ import {
   Assign,
   UnboxPromise,
   DeepReadonly,
-  DeepReadonlyArray,
-  DeepReadonlyObject,
 } from '.';
 
 /**
@@ -68,11 +66,13 @@ describe('mapped types', () => {
   it('FunctionKeys', () => {
     type FunctionKeysProps = FunctionKeys<MixedProps>;
     // Expect: "setName"
+    testType<FunctionKeysProps>('setName');
   });
 
   it('NonFunctionKeys', () => {
     type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
     // Expect: "name"
+    testType<NonFunctionKeysProps>('name');
   });
 
   it('Omit', () => {
@@ -125,13 +125,17 @@ describe('mapped types', () => {
         };
       };
     };
+    let a: { readonly name: string };
+
     type ReadonlyNestedProps = DeepReadonly<NestedProps>;
+    a = {} as ReadonlyNestedProps['first']['second'];
 
     type NestedArrayProps = {
       first: {
-        second: string[];
+        second: Array<{ name: string }>;
       };
     };
     type ReadonlyNestedArrayProps = DeepReadonly<NestedArrayProps>;
+    a = {} as ReadonlyNestedArrayProps['first']['second'][number];
   });
 });

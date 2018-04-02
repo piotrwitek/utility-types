@@ -60,10 +60,10 @@ npm install --save utility-types
 * [`Partial<T>`](#partialt) (_\*standard-lib_)
 * [`Required<T>`](#requiredt) (_\*standard-lib_)
 * [`Readonly<T>`](#readonlyt) (_\*standard-lib_)
-* [`DeepReadonly<T>`](#deepreadonlyt)
 * [`ReturnType<T>`](#returntypet) (_\*standard-lib_)
 * [`InstanceType<T>`](#instancetypet) (_\*standard-lib_)
 * [`UnboxPromise<T>`](#unboxpromiset)
+* [`DeepReadonly<T>`](#deepreadonlyt)
 
 ## Flow's Utility Types
 
@@ -347,6 +347,33 @@ Make all properties of object type readonly
 
 [⇧ back to top](#mapped-types)
 
+### `ReturnType<T>`
+
+Obtain the return type of a function
+
+[⇧ back to top](#mapped-types)
+
+### `InstanceType<T>`
+
+Obtain the instance type of a class
+
+[⇧ back to top](#mapped-types)
+
+### `UnboxPromise<T>`
+
+Obtain Promise resolve type
+
+**Usage:**
+
+```ts
+import { UnboxPromise } from 'utility-types';
+
+type PromiseType = UnboxPromise<Promise<string>>;
+// Expect: string
+```
+
+[⇧ back to top](#mapped-types)
+
 ### `DeepReadonly<T>`
 
 Readonly that works for deeply nested structures
@@ -371,33 +398,6 @@ type ReadonlyNestedProps = DeepReadonly<NestedProps>;
 //     };
 //   };
 // }
-```
-
-[⇧ back to top](#mapped-types)
-
-### `ReturnType<T>`
-
-Obtain the return type of a function
-
-[⇧ back to top](#mapped-types)
-
-### `InstanceType<T>`
-
-Obtain the instance type of a class
-
-[⇧ back to top](#mapped-types)
-
-### `UnboxPromise<T>`
-
-Obtain Promise resolve type
-
-**Usage:**
-
-```ts
-import { UnboxPromise } from 'utility-types';
-
-type PromiseType = UnboxPromise<Promise<string>>;
-// Expect: string
 ```
 
 [⇧ back to top](#mapped-types)

@@ -1,4 +1,3 @@
-// tslint:disable:ban-types
 // tslint:disable:max-line-length
 /**
  * Credits to all the people who given inspiration and shared some very usefull code snippets
