@@ -1,15 +1,6 @@
-// Exclude<T, U> -- Exclude from T those types that are assignable to U.
-// Extract<T, U> -- Extract from T those types that are assignable to U.
-// NonNullable<T> -- Exclude null and undefined from T.
-// ReturnType<T> -- Obtain the return type of a function type.
-type PromiseType<T> = T extends Promise<infer U> ? U : T;
-// InstanceType<T> -- Obtain the instance type of a constructor function type.
+// type Unionize<T> = { [P in keyof T]: { [Q in P]: T[P] } }[keyof T];
 
 // type GetComponentProps<T> =
 //   T extends new (props: infer P) => any ? P :
 //   T extends (props: infer P & { children?: React.ReactNode }) => any ? P :
 //   any;
-
-// type Unionize<T> = { [P in keyof T]: { [Q in P]: T[P] } }[keyof T];
-// type obj = { a: string, c: number };
-// type unionizedObj = Unionize<obj>;

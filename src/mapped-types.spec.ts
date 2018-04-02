@@ -4,13 +4,15 @@ import {
   SetDifference,
   SetComplement,
   SymmetricDifference,
-  Omit,
-  Subtract,
-  Diff,
-  Overwrite,
-  Assign,
   FunctionKeys,
   NonFunctionKeys,
+  Omit,
+  Intersection,
+  Diff,
+  Subtract,
+  Overwrite,
+  Assign,
+  UnboxPromise,
   DeepReadonly,
   DeepReadonlyArray,
   DeepReadonlyObject,
@@ -46,7 +48,7 @@ describe('mapped types', () => {
 
     type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
     // Expect: string | number
-    testType<ResultSetMixed>('string');
+    testType<ResultSetMixed>('foo');
     testType<ResultSetMixed>(2);
   });
 
@@ -63,10 +65,26 @@ describe('mapped types', () => {
     testType<ResultSet>('4');
   });
 
+  it('FunctionKeys', () => {
+    type FunctionKeysProps = FunctionKeys<MixedProps>;
+    // Expect: "setName"
+  });
+
+  it('NonFunctionKeys', () => {
+    type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
+    // Expect: "name"
+  });
+
   it('Omit', () => {
     type RequiredProps = Omit<Props, 'age'>;
     // Expect: { name: string; visible: boolean; }
     testType<RequiredProps>({ name: 'foo', visible: true });
+  });
+
+  it('Intersection', () => {
+    type DuplicatedProps = Intersection<Props, DefaultProps>;
+    // Expect: { age: number; }
+    testType<DuplicatedProps>({ age: 2 });
   });
 
   it('Diff', () => {
@@ -93,14 +111,10 @@ describe('mapped types', () => {
     testType<ExtendedProps>({ name: 'foo', age: '2', visible: true, other: 'baz' });
   });
 
-  it('FunctionKeys', () => {
-    type FunctionKeysProps = FunctionKeys<MixedProps>;
-    // Expect: "setName"
-  });
-
-  it('NonFunctionKeys', () => {
-    type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
-    // Expect: "name"
+  it('UnboxPromise', () => {
+    type PromiseType = UnboxPromise<Promise<string>>;
+    // Expect: string
+    testType<PromiseType>('foo');
   });
 
   it('DeepReadonly', () => {

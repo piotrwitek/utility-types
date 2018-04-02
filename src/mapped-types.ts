@@ -19,9 +19,9 @@ export type SetDifference<A, B> = A extends B ? never : A;
 
 /**
  * SetComplement
- * @desc Set complement of given literal union types `A` and it's subset `A2`
+ * @desc Set complement of given literal union types `A` and (it's subset) `A1`
  */
-export type SetComplement<A, A2 extends A> = SetDifference<A, A2>;
+export type SetComplement<A, A1 extends A> = SetDifference<A, A1>;
 
 /**
  * SymmetricDifference
@@ -58,19 +58,19 @@ export type Intersection<T extends object, U extends object> = Pick<
 
 /**
  * Diff
- * @desc From `T` pick properties that doesn't exist in `U`
+ * @desc From `T` remove properties that exist in `U`
  */
 export type Diff<T extends object, U extends object> = Pick<T, SetDifference<keyof T, keyof U>>;
 
 /**
  * Subtract
- * @desc From `T` pick properties that doesn't exist in `U`, when `U` is a subtype of `T`
+ * @desc From `T` remove properties that exist in `T1` (`T1` is a subtype of `T`)
  */
-export type Subtract<T extends U, U extends object> = Pick<T, SetComplement<keyof T, keyof U>>;
+export type Subtract<T extends T1, T1 extends object> = Pick<T, SetComplement<keyof T, keyof T1>>;
 
 /**
  * Overwrite
- * @desc Overwrite intersecting properties in `T` with `U`.
+ * @desc From `U` overwrite properties to `T`
  */
 export type Overwrite<
   T extends object,
@@ -80,13 +80,19 @@ export type Overwrite<
 
 /**
  * Assign
- * @desc Assign `U` to `T` just like object assign
+ * @desc From `U` assign properties to `T` (just like object assign)
  */
 export type Assign<
   T extends object,
   U extends object,
   I = Diff<T, U> & Intersection<U, T> & Diff<U, T>
 > = Pick<I, keyof I>;
+
+/**
+ * UnboxPromise
+ * @desc Obtain Promise resolve type
+ */
+export type UnboxPromise<T> = T extends Promise<infer U> ? U : T;
 
 /**
  * DeepReadonly

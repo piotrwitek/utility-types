@@ -33,38 +33,47 @@ npm install --save utility-types
 
 # Table of Contents
 
-## Binary operations on sets
+## Operations on sets
 
-* [SetIntersection](#setintersection)
-* [SetDifference](#setdifference)
-* [SetComplement](#setcomplement)
-* [SymmetricDifference](#symmetricdifference)
+* [`SetIntersection<A, B>`](#setintersectiona-b)
+* [`SetDifference<A, B>`](#setdifferencea-b)
+* [`SetComplement<A, A1>`](#setcomplementa-a1)
+* [`SymmetricDifference<A, B>`](#symmetricdifferencea-b)
+* [`NonNullable<A>`](#nonnullablea) (_\*standard-lib_)
+* [`Exclude<A, B>`](#excludea-b) (_\*standard-lib_)
+* [`Extract<A, B>`](#extracta-b) (_\*standard-lib_)
+
+## Operations on objects
+
+* [`FunctionKeys<T>`](#functionkeyst)
+* [`NonFunctionKeys<T>`](#nonfunctionkeyst)
+* [`Pick<T, K>`](#pickt-k) (_\*standard-lib_)
+* [`Omit<T, K>`](#omitt-k)
+* [`Intersection<T, U>`](#intersectiont-u)
+* [`Diff<T, U>`](#difft-u)
+* [`Subtract<T, T1>`](#subtractt-t1)
+* [`Overwrite<T, U>`](#overwritet-u)
+* [`Assign<T, U>`](#assignt-u)
 
 ## Mapped Types
 
-* [FunctionKeys](#functionkeys)
-* [NonFunctionKeys](#nonfunctionkeys)
-* [Pick](#pick) (standard-lib)
-* [Omit](#omit)
-* [Intersection](#intersection)
-* [Diff](#diff)
-* [Subtract](#subtract)
-* [Overwrite](#overwrite)
-* [Assign](#assign)
-
-## Recursive Types
-
-* [DeepReadonly](#deepreadonly)
+* [`Partial<T>`](#partialt) (_\*standard-lib_)
+* [`Required<T>`](#requiredt) (_\*standard-lib_)
+* [`Readonly<T>`](#readonlyt) (_\*standard-lib_)
+* [`DeepReadonly<T>`](#deepreadonlyt)
+* [`ReturnType<T>`](#returntypet) (_\*standard-lib_)
+* [`InstanceType<T>`](#instancetypet) (_\*standard-lib_)
+* [`UnboxPromise<T>`](#unboxpromiset)
 
 ## Flow's Utility Types
 
-* [$Keys](#keys)
-* [$Values](#values)
-* [$ReadOnly](#readonly)
-* [$Diff](#diff2)
-* [$PropertyType](#propertytype)
-* [$ElementType](#elementtype)
-* [$Call](#call)
+* [`$Keys<T>`](#keyst)
+* [`$Values<T>`](#valuest)
+* [`$ReadOnly<T>`](#readonly2)
+* [`$Diff<T, U>`](#diff2)
+* [`$PropertyType<T, K>`](#propertytypet-k)
+* [`$ElementType<T, K>`](#elementtypet-k)
+* [`$Call<T>`](#callt)
 
 ## Flow to TypeScript Migration Guides
 
@@ -72,11 +81,10 @@ npm install --save utility-types
 
 ---
 
-## Binary operations on sets
+## Operations on sets
 
-### SetIntersection
+### `SetIntersection<A, B>`
 
-`SetIntersection<A, B>`  
 Set intersection of given literal union types `A` and `B`
 
 **Usage:**
@@ -86,14 +94,14 @@ import { SetIntersection } from 'utility-types';
 
 type ResultSet = SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "2" | "3"
-
 type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
 // Expect: () => void
 ```
 
-### SetDifference
+[⇧ back to top](#operations-on-sets)
 
-`SetDifference<A, B>`  
+### `SetDifference<A, B>`
+
 Set difference of given literal union types `A` and `B`
 
 **Usage:**
@@ -103,15 +111,15 @@ import { SetDifference } from 'utility-types';
 
 type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "1"
-
 type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
 // Expect: string | number
 ```
 
-### SetComplement
+[⇧ back to top](#operations-on-sets)
 
-`SetComplement<A, A2 extends A>`  
-Set complement of given literal union types `A` and it's subset `A2`
+### `SetComplement<A, A1>`
+
+Set complement of given literal union types `A` and (it's subset) `A1`
 
 **Usage:**
 
@@ -122,9 +130,10 @@ type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
 // Expect: "1"
 ```
 
-### SymmetricDifference
+[⇧ back to top](#operations-on-sets)
 
-`SymmetricDifference<A, B>`  
+### `SymmetricDifference<A, B>`
+
 Set difference of the union and the intersection of given literal union types `A` and `B`
 
 **Usage:**
@@ -136,16 +145,67 @@ type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "1" | "4"
 ```
 
+[⇧ back to top](#operations-on-sets)
+
+### `NonNullable<A>`
+
+Exclude `null` and `undefined` from set `A`
+
+[⇧ back to top](#operations-on-sets)
+
+### `Exclude<A, B>`
+
+Exclude subset `B` from set `A`
+
+[⇧ back to top](#operations-on-sets)
+
+### `Extract<A, B>`
+
+Extract subset `B` from set `A`
+
+[⇧ back to top](#operations-on-sets)
+
 ---
 
-## Mapped Types
+## Operations on objects
 
-### Pick
+### `FunctionKeys<T>`
+
+Get union type of keys that are functions in object type `T`
+
+**Usage:**
+
+```ts
+import { FunctionKeys } from 'utility-types';
+
+type MixedProps = { name: string; setName: (name: string) => void };
+type FunctionKeysProps = FunctionKeys<MixedProps>;
+// Expect: "setName"
+```
+
+[⇧ back to top](#operations-on-objects)
+
+### `NonFunctionKeys<T>`
+
+Get union type of keys that are non-functions in object type `T`
+
+**Usage:**
+
+```ts
+import { NonFunctionKeys } from 'utility-types';
+
+type MixedProps = { name: string; setName: (name: string) => void };
+type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
+// Expect: "name"
+```
+
+[⇧ back to top](#operations-on-objects)
+
+### `Pick<T, K>`
+
+From `T` pick a set of properties `K`
 
 > _(part of standard-lib)_
-
-`Pick<T, keyof T>`  
-From `T` pick a set of properties `K`
 
 **Usage:**
 
@@ -156,9 +216,10 @@ type RequiredProps = Pick<Props, 'name'>;
 // Expect: { name: string }
 ```
 
-### Omit
+[⇧ back to top](#operations-on-objects)
 
-`Omit<T, keyof T>`  
+### `Omit<T, K>`
+
 From `T` remove a set of properties `K`
 
 **Usage:**
@@ -172,10 +233,29 @@ type RequiredProps = Omit<Props, 'age'>;
 // Expect: { name: string; visible: boolean; }
 ```
 
-### Diff
+[⇧ back to top](#operations-on-objects)
 
-`Diff<A, B>`  
-From `A` pick properties that doesn't exist in `B`
+### `Intersection<T, U>`
+
+From `T` pick properties that exist in `U`
+
+**Usage:**
+
+```ts
+import { Intersection } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean };
+type DefaultProps = { age: number };
+
+type DuplicatedProps = Intersection<Props, DefaultProps>;
+// Expect: { age: number; }
+```
+
+[⇧ back to top](#operations-on-objects)
+
+### `Diff<T, U>`
+
+From `T` remove properties that exist in `U`
 
 **Usage:**
 
@@ -189,10 +269,11 @@ type RequiredProps = Diff<Props, DefaultProps>;
 // Expect: { name: string; visible: boolean; }
 ```
 
-### Subtract
+[⇧ back to top](#operations-on-objects)
 
-`Subtract<T, U extends T>`  
-From `T` pick properties that doesn't exist in `U`, when `U` is a subtype of `T`
+### `Subtract<T, T1>`
+
+From `T` remove properties that exist in `T1` (`T1` is a subtype of `T`)
 
 **Usage:**
 
@@ -206,10 +287,11 @@ type RequiredProps = Subtract<Props, DefaultProps>;
 // Expect: { name: string; visible: boolean; }
 ```
 
-### Overwrite
+[⇧ back to top](#operations-on-objects)
 
-`Overwrite<T, U>`  
-Overwrite intersecting properties in `T` with `U`.
+### `Overwrite<T, U>`
+
+From `U` overwrite properties to `T`
 
 **Usage:**
 
@@ -223,10 +305,11 @@ type ReplacedProps = Overwrite<Props, NewProps>;
 // Expect: { name: string; age: string; visible: boolean; }
 ```
 
-### Assign
+[⇧ back to top](#operations-on-objects)
 
-`Assign<T, U>`  
-Assign `U` to `T` just like object assign
+### `Assign<T, U>`
+
+From `U` assign properties to `T` (just like object assign)
 
 **Usage:**
 
@@ -240,44 +323,33 @@ type ExtendedProps = Assign<Props, NewProps>;
 // Expect: { name: string; age: number; visible: boolean; other: string; }
 ```
 
-### FunctionKeys
-
-`FunctionKeys<T>`  
-get union type of keys that are functions in object type `T`
-
-**Usage:**
-
-```ts
-import { FunctionKeys } from 'utility-types';
-
-type MixedProps = { name: string; setName: (name: string) => void };
-type FunctionKeysProps = FunctionKeys<MixedProps>;
-// Expect: "setName"
-```
-
-### NonFunctionKeys
-
-`NonFunctionKeys<T>`  
-get union type of keys that are non-functions in object type `T`
-
-**Usage:**
-
-```ts
-import { NonFunctionKeys } from 'utility-types';
-
-type MixedProps = { name: string; setName: (name: string) => void };
-type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
-// Expect: "name"
-```
+[⇧ back to top](#operations-on-objects)
 
 ---
 
-## Recursive Types
+## Mapped Types
 
-### DeepReadonly
+### `Partial<T>`
 
-`DeepReadonly<T extends object, U extends object>`  
-recursive readonly that works for deeply nested structures
+Make all properties of object type optional
+
+[⇧ back to top](#mapped-types)
+
+### `Required<T>`
+
+Make all properties of object type non-optional
+
+[⇧ back to top](#mapped-types)
+
+### `Readonly<T>`
+
+Make all properties of object type readonly
+
+[⇧ back to top](#mapped-types)
+
+### `DeepReadonly<T>`
+
+Readonly that works for deeply nested structures
 
 **Usage:**
 
@@ -301,13 +373,41 @@ type ReadonlyNestedProps = DeepReadonly<NestedProps>;
 // }
 ```
 
+[⇧ back to top](#mapped-types)
+
+### `ReturnType<T>`
+
+Obtain the return type of a function
+
+[⇧ back to top](#mapped-types)
+
+### `InstanceType<T>`
+
+Obtain the instance type of a class
+
+[⇧ back to top](#mapped-types)
+
+### `UnboxPromise<T>`
+
+Obtain Promise resolve type
+
+**Usage:**
+
+```ts
+import { UnboxPromise } from 'utility-types';
+
+type PromiseType = UnboxPromise<Promise<string>>;
+// Expect: string
+```
+
+[⇧ back to top](#mapped-types)
+
 ---
 
 ## Flow's Utility Types
 
-### $Keys
+### `$Keys<T>`
 
-`$Keys<T extends object>`  
 get the union type of all the keys in an object type `T`  
 https://flow.org/en/docs/types/utilities/#toc-keys
 
@@ -322,9 +422,10 @@ type PropsKeys = $Keys<Props>;
 // Expect: "name" | "age" | "visible"
 ```
 
-### $Values
+[⇧ back to top](#flows-utility-types)
 
-`$Values<T extends object>`  
+### `$Values<T>`
+
 get the union type of all the values in an object type `T`  
 https://flow.org/en/docs/types/utilities/#toc-values
 
@@ -339,9 +440,10 @@ type PropsValues = $Values<Props>;
 // Expect: string | number | boolean
 ```
 
-### $ReadOnly
+[⇧ back to top](#flows-utility-types)
 
-`$ReadOnly<T extends object>`  
+### <a id="readonly2"></a> `$ReadOnly<T>`
+
 get the read-only version of a given object type `T`  
 https://flow.org/en/docs/types/utilities/#toc-readonly
 
@@ -356,9 +458,10 @@ type ReadOnlyProps = $ReadOnly<Props>;
 // Expect: Readonly<{ name: string; age?: number | undefined; visible: boolean; }>
 ```
 
-### <a id="diff2"></a> $Diff
+[⇧ back to top](#flows-utility-types)
 
-`$Diff<T extends U, U extends object>`  
+### <a id="diff2"></a> `$Diff<T, U>`
+
 get the set difference of a given object types `T` and `U` (`T \ U`)  
 https://flow.org/en/docs/types/utilities/#toc-diff
 
@@ -374,10 +477,11 @@ type RequiredProps = $Diff<Props, DefaultProps>;
 // Expect: { name: string; visible: boolean; }
 ```
 
-### $PropertyType
+[⇧ back to top](#flows-utility-types)
 
-`$PropertyType<T extends object, K extends keyof T>`  
-desc get the type of property of an object at a given key `K`  
+### `$PropertyType<T, K>`
+
+get the type of property of an object at a given key `K`  
 https://flow.org/en/docs/types/utilities/#toc-propertytype
 
 **Usage:**
@@ -396,9 +500,10 @@ type B = $PropertyType<Tuple, '1'>;
 // Expect: number
 ```
 
-### $ElementType
+[⇧ back to top](#flows-utility-types)
 
-`$ElementType<T extends object, K extends keyof T | number>`  
+### `$ElementType<T, K>`
+
 get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`  
 https://flow.org/en/docs/types/utilities/#toc-elementtype
 
@@ -426,9 +531,10 @@ type ValuesType = $ElementType<Obj, string>;
 // Expect: number
 ```
 
-### $Call
+[⇧ back to top](#flows-utility-types)
 
-`$Call<T extends (...args: any[]) => any>`  
+### `$Call<T>`
+
 get the return type of a given expression type
 https://flow.org/en/docs/types/utilities/#toc-call
 
@@ -451,6 +557,8 @@ type ExtractReturnType<T extends () => any> = (arg: T) => ReturnType<T>;
 type Fn = () => number;
 type FnReturnType = $Call<ExtractReturnType<Fn>>; // number
 ```
+
+[⇧ back to top](#flows-utility-types)
 
 ---
 
