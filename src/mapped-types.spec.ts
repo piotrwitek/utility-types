@@ -33,12 +33,21 @@ describe('mapped types', () => {
     // Expect: "2" | "3"
     testType<ResultSet>('2');
     testType<ResultSet>('3');
+
+    type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
+    // Expect: () => void
+    testType<ResultSetMixed>(() => undefined);
   });
 
   it('SetDifference', () => {
     type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
     // Expect: "1"
     testType<ResultSet>('1');
+
+    type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
+    // Expect: string | number
+    testType<ResultSetMixed>('string');
+    testType<ResultSetMixed>(2);
   });
 
   it('SetComplement', () => {

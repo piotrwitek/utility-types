@@ -9,25 +9,25 @@
  * SetIntersection
  * @desc Set intersection of given literal union types `A` and `B`
  */
-export type SetIntersection<A extends string, B extends string> = A extends B ? A : never;
+export type SetIntersection<A, B> = A extends B ? A : never;
 
 /**
  * SetDifference
  * @desc Set difference of given literal union types `A` and `B`
  */
-export type SetDifference<A extends string, B extends string> = A extends B ? never : A;
+export type SetDifference<A, B> = A extends B ? never : A;
 
 /**
  * SetComplement
  * @desc Set complement of given literal union types `A` and it's subset `A2`
  */
-export type SetComplement<A extends string, A2 extends A> = SetDifference<A, A2>;
+export type SetComplement<A, A2 extends A> = SetDifference<A, A2>;
 
 /**
  * SymmetricDifference
  * @desc Set difference of the union and the intersection of given literal union types `A` and `B`
  */
-export type SymmetricDifference<A extends string, B extends string> = SetDifference<A | B, A & B>;
+export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
 
 /**
  * FunctionKeys

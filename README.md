@@ -86,6 +86,9 @@ import { SetIntersection } from 'utility-types';
 
 type ResultSet = SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "2" | "3"
+
+type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
+// Expect: () => void
 ```
 
 ### SetDifference
@@ -100,6 +103,9 @@ import { SetDifference } from 'utility-types';
 
 type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "1"
+
+type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
+// Expect: string | number
 ```
 
 ### SetComplement
