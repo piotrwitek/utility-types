@@ -21,11 +21,8 @@ import {
  */
 type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
-type UpdatedProps = { age: string };
-type OtherProps = { other: string };
+type NewProps = { age: string; other: string };
 type MixedProps = { name: string; setName: (name: string) => void };
-type DeepArrayProps = { first: { second: MixedProps[] } };
-type DeepObjectProps = { first: { second: MixedProps } };
 
 /**
  * Tests
@@ -58,13 +55,13 @@ describe('mapped types', () => {
   });
 
   it('Omit', () => {
-    type RequiredProps = Omit<Props, keyof DefaultProps>;
+    type RequiredProps = Omit<Props, 'age'>;
     // Expect: { name: string; visible: boolean; }
     testType<RequiredProps>({ name: 'foo', visible: true });
   });
 
   it('Diff', () => {
-    type RequiredProps = Diff<Props, UpdatedProps & OtherProps>;
+    type RequiredProps = Diff<Props, NewProps>;
     // Expect: { name: string; visible: boolean; }
     testType<RequiredProps>({ name: 'foo', visible: true });
   });
@@ -76,13 +73,13 @@ describe('mapped types', () => {
   });
 
   it('Overwrite', () => {
-    type ReplacedProps = Overwrite<Props, UpdatedProps & OtherProps>;
+    type ReplacedProps = Overwrite<Props, NewProps>;
     // Expect: { name: string; age: string; visible: boolean; }
     testType<ReplacedProps>({ name: 'foo', age: '2', visible: true });
   });
 
   it('Assign', () => {
-    type ExtendedProps = Assign<Props, UpdatedProps & OtherProps>;
+    type ExtendedProps = Assign<Props, NewProps>;
     // Expect: { name: string; age: string; visible: boolean; other: string; }
     testType<ExtendedProps>({ name: 'foo', age: '2', visible: true, other: 'baz' });
   });
@@ -98,7 +95,20 @@ describe('mapped types', () => {
   });
 
   it('DeepReadonly', () => {
-    type ReadonlyArrayProps = DeepReadonly<DeepArrayProps>;
-    type ReadonlyObjectProps = DeepReadonly<DeepObjectProps>;
+    type NestedProps = {
+      first: {
+        second: {
+          name: string;
+        };
+      };
+    };
+    type ReadonlyNestedProps = DeepReadonly<NestedProps>;
+
+    type NestedArrayProps = {
+      first: {
+        second: string[];
+      };
+    };
+    type ReadonlyNestedArrayProps = DeepReadonly<NestedArrayProps>;
   });
 });

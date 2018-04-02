@@ -31,11 +31,13 @@ export type SymmetricDifference<A extends string, B extends string> = SetDiffere
 
 /**
  * FunctionKeys
+ * @desc get union type of keys that are functions in object type `T`
  */
 export type FunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
 
 /**
  * NonFunctionKeys
+ * @desc get union type of keys that are non-functions in object type `T`
  */
 export type NonFunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
 
@@ -70,23 +72,25 @@ export type Subtract<T extends U, U extends object> = Pick<T, SetComplement<keyo
  * Overwrite
  * @desc Overwrite intersecting properties in `T` with `U`.
  */
-export type Overwrite<T extends object, U extends object> = Pick<
-  Diff<T, U> & Intersection<U, T>,
-  keyof Diff<T, U> & Intersection<U, T>
->;
+export type Overwrite<
+  T extends object,
+  U extends object,
+  I = Diff<T, U> & Intersection<U, T>
+> = Pick<I, keyof I>;
 
 /**
  * Assign
  * @desc Assign `U` to `T` just like object assign
  */
-export type Assign<T extends object, U extends object> = Pick<
-  Diff<T, U> & Intersection<U, T> & Diff<U, T>,
-  keyof Diff<T, U> & Intersection<U, T> & Diff<U, T>
->;
+export type Assign<
+  T extends object,
+  U extends object,
+  I = Diff<T, U> & Intersection<U, T> & Diff<U, T>
+> = Pick<I, keyof I>;
 
 /**
  * DeepReadonly
- * @desc DeepReadonly - works for both Arrays and Objects
+ * @desc DeepReadonly - recursive readonly that works for deeply nested structure
  */
 export type DeepReadonly<T> = T extends any[]
   ? DeepReadonlyArray<T[number]>
@@ -94,12 +98,12 @@ export type DeepReadonly<T> = T extends any[]
 
 /**
  * DeepReadonlyArray
- * @desc DeepReadonlyArray - works for Arrays
+ * @desc DeepReadonlyArray - nested array condition handler
  */
 export interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 
 /**
  * DeepReadonlyObject
- * @desc DeepReadonlyObject - works for Objects
+ * @desc DeepReadonlyObject - nested object condition handler
  */
 export type DeepReadonlyObject<T> = { readonly [P in NonFunctionKeys<T>]: DeepReadonly<T[P]> };
