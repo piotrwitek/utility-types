@@ -70,6 +70,7 @@ npm install --save utility-types
 * [`Readonly<T>`](#readonlyt) (_\*standard-lib_)
 * [`ReturnType<T>`](#returntypet) (_\*standard-lib_)
 * [`InstanceType<T>`](#instancetypet) (_\*standard-lib_)
+* [`Unionize<T>`](#unionizet)
 * [`PromiseType<T>`](#promisetypet) (replaced deprecated `UnboxPromise<T>`)
 * [`DeepReadonly<T>`](#deepreadonlyt)
 
@@ -368,6 +369,23 @@ Obtain the return type of a function
 ### `InstanceType<T>`
 
 Obtain the instance type of a class
+
+[⇧ back to top](#mapped-types)
+
+### `Unionize<T>`
+
+Disjoin object to union of one-property objects types
+
+**Usage:**
+
+```ts
+import { Unionize } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean };
+
+type UnionizedType = Unionize<Props>;
+// Expect: { name: string; } | { age: number; } | { visible: boolean; }
+```
 
 [⇧ back to top](#mapped-types)
 

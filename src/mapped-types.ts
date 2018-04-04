@@ -47,8 +47,7 @@ export type NonFunctionKeys<T> = {
  * Omit (complements Pick)
  * @desc From `T` remove a set of properties `K`
  */
-export type Omit<T, K extends keyof T> = Pick<T, SetComplement<keyof T, K>>;
-
+export type Omit<T, K extends keyof T> = T extends any ? Pick<T, SetComplement<keyof T, K>> : never;
 /**
  * Intersection
  * @desc From `T` pick properties that exist in `U`
@@ -97,6 +96,12 @@ export type Assign<
 > = Pick<I, keyof I>;
 
 /**
+ * Unionize
+ * @desc Disjoin object to union of one-property objects types
+ */
+export type Unionize<T> = { [P in keyof T]: { [Q in P]: T[P] } }[keyof T];
+
+/**
  * PromiseType
  * @desc Obtain Promise resolve type
  */
@@ -109,7 +114,7 @@ export type UnboxPromise<T> = PromiseType<T>;
 
 /**
  * DeepReadonly
- * @desc DeepReadonly - recursive readonly that works for deeply nested structure
+ * @desc Readonly that works for deeply nested structure
  */
 export type DeepReadonly<T> = T extends any[]
   ? _DeepReadonlyArray<T[number]>
@@ -117,7 +122,7 @@ export type DeepReadonly<T> = T extends any[]
 
 /**
  * DeepReadonlyArray
- * @desc DeepReadonlyArray - nested array condition handler
+ * @desc Nested array condition handler
  * @private
  */
 // tslint:disable-next-line:class-name
@@ -125,7 +130,7 @@ export interface _DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 
 /**
  * DeepReadonlyObject
- * @desc DeepReadonlyObject - nested object condition handler
+ * @desc Nested object condition handler
  * @private
  */
 export type _DeepReadonlyObject<T> = {

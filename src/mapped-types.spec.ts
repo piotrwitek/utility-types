@@ -12,6 +12,7 @@ import {
   Subtract,
   Overwrite,
   Assign,
+  Unionize,
   PromiseType,
   DeepReadonly,
 } from './';
@@ -85,6 +86,11 @@ describe('mapped types', () => {
     type RequiredProps = Omit<Props, 'age'>;
     // Expect: { name: string; visible: boolean; }
     testType<RequiredProps>({ name: 'foo', visible: true });
+
+    type RequiredPropsUnion = Omit<Props | NewProps, 'age'>;
+    // Expect: { name: string; visible: boolean; } | { other: string; }
+    testType<RequiredPropsUnion>({ name: 'foo', visible: true });
+    testType<RequiredPropsUnion>({ other: 'bar' });
   });
 
   it('Intersection', () => {
@@ -120,6 +126,14 @@ describe('mapped types', () => {
       visible: true,
       other: 'baz',
     });
+  });
+
+  it('Unionize', () => {
+    type UnionizedType = Unionize<Props>;
+    // Expect: { name: string; } | { age: number; } | { visible: boolean; }
+    testType<UnionizedType>({ name: 'foo' });
+    testType<UnionizedType>({ age: 2 });
+    testType<UnionizedType>({ visible: true });
   });
 
   it('UnboxPromise', () => {
