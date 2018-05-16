@@ -70,7 +70,7 @@ npm install --save utility-types
 * [`Readonly<T>`](#readonlyt) (_\*standard-lib_)
 * [`ReturnType<T>`](#returntypet) (_\*standard-lib_)
 * [`InstanceType<T>`](#instancetypet) (_\*standard-lib_)
-* [`UnboxPromise<T>`](#unboxpromiset)
+* [`PromiseType<T>`](#promisetypet) (replaced deprecated `UnboxPromise<T>`)
 * [`DeepReadonly<T>`](#deepreadonlyt)
 
 ## Flow's Utility Types
@@ -82,6 +82,10 @@ npm install --save utility-types
 * [`$PropertyType<T, K>`](#propertytypet-k)
 * [`$ElementType<T, K>`](#elementtypet-k)
 * [`$Call<T>`](#callt)
+
+## Deprecated API (use at own risk)
+* `getReturnOfExpression()` - from v2.0 use `ReturnType` of standard-lib
+* `UnboxPromise` - renamed to `PromiseType`
 
 ## Flow to TypeScript Migration Guides
 
@@ -367,16 +371,16 @@ Obtain the instance type of a class
 
 [⇧ back to top](#mapped-types)
 
-### `UnboxPromise<T>`
+### `PromiseType<T>`
 
 Obtain Promise resolve type
 
 **Usage:**
 
 ```ts
-import { UnboxPromise } from 'utility-types';
+import { PromiseType } from 'utility-types';
 
-type PromiseType = UnboxPromise<Promise<string>>;
+type Response = PromiseType<Promise<string>>;
 // Expect: string
 ```
 

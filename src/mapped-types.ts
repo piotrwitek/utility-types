@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length
 /**
  * Credits to all the people who given inspiration and shared some very usefull code snippets
  * in the following github issue: https://github.com/Microsoft/TypeScript/issues/12215
@@ -32,13 +31,17 @@ export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
  * FunctionKeys
  * @desc get union type of keys that are functions in object type `T`
  */
-export type FunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
+export type FunctionKeys<T> = {
+  [K in keyof T]: T[K] extends Function ? K : never
+}[keyof T];
 
 /**
  * NonFunctionKeys
  * @desc get union type of keys that are non-functions in object type `T`
  */
-export type NonFunctionKeys<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
+export type NonFunctionKeys<T> = {
+  [K in keyof T]: T[K] extends Function ? never : K
+}[keyof T];
 
 /**
  * Omit (complements Pick)
@@ -59,13 +62,19 @@ export type Intersection<T extends object, U extends object> = Pick<
  * Diff
  * @desc From `T` remove properties that exist in `U`
  */
-export type Diff<T extends object, U extends object> = Pick<T, SetDifference<keyof T, keyof U>>;
+export type Diff<T extends object, U extends object> = Pick<
+  T,
+  SetDifference<keyof T, keyof U>
+>;
 
 /**
  * Subtract
  * @desc From `T` remove properties that exist in `T1` (`T1` is a subtype of `T`)
  */
-export type Subtract<T extends T1, T1 extends object> = Pick<T, SetComplement<keyof T, keyof T1>>;
+export type Subtract<T extends T1, T1 extends object> = Pick<
+  T,
+  SetComplement<keyof T, keyof T1>
+>;
 
 /**
  * Overwrite
@@ -88,27 +97,37 @@ export type Assign<
 > = Pick<I, keyof I>;
 
 /**
- * UnboxPromise
+ * PromiseType
  * @desc Obtain Promise resolve type
  */
-export type UnboxPromise<T> = T extends Promise<infer U> ? U : T;
+export type PromiseType<T> = T extends Promise<infer U> ? U : T;
+/**
+ * UnboxPromise
+ * @deprecated
+ */
+export type UnboxPromise<T> = PromiseType<T>;
 
 /**
  * DeepReadonly
  * @desc DeepReadonly - recursive readonly that works for deeply nested structure
  */
 export type DeepReadonly<T> = T extends any[]
-  ? DeepReadonlyArray<T[number]>
-  : T extends object ? DeepReadonlyObject<T> : T;
+  ? _DeepReadonlyArray<T[number]>
+  : T extends object ? _DeepReadonlyObject<T> : T;
 
 /**
  * DeepReadonlyArray
  * @desc DeepReadonlyArray - nested array condition handler
+ * @private
  */
-export interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
+// tslint:disable-next-line:class-name
+export interface _DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 
 /**
  * DeepReadonlyObject
  * @desc DeepReadonlyObject - nested object condition handler
+ * @private
  */
-export type DeepReadonlyObject<T> = { readonly [P in NonFunctionKeys<T>]: DeepReadonly<T[P]> };
+export type _DeepReadonlyObject<T> = {
+  readonly [P in NonFunctionKeys<T>]: DeepReadonly<T[P]>
+};

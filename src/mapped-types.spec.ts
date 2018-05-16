@@ -12,9 +12,9 @@ import {
   Subtract,
   Overwrite,
   Assign,
-  UnboxPromise,
+  PromiseType,
   DeepReadonly,
-} from '.';
+} from './';
 
 /**
  * Fixtures
@@ -34,7 +34,10 @@ describe('mapped types', () => {
     testType<ResultSet>('2');
     testType<ResultSet>('3');
 
-    type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
+    type ResultSetMixed = SetIntersection<
+      string | number | (() => void),
+      Function
+    >;
     // Expect: () => void
     testType<ResultSetMixed>(() => undefined);
   });
@@ -44,7 +47,10 @@ describe('mapped types', () => {
     // Expect: "1"
     testType<ResultSet>('1');
 
-    type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
+    type ResultSetMixed = SetDifference<
+      string | number | (() => void),
+      Function
+    >;
     // Expect: string | number
     testType<ResultSetMixed>('foo');
     testType<ResultSetMixed>(2);
@@ -108,13 +114,18 @@ describe('mapped types', () => {
   it('Assign', () => {
     type ExtendedProps = Assign<Props, NewProps>;
     // Expect: { name: string; age: string; visible: boolean; other: string; }
-    testType<ExtendedProps>({ name: 'foo', age: '2', visible: true, other: 'baz' });
+    testType<ExtendedProps>({
+      name: 'foo',
+      age: '2',
+      visible: true,
+      other: 'baz',
+    });
   });
 
   it('UnboxPromise', () => {
-    type PromiseType = UnboxPromise<Promise<string>>;
+    type Response = PromiseType<Promise<string>>;
     // Expect: string
-    testType<PromiseType>('foo');
+    testType<Response>('foo');
   });
 
   it('DeepReadonly', () => {
