@@ -30,6 +30,7 @@ export {
   SetIntersection,
   Subtract,
   SymmetricDifference,
+  Unionize,
 } from './mapped-types';
 
 // deprecated
