@@ -1,5 +1,13 @@
 # utility-types
 
+[![Latest Stable Version](https://img.shields.io/npm/v/utility-types.svg)](https://www.npmjs.com/package/utility-types)
+[![NPM Downloads](https://img.shields.io/npm/dt/utility-types.svg)](https://www.npmjs.com/package/utility-types)
+[![NPM Downloads](https://img.shields.io/npm/dm/utility-types.svg)](https://www.npmjs.com/package/utility-types)
+
+[ ![Codeship Status for piotrwitek/utility-types](https://app.codeship.com/projects/1825f5b0-3b46-0136-3a8e-2a9769e4a9a2/status?branch=master)](https://app.codeship.com/projects/290305)
+[![Dependency Status](https://img.shields.io/david/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types)
+[![peerDependency Status](https://img.shields.io/david/peer/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types#info=devDependencies)
+
 ## Utility Types for TypeScript (provide migration from [Flow's Utility Types](https://flow.org/en/docs/types/utilities/))
 
 * v1.X - compatible with TS v2.7.2
