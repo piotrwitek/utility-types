@@ -4,6 +4,32 @@
  * @license MIT
  */
 
-export * from './utility-types';
-export * from './mapped-types';
-export * from './functional-helpers';
+export {
+  $Call,
+  $Keys,
+  $Values,
+  $ReadOnly,
+  $Diff,
+  $PropertyType,
+  $ElementType,
+} from './utility-types';
+
+export {
+  Assign,
+  DeepReadonly,
+  Diff,
+  FunctionKeys,
+  Intersection,
+  NonFunctionKeys,
+  Omit,
+  Overwrite,
+  PromiseType,
+  SetComplement,
+  SetDifference,
+  SetIntersection,
+  Subtract,
+  SymmetricDifference,
+} from './mapped-types';
+
+// deprecated
+export { getReturnOfExpression } from './functional-helpers';

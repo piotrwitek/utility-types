@@ -1,5 +1,5 @@
 import { testType } from './test-utils';
-import { getReturnOfExpression } from '.';
+import { getReturnOfExpression } from './';
 
 //#region Docs Example
 const increment = () => ({ type: 'INCREMENT' as 'INCREMENT' });

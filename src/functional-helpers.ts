@@ -8,6 +8,8 @@
  * @param expression: (...params: any[]) => RT
  * @returns undefined as RT
  */
-export function getReturnOfExpression<RT>(expression: (...params: any[]) => RT): RT {
+export function getReturnOfExpression<RT>(
+  expression: (...params: any[]) => RT
+): RT {
   return (undefined as any) as RT;
 }

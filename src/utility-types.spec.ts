@@ -1,5 +1,13 @@
 import { testType } from './test-utils';
-import { $Call, $Keys, $Values, $ReadOnly, $Diff, $PropertyType, $ElementType } from '.';
+import {
+  $Call,
+  $Keys,
+  $Values,
+  $ReadOnly,
+  $Diff,
+  $PropertyType,
+  $ElementType,
+} from './';
 
 /**
  * Fixtures
@@ -79,7 +87,9 @@ describe('utility types', () => {
   });
 
   it('$Call', () => {
-    type ActionType = $Call<(amount: number) => { type: 'ADD'; payload: number }>;
+    type ActionType = $Call<
+      (amount: number) => { type: 'ADD'; payload: number }
+    >;
     // Expect: { type: 'ADD'; payload: number }
     testType<ActionType>({ type: 'ADD', payload: 1 });
 
