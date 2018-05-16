@@ -24,7 +24,7 @@ type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 type NewProps = { age: string; other: string };
 type MixedProps = { name: string; setName: (name: string) => void };
-
+type MixedProps2 = { age: number; setAge: (age: number) => void };
 /**
  * Tests
  */
@@ -71,15 +71,15 @@ describe('mapped types', () => {
   });
 
   it('FunctionKeys', () => {
-    type FunctionKeysProps = FunctionKeys<MixedProps>;
+    type PropsFunctionKeys = FunctionKeys<MixedProps>;
     // Expect: "setName"
-    testType<FunctionKeysProps>('setName');
+    testType<PropsFunctionKeys>('setName');
   });
 
   it('NonFunctionKeys', () => {
-    type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
+    type PropsNonFunctionKeys = NonFunctionKeys<MixedProps>;
     // Expect: "name"
-    testType<NonFunctionKeysProps>('name');
+    testType<PropsNonFunctionKeys>('name');
   });
 
   it('Omit', () => {
@@ -94,9 +94,14 @@ describe('mapped types', () => {
   });
 
   it('Intersection', () => {
-    type DuplicatedProps = Intersection<Props, DefaultProps>;
+    type CommonProps = Intersection<Props, DefaultProps>;
     // Expect: { age: number; }
-    testType<DuplicatedProps>({ age: 2 });
+    testType<CommonProps>({ age: 2 });
+
+    type CommonPropsUnion = Intersection<Props | NewProps, DefaultProps>;
+    // Expect: { name: string; visible: boolean; } | { other: string; }
+    testType<CommonPropsUnion>({ age: 2 });
+    testType<CommonPropsUnion>({ age: 'bar' });
   });
 
   it('Diff', () => {

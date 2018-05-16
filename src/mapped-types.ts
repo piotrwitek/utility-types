@@ -54,10 +54,9 @@ export type Omit<T, K extends keyof T> = T extends any
  * Intersection
  * @desc From `T` pick properties that exist in `U`
  */
-export type Intersection<T extends object, U extends object> = Pick<
-  T,
-  SetIntersection<keyof T, keyof U>
->;
+export type Intersection<T extends object, U extends object> = T extends any
+  ? Pick<T, SetIntersection<keyof T, keyof U>>
+  : never;
 
 /**
  * Diff
