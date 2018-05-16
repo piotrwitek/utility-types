@@ -141,7 +141,7 @@ describe('mapped types', () => {
     testType<UnionizedType>({ visible: true });
   });
 
-  it('UnboxPromise', () => {
+  it('PromiseType', () => {
     type Response = PromiseType<Promise<string>>;
     // Expect: string
     testType<Response>('foo');

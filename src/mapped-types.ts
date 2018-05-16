@@ -50,6 +50,7 @@ export type NonFunctionKeys<T> = {
 export type Omit<T, K extends keyof T> = T extends any
   ? Pick<T, SetComplement<keyof T, K>>
   : never;
+
 /**
  * Intersection
  * @desc From `T` pick properties that exist in `U`
