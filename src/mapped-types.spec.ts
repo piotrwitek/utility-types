@@ -167,5 +167,14 @@ describe('mapped types', () => {
     };
     type ReadonlyNestedArrayProps = DeepReadonly<NestedArrayProps>;
     a = {} as ReadonlyNestedArrayProps['first']['second'][number];
+
+    type NestedOptionalProps = {
+      first?: {
+        second: {};
+      };
+    };
+    type ReadonlyNestedOptionalProps = DeepReadonly<NestedOptionalProps>;
+    testType<ReadonlyNestedOptionalProps>({});
+    testType<ReadonlyNestedOptionalProps>({ first: { second: {} } });
   });
 });
