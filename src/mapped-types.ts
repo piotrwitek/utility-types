@@ -31,17 +31,17 @@ export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
  * FunctionKeys
  * @desc get union type of keys that are functions in object type `T`
  */
-export type FunctionKeys<T> = {
+export type FunctionKeys<T> = keyof {
   [K in keyof T]: T[K] extends Function ? K : never
-}[keyof T];
+};
 
 /**
  * NonFunctionKeys
  * @desc get union type of keys that are non-functions in object type `T`
  */
-export type NonFunctionKeys<T> = {
+export type NonFunctionKeys<T> = keyof {
   [K in keyof T]: T[K] extends Function ? never : K
-}[keyof T];
+};
 
 /**
  * Omit (complements Pick)
