@@ -85,8 +85,8 @@ npm install --save utility-types
 * [`$Call<T>`](#callt)
 
 ## Deprecated API (use at own risk)
-* `getReturnOfExpression()` - from v2.0 use `ReturnType` of standard-lib
-* `UnboxPromise` - renamed to `PromiseType`
+* `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
+* `UnboxPromise` - please use `PromiseType` instead (they are equivalent)
 
 ## Flow to TypeScript Migration Guides
 
