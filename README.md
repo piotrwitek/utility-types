@@ -39,6 +39,11 @@ Moreover it can help to migrate between "Flow" and "TypeScript" projects much ea
 npm install --save utility-types
 ```
 
+## Contributing Guide
+If you're planning to contribute please make sure to read the contributing guide: [CONTRIBUTING.md](/CONTRIBUTING.md)
+
+---
+
 # Table of Contents
 
 ## Operations on sets
