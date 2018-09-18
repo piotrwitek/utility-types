@@ -42,6 +42,15 @@ npm install --save utility-types
 ## Contributing Guide
 If you're planning to contribute please make sure to read the contributing guide: [CONTRIBUTING.md](/CONTRIBUTING.md)
 
+## Sponsor
+If you like what we're doing here, you can help us by funding the work on specific issues that you choose by using IssueHunt.io!
+
+This gives you the power to prioritize our work and support project contributors. Moreover it'll guarantee the project will be updated and maintained in the long run.
+
+> I keep sponsor anonymity by default but if you'd like your brand to be featured in this repo, please contact me at: piotrek.witek@gmail.com
+
+[![issuehunt-image](https://github.com/BoostIO/issuehunt-materials/blob/master/issuehunt-badge@1x.png?raw=true)](https://issuehunt.io/repos/76400842)
+
 ---
 
 # Table of Contents
