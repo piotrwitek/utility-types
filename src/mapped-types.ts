@@ -136,5 +136,5 @@ export interface _DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
  * @private
  */
 export type _DeepReadonlyObject<T> = {
-  readonly [P in NonFunctionKeys<T>]: DeepReadonly<T[P]>
+  readonly [P in keyof T]: DeepReadonly<T[P]>
 };
