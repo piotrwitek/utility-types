@@ -5,6 +5,7 @@ import {
   SetComplement,
   SymmetricDifference,
   FunctionKeys,
+  NonUndefined,
   NonFunctionKeys,
   Omit,
   Intersection,
@@ -69,6 +70,14 @@ describe('mapped types', () => {
     // Expect: "1" | "4"
     testType<ResultSet>('1');
     testType<ResultSet>('4');
+  });
+
+  it('NonUndefined', () => {
+    type ResultSet = NonUndefined<'1' | '2' | undefined>;
+    testType<ResultSet>('1');
+    testType<ResultSet>('2');
+    type ResultNever = NonUndefined<undefined>;
+    testType<ResultNever>({} as never);
   });
 
   it('FunctionKeys', () => {
@@ -174,7 +183,7 @@ describe('mapped types', () => {
     type NestedProps = {
       first?: {
         second?: {
-          name?: string | null | undefined;
+          name?: string;
         };
       };
     };
@@ -185,7 +194,7 @@ describe('mapped types', () => {
 
     type NestedArrayProps = {
       first?: {
-        second?: Array<{ name?: string | null | undefined } | null | undefined>;
+        second?: Array<{ name?: string } | undefined>;
       };
     };
     type RequiredNestedArrayProps = DeepRequired<NestedArrayProps>;

@@ -28,6 +28,12 @@ export type SetComplement<A, A1 extends A> = SetDifference<A, A1>;
 export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
 
 /**
+ * NonUndefined
+ * @desc Exclude undefined from set `A`
+ */
+export type NonUndefined<T> = T extends undefined ? never : T;
+
+/**
  * FunctionKeys
  * @desc get union type of keys that are functions in object type `T`
  */
@@ -154,7 +160,7 @@ export type DeepRequired<T> = T extends any[]
  */
 // tslint:disable-next-line:class-name
 export interface _DeepRequiredArray<T>
-  extends Array<DeepRequired<NonNullable<T>>> {}
+  extends Array<DeepRequired<NonUndefined<T>>> {}
 
 /**
  * DeepRequiredObject
@@ -162,5 +168,5 @@ export interface _DeepRequiredArray<T>
  * @private
  */
 export type _DeepRequiredObject<T> = {
-  [P in keyof T]-?: DeepRequired<NonNullable<T[P]>>
+  [P in keyof T]-?: DeepRequired<NonUndefined<T[P]>>
 };

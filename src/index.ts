@@ -22,6 +22,7 @@ export {
   FunctionKeys,
   Intersection,
   NonFunctionKeys,
+  NonUndefined,
   Omit,
   Overwrite,
   PromiseType,

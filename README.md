@@ -62,6 +62,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`SetComplement<A, A1>`](#setcomplementa-a1)
 * [`SymmetricDifference<A, B>`](#symmetricdifferencea-b)
 * [`NonNullable<A>`](#nonnullablea) (_\*standard-lib_)
+* [`NonUndefined<A>`](#nonundefineda)
 * [`Exclude<A, B>`](#excludea-b) (_\*standard-lib_)
 * [`Extract<A, B>`](#extracta-b) (_\*standard-lib_)
 
@@ -178,6 +179,12 @@ type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 ### `NonNullable<A>`
 
 Exclude `null` and `undefined` from set `A`
+
+[⇧ back to top](#operations-on-sets)
+
+### `NonUndefined<A>`
+
+Exclude `undefined` from set `A`
 
 [⇧ back to top](#operations-on-sets)
 
