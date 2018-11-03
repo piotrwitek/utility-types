@@ -87,6 +87,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`Unionize<T>`](#unionizet)
 * [`PromiseType<T>`](#promisetypet) (replaced deprecated `UnboxPromise<T>`)
 * [`DeepReadonly<T>`](#deepreadonlyt)
+* [`DeepRequired<T>`](#deeprequiredt)
 
 ## Flow's Utility Types
 
@@ -439,6 +440,36 @@ type ReadonlyNestedProps = DeepReadonly<NestedProps>;
 //   readonly first: {
 //     readonly second: {
 //       readonly name: string;
+//     };
+//   };
+// }
+```
+
+[⇧ back to top](#mapped-types)
+
+---
+
+### `DeepRequired<T>`
+
+Required that works for deeply nested structures
+
+**Usage:**
+
+```ts
+import { DeepRequired } from 'utility-types';
+
+type NestedProps = {
+  first?: {
+    second?: {
+      name?: string | null | undefined;
+    };
+  };
+};
+type RequiredNestedProps = DeepRequired<NestedProps>;
+// Expect: {
+//   first: {
+//     second: {
+//       name: string;
 //     };
 //   };
 // }

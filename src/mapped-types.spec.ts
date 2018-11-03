@@ -15,6 +15,7 @@ import {
   Unionize,
   PromiseType,
   DeepReadonly,
+  DeepRequired,
 } from './';
 
 /**
@@ -167,5 +168,27 @@ describe('mapped types', () => {
     };
     type ReadonlyNestedArrayProps = DeepReadonly<NestedArrayProps>;
     a = {} as ReadonlyNestedArrayProps['first']['second'][number];
+  });
+
+  it('DeepRequired', () => {
+    type NestedProps = {
+      first?: {
+        second?: {
+          name?: string | null | undefined;
+        };
+      };
+    };
+    let a: { name: string };
+
+    type RequiredNestedProps = DeepRequired<NestedProps>;
+    a = {} as RequiredNestedProps['first']['second'];
+
+    type NestedArrayProps = {
+      first?: {
+        second?: Array<{ name?: string | null | undefined } | null | undefined>;
+      };
+    };
+    type RequiredNestedArrayProps = DeepRequired<NestedArrayProps>;
+    a = {} as RequiredNestedArrayProps['first']['second'][number];
   });
 });

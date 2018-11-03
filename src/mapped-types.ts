@@ -138,3 +138,29 @@ export interface _DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 export type _DeepReadonlyObject<T> = {
   readonly [P in keyof T]: DeepReadonly<T[P]>
 };
+
+/**
+ * DeepRequired
+ * @desc Required that works for deeply nested structure
+ */
+export type DeepRequired<T> = T extends any[]
+  ? _DeepRequiredArray<T[number]>
+  : T extends object ? _DeepRequiredObject<T> : T;
+
+/**
+ * DeepRequiredArray
+ * @desc Nested array condition handler
+ * @private
+ */
+// tslint:disable-next-line:class-name
+export interface _DeepRequiredArray<T>
+  extends Array<DeepRequired<NonNullable<T>>> {}
+
+/**
+ * DeepRequiredObject
+ * @desc Nested object condition handler
+ * @private
+ */
+export type _DeepRequiredObject<T> = {
+  [P in keyof T]-?: DeepRequired<NonNullable<T[P]>>
+};

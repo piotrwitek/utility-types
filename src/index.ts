@@ -17,6 +17,7 @@ export {
 export {
   Assign,
   DeepReadonly,
+  DeepRequired,
   Diff,
   FunctionKeys,
   Intersection,
