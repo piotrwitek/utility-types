@@ -5,6 +5,7 @@ import {
   SetComplement,
   SymmetricDifference,
   FunctionKeys,
+  NonUndefined,
   NonFunctionKeys,
   Omit,
   Intersection,
@@ -15,6 +16,7 @@ import {
   Unionize,
   PromiseType,
   DeepReadonly,
+  DeepRequired,
 } from './';
 
 /**
@@ -68,6 +70,14 @@ describe('mapped types', () => {
     // Expect: "1" | "4"
     testType<ResultSet>('1');
     testType<ResultSet>('4');
+  });
+
+  it('NonUndefined', () => {
+    type ResultSet = NonUndefined<'1' | '2' | undefined>;
+    testType<ResultSet>('1');
+    testType<ResultSet>('2');
+    type ResultNever = NonUndefined<undefined>;
+    testType<ResultNever>({} as never);
   });
 
   it('FunctionKeys', () => {
@@ -167,5 +177,27 @@ describe('mapped types', () => {
     };
     type ReadonlyNestedArrayProps = DeepReadonly<NestedArrayProps>;
     a = {} as ReadonlyNestedArrayProps['first']['second'][number];
+  });
+
+  it('DeepRequired', () => {
+    type NestedProps = {
+      first?: {
+        second?: {
+          name?: string;
+        };
+      };
+    };
+    let a: { name: string };
+
+    type RequiredNestedProps = DeepRequired<NestedProps>;
+    a = {} as RequiredNestedProps['first']['second'];
+
+    type NestedArrayProps = {
+      first?: {
+        second?: Array<{ name?: string } | undefined>;
+      };
+    };
+    type RequiredNestedArrayProps = DeepRequired<NestedArrayProps>;
+    a = {} as RequiredNestedArrayProps['first']['second'][number];
   });
 });

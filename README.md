@@ -62,6 +62,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`SetComplement<A, A1>`](#setcomplementa-a1)
 * [`SymmetricDifference<A, B>`](#symmetricdifferencea-b)
 * [`NonNullable<A>`](#nonnullablea) (_\*standard-lib_)
+* [`NonUndefined<A>`](#nonundefineda)
 * [`Exclude<A, B>`](#excludea-b) (_\*standard-lib_)
 * [`Extract<A, B>`](#extracta-b) (_\*standard-lib_)
 
@@ -87,6 +88,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`Unionize<T>`](#unionizet)
 * [`PromiseType<T>`](#promisetypet) (replaced deprecated `UnboxPromise<T>`)
 * [`DeepReadonly<T>`](#deepreadonlyt)
+* [`DeepRequired<T>`](#deeprequiredt)
 
 ## Flow's Utility Types
 
@@ -177,6 +179,12 @@ type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 ### `NonNullable<A>`
 
 Exclude `null` and `undefined` from set `A`
+
+[⇧ back to top](#operations-on-sets)
+
+### `NonUndefined<A>`
+
+Exclude `undefined` from set `A`
 
 [⇧ back to top](#operations-on-sets)
 
@@ -439,6 +447,36 @@ type ReadonlyNestedProps = DeepReadonly<NestedProps>;
 //   readonly first: {
 //     readonly second: {
 //       readonly name: string;
+//     };
+//   };
+// }
+```
+
+[⇧ back to top](#mapped-types)
+
+---
+
+### `DeepRequired<T>`
+
+Required that works for deeply nested structures
+
+**Usage:**
+
+```ts
+import { DeepRequired } from 'utility-types';
+
+type NestedProps = {
+  first?: {
+    second?: {
+      name?: string | null | undefined;
+    };
+  };
+};
+type RequiredNestedProps = DeepRequired<NestedProps>;
+// Expect: {
+//   first: {
+//     second: {
+//       name: string;
 //     };
 //   };
 // }

@@ -17,10 +17,12 @@ export {
 export {
   Assign,
   DeepReadonly,
+  DeepRequired,
   Diff,
   FunctionKeys,
   Intersection,
   NonFunctionKeys,
+  NonUndefined,
   Omit,
   Overwrite,
   PromiseType,
