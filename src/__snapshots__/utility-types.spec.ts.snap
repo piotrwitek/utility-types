@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inferType<$Call<(amount: number) => { type: 'ADD'; payload: number }>>() 1`] = `"{ type: \\"ADD\\"; payload: number; }"`;
+
+exports[`inferType<$Diff<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+
+exports[`inferType<$ElementType<[boolean, number], 0>>() 1`] = `"boolean"`;
+
+exports[`inferType<$ElementType<[boolean, number], 1>>() 1`] = `"number"`;
+
+exports[`inferType<$ElementType<{ [key: string]: number }, string>>() 1`] = `"number"`;
+
+exports[`inferType<$ElementType<Props, 'name'>>() 1`] = `"string"`;
+
+exports[`inferType<$ElementType<boolean[], number>>() 1`] = `"boolean"`;
+
+exports[`inferType<$Keys<Props>>() 1`] = `"\\"name\\" | \\"age\\" | \\"visible\\""`;
+
+exports[`inferType<$PropertyType<[boolean, number], '0'>>() 1`] = `"boolean"`;
+
+exports[`inferType<$PropertyType<[boolean, number], '1'>>() 1`] = `"number"`;
+
+exports[`inferType<$PropertyType<Props, 'name'>>() 1`] = `"string"`;
+
+exports[`inferType<$ReadOnly<Props>>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<Props>"`;
+
+exports[`inferType<$Values<Props>>() 1`] = `"string | number | boolean"`;
+
+exports[`inferType<FnReturnType>() 1`] = `"number"`;
+
+exports[`inferType<PropType>() 1`] = `"number"`;

@@ -126,7 +126,9 @@ export type UnboxPromise<T> = PromiseType<T>;
  */
 export type DeepReadonly<T> = T extends any[]
   ? _DeepReadonlyArray<T[number]>
-  : T extends object ? _DeepReadonlyObject<T> : T;
+  : T extends object
+  ? _DeepReadonlyObject<T>
+  : T;
 
 /**
  * DeepReadonlyArray
@@ -151,7 +153,9 @@ export type _DeepReadonlyObject<T> = {
  */
 export type DeepRequired<T> = T extends any[]
   ? _DeepRequiredArray<T[number]>
-  : T extends object ? _DeepRequiredObject<T> : T;
+  : T extends object
+  ? _DeepRequiredObject<T>
+  : T;
 
 /**
  * DeepRequiredArray
@@ -177,7 +181,9 @@ export type _DeepRequiredObject<T> = {
  */
 export type DeepNonNullable<T> = T extends any[]
   ? _DeepNonNullableArray<T[number]>
-  : T extends object ? _DeepNonNullableObject<T> : T;
+  : T extends object
+  ? _DeepNonNullableObject<T>
+  : T;
 
 /**
  * DeepNonNullableArray

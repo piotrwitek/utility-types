@@ -6,7 +6,7 @@ describe('Type Utils', () => {
     it('should return undefined', () => {
       const increment = () => ({ type: 'INCREMENT' as 'INCREMENT' });
 
-      // @dts-jest:pass:snap
+      // @dts-jest:pass:snap -> { type: "INCREMENT"; }
       getReturnOfExpression(increment);
 
       const returnOfIncrement = getReturnOfExpression(increment);

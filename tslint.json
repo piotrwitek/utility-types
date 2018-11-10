@@ -24,6 +24,7 @@
     "no-this-assignment": [true, { "allow-destructuring": true }],
     "no-trailing-whitespace": true,
     "no-unused-variable": [true, "react"],
+    "no-unused-expression": [false],
     "object-literal-sort-keys": false,
     "object-literal-shorthand": false,
     "one-variable-per-declaration": [false],
