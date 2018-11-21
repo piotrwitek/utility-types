@@ -170,3 +170,30 @@ export interface _DeepRequiredArray<T>
 export type _DeepRequiredObject<T> = {
   [P in keyof T]-?: DeepRequired<NonUndefined<T[P]>>
 };
+
+/**
+ * DeepNonNullable
+ * @desc NonNullable that works for deeply nested structure
+ */
+export type DeepNonNullable<T> = T extends any[]
+  ? _DeepNonNullableArray<T[number]>
+  : T extends object ? _DeepNonNullableObject<T> : T;
+
+/**
+ * DeepNonNullableArray
+ * @desc Nested array condition handler
+ * @private
+ */
+// tslint:disable-next-line:class-name
+export interface _DeepNonNullableArray<T>
+  extends Array<DeepNonNullable<NonNullable<T>>> {}
+
+/**
+ * DeepNonNullableObject
+ * @desc Nested object condition handler
+ * @private
+ */
+export type _DeepNonNullableObject<T> = {
+  [P in keyof T]-?: DeepNonNullable<NonNullable<T[P]>>
+};
+
