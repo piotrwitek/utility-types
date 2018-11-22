@@ -17,6 +17,7 @@ import {
   PromiseType,
   DeepReadonly,
   DeepRequired,
+  DeepNonNullable,
 } from './';
 
 /**
@@ -198,6 +199,28 @@ describe('mapped types', () => {
       };
     };
     type RequiredNestedArrayProps = DeepRequired<NestedArrayProps>;
+    a = {} as RequiredNestedArrayProps['first']['second'][number];
+  });
+
+  it('DeepNonNullable', () => {
+    type NestedProps = {
+      first?: null | {
+        second?: null | {
+          name?: null | string;
+        };
+      };
+    };
+    let a: { name: string };
+
+    type RequiredNestedProps = DeepNonNullable<NestedProps>;
+    a = {} as RequiredNestedProps['first']['second'];
+
+    type NestedArrayProps = {
+      first?: null | {
+        second?: Array<{ name?: string | null } | undefined | null>;
+      };
+    };
+    type RequiredNestedArrayProps = DeepNonNullable<NestedArrayProps>;
     a = {} as RequiredNestedArrayProps['first']['second'][number];
   });
 });
