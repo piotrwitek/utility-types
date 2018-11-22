@@ -89,6 +89,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`PromiseType<T>`](#promisetypet) (replaced deprecated `UnboxPromise<T>`)
 * [`DeepReadonly<T>`](#deepreadonlyt)
 * [`DeepRequired<T>`](#deeprequiredt)
+* [`DeepNonNullable<T>`](#deepnonnullablet)
 
 ## Flow's Utility Types
 
@@ -468,11 +469,41 @@ import { DeepRequired } from 'utility-types';
 type NestedProps = {
   first?: {
     second?: {
-      name?: string | null | undefined;
+      name?: string;
     };
   };
 };
 type RequiredNestedProps = DeepRequired<NestedProps>;
+// Expect: {
+//   first: {
+//     second: {
+//       name: string;
+//     };
+//   };
+// }
+```
+
+[⇧ back to top](#mapped-types)
+
+---
+
+### `DeepNonNullable<T>`
+
+NonNullable that works for deeply nested structure
+
+**Usage:**
+
+```ts
+import { DeepNonNullable } from 'utility-types';
+
+type NestedProps = {
+  first?: null | {
+    second?: null | {
+      name?: string | null | undefined;
+    };
+  };
+};
+type RequiredNestedProps = DeepNonNullable<NestedProps>;
 // Expect: {
 //   first: {
 //     second: {

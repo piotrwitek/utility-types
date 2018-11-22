@@ -196,4 +196,3 @@ export interface _DeepNonNullableArray<T>
 export type _DeepNonNullableObject<T> = {
   [P in keyof T]-?: DeepNonNullable<NonNullable<T[P]>>
 };
-
