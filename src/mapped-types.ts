@@ -124,9 +124,11 @@ export type UnboxPromise<T> = PromiseType<T>;
  * DeepReadonly
  * @desc Readonly that works for deeply nested structure
  */
-export type DeepReadonly<T> = T extends any[]
-  ? _DeepReadonlyArray<T[number]>
-  : T extends object ? _DeepReadonlyObject<T> : T;
+export type DeepReadonly<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends any[]
+    ? _DeepReadonlyArray<T[number]>
+    : T extends object ? _DeepReadonlyObject<T> : T;
 
 /**
  * DeepReadonlyArray
@@ -149,9 +151,11 @@ export type _DeepReadonlyObject<T> = {
  * DeepRequired
  * @desc Required that works for deeply nested structure
  */
-export type DeepRequired<T> = T extends any[]
-  ? _DeepRequiredArray<T[number]>
-  : T extends object ? _DeepRequiredObject<T> : T;
+export type DeepRequired<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends any[]
+    ? _DeepRequiredArray<T[number]>
+    : T extends object ? _DeepRequiredObject<T> : T;
 
 /**
  * DeepRequiredArray
@@ -175,9 +179,11 @@ export type _DeepRequiredObject<T> = {
  * DeepNonNullable
  * @desc NonNullable that works for deeply nested structure
  */
-export type DeepNonNullable<T> = T extends any[]
-  ? _DeepNonNullableArray<T[number]>
-  : T extends object ? _DeepNonNullableObject<T> : T;
+export type DeepNonNullable<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends any[]
+    ? _DeepNonNullableArray<T[number]>
+    : T extends object ? _DeepNonNullableObject<T> : T;
 
 /**
  * DeepNonNullableArray

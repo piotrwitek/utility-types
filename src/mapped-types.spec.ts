@@ -178,6 +178,16 @@ describe('mapped types', () => {
     };
     type ReadonlyNestedArrayProps = DeepReadonly<NestedArrayProps>;
     a = {} as ReadonlyNestedArrayProps['first']['second'][number];
+
+    type NestedFunctionProps = {
+      func: (value: string) => number;
+    };
+    type ReadonlyNestedFunctionProps = DeepReadonly<NestedFunctionProps>;
+    let b: {
+      readonly func: (value: string) => number;
+    };
+    b = { func: value => parseInt(value) } as ReadonlyNestedFunctionProps;
+    testType<Number>(b.func('1'));
   });
 
   it('DeepRequired', () => {
@@ -200,6 +210,16 @@ describe('mapped types', () => {
     };
     type RequiredNestedArrayProps = DeepRequired<NestedArrayProps>;
     a = {} as RequiredNestedArrayProps['first']['second'][number];
+
+    type NestedFunctionProps = {
+      func?: undefined | ((value: string) => number);
+    };
+    type RequiredNestedFunctionProps = DeepRequired<NestedFunctionProps>;
+    let b: {
+      func: (value: string) => number;
+    };
+    b = { func: value => parseInt(value) } as RequiredNestedFunctionProps;
+    testType<Number>(b.func('1'));
   });
 
   it('DeepNonNullable', () => {
@@ -223,4 +243,14 @@ describe('mapped types', () => {
     type RequiredNestedArrayProps = DeepNonNullable<NestedArrayProps>;
     a = {} as RequiredNestedArrayProps['first']['second'][number];
   });
+
+  type NestedFunctionProps = {
+    func?: null | undefined | ((value: string) => number);
+  };
+  type NonNullableNestedFunctionProps = DeepNonNullable<NestedFunctionProps>;
+  let b: {
+    func: (value: string) => number;
+  };
+  b = { func: value => parseInt(value) } as NonNullableNestedFunctionProps;
+  testType<Number>(b.func('1'));
 });
