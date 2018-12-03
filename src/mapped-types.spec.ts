@@ -32,7 +32,7 @@ type MixedProps = { name: string; setName: (name: string) => void };
 /**
  * Tests
  */
-
+// TODO: make grouping using dts-jest
 describe('mapped types', () => {
   it('SetIntersection', () => {
     // @dts-jest:pass:snap
