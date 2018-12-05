@@ -114,11 +114,6 @@ export type Unionize<T> = { [P in keyof T]: { [Q in P]: T[P] } }[keyof T];
  * @desc Obtain Promise resolve type
  */
 export type PromiseType<T> = T extends Promise<infer U> ? U : T;
-/**
- * UnboxPromise
- * @deprecated
- */
-export type UnboxPromise<T> = PromiseType<T>;
 
 /**
  * DeepReadonly

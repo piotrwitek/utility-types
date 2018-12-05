@@ -103,11 +103,6 @@ This gives you the power to prioritize our work and support project contributors
 
 ## Deprecated API (use at own risk)
 * `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
-* `UnboxPromise` - please use `PromiseType` instead (they are equivalent)
-
-## Flow to TypeScript Migration Guides
-
-* Mixed Types in TypeScript (wip)
 
 ---
 
