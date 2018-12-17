@@ -7,6 +7,7 @@ import {
   $Diff,
   $PropertyType,
   $ElementType,
+  $ObjMap,
 } from './';
 
 /**
@@ -103,5 +104,26 @@ describe('utility types', () => {
     type Fn = () => number;
     type FnReturnType = $Call<ExtractReturnType<Fn>>;
     testType<FnReturnType>(4);
+  });
+
+  it('$ObjMap', () => {
+    type Obj = {
+      a: number;
+      b?: boolean;
+      c: string | null;
+    };
+    type Mapper = (value: number | boolean | string | null) => string;
+    // type Nope = (value: number | boolean | null) => string; // Error: Type 'Mapper' does not satisfy the constraint 'ObjMapper<Obj>'
+
+    type MappedObj = $ObjMap<Obj, Mapper>;
+    testType<MappedObj>({
+      a: 'a',
+      c: 'c',
+    });
+    testType<MappedObj>({
+      a: 'a',
+      b: 'b',
+      c: 'c',
+    });
   });
 });

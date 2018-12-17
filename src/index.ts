@@ -12,6 +12,7 @@ export {
   $Diff,
   $PropertyType,
   $ElementType,
+  $ObjMap,
 } from './utility-types';
 
 export {

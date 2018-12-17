@@ -58,3 +58,14 @@ export type $Call<Fn extends (...args: any[]) => any> = Fn extends (
 ) => infer RT
   ? RT
   : never;
+
+type ObjMapper<T> = (value: $Values<Required<T>>, ...args: any[]) => any;
+
+/**
+ * $ObjMap
+ * @desc takes an object type `T`, and a function type `F`, and returns the object type obtained by mapping the type of each value in the object with the provided function type `F`
+ * @see https://flow.org/en/docs/types/utilities/#toc-objmap
+ */
+export type $ObjMap<T extends object, F extends ObjMapper<T>> = {
+  [K in keyof T]: ReturnType<F>
+};

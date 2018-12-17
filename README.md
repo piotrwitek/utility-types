@@ -100,6 +100,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`$PropertyType<T, K>`](#propertytypet-k)
 * [`$ElementType<T, K>`](#elementtypet-k)
 * [`$Call<T>`](#callt)
+* [`$ObjMap<T, F>`](#objmapt-f)
 
 ## Deprecated API (use at own risk)
 * `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
@@ -669,6 +670,36 @@ type PropType = $Call<ExtractPropType<Obj>>; // number
 type ExtractReturnType<T extends () => any> = (arg: T) => ReturnType<T>;
 type Fn = () => number;
 type FnReturnType = $Call<ExtractReturnType<Fn>>; // number
+```
+
+[⇧ back to top](#flows-utility-types)
+
+### `$ObjMap<T, F>`
+
+takes an object type `T`, and a function type `F`, and returns the object type obtained by mapping the type of each value in the object with the provided function type `F`
+https://flow.org/en/docs/types/utilities/#toc-objmap
+
+**Usage:**
+
+```ts
+import { $ObjMap } from 'utility-types';
+
+type Obj = {
+  a: number;
+  b?: boolean;
+  c: string | null;
+};
+type Mapper = (value: number | boolean | string | null) => string;
+type MappedObj = $ObjMap<Obj, Mapper>;
+```
+In that case `MappedObj` will be
+
+```ts
+{
+  a: string;
+  b?: string;
+  c: string
+}
 ```
 
 [⇧ back to top](#flows-utility-types)
