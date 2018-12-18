@@ -135,6 +135,7 @@ export type DeepReadonly<T> = T extends any[]
   ? _DeepReadonlyObject<T>
   : T;
 
+// TODO: inline _DeepReadonlyArray with infer in DeepReadonly, same for all other deep types
 /**
  * DeepReadonlyArray
  * @desc Nested array condition handler
