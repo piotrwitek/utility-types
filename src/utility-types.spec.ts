@@ -7,8 +7,8 @@ import {
   $Diff,
   $PropertyType,
   $ElementType,
-} from './';
-
+} from './utility-types';
+import { _DeepReadonlyObject } from './mapped-types';
 /**
  * Fixtures
  */

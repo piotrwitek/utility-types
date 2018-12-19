@@ -7,8 +7,8 @@ import {
   $Diff,
   $PropertyType,
   $ElementType,
-} from './';
-
+} from './utility-types';
+import { _DeepReadonlyObject } from './mapped-types';
 /**
  * Fixtures
  */
@@ -34,7 +34,7 @@ it('$Values', () => {
 
 // @dts-jest:group $ReadOnly
 it('$ReadOnly', () => {
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepReadonlyObject<Props>
+  // @dts-jest:pass:snap -> _DeepReadonlyObject<Props>
   testType<$ReadOnly<Props>>();
 });
 

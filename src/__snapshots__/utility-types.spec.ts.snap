@@ -26,6 +26,6 @@ exports[`$PropertyType testType<$PropertyType<[boolean, number], '1'>>() 1`] = `
 
 exports[`$PropertyType testType<$PropertyType<Props, 'name'>>() 1`] = `"string"`;
 
-exports[`$ReadOnly testType<$ReadOnly<Props>>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<Props>"`;
+exports[`$ReadOnly testType<$ReadOnly<Props>>() 1`] = `"_DeepReadonlyObject<Props>"`;
 
 exports[`$Values testType<$Values<Props>>() 1`] = `"string | number | boolean"`;

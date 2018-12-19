@@ -19,7 +19,7 @@
     "tsc:watch": "tsc -p . --noEmit -w",
     "test": "jest --config jest.config.json --no-cache",
     "test:watch": "jest --config jest.config.json --watch",
-    "test:update": "jest --config jest.config.json --no-cache -u && dts-jest-remap ./src/*.spec.ts --outDir ./snapshots",
+    "test:update": "jest --config jest.config.json --no-cache -u && dts-jest-remap ./src/*.spec.ts --rename '{{basename}}.snap.{{extname}}'",
     "prebuild": "rm -rf dist/",
     "build": "tsc -p ./tsconfig.build.json --outDir dist/",
     "ci-check": "npm run lint & npm run tsc & npm run test",
