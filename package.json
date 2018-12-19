@@ -13,7 +13,6 @@
   },
   "scripts": {
     "reinstall": "rm -rf node_modules/ es5-commonjs/ es5-module/ jsnext/ && npm install",
-    "check": "npm run lint & npm run tsc & npm run test",
     "prelint": "prettier --write 'src/**/*.ts'",
     "lint": "tslint --project './tsconfig.json'",
     "tsc": "tsc -p . --noEmit",
@@ -23,8 +22,9 @@
     "test:update": "jest --config jest.config.json --no-cache -u && dts-jest-remap ./src/*.spec.ts --outDir ./snapshots",
     "prebuild": "rm -rf dist/",
     "build": "tsc -p ./tsconfig.build.json --outDir dist/",
-    "prepush": "npm run check",
-    "prepublishOnly": "npm run reinstall && npm run check && npm run build"
+    "ci-check": "npm run lint & npm run tsc & npm run test",
+    "prepush": "npm run ci-check",
+    "prepublishOnly": "npm run reinstall && npm run ci-check && npm run build"
   },
   "dependencies": {},
   "devDependencies": {
