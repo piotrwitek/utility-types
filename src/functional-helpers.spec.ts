@@ -1,16 +1,7 @@
-// tslint:disable:no-unused-expression
-import { getReturnOfExpression } from '.';
+import { getReturnOfExpression } from './functional-helpers';
 
-describe('Type Utils', () => {
-  describe('$call', () => {
-    it('should return undefined', () => {
-      const increment = () => ({ type: 'INCREMENT' as 'INCREMENT' });
+// @dts-jest:group getReturnOfExpression
 
-      // @dts-jest:pass:snap
-      getReturnOfExpression(increment);
-
-      const returnOfIncrement = getReturnOfExpression(increment);
-      expect(returnOfIncrement).toBe(undefined);
-    });
-  });
-});
+const increment = () => ({ type: 'INCREMENT' as 'INCREMENT' });
+// @dts-jest:pass:snap
+getReturnOfExpression(increment); // => undefined

@@ -1,83 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`inferType<
-    DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
-  >() 1`] = `"string"`;
+exports[`Assign testType<Assign<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
 
-exports[`inferType<
-    DeepReadonly<NestedArrayProps>['first']['second'][number]['name']
-  >() 1`] = `"string"`;
+exports[`DeepNonNullable testType<
+      DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
+    >() 1`] = `"string"`;
 
-exports[`inferType<
-    DeepRequired<NestedArrayProps>['first']['second'][number]['name']
-  >() 1`] = `"string | null"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>"`;
 
-exports[`inferType<Assign<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>"`;
 
-exports[`inferType<DeepNonNullable<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>"`;
 
-exports[`inferType<DeepNonNullable<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ name?: string | null | undefined; }>"`;
 
-exports[`inferType<DeepNonNullable<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
 
-exports[`inferType<DeepNonNullable<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ name?: string | null | undefined; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ second: { name: string; }[]; }>"`;
 
-exports[`inferType<DeepNonNullable<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyArray<{ name: string; }>"`;
 
-exports[`inferType<DeepReadonly<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ second: { name: string; }[]; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>() 1`] = `"string"`;
 
-exports[`inferType<DeepReadonly<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyArray<{ name: string; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ second: { name: string; }; }>"`;
 
-exports[`inferType<DeepReadonly<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ second: { name: string; }; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ name: string; }>"`;
 
-exports[`inferType<DeepReadonly<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ name: string; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
 
-exports[`inferType<DeepReadonly<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
+exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>"`;
 
-exports[`inferType<DeepRequired<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredArray<{ name?: string | null | undefined; } | undefined>"`;
 
-exports[`inferType<DeepRequired<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredArray<{ name?: string | null | undefined; } | undefined>"`;
+exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second'][number]['name']>() 1`] = `"string | null"`;
 
-exports[`inferType<DeepRequired<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>"`;
 
-exports[`inferType<DeepRequired<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ name?: string | null | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ name?: string | null | undefined; }>"`;
 
-exports[`inferType<DeepRequired<NestedProps>['first']['second']['name']>() 1`] = `"string | null"`;
+exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']['name']>() 1`] = `"string | null"`;
 
-exports[`inferType<Diff<Props, NewProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+exports[`Diff testType<Diff<Props, NewProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`inferType<FunctionKeys<MixedProps>>() 1`] = `"\\"setName\\""`;
+exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() 1`] = `"\\"setName\\""`;
 
-exports[`inferType<Intersection<Props | NewProps, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\"> | Pick<NewProps, \\"age\\">"`;
+exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\"> | Pick<NewProps, \\"age\\">"`;
 
-exports[`inferType<Intersection<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\">"`;
+exports[`Intersection testType<Intersection<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\">"`;
 
-exports[`inferType<NonFunctionKeys<MixedProps>>() 1`] = `"\\"name\\""`;
+exports[`NonFunctionKeys testType<NonFunctionKeys<MixedProps>>() 1`] = `"\\"name\\""`;
 
-exports[`inferType<NonUndefined<'1' | '2' | undefined>>() 1`] = `"\\"1\\" | \\"2\\""`;
+exports[`NonUndefined testType<NonUndefined<'1' | '2' | undefined>>() 1`] = `"\\"1\\" | \\"2\\""`;
 
-exports[`inferType<NonUndefined<undefined>>() 1`] = `"never"`;
+exports[`NonUndefined testType<NonUndefined<undefined>>() 1`] = `"never"`;
 
-exports[`inferType<Omit<Props | NewProps, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\"> | Pick<NewProps, \\"other\\">"`;
+exports[`Omit testType<Omit<Props | NewProps, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\"> | Pick<NewProps, \\"other\\">"`;
 
-exports[`inferType<Omit<Props, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+exports[`Omit testType<Omit<Props, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`inferType<Overwrite<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+exports[`Overwrite testType<Overwrite<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`inferType<PromiseType<Promise<string>>>() 1`] = `"string"`;
+exports[`PromiseType testType<PromiseType<Promise<string>>>() 1`] = `"string"`;
 
-exports[`inferType<SetComplement<'1' | '2' | '3', '2' | '3'>>() 1`] = `"\\"1\\""`;
+exports[`SetComplement testType<SetComplement<'1' | '2' | '3', '2' | '3'>>() 1`] = `"\\"1\\""`;
 
-exports[`inferType<SetDifference<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"1\\""`;
+exports[`SetDifference testType<SetDifference<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"1\\""`;
 
-exports[`inferType<SetDifference<string | number | (() => void), () => void>>() 1`] = `"string | number"`;
+exports[`SetDifference testType<SetDifference<string | number | (() => void), () => void>>() 1`] = `"string | number"`;
 
-exports[`inferType<SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"2\\" | \\"3\\""`;
+exports[`SetIntersection testType<SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"2\\" | \\"3\\""`;
 
-exports[`inferType<SetIntersection<string | number | (() => void), () => void>>() 1`] = `"() => void"`;
+exports[`SetIntersection testType<SetIntersection<string | number | (() => void), () => void>>() 1`] = `"() => void"`;
 
-exports[`inferType<Subtract<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+exports[`Subtract testType<Subtract<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`inferType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"1\\" | \\"4\\""`;
+exports[`SymmetricDifference testType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"1\\" | \\"4\\""`;
 
-exports[`inferType<Unionize<Props>>() 1`] = `"{ name: string; } | { age: number; } | { visible: boolean; }"`;
+exports[`Unionize testType<Unionize<Props>>() 1`] = `"{ name: string; } | { age: number; } | { visible: boolean; }"`;

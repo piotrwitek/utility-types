@@ -1,4 +1,4 @@
-import { inferType } from './test-utils';
+import { testType } from './test-utils';
 import {
   SetIntersection,
   SetDifference,
@@ -32,180 +32,192 @@ type MixedProps = { name: string; setName: (name: string) => void };
 /**
  * Tests
  */
-// TODO: make grouping using dts-jest
-describe('mapped types', () => {
-  it('SetIntersection', () => {
-    // @dts-jest:pass:snap
-    inferType<SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>>();
-    // @dts-jest:pass:snap
-    inferType<SetIntersection<string | number | (() => void), () => void>>();
-  });
 
-  it('SetDifference', () => {
-    // @dts-jest:pass:snap
-    inferType<SetDifference<'1' | '2' | '3', '2' | '3' | '4'>>();
-    // @dts-jest:pass:snap
-    inferType<SetDifference<string | number | (() => void), () => void>>();
-  });
+// @dts-jest:group SetIntersection
+it('SetIntersection', () => {
+  // @dts-jest:pass:snap
+  testType<SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>>();
+  // @dts-jest:pass:snap
+  testType<SetIntersection<string | number | (() => void), () => void>>();
+});
 
-  it('SetComplement', () => {
-    // @dts-jest:pass:snap
-    inferType<SetComplement<'1' | '2' | '3', '2' | '3'>>();
-  });
+// @dts-jest:group SetDifference
+it('SetDifference', () => {
+  // @dts-jest:pass:snap
+  testType<SetDifference<'1' | '2' | '3', '2' | '3' | '4'>>();
+  // @dts-jest:pass:snap
+  testType<SetDifference<string | number | (() => void), () => void>>();
+});
 
-  it('SymmetricDifference', () => {
-    // @dts-jest:pass:snap
-    inferType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>();
-  });
+// @dts-jest:group SetComplement
+it('SetComplement', () => {
+  // @dts-jest:pass:snap
+  testType<SetComplement<'1' | '2' | '3', '2' | '3'>>();
+});
 
-  it('NonUndefined', () => {
-    // @dts-jest:pass:snap
-    inferType<NonUndefined<'1' | '2' | undefined>>();
-    // @dts-jest:pass:snap
-    inferType<NonUndefined<undefined>>();
-  });
+// @dts-jest:group SymmetricDifference
+it('SymmetricDifference', () => {
+  // @dts-jest:pass:snap
+  testType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>();
+});
 
-  it('FunctionKeys', () => {
-    // @dts-jest:pass:snap
-    inferType<FunctionKeys<MixedProps>>();
-  });
+// @dts-jest:group NonUndefined
+it('NonUndefined', () => {
+  // @dts-jest:pass:snap
+  testType<NonUndefined<'1' | '2' | undefined>>();
+  // @dts-jest:pass:snap
+  testType<NonUndefined<undefined>>();
+});
 
-  it('NonFunctionKeys', () => {
-    // @dts-jest:pass:snap
-    inferType<NonFunctionKeys<MixedProps>>();
-  });
+// @dts-jest:group FunctionKeys
+it('FunctionKeys', () => {
+  // @dts-jest:pass:snap
+  testType<FunctionKeys<MixedProps>>();
+});
 
-  it('Omit', () => {
-    // @dts-jest:pass:snap
-    inferType<Omit<Props, 'age'>>();
-    // @dts-jest:pass:snap
-    inferType<Omit<Props | NewProps, 'age'>>();
-  });
+// @dts-jest:group NonFunctionKeys
+it('NonFunctionKeys', () => {
+  // @dts-jest:pass:snap
+  testType<NonFunctionKeys<MixedProps>>();
+});
 
-  it('Intersection', () => {
-    // @dts-jest:pass:snap
-    inferType<Intersection<Props, DefaultProps>>();
-    // @dts-jest:pass:snap
-    inferType<Intersection<Props | NewProps, DefaultProps>>();
-  });
+// @dts-jest:group Omit
+it('Omit', () => {
+  // @dts-jest:pass:snap
+  testType<Omit<Props, 'age'>>();
+  // @dts-jest:pass:snap
+  testType<Omit<Props | NewProps, 'age'>>();
+});
 
-  it('Diff', () => {
-    // @dts-jest:pass:snap
-    inferType<Diff<Props, NewProps>>();
-  });
+// @dts-jest:group Intersection
+it('Intersection', () => {
+  // @dts-jest:pass:snap
+  testType<Intersection<Props, DefaultProps>>();
+  // @dts-jest:pass:snap
+  testType<Intersection<Props | NewProps, DefaultProps>>();
+});
 
-  it('Subtract', () => {
-    // @dts-jest:pass:snap
-    inferType<Subtract<Props, DefaultProps>>();
-  });
+// @dts-jest:group Diff
+it('Diff', () => {
+  // @dts-jest:pass:snap
+  testType<Diff<Props, NewProps>>();
+});
 
-  it('Overwrite', () => {
-    // @dts-jest:pass:snap
-    inferType<Overwrite<Props, NewProps>>();
-  });
+// @dts-jest:group Subtract
+it('Subtract', () => {
+  // @dts-jest:pass:snap
+  testType<Subtract<Props, DefaultProps>>();
+});
 
-  it('Assign', () => {
-    // @dts-jest:pass:snap
-    inferType<Assign<Props, NewProps>>();
-  });
+// @dts-jest:group Overwrite
+it('Overwrite', () => {
+  // @dts-jest:pass:snap
+  testType<Overwrite<Props, NewProps>>();
+});
 
-  it('Unionize', () => {
-    // @dts-jest:pass:snap
-    inferType<Unionize<Props>>();
-  });
+// @dts-jest:group Assign
+it('Assign', () => {
+  // @dts-jest:pass:snap
+  testType<Assign<Props, NewProps>>();
+});
 
-  it('PromiseType', () => {
-    // @dts-jest:pass:snap
-    inferType<PromiseType<Promise<string>>>();
-  });
+// @dts-jest:group Unionize
+it('Unionize', () => {
+  // @dts-jest:pass:snap
+  testType<Unionize<Props>>();
+});
 
-  it('DeepReadonly', () => {
-    type NestedProps = {
-      first: {
-        second: {
-          name: string;
-        };
+// @dts-jest:group PromiseType
+it('PromiseType', () => {
+  // @dts-jest:pass:snap
+  testType<PromiseType<Promise<string>>>();
+});
+
+// @dts-jest:group DeepReadonly
+it('DeepReadonly', () => {
+  type NestedProps = {
+    first: {
+      second: {
+        name: string;
       };
     };
-    // @dts-jest:pass:snap
-    inferType<DeepReadonly<NestedProps>['first']>();
-    // @dts-jest:pass:snap
-    inferType<DeepReadonly<NestedProps>['first']['second']>();
-    // @dts-jest:pass:snap
-    inferType<DeepReadonly<NestedProps>['first']['second']['name']>();
+  };
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<NestedProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<NestedProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<NestedProps>['first']['second']['name']>();
 
-    type NestedArrayProps = {
-      first: {
-        second: Array<{ name: string }>;
+  type NestedArrayProps = {
+    first: {
+      second: Array<{ name: string }>;
+    };
+  };
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<NestedArrayProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<NestedArrayProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>();
+});
+
+// @dts-jest:group DeepRequired
+it('DeepRequired', () => {
+  type NestedProps = {
+    first?: {
+      second?: {
+        name?: string | null;
       };
     };
-    // @dts-jest:pass:snap
-    inferType<DeepReadonly<NestedArrayProps>['first']>();
-    // @dts-jest:pass:snap
-    inferType<DeepReadonly<NestedArrayProps>['first']['second']>();
-    // @dts-jest:pass:snap
-    inferType<
-      DeepReadonly<NestedArrayProps>['first']['second'][number]['name']
-    >();
-  });
+  };
+  // @dts-jest:pass:snap
+  testType<DeepRequired<NestedProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepRequired<NestedProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<DeepRequired<NestedProps>['first']['second']['name']>();
 
-  it('DeepRequired', () => {
-    type NestedProps = {
-      first?: {
-        second?: {
-          name?: string | null;
-        };
+  type NestedArrayProps = {
+    first?: {
+      second?: Array<{ name?: string | null } | undefined>;
+    };
+  };
+  // @dts-jest:pass:snap
+  testType<DeepRequired<NestedArrayProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepRequired<NestedArrayProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<DeepRequired<NestedArrayProps>['first']['second'][number]['name']>();
+});
+
+// @dts-jest:group DeepNonNullable
+it('DeepNonNullable', () => {
+  type NestedProps = {
+    first?: null | {
+      second?: null | {
+        name?: null | string;
       };
     };
-    // @dts-jest:pass:snap
-    inferType<DeepRequired<NestedProps>['first']>();
-    // @dts-jest:pass:snap
-    inferType<DeepRequired<NestedProps>['first']['second']>();
-    // @dts-jest:pass:snap
-    inferType<DeepRequired<NestedProps>['first']['second']['name']>();
+  };
+  // @dts-jest:pass:snap
+  testType<DeepNonNullable<NestedProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepNonNullable<NestedProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<DeepNonNullable<NestedProps>['first']['second']['name']>();
 
-    type NestedArrayProps = {
-      first?: {
-        second?: Array<{ name?: string | null } | undefined>;
-      };
+  type NestedArrayProps = {
+    first?: null | {
+      second?: Array<{ name?: string | null } | undefined | null>;
     };
-    // @dts-jest:pass:snap
-    inferType<DeepRequired<NestedArrayProps>['first']>();
-    // @dts-jest:pass:snap
-    inferType<DeepRequired<NestedArrayProps>['first']['second']>();
-    // @dts-jest:pass:snap
-    inferType<
-      DeepRequired<NestedArrayProps>['first']['second'][number]['name']
-    >();
-  });
-
-  it('DeepNonNullable', () => {
-    type NestedProps = {
-      first?: null | {
-        second?: null | {
-          name?: null | string;
-        };
-      };
-    };
-    // @dts-jest:pass:snap
-    inferType<DeepNonNullable<NestedProps>['first']>();
-    // @dts-jest:pass:snap
-    inferType<DeepNonNullable<NestedProps>['first']['second']>();
-    // @dts-jest:pass:snap
-    inferType<DeepNonNullable<NestedProps>['first']['second']['name']>();
-
-    type NestedArrayProps = {
-      first?: null | {
-        second?: Array<{ name?: string | null } | undefined | null>;
-      };
-    };
-    // @dts-jest:pass:snap
-    inferType<DeepNonNullable<NestedArrayProps>['first']>();
-    // @dts-jest:pass:snap
-    inferType<DeepNonNullable<NestedArrayProps>['first']['second']>();
-    // @dts-jest:pass:snap
-    inferType<
-      DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
-    >();
-  });
+  };
+  // @dts-jest:pass:snap
+  testType<DeepNonNullable<NestedArrayProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepNonNullable<NestedArrayProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<
+    DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
+  >();
 });

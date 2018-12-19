@@ -1,4 +1,4 @@
-import { inferType } from './test-utils';
+import { testType } from './test-utils';
 import {
   $Call,
   $Keys,
@@ -20,68 +20,73 @@ type DefaultProps = { age: number };
  * Tests
  */
 
-describe('utility types', () => {
-  it('$Keys', () => {
-    // @dts-jest:pass:snap
-    inferType<$Keys<Props>>();
-  });
+// @dts-jest:group $Keys
+it('$Keys', () => {
+  // @dts-jest:pass:snap
+  testType<$Keys<Props>>();
+});
 
-  it('$Values', () => {
-    // @dts-jest:pass:snap
-    inferType<$Values<Props>>();
-  });
+// @dts-jest:group $Values
+it('$Values', () => {
+  // @dts-jest:pass:snap
+  testType<$Values<Props>>();
+});
 
-  it('$ReadOnly', () => {
-    // @dts-jest:pass:snap
-    inferType<$ReadOnly<Props>>();
-  });
+// @dts-jest:group $ReadOnly
+it('$ReadOnly', () => {
+  // @dts-jest:pass:snap
+  testType<$ReadOnly<Props>>();
+});
 
-  it('$Diff', () => {
-    // @dts-jest:pass:snap
-    inferType<$Diff<Props, DefaultProps>>();
-  });
+// @dts-jest:group $Diff
+it('$Diff', () => {
+  // @dts-jest:pass:snap
+  testType<$Diff<Props, DefaultProps>>();
+});
 
-  it('$PropertyType', () => {
-    // @dts-jest:pass:snap
-    inferType<$PropertyType<Props, 'name'>>();
+// @dts-jest:group $PropertyType
+it('$PropertyType', () => {
+  // @dts-jest:pass:snap
+  testType<$PropertyType<Props, 'name'>>();
 
-    // @dts-jest:pass:snap
-    inferType<$PropertyType<[boolean, number], '0'>>();
-    // @dts-jest:pass:snap
-    inferType<$PropertyType<[boolean, number], '1'>>();
-  });
+  // @dts-jest:pass:snap
+  testType<$PropertyType<[boolean, number], '0'>>();
+  // @dts-jest:pass:snap
+  testType<$PropertyType<[boolean, number], '1'>>();
+});
 
-  it('$ElementType', () => {
-    // @dts-jest:pass:snap
-    inferType<$ElementType<Props, 'name'>>();
+// @dts-jest:group $ElementType
+it('$ElementType', () => {
+  // @dts-jest:pass:snap
+  testType<$ElementType<Props, 'name'>>();
 
-    // @dts-jest:pass:snap
-    inferType<$ElementType<[boolean, number], 0>>();
-    // @dts-jest:pass:snap
-    inferType<$ElementType<[boolean, number], 1>>();
+  // @dts-jest:pass:snap
+  testType<$ElementType<[boolean, number], 0>>();
+  // @dts-jest:pass:snap
+  testType<$ElementType<[boolean, number], 1>>();
 
-    // @dts-jest:pass:snap
-    inferType<$ElementType<boolean[], number>>();
+  // @dts-jest:pass:snap
+  testType<$ElementType<boolean[], number>>();
 
-    // @dts-jest:pass:snap
-    inferType<$ElementType<{ [key: string]: number }, string>>();
-  });
+  // @dts-jest:pass:snap
+  testType<$ElementType<{ [key: string]: number }, string>>();
+});
 
-  it('$Call', () => {
-    // @dts-jest:pass:snap
-    inferType<$Call<(amount: number) => { type: 'ADD'; payload: number }>>();
+// @dts-jest:group $Call
+it('$Call', () => {
+  // @dts-jest:pass:snap
+  testType<$Call<(amount: number) => { type: 'ADD'; payload: number }>>();
 
-    type ExtractPropType<T extends { prop: any }> = (arg: T) => T['prop'];
-    type Obj = { prop: number };
-    type PropType = $Call<ExtractPropType<Obj>>;
-    // @dts-jest:pass:snap
-    inferType<PropType>();
-    // type Nope = $Call<ExtractPropType<{ nope: number }>>; // Error: argument doesn't match `Obj`.
+  type ExtractPropType<T extends { prop: any }> = (arg: T) => T['prop'];
+  type Obj = { prop: number };
+  type PropType = $Call<ExtractPropType<Obj>>;
+  // @dts-jest:pass:snap
+  testType<PropType>();
+  // type Nope = $Call<ExtractPropType<{ nope: number }>>; // Error: argument doesn't match `Obj`.
 
-    type ExtractReturnType<T extends () => any> = (arg: T) => ReturnType<T>;
-    type Fn = () => number;
-    type FnReturnType = $Call<ExtractReturnType<Fn>>;
-    // @dts-jest:pass:snap
-    inferType<FnReturnType>();
-  });
+  type ExtractReturnType<T extends () => any> = (arg: T) => ReturnType<T>;
+  type Fn = () => number;
+  type FnReturnType = $Call<ExtractReturnType<Fn>>;
+  // @dts-jest:pass:snap
+  testType<FnReturnType>();
 });
