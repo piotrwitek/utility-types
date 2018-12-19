@@ -1,4 +1,4 @@
-import { testType } from './test-utils';
+import { testType } from '../utils/test-utils';
 import {
   $Call,
   $Keys,

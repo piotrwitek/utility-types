@@ -1,4 +1,4 @@
-import { testType } from './test-utils';
+import { testType } from '../utils/test-utils';
 import {
   SetIntersection,
   SetDifference,
@@ -18,7 +18,13 @@ import {
   DeepReadonly,
   DeepRequired,
   DeepNonNullable,
-} from '.';
+  _DeepNonNullableArray,
+  _DeepNonNullableObject,
+  _DeepReadonlyArray,
+  _DeepReadonlyObject,
+  _DeepRequiredArray,
+  _DeepRequiredObject,
+} from './mapped-types';
 
 /**
  * Fixtures
@@ -142,9 +148,9 @@ it('DeepReadonly', () => {
       };
     };
   };
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepReadonlyObject<{ second: { name: string; }; }>
+  // @dts-jest:pass:snap -> _DeepReadonlyObject<{ second: { name: string; }; }>
   testType<DeepReadonly<NestedProps>['first']>();
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepReadonlyObject<{ name: string; }>
+  // @dts-jest:pass:snap -> _DeepReadonlyObject<{ name: string; }>
   testType<DeepReadonly<NestedProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
   testType<DeepReadonly<NestedProps>['first']['second']['name']>();
@@ -154,9 +160,9 @@ it('DeepReadonly', () => {
       second: Array<{ name: string }>;
     };
   };
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepReadonlyObject<{ second: { name: string; }[]; }>
+  // @dts-jest:pass:snap -> _DeepReadonlyObject<{ second: { name: string; }[]; }>
   testType<DeepReadonly<NestedArrayProps>['first']>();
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepReadonlyArray<{ name: string; }>
+  // @dts-jest:pass:snap -> _DeepReadonlyArray<{ name: string; }>
   testType<DeepReadonly<NestedArrayProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
   testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>();
@@ -171,9 +177,9 @@ it('DeepRequired', () => {
       };
     };
   };
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>
+  // @dts-jest:pass:snap -> _DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>
   testType<DeepRequired<NestedProps>['first']>();
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepRequiredObject<{ name?: string | null | undefined; }>
+  // @dts-jest:pass:snap -> _DeepRequiredObject<{ name?: string | null | undefined; }>
   testType<DeepRequired<NestedProps>['first']['second']>();
   // @dts-jest:pass:snap -> string | null
   testType<DeepRequired<NestedProps>['first']['second']['name']>();
@@ -183,9 +189,9 @@ it('DeepRequired', () => {
       second?: Array<{ name?: string | null } | undefined>;
     };
   };
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>
+  // @dts-jest:pass:snap -> _DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>
   testType<DeepRequired<NestedArrayProps>['first']>();
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepRequiredArray<{ name?: string | null | undefined; } | undefined>
+  // @dts-jest:pass:snap -> _DeepRequiredArray<{ name?: string | null | undefined; } | undefined>
   testType<DeepRequired<NestedArrayProps>['first']['second']>();
   // @dts-jest:pass:snap -> string | null
   testType<DeepRequired<NestedArrayProps>['first']['second'][number]['name']>();
@@ -200,9 +206,9 @@ it('DeepNonNullable', () => {
       };
     };
   };
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>
+  // @dts-jest:pass:snap -> _DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>
   testType<DeepNonNullable<NestedProps>['first']>();
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepNonNullableObject<{ name?: string | null | undefined; }>
+  // @dts-jest:pass:snap -> _DeepNonNullableObject<{ name?: string | null | undefined; }>
   testType<DeepNonNullable<NestedProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
   testType<DeepNonNullable<NestedProps>['first']['second']['name']>();
@@ -212,9 +218,9 @@ it('DeepNonNullable', () => {
       second?: Array<{ name?: string | null } | undefined | null>;
     };
   };
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>
+  // @dts-jest:pass:snap -> _DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>
   testType<DeepNonNullable<NestedArrayProps>['first']>();
-  // @dts-jest:pass:snap -> import("/Users/piotrek/Dev/utility-types/src/mapped-types")._DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>
+  // @dts-jest:pass:snap -> _DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>
   testType<DeepNonNullable<NestedArrayProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
   testType<

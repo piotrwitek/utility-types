@@ -6,6 +6,9 @@
   "transform": {
     ".(ts|tsx)": "dts-jest/transform"
   },
+  "moduleNameMapper": {
+    "/Users/piotrek/Dev/utility-types/src/mapped-types": "<rootDir>/src/mapped-types"
+  },
   "globals": {
     "window": {},
     "_dts_jest_": {

@@ -1,4 +1,4 @@
-import { testType } from './test-utils';
+import { testType } from '../utils/test-utils';
 import {
   SetIntersection,
   SetDifference,
@@ -18,7 +18,13 @@ import {
   DeepReadonly,
   DeepRequired,
   DeepNonNullable,
-} from '.';
+  _DeepNonNullableArray,
+  _DeepNonNullableObject,
+  _DeepReadonlyArray,
+  _DeepReadonlyObject,
+  _DeepRequiredArray,
+  _DeepRequiredObject,
+} from './mapped-types';
 
 /**
  * Fixtures

@@ -6,37 +6,37 @@ exports[`DeepNonNullable testType<
       DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
     >() 1`] = `"string"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']>() 1`] = `"_DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']['second']>() 1`] = `"_DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']>() 1`] = `"_DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepNonNullableObject<{ name?: string | null | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']>() 1`] = `"_DeepNonNullableObject<{ name?: string | null | undefined; }>"`;
 
 exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ second: { name: string; }[]; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: { name: string; }[]; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyArray<{ name: string; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second']>() 1`] = `"_DeepReadonlyArray<{ name: string; }>"`;
 
 exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>() 1`] = `"string"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ second: { name: string; }; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: { name: string; }; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepReadonlyObject<{ name: string; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']>() 1`] = `"_DeepReadonlyObject<{ name: string; }>"`;
 
 exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']>() 1`] = `"_DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredArray<{ name?: string | null | undefined; } | undefined>"`;
+exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second']>() 1`] = `"_DeepRequiredArray<{ name?: string | null | undefined; } | undefined>"`;
 
 exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second'][number]['name']>() 1`] = `"string | null"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedProps>['first']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedProps>['first']>() 1`] = `"_DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']>() 1`] = `"import(\\"/Users/piotrek/Dev/utility-types/src/mapped-types\\")._DeepRequiredObject<{ name?: string | null | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']>() 1`] = `"_DeepRequiredObject<{ name?: string | null | undefined; }>"`;
 
 exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']['name']>() 1`] = `"string | null"`;
 
