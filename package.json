@@ -13,7 +13,7 @@
   },
   "scripts": {
     "reinstall": "rm -rf node_modules/ es5-commonjs/ es5-module/ jsnext/ && npm install",
-    "check": "npm run lint & npm run tsc & npm run test & npm run test-types",
+    "check": "npm run lint & npm run tsc & npm run test",
     "prelint": "prettier --write 'src/**/*.ts'",
     "lint": "tslint --project './tsconfig.json'",
     "tsc": "tsc -p . --noEmit",
