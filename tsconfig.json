@@ -2,13 +2,7 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     /* Strict Type-Checking Options */
-    "alwaysStrict": true,
     "strict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
     /* Others */
     "lib": ["dom", "es2017"],
     "outDir": "out/", // target for compiled files
@@ -16,16 +10,10 @@
     "jsx": "react", // process JSX
     "module": "commonjs",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true, // no errors on commonjs default import
-    "esModuleInterop": true,
-    "allowJs": false, // include js files
-    "checkJs": false, // typecheck js files
     "declaration": true, // emit declarations
-    "forceConsistentCasingInFileNames": true,
     "importHelpers": false, // importing helper functions from tslib
     "noEmitHelpers": false, // disable emitting inline helper functions
     "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
     // "noUnusedLocals": true,
     "pretty": true,
     "removeComments": true,

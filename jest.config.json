@@ -1,5 +1,5 @@
 {
-  "verbose": false,
+  "verbose": true,
   "testEnvironment": "node",
   "moduleFileExtensions": ["js", "jsx", "ts", "tsx", "json"],
   "testMatch": ["<rootDir>/src/?(*.)+(spec|test).ts?(x)"],
@@ -9,8 +9,10 @@
   "globals": {
     "window": {},
     "_dts_jest_": {
+      "compiler_options": "./tsconfig.json",
       "enclosing_declaration": true,
-      "compiler_options": "./tsconfig.json"
+      "test_value": false,
+      "transpile": false
     }
   },
   "reporters": ["default", "dts-jest/reporter"]
