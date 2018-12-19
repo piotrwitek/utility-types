@@ -1,4 +1,4 @@
-import { SetComplement, DeepReadonly } from './';
+import { SetComplement, DeepReadonly } from './mapped-types';
 
 /**
  * $Keys

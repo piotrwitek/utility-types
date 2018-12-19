@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getReturnOfExpression getReturnOfExpression(increment) 1`] = `"{ type: \\"INCREMENT\\"; }"`;

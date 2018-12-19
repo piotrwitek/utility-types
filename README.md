@@ -103,19 +103,14 @@ This gives you the power to prioritize our work and support project contributors
 
 ## Deprecated API (use at own risk)
 * `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
-* `UnboxPromise` - please use `PromiseType` instead (they are equivalent)
-
-## Flow to TypeScript Migration Guides
-
-* Mixed Types in TypeScript (wip)
 
 ---
 
 ## Operations on sets
 
-### `SetIntersection<A, B>`
+### `SetIntersection<A, B>` (same as Extract)
 
-Set intersection of given literal union types `A` and `B`
+Set intersection of given union types `A` and `B`
 
 **Usage:**
 
@@ -130,9 +125,9 @@ type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
 
 [⇧ back to top](#operations-on-sets)
 
-### `SetDifference<A, B>`
+### `SetDifference<A, B>` (same as Exclude)
 
-Set difference of given literal union types `A` and `B`
+Set difference of given union types `A` and `B`
 
 **Usage:**
 
@@ -149,7 +144,7 @@ type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
 
 ### `SetComplement<A, A1>`
 
-Set complement of given literal union types `A` and (it's subset) `A1`
+Set complement of given union types `A` and (it's subset) `A1`
 
 **Usage:**
 
@@ -164,7 +159,7 @@ type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
 
 ### `SymmetricDifference<A, B>`
 
-Set difference of the union and the intersection of given literal union types `A` and `B`
+Set difference of union and intersection of given union types `A` and `B`
 
 **Usage:**
 
@@ -397,7 +392,7 @@ Obtain the instance type of a class
 
 ### `Unionize<T>`
 
-Disjoin object to union of one-property objects types
+Disjoin object to form union of objects, each with single property
 
 **Usage:**
 

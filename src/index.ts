@@ -27,7 +27,6 @@ export {
   Omit,
   Overwrite,
   PromiseType,
-  UnboxPromise,
   SetComplement,
   SetDifference,
   SetIntersection,

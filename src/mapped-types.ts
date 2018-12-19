@@ -4,26 +4,26 @@
  */
 
 /**
- * SetIntersection
- * @desc Set intersection of given literal union types `A` and `B`
+ * SetIntersection (same as Extract)
+ * @desc Set intersection of given union types `A` and `B`
  */
 export type SetIntersection<A, B> = A extends B ? A : never;
 
 /**
- * SetDifference
- * @desc Set difference of given literal union types `A` and `B`
+ * SetDifference (same as Exclude)
+ * @desc Set difference of given union types `A` and `B`
  */
 export type SetDifference<A, B> = A extends B ? never : A;
 
 /**
  * SetComplement
- * @desc Set complement of given literal union types `A` and (it's subset) `A1`
+ * @desc Set complement of given union types `A` and (it's subset) `A1`
  */
 export type SetComplement<A, A1 extends A> = SetDifference<A, A1>;
 
 /**
  * SymmetricDifference
- * @desc Set difference of the union and the intersection of given literal union types `A` and `B`
+ * @desc Set difference of union and intersection of given union types `A` and `B`
  */
 export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
 
@@ -31,13 +31,13 @@ export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
  * NonUndefined
  * @desc Exclude undefined from set `A`
  */
-export type NonUndefined<T> = T extends undefined ? never : T;
+export type NonUndefined<A> = A extends undefined ? never : A;
 
 /**
  * FunctionKeys
  * @desc get union type of keys that are functions in object type `T`
  */
-export type FunctionKeys<T> = {
+export type FunctionKeys<T extends object> = {
   [K in keyof T]: T[K] extends Function ? K : never
 }[keyof T];
 
@@ -45,7 +45,7 @@ export type FunctionKeys<T> = {
  * NonFunctionKeys
  * @desc get union type of keys that are non-functions in object type `T`
  */
-export type NonFunctionKeys<T> = {
+export type NonFunctionKeys<T extends object> = {
   [K in keyof T]: T[K] extends Function ? never : K
 }[keyof T];
 
@@ -53,8 +53,8 @@ export type NonFunctionKeys<T> = {
  * Omit (complements Pick)
  * @desc From `T` remove a set of properties `K`
  */
-export type Omit<T, K extends keyof T> = T extends any
-  ? Pick<T, SetComplement<keyof T, K>>
+export type Omit<T extends object, K extends keyof T> = T extends any
+  ? Pick<T, SetDifference<keyof T, K>>
   : never;
 
 /**
@@ -104,21 +104,26 @@ export type Assign<
 > = Pick<I, keyof I>;
 
 /**
- * Unionize
- * @desc Disjoin object to union of one-property objects types
+ * Exact
+ * @desc create branded object type for exact type matching
  */
-export type Unionize<T> = { [P in keyof T]: { [Q in P]: T[P] } }[keyof T];
+export type Exact<A extends object> = A & { __brand: keyof A };
+
+/**
+ * Unionize
+ * @desc Disjoin object to form union of objects, each with single property
+ */
+export type Unionize<T extends object> = {
+  [P in keyof T]: { [Q in P]: T[P] }
+}[keyof T];
 
 /**
  * PromiseType
  * @desc Obtain Promise resolve type
  */
-export type PromiseType<T> = T extends Promise<infer U> ? U : T;
-/**
- * UnboxPromise
- * @deprecated
- */
-export type UnboxPromise<T> = PromiseType<T>;
+export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
+  ? U
+  : never;
 
 /**
  * DeepReadonly
@@ -126,8 +131,11 @@ export type UnboxPromise<T> = PromiseType<T>;
  */
 export type DeepReadonly<T> = T extends any[]
   ? _DeepReadonlyArray<T[number]>
-  : T extends object ? _DeepReadonlyObject<T> : T;
+  : T extends object
+  ? _DeepReadonlyObject<T>
+  : T;
 
+// TODO: inline _DeepReadonlyArray with infer in DeepReadonly, same for all other deep types
 /**
  * DeepReadonlyArray
  * @desc Nested array condition handler
@@ -151,7 +159,9 @@ export type _DeepReadonlyObject<T> = {
  */
 export type DeepRequired<T> = T extends any[]
   ? _DeepRequiredArray<T[number]>
-  : T extends object ? _DeepRequiredObject<T> : T;
+  : T extends object
+  ? _DeepRequiredObject<T>
+  : T;
 
 /**
  * DeepRequiredArray
@@ -177,7 +187,9 @@ export type _DeepRequiredObject<T> = {
  */
 export type DeepNonNullable<T> = T extends any[]
   ? _DeepNonNullableArray<T[number]>
-  : T extends object ? _DeepNonNullableObject<T> : T;
+  : T extends object
+  ? _DeepNonNullableObject<T>
+  : T;
 
 /**
  * DeepNonNullableArray

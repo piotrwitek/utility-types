@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`$Call testType<$Call<(amount: number) => { type: 'ADD'; payload: number }>>() 1`] = `"{ type: \\"ADD\\"; payload: number; }"`;
+
+exports[`$Call testType<FnReturnType>() 1`] = `"number"`;
+
+exports[`$Call testType<PropType>() 1`] = `"number"`;
+
+exports[`$Diff testType<$Diff<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+
+exports[`$ElementType testType<$ElementType<[boolean, number], 0>>() 1`] = `"boolean"`;
+
+exports[`$ElementType testType<$ElementType<[boolean, number], 1>>() 1`] = `"number"`;
+
+exports[`$ElementType testType<$ElementType<{ [key: string]: number }, string>>() 1`] = `"number"`;
+
+exports[`$ElementType testType<$ElementType<Props, 'name'>>() 1`] = `"string"`;
+
+exports[`$ElementType testType<$ElementType<boolean[], number>>() 1`] = `"boolean"`;
+
+exports[`$Keys testType<$Keys<Props>>() 1`] = `"\\"name\\" | \\"age\\" | \\"visible\\""`;
+
+exports[`$PropertyType testType<$PropertyType<[boolean, number], '0'>>() 1`] = `"boolean"`;
+
+exports[`$PropertyType testType<$PropertyType<[boolean, number], '1'>>() 1`] = `"number"`;
+
+exports[`$PropertyType testType<$PropertyType<Props, 'name'>>() 1`] = `"string"`;
+
+exports[`$ReadOnly testType<$ReadOnly<Props>>() 1`] = `"_DeepReadonlyObject<Props>"`;
+
+exports[`$Values testType<$Values<Props>>() 1`] = `"string | number | boolean"`;
