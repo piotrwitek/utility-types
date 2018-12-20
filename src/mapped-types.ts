@@ -129,7 +129,9 @@ export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
  * DeepReadonly
  * @desc Readonly that works for deeply nested structure
  */
-export type DeepReadonly<T> = T extends any[]
+export type DeepReadonly<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends any[]
   ? _DeepReadonlyArray<T[number]>
   : T extends object
   ? _DeepReadonlyObject<T>
@@ -157,7 +159,9 @@ export type _DeepReadonlyObject<T> = {
  * DeepRequired
  * @desc Required that works for deeply nested structure
  */
-export type DeepRequired<T> = T extends any[]
+export type DeepRequired<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends any[]
   ? _DeepRequiredArray<T[number]>
   : T extends object
   ? _DeepRequiredObject<T>
@@ -185,7 +189,9 @@ export type _DeepRequiredObject<T> = {
  * DeepNonNullable
  * @desc NonNullable that works for deeply nested structure
  */
-export type DeepNonNullable<T> = T extends any[]
+export type DeepNonNullable<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends any[]
   ? _DeepNonNullableArray<T[number]>
   : T extends object
   ? _DeepNonNullableObject<T>

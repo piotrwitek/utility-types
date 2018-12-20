@@ -166,6 +166,18 @@ it('DeepReadonly', () => {
   testType<DeepReadonly<NestedArrayProps>['first']['second']>();
   // @dts-jest:pass:snap
   testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>();
+
+  type NestedFunctionProps = {
+    first: {
+      second: (value: number) => string;
+    };
+  };
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<NestedFunctionProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<NestedFunctionProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<ReturnType<DeepReadonly<NestedFunctionProps>['first']['second']>>();
 });
 
 // @dts-jest:group DeepRequired
@@ -195,6 +207,18 @@ it('DeepRequired', () => {
   testType<DeepRequired<NestedArrayProps>['first']['second']>();
   // @dts-jest:pass:snap
   testType<DeepRequired<NestedArrayProps>['first']['second'][number]['name']>();
+
+  type NestedFunctionProps = {
+    first?: {
+      second?: (value: number) => string;
+    };
+  };
+  // @dts-jest:pass:snap
+  testType<DeepRequired<NestedFunctionProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepRequired<NestedFunctionProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<ReturnType<DeepRequired<NestedFunctionProps>['first']['second']>>();
 });
 
 // @dts-jest:group DeepNonNullable
@@ -225,5 +249,19 @@ it('DeepNonNullable', () => {
   // @dts-jest:pass:snap
   testType<
     DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
+  >();
+
+  type NestedFunctionProps = {
+    first?: null | {
+      second?: (value: number) => string;
+    };
+  };
+  // @dts-jest:pass:snap
+  testType<DeepNonNullable<NestedFunctionProps>['first']>();
+  // @dts-jest:pass:snap
+  testType<DeepNonNullable<NestedFunctionProps>['first']['second']>();
+  // @dts-jest:pass:snap
+  testType<
+    ReturnType<DeepNonNullable<NestedFunctionProps>['first']['second']>
   >();
 });

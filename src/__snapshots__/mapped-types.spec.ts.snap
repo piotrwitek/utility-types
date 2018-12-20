@@ -6,9 +6,17 @@ exports[`DeepNonNullable testType<
       DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
     >() 1`] = `"string"`;
 
+exports[`DeepNonNullable testType<
+      ReturnType<DeepNonNullable<NestedFunctionProps>['first']['second']>
+    >() 1`] = `"string"`;
+
 exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']>() 1`] = `"_DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>"`;
 
 exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']['second']>() 1`] = `"_DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>"`;
+
+exports[`DeepNonNullable testType<DeepNonNullable<NestedFunctionProps>['first']>() 1`] = `"_DeepNonNullableObject<{ second?: ((value: number) => string) | undefined; }>"`;
+
+exports[`DeepNonNullable testType<DeepNonNullable<NestedFunctionProps>['first']['second']>() 1`] = `"(value: number) => string"`;
 
 exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']>() 1`] = `"_DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>"`;
 
@@ -22,11 +30,17 @@ exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second']
 
 exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>() 1`] = `"string"`;
 
+exports[`DeepReadonly testType<DeepReadonly<NestedFunctionProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: (value: number) => string; }>"`;
+
+exports[`DeepReadonly testType<DeepReadonly<NestedFunctionProps>['first']['second']>() 1`] = `"(value: number) => string"`;
+
 exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: { name: string; }; }>"`;
 
 exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']>() 1`] = `"_DeepReadonlyObject<{ name: string; }>"`;
 
 exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
+
+exports[`DeepReadonly testType<ReturnType<DeepReadonly<NestedFunctionProps>['first']['second']>>() 1`] = `"string"`;
 
 exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']>() 1`] = `"_DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>"`;
 
@@ -34,11 +48,17 @@ exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second']
 
 exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second'][number]['name']>() 1`] = `"string | null"`;
 
+exports[`DeepRequired testType<DeepRequired<NestedFunctionProps>['first']>() 1`] = `"_DeepRequiredObject<{ second?: ((value: number) => string) | undefined; }>"`;
+
+exports[`DeepRequired testType<DeepRequired<NestedFunctionProps>['first']['second']>() 1`] = `"(value: number) => string"`;
+
 exports[`DeepRequired testType<DeepRequired<NestedProps>['first']>() 1`] = `"_DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>"`;
 
 exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']>() 1`] = `"_DeepRequiredObject<{ name?: string | null | undefined; }>"`;
 
 exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']['name']>() 1`] = `"string | null"`;
+
+exports[`DeepRequired testType<ReturnType<DeepRequired<NestedFunctionProps>['first']['second']>>() 1`] = `"string"`;
 
 exports[`Diff testType<Diff<Props, NewProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
