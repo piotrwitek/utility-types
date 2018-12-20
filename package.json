@@ -22,7 +22,7 @@
     "test:update": "jest --config jest.config.json --no-cache -u && dts-jest-remap ./src/*.spec.ts --rename '{{basename}}.snap.{{extname}}'",
     "prebuild": "rm -rf dist/",
     "build": "tsc -p ./tsconfig.build.json --outDir dist/",
-    "ci-check": "npm run lint & npm run tsc & npm run test",
+    "ci-check": "npm run lint & npm run tsc & npm run test:update",
     "prepush": "npm run ci-check",
     "prepublishOnly": "npm run reinstall && npm run ci-check && npm run build"
   },
