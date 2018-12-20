@@ -1,5 +1,6 @@
 {
   "include": ["src/**/*"],
+  "exclude": ["src/**/*.snap.ts"],
   "compilerOptions": {
     /* Strict Type-Checking Options */
     "strict": true,
