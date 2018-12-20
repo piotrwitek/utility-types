@@ -8,16 +8,18 @@
 [![Dependency Status](https://img.shields.io/david/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types)
 [![peerDependency Status](https://img.shields.io/david/peer/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types#info=devDependencies)
 
-## Utility Types for TypeScript (provide migration from [Flow's Utility Types](https://flow.org/en/docs/types/utilities/))
+## Utility Types Collection for TypeScript
 
-* v1.X - compatible with TS v2.7.2
-* v2.X - compatible with TS v2.8.1 (rewritten to conditional types)
+## TypeScript compatibility notes
+* v1 - minimum TS v2.7.2
+* v2 - minimum TS v2.8.1 (rewritten to conditional types)
+* v3 - minimum TS v3.1.0
 
 ## Motivation
 
 The primary goal of this library is to provide a set of proven Utility Types (inspired by [Set Theory](https://en.wikipedia.org/wiki/Set_theory) and functional languages) that should complement existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
 
-The secondary goal is to provide a compatibility layer with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/).
+The secondary goal is to provide additional utility types compatible with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/).
 [Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. By using this library TypeScript Developers will become more familiar with differences to "Flow" and extend their static-typing toolbelt.
 Moreover it can help to migrate between "Flow" and "TypeScript" projects much easier.
 
@@ -29,9 +31,8 @@ Moreover it can help to migrate between "Flow" and "TypeScript" projects much ea
 
 ## Features
 
-* Tested for type correctness
-* No third-party dependencies
-* Provides multiple output formats (es5-commonjs, es5-module, jsnext)
+* Tested for type correctness with type-testing library `dts-jest`
+* Minimal footprint - type-level only, no third-party dependencies
 
 ## Installation
 
