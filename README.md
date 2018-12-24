@@ -101,6 +101,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`$PropertyType<T, K>`](#propertytypet-k)
 * [`$ElementType<T, K>`](#elementtypet-k)
 * [`$Call<T>`](#callt)
+* [`$Shape<T>`](#shapet)
 
 ## Deprecated API (use at own risk)
 * `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
@@ -665,6 +666,24 @@ type PropType = $Call<ExtractPropType<Obj>>; // number
 type ExtractReturnType<T extends () => any> = (arg: T) => ReturnType<T>;
 type Fn = () => number;
 type FnReturnType = $Call<ExtractReturnType<Fn>>; // number
+```
+
+[⇧ back to top](#flows-utility-types)
+
+### `$Shape<T>`
+
+Copies the shape of the type supplied, but marks every field optional.
+https://flow.org/en/docs/types/utilities/#toc-shape
+
+**Usage:**
+
+```ts
+import { $Shape } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean };
+
+type PartialProps = $Shape<Props>;
+// Expect: Partial<Props>
 ```
 
 [⇧ back to top](#flows-utility-types)

@@ -7,6 +7,7 @@ import {
   $Diff,
   $PropertyType,
   $ElementType,
+  $Shape,
 } from './utility-types';
 import { _DeepReadonlyObject } from './mapped-types';
 /**
@@ -89,4 +90,10 @@ it('$Call', () => {
   type FnReturnType = $Call<ExtractReturnType<Fn>>;
   // @dts-jest:pass:snap
   testType<FnReturnType>();
+});
+
+// @dts-jest:group $Shape
+it('$Shape', () => {
+  // @dts-jest:pass:snap
+  testType<$Shape<Props>>();
 });

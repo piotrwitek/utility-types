@@ -58,3 +58,10 @@ export type $Call<Fn extends (...args: any[]) => any> = Fn extends (
 ) => infer RT
   ? RT
   : never;
+
+/**
+ * $Shape
+ * @desc Copies the shape of the type supplied, but marks every field optional.
+ * @see https://flow.org/en/docs/types/utilities/#toc-shape
+ */
+export type $Shape<T extends object> = Partial<T>;
