@@ -28,4 +28,6 @@ exports[`$PropertyType testType<$PropertyType<Props, 'name'>>() 1`] = `"string"`
 
 exports[`$ReadOnly testType<$ReadOnly<Props>>() 1`] = `"_DeepReadonlyObject<Props>"`;
 
+exports[`$Shape testType<$Shape<Props>>() 1`] = `"Partial<Props>"`;
+
 exports[`$Values testType<$Values<Props>>() 1`] = `"string | number | boolean"`;
