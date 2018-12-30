@@ -11,6 +11,11 @@
   "engines": {
     "node": ">= 4"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run ci-check"
+    }
+  },
   "scripts": {
     "reinstall": "rm -rf node_modules/ dist/ && npm install",
     "prettier": "prettier --list-different 'src/**/*.ts' || (echo '\nPlease run the following command to fix:\nnpm run prettier:fix\n'; exit 1)",
@@ -23,7 +28,6 @@
     "test:update": "jest --config jest.config.json --no-cache -u && dts-jest-remap ./src/*.spec.ts --rename '{{basename}}.snap.{{extname}}'",
     "prebuild": "rm -rf dist/",
     "build": "tsc -p ./tsconfig.build.json --outDir dist/",
-    "prepush": "npm run ci-check",
     "prepublishOnly": "npm run reinstall && npm run ci-check && npm run build",
     "ci-check": "npm run lint & npm run tsc & npm run test:update"
   },
