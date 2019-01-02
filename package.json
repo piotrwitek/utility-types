@@ -29,7 +29,7 @@
     "prebuild": "rm -rf dist/",
     "build": "tsc -p ./tsconfig.build.json --outDir dist/",
     "prepublishOnly": "npm run reinstall && npm run ci-check && npm run build",
-    "ci-check": "npm run lint && (npm run tsc & npm run test)"
+    "ci-check": "npm run lint && npm run tsc & npm run test"
   },
   "dependencies": {},
   "devDependencies": {
