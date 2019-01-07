@@ -13,6 +13,7 @@ export {
   $PropertyType,
   $ElementType,
   $Shape,
+  $NonMaybeType,
 } from './utility-types';
 
 export {
