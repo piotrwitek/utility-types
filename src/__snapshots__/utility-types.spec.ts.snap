@@ -20,6 +20,8 @@ exports[`$ElementType testType<$ElementType<boolean[], number>>() 1`] = `"boolea
 
 exports[`$Keys testType<$Keys<Props>>() 1`] = `"\\"name\\" | \\"age\\" | \\"visible\\""`;
 
+exports[`$NonMaybeType testType<$NonMaybeType<string|null|undefined>>() 1`] = `"string"`;
+
 exports[`$PropertyType testType<$PropertyType<[boolean, number], '0'>>() 1`] = `"boolean"`;
 
 exports[`$PropertyType testType<$PropertyType<[boolean, number], '1'>>() 1`] = `"number"`;

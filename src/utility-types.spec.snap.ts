@@ -8,6 +8,7 @@ import {
   $PropertyType,
   $ElementType,
   $Shape,
+  $NonMaybeType,
 } from './utility-types';
 import { _DeepReadonlyObject } from './mapped-types';
 /**
@@ -96,4 +97,10 @@ it('$Call', () => {
 it('$Shape', () => {
   // @dts-jest:pass:snap -> Partial<Props>
   testType<$Shape<Props>>();
+});
+
+// @dts-jest:group $NonMaybeType
+it('$NonMaybeType', () => {
+  // @dts-jest:pass:snap -> string
+  testType<$NonMaybeType<string|null|undefined>>();
 });

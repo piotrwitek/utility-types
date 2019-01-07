@@ -65,3 +65,10 @@ export type $Call<Fn extends (...args: any[]) => any> = Fn extends (
  * @see https://flow.org/en/docs/types/utilities/#toc-shape
  */
 export type $Shape<T extends object> = Partial<T>;
+
+/**
+ * $NonMaybeType
+ * @desc Excludes null and undefined from T
+ * @see https://flow.org/en/docs/types/utilities/#toc-nonmaybe
+ */
+export type $NonMaybeType<T> = NonNullable<T>;

@@ -102,6 +102,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`$ElementType<T, K>`](#elementtypet-k)
 * [`$Call<T>`](#callt)
 * [`$Shape<T>`](#shapet)
+* [`$NonMaybeType<T>`](#nonmaybetypet)
 
 ## Deprecated API (use at own risk)
 * `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
@@ -684,6 +685,24 @@ type Props = { name: string; age: number; visible: boolean };
 
 type PartialProps = $Shape<Props>;
 // Expect: Partial<Props>
+```
+
+[⇧ back to top](#flows-utility-types)
+
+### `$NonMaybeType<T>`
+
+Converts a type `T` to a non-maybe type. In other words, the values of `$NonMaybeType<T>` are the values of `T` except for `null` and `undefined`.  
+https://flow.org/en/docs/types/utilities/#toc-nonmaybe
+
+**Usage:**
+
+```ts
+import { $NonMaybeType } from 'utility-types';
+
+type MaybeName = string | null;
+
+type Name = $NonMaybeType<MaybeName>;
+// Expect: string
 ```
 
 [⇧ back to top](#flows-utility-types)
