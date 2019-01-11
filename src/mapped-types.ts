@@ -125,6 +125,7 @@ export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
   ? U
   : never;
 
+// TODO: inline _DeepReadonlyArray with infer in DeepReadonly, same for all other deep types
 /**
  * DeepReadonly
  * @desc Readonly that works for deeply nested structure
@@ -136,21 +137,10 @@ export type DeepReadonly<T> = T extends (...args: any[]) => any
   : T extends object
   ? _DeepReadonlyObject<T>
   : T;
-
-// TODO: inline _DeepReadonlyArray with infer in DeepReadonly, same for all other deep types
-/**
- * DeepReadonlyArray
- * @desc Nested array condition handler
- * @private
- */
+/** @private */
 // tslint:disable-next-line:class-name
 export interface _DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
-
-/**
- * DeepReadonlyObject
- * @desc Nested object condition handler
- * @private
- */
+/** @private */
 export type _DeepReadonlyObject<T> = {
   readonly [P in keyof T]: DeepReadonly<T[P]>
 };
@@ -166,21 +156,11 @@ export type DeepRequired<T> = T extends (...args: any[]) => any
   : T extends object
   ? _DeepRequiredObject<T>
   : T;
-
-/**
- * DeepRequiredArray
- * @desc Nested array condition handler
- * @private
- */
+/** @private */
 // tslint:disable-next-line:class-name
 export interface _DeepRequiredArray<T>
   extends Array<DeepRequired<NonUndefined<T>>> {}
-
-/**
- * DeepRequiredObject
- * @desc Nested object condition handler
- * @private
- */
+/** @private */
 export type _DeepRequiredObject<T> = {
   [P in keyof T]-?: DeepRequired<NonUndefined<T[P]>>
 };
@@ -196,21 +176,11 @@ export type DeepNonNullable<T> = T extends (...args: any[]) => any
   : T extends object
   ? _DeepNonNullableObject<T>
   : T;
-
-/**
- * DeepNonNullableArray
- * @desc Nested array condition handler
- * @private
- */
+/** @private */
 // tslint:disable-next-line:class-name
 export interface _DeepNonNullableArray<T>
   extends Array<DeepNonNullable<NonNullable<T>>> {}
-
-/**
- * DeepNonNullableObject
- * @desc Nested object condition handler
- * @private
- */
+/** @private */
 export type _DeepNonNullableObject<T> = {
   [P in keyof T]-?: DeepNonNullable<NonNullable<T[P]>>
 };
