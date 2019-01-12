@@ -103,6 +103,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`$Call<T>`](#callt)
 * [`$Shape<T>`](#shapet)
 * [`$NonMaybeType<T>`](#nonmaybetypet)
+* [`Class<T>`](#classt)
 
 ## Deprecated API (use at own risk)
 * `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
@@ -703,6 +704,26 @@ type MaybeName = string | null;
 
 type Name = $NonMaybeType<MaybeName>;
 // Expect: string
+```
+
+[⇧ back to top](#flows-utility-types)
+
+### `Class<T>`
+
+Given a type T representing instances of a class C, the type Class<T> is the type of the class C  
+https://flow.org/en/docs/types/utilities/#toc-class  
+\* Differs from original Flow's util - implements only constructor part and won't include any static members. Additionally classes in Typescript are not treated as nominal 
+
+**Usage:**
+
+```ts
+import { Class } from 'utility-types';
+
+class Store {}
+
+function makeStore(storeClass: Class<Store>) {
+  return new storeClass();
+}
 ```
 
 [⇧ back to top](#flows-utility-types)

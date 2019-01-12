@@ -14,6 +14,7 @@ export {
   $ElementType,
   $Shape,
   $NonMaybeType,
+  Class,
 } from './utility-types';
 
 export {

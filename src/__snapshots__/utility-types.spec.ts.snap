@@ -33,3 +33,5 @@ exports[`$ReadOnly testType<$ReadOnly<Props>>() 1`] = `"_DeepReadonlyObject<Prop
 exports[`$Shape testType<$Shape<Props>>() 1`] = `"Partial<Props>"`;
 
 exports[`$Values testType<$Values<Props>>() 1`] = `"string | number | boolean"`;
+
+exports[`Class testType<Class<Foo>>() 1`] = `"Class<Foo>"`;

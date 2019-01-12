@@ -9,6 +9,7 @@ import {
   $ElementType,
   $Shape,
   $NonMaybeType,
+  Class,
 } from './utility-types';
 import { _DeepReadonlyObject } from './mapped-types';
 /**
@@ -17,6 +18,8 @@ import { _DeepReadonlyObject } from './mapped-types';
 
 type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
+
+class Foo {}
 
 /**
  * Tests
@@ -103,4 +106,10 @@ it('$Shape', () => {
 it('$NonMaybeType', () => {
   // @dts-jest:pass:snap
   testType<$NonMaybeType<string|null|undefined>>();
+});
+
+// @dts-jest:group Class
+it('Class', () => {
+  // @dts-jest:pass:snap
+  testType<Class<Foo>>();
 });
