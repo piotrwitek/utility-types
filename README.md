@@ -721,7 +721,7 @@ import { Class } from 'utility-types';
 
 class Store {}
 
-function makeStore(storeClass: Class<Store>) {
+function makeStore(storeClass: Class<Store>): Store {
   return new storeClass();
 }
 ```
