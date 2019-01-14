@@ -72,3 +72,10 @@ export type $Shape<T extends object> = Partial<T>;
  * @see https://flow.org/en/docs/types/utilities/#toc-nonmaybe
  */
 export type $NonMaybeType<T> = NonNullable<T>;
+
+/**
+ * Class
+ * @desc Represents constructor of type T
+ * @see https://flow.org/en/docs/types/utilities/#toc-class
+ */
+export type Class<T> = new (...args: any[]) => T;
