@@ -100,17 +100,13 @@ it('Omit', () => {
 // @dts-jest:group PickByValue
 it('PickByValue', () => {
   // @dts-jest:pass:snap
-  testType<PickByValue<Props, 'age'>>();
-  // @dts-jest:pass:snap
-  testType<PickByValue<Props | NewProps, 'age'>>();
+  testType<PickByValue<Props, string | number>>();
 });
 
 // @dts-jest:group OmitByValue
 it('OmitByValue', () => {
   // @dts-jest:pass:snap
-  testType<OmitByValue<Props, 'age'>>();
-  // @dts-jest:pass:snap
-  testType<OmitByValue<Props | NewProps, 'age'>>();
+  testType<OmitByValue<Props, string | number>>();
 });
 
 // @dts-jest:group Intersection

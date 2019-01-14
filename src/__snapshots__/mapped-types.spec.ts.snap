@@ -78,15 +78,11 @@ exports[`Omit testType<Omit<Props | NewProps, 'age'>>() 1`] = `"Pick<Props, \\"n
 
 exports[`Omit testType<Omit<Props, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`OmitByValue testType<OmitByValue<Props | NewProps, 'age'>>() 1`] = `"Pick<Props | NewProps, \\"age\\">"`;
-
-exports[`OmitByValue testType<OmitByValue<Props, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+exports[`OmitByValue testType<OmitByValue<Props, string | number>>() 1`] = `"Pick<Props, \\"visible\\">"`;
 
 exports[`Overwrite testType<Overwrite<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`PickByValue testType<PickByValue<Props | NewProps, 'age'>>() 1`] = `"Pick<Props | NewProps, never>"`;
-
-exports[`PickByValue testType<PickByValue<Props, 'age'>>() 1`] = `"Pick<Props, never>"`;
+exports[`PickByValue testType<PickByValue<Props, string | number>>() 1`] = `"Pick<Props, \\"name\\" | \\"age\\">"`;
 
 exports[`PromiseType testType<PromiseType<Promise<string>>>() 1`] = `"string"`;
 

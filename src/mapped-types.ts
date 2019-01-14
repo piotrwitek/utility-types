@@ -59,22 +59,22 @@ export type Omit<T extends object, K extends keyof T> = T extends any
 
 /**
  * PickByValue
- * @desc From `T` pick a set of properties with value types of `Type`.
+ * @desc From `T` pick a set of properties with value type of `ValueType`.
  * Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
  */
-export type PickByValue<T, Type> = Pick<
+export type PickByValue<T, ValueType> = Pick<
   T,
-  { [Key in keyof T]: T[Key] extends Type ? Key : never }[keyof T]
+  { [Key in keyof T]: T[Key] extends ValueType ? Key : never }[keyof T]
 >;
 
 /**
  * OmitByValue
- * @desc From `T` remove a set of properties with value types of `Type`.
+ * @desc From `T` remove a set of properties with value type of `ValueType`.
  * Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
  */
-export type OmitByValue<T, Type> = Pick<
+export type OmitByValue<T, ValueType> = Pick<
   T,
-  { [Key in keyof T]: T[Key] extends Type ? never : Key }[keyof T]
+  { [Key in keyof T]: T[Key] extends ValueType ? never : Key }[keyof T]
 >;
 
 /**
