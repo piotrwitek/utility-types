@@ -73,6 +73,8 @@ This gives you the power to prioritize our work and support project contributors
 * [`NonFunctionKeys<T>`](#nonfunctionkeyst)
 * [`Pick<T, K>`](#pickt-k) (_\*standard-lib_)
 * [`Omit<T, K>`](#omitt-k)
+* [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
+* [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
 * [`Intersection<T, U>`](#intersectiont-u)
 * [`Diff<T, U>`](#difft-u)
 * [`Subtract<T, T1>`](#subtractt-t1)
