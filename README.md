@@ -269,6 +269,42 @@ type RequiredProps = Omit<Props, 'age'>;
 
 [⇧ back to top](#operations-on-objects)
 
+### `PickByValue<T, ValueType>`
+
+From `T` pick a set of properties with value type of `ValueType`.
+Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
+
+**Usage:**
+
+```ts
+import { PickByValue } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean };
+
+type RequiredProps = PickByValue<Props, string | number>;
+// Expect: { name: string; age: number }
+```
+
+[⇧ back to top](#operations-on-objects)
+
+### `OmitByValue<T, ValueType>`
+
+From `T` remove a set of properties with value type of `ValueType`.
+Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
+
+**Usage:**
+
+```ts
+import { OmitByValue } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean };
+
+type RequiredProps = OmitByValue<Props, string | number>;
+// Expect: { visible: boolean }
+```
+
+[⇧ back to top](#operations-on-objects)
+
 ### `Intersection<T, U>`
 
 From `T` pick properties that exist in `U`

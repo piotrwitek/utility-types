@@ -8,6 +8,8 @@ import {
   NonUndefined,
   NonFunctionKeys,
   Omit,
+  PickByValue,
+  OmitByValue,
   Intersection,
   Diff,
   Subtract,
@@ -93,6 +95,18 @@ it('Omit', () => {
   testType<Omit<Props, 'age'>>();
   // @dts-jest:pass:snap -> Pick<Props, "name" | "visible"> | Pick<NewProps, "other">
   testType<Omit<Props | NewProps, 'age'>>();
+});
+
+// @dts-jest:group PickByValue
+it('PickByValue', () => {
+  // @dts-jest:pass:snap -> Pick<Props, "name" | "age">
+  testType<PickByValue<Props, string | number>>();
+});
+
+// @dts-jest:group OmitByValue
+it('OmitByValue', () => {
+  // @dts-jest:pass:snap -> Pick<Props, "visible">
+  testType<OmitByValue<Props, string | number>>();
 });
 
 // @dts-jest:group Intersection
