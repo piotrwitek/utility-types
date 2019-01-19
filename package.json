@@ -1,6 +1,6 @@
 {
   "name": "utility-types",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "Utility Types Collection for TypeScript",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)",
   "repository": "https://github.com/piotrwitek/utility-types",
