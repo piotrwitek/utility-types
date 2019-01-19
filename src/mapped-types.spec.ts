@@ -20,12 +20,15 @@ import {
   DeepReadonly,
   DeepRequired,
   DeepNonNullable,
+  DeepPartial,
   _DeepNonNullableArray,
   _DeepNonNullableObject,
   _DeepReadonlyArray,
   _DeepReadonlyObject,
   _DeepRequiredArray,
   _DeepRequiredObject,
+  _DeepPartialObject,
+  _DeepPartialArray,
 } from './mapped-types';
 
 /**
@@ -278,4 +281,59 @@ it('DeepNonNullable', () => {
   testType<
     ReturnType<DeepNonNullable<NestedFunctionProps>['first']['second']>
   >();
+});
+
+// @dts-jest:group DeepPartial
+it('DeepPartial', () => {
+  type NestedProps = {
+    first: {
+      second: {
+        name: string;
+      };
+    };
+  };
+  const partialNested: DeepPartial<NestedProps> = {} as any;
+  // @dts-jest:pass:snap
+  testType<typeof partialNested.first>();
+
+  const second = partialNested.first!.second;
+  // @dts-jest:pass:snap
+  testType<typeof second>();
+
+  const name = second!.name;
+  // @dts-jest:pass:snap
+  testType<typeof name>();
+
+  type NestedArrayProps = {
+    first: {
+      second: Array<{ name: string }>;
+    };
+  };
+
+  const nestedArrayPartial: DeepPartial<NestedArrayProps> = {};
+  // @dts-jest:pass:snap
+  testType<typeof nestedArrayPartial.first>();
+
+  const arrayProp = nestedArrayPartial.first!.second;
+  // @dts-jest:pass:snap
+  testType<typeof arrayProp>();
+
+  const arrayItem = arrayProp![0];
+  // @dts-jest:pass:snap
+  testType<typeof arrayItem.name>();
+
+  type NestedFunctionProps = {
+    first: {
+      second: (value: number) => string;
+    };
+  };
+  const nestedFunctionPartial: DeepPartial<NestedFunctionProps> = {};
+  // @dts-jest:pass:snap
+  testType<typeof nestedFunctionPartial.first>();
+
+  const functionProp = nestedFunctionPartial.first!.second;
+  // @dts-jest:pass:snap
+  testType<typeof functionProp>();
+  // @dts-jest:pass:snap
+  testType<ReturnType<NonNullable<typeof functionProp>>>();
 });

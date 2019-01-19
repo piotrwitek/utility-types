@@ -22,6 +22,7 @@ export {
   DeepReadonly,
   DeepRequired,
   DeepNonNullable,
+  DeepPartial,
   Diff,
   FunctionKeys,
   Intersection,

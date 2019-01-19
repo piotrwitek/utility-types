@@ -20,12 +20,15 @@ import {
   DeepReadonly,
   DeepRequired,
   DeepNonNullable,
+  DeepPartial,
   _DeepNonNullableArray,
   _DeepNonNullableObject,
   _DeepReadonlyArray,
   _DeepReadonlyObject,
   _DeepRequiredArray,
   _DeepRequiredObject,
+  _DeepPartialObject,
+  _DeepPartialArray,
 } from './mapped-types';
 
 /**
@@ -278,4 +281,59 @@ it('DeepNonNullable', () => {
   testType<
     ReturnType<DeepNonNullable<NestedFunctionProps>['first']['second']>
   >();
+});
+
+// @dts-jest:group DeepPartial
+it('DeepPartial', () => {
+  type NestedProps = {
+    first: {
+      second: {
+        name: string;
+      };
+    };
+  };
+  const partialNested: DeepPartial<NestedProps> = {} as any;
+  // @dts-jest:pass:snap -> _DeepPartialObject<{ second: { name: string; }; }> | undefined
+  testType<typeof partialNested.first>();
+
+  const second = partialNested.first!.second;
+  // @dts-jest:pass:snap -> _DeepPartialObject<{ name: string; }> | undefined
+  testType<typeof second>();
+
+  const name = second!.name;
+  // @dts-jest:pass:snap -> string | undefined
+  testType<typeof name>();
+
+  type NestedArrayProps = {
+    first: {
+      second: Array<{ name: string }>;
+    };
+  };
+
+  const nestedArrayPartial: DeepPartial<NestedArrayProps> = {};
+  // @dts-jest:pass:snap -> _DeepPartialObject<{ second: { name: string; }[]; }> | undefined
+  testType<typeof nestedArrayPartial.first>();
+
+  const arrayProp = nestedArrayPartial.first!.second;
+  // @dts-jest:pass:snap -> _DeepPartialArray<{ name: string; }> | undefined
+  testType<typeof arrayProp>();
+
+  const arrayItem = arrayProp![0];
+  // @dts-jest:pass:snap -> string | undefined
+  testType<typeof arrayItem.name>();
+
+  type NestedFunctionProps = {
+    first: {
+      second: (value: number) => string;
+    };
+  };
+  const nestedFunctionPartial: DeepPartial<NestedFunctionProps> = {};
+  // @dts-jest:pass:snap -> _DeepPartialObject<{ second: (value: number) => string; }> | undefined
+  testType<typeof nestedFunctionPartial.first>();
+
+  const functionProp = nestedFunctionPartial.first!.second;
+  // @dts-jest:pass:snap -> ((value: number) => string) | undefined
+  testType<typeof functionProp>();
+  // @dts-jest:pass:snap -> string
+  testType<ReturnType<NonNullable<typeof functionProp>>>();
 });

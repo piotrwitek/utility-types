@@ -24,6 +24,24 @@ exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second'
 
 exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
 
+exports[`DeepPartial testType<ReturnType<NonNullable<typeof functionProp>>>() 1`] = `"string"`;
+
+exports[`DeepPartial testType<typeof arrayItem.name>() 1`] = `"string | undefined"`;
+
+exports[`DeepPartial testType<typeof arrayProp>() 1`] = `"_DeepPartialArray<{ name: string; }> | undefined"`;
+
+exports[`DeepPartial testType<typeof functionProp>() 1`] = `"((value: number) => string) | undefined"`;
+
+exports[`DeepPartial testType<typeof name>() 1`] = `"string | undefined"`;
+
+exports[`DeepPartial testType<typeof nestedArrayPartial.first>() 1`] = `"_DeepPartialObject<{ second: { name: string; }[]; }> | undefined"`;
+
+exports[`DeepPartial testType<typeof nestedFunctionPartial.first>() 1`] = `"_DeepPartialObject<{ second: (value: number) => string; }> | undefined"`;
+
+exports[`DeepPartial testType<typeof partialNested.first>() 1`] = `"_DeepPartialObject<{ second: { name: string; }; }> | undefined"`;
+
+exports[`DeepPartial testType<typeof second>() 1`] = `"_DeepPartialObject<{ name: string; }> | undefined"`;
+
 exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: { name: string; }[]; }>"`;
 
 exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second']>() 1`] = `"_DeepReadonlyArray<{ name: string; }>"`;
