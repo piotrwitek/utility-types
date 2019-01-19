@@ -93,6 +93,7 @@ This gives you the power to prioritize our work and support project contributors
 * [`DeepReadonly<T>`](#deepreadonlyt)
 * [`DeepRequired<T>`](#deeprequiredt)
 * [`DeepNonNullable<T>`](#deepnonnullablet)
+* [`DeepPartial<T>`](#deeppartialt)
 
 ## Flow's Utility Types
 
@@ -545,6 +546,36 @@ type RequiredNestedProps = DeepNonNullable<NestedProps>;
 //   first: {
 //     second: {
 //       name: string;
+//     };
+//   };
+// }
+```
+
+[⇧ back to top](#mapped-types)
+
+---
+
+### `DeepPartial<T>`
+
+Partial that works for deeply nested structures
+
+**Usage:**
+
+```ts
+import { DeepPartial } from 'utility-types';
+
+type NestedProps = {
+  first: {
+    second: {
+      name: string;
+    };
+  };
+};
+type PartialNestedProps = DeepPartial<NestedProps>;
+// Expect: {
+//   first?: {
+//     second?: {
+//       name?: string;
 //     };
 //   };
 // }
