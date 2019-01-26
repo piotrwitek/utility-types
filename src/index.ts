@@ -37,6 +37,8 @@ export {
   Subtract,
   SymmetricDifference,
   Unionize,
+  WritableKeys,
+  ReadonlyKeys,
 } from './mapped-types';
 
 // deprecated

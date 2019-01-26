@@ -21,6 +21,8 @@ import {
   DeepRequired,
   DeepNonNullable,
   DeepPartial,
+  WritableKeys,
+  ReadonlyKeys,
   _DeepNonNullableArray,
   _DeepNonNullableObject,
   _DeepReadonlyArray,
@@ -39,6 +41,7 @@ type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 type NewProps = { age: string; other: string };
 type MixedProps = { name: string; setName: (name: string) => void };
+type ReadWriteProps = { readonly a: number; b: string };
 
 /**
  * Tests
@@ -336,4 +339,16 @@ it('DeepPartial', () => {
   testType<typeof functionProp>();
   // @dts-jest:pass:snap
   testType<ReturnType<NonNullable<typeof functionProp>>>();
+});
+
+// @dts-jest:group WritableKeys
+it('WritableKeys', () => {
+  // @dts-jest:pass:snap
+  testType<WritableKeys<ReadWriteProps>>();
+});
+
+// @dts-jest:group ReadonlyKeys
+it('ReadonlyKeys', () => {
+  // @dts-jest:pass:snap
+  testType<ReadonlyKeys<ReadWriteProps>>();
 });
