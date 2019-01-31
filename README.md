@@ -1,5 +1,5 @@
 # utility-types
-Collection of generic utility types for TypeScript complementing build-in types - think `lodash` for reusable types.
+Collection of generic types for TypeScript, complementing built-in mapped types and aliases - think lodash for reusable types.
 
 [![Latest Stable Version](https://img.shields.io/npm/v/utility-types.svg)](https://www.npmjs.com/package/utility-types)
 [![Build Status](https://semaphoreci.com/api/v1/piotrekwitek/utility-types/branches/master/shields_badge.svg)](https://semaphoreci.com/piotrekwitek/utility-types)
