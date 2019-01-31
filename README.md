@@ -8,7 +8,7 @@
 [![Dependency Status](https://img.shields.io/david/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types)
 [![peerDependency Status](https://img.shields.io/david/peer/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types#info=devDependencies)
 
-## Utility Types Collection for TypeScript
+**Collection of Generic Utility-Types for TypeScript complementing missing build-in types (You can think `lodash` for types)**
 
 ## TypeScript compatibility notes
 * v1 - minimum TS v2.7.2
@@ -17,11 +17,9 @@
 
 ## Motivation
 
-The primary goal of this library is to provide a set of proven Utility Types (inspired by [Set Theory](https://en.wikipedia.org/wiki/Set_theory) and functional languages) that should complement existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
+The primary goal of this library is to provide a set of proven Utility Types that should complement existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
 
-The secondary goal is to provide additional utility types compatible with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/).
-[Flow](https://flow.org) and [TypeScript](https://typescriptlang.org) have a lot in common. By using this library TypeScript Developers will become more familiar with differences to "Flow" and extend their static-typing toolbelt.
-Moreover it can help to migrate between "Flow" and "TypeScript" projects much easier.
+The secondary goal is to provide a few additional utility types compatible with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/) helping with gradual migration between "Flow" and "TypeScript" projects.
 
 ## Goals
 
@@ -31,8 +29,9 @@ Moreover it can help to migrate between "Flow" and "TypeScript" projects much ea
 
 ## Features
 
-* Tested for type correctness with type-testing library `dts-jest`
-* Minimal footprint - type-level only, no third-party dependencies
+* Thoroughly tested for type correctness with type-testing library `dts-jest`
+* Safe with minimal footprint - no third-party dependencies
+* No runtime cost - it's type-level only
 
 ## Installation
 
@@ -41,16 +40,16 @@ npm install --save utility-types
 ```
 
 ## Contributing Guide
-If you're planning to contribute please make sure to read the contributing guide: [CONTRIBUTING.md](/CONTRIBUTING.md)
+We are open for contributions. If you're planning to contribute please make sure to read the contributing guide: [CONTRIBUTING.md](/CONTRIBUTING.md)
 
 ## Sponsor
-If you like what we're doing here, you can help us by funding the work on specific issues that you choose by using IssueHunt.io!
+**Utility-Types** is an independent open-source project created by people investing their free time for the benefit of our community.
 
-This gives you the power to prioritize our work and support project contributors. Moreover it'll guarantee the project will be updated and maintained in the long run.
+If you are using **Utility-Types** please consider donating as this will guarantee the project will be updated and maintained in the long run.
 
-> I keep sponsor anonymity by default but if you'd like your brand to be featured in this repo, please contact me at: piotrek.witek@gmail.com
+Issues can be funded by anyone and the money will be transparently distributed to the contributors handling a particular issue.
 
-[![issuehunt-image](https://github.com/BoostIO/issuehunt-materials/blob/master/issuehunt-badge@1x.png?raw=true)](https://issuehunt.io/repos/76400842)
+[![Let's fund issues in this repository](https://issuehunt.io/static/embed/issuehunt-button-v1.svg)](https://issuehunt.io/repos/76400842)
 
 ---
 
