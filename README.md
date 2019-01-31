@@ -1,14 +1,16 @@
 # utility-types
+Collection of generic utility types for TypeScript complementing build-in types - think `lodash` for reusable types.
 
 [![Latest Stable Version](https://img.shields.io/npm/v/utility-types.svg)](https://www.npmjs.com/package/utility-types)
-[![NPM Downloads](https://img.shields.io/npm/dt/utility-types.svg)](https://www.npmjs.com/package/utility-types)
-[![NPM Downloads](https://img.shields.io/npm/dm/utility-types.svg)](https://www.npmjs.com/package/utility-types)
-
 [![Build Status](https://semaphoreci.com/api/v1/piotrekwitek/utility-types/branches/master/shields_badge.svg)](https://semaphoreci.com/piotrekwitek/utility-types)
 [![Dependency Status](https://img.shields.io/david/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types)
 [![peerDependency Status](https://img.shields.io/david/peer/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types#info=devDependencies)
+[![License](https://img.shields.io/npm/l/utility-types.svg?style=flat)](https://david-dm.org/piotrwitek/typesafe-actions?type=peer)
 
-**Collection of Generic Utility-Types for TypeScript complementing missing build-in types (You can think `lodash` for types)**
+[![NPM Downloads](https://img.shields.io/npm/dm/utility-types.svg)](https://www.npmjs.com/package/utility-types)
+[![NPM Downloads](https://img.shields.io/npm/dt/utility-types.svg)](https://www.npmjs.com/package/utility-types)
+
+> #### _Found it useful? Want more updates?_ [**Show your support by giving a :star:**](https://github.com/piotrwitek/utility-types/stargazers)  
 
 ## TypeScript compatibility notes
 * v1 - minimum TS v2.7.2
