@@ -59,8 +59,8 @@ Issues can be funded by anyone and the money will be transparently distributed t
 
 ## Operations on sets
 
-* [`SetIntersection<A, B>`](#setintersectiona-b)
-* [`SetDifference<A, B>`](#setdifferencea-b)
+* [`SetIntersection<A, B>`](#setintersectiona-b-same-as-extract)
+* [`SetDifference<A, B>`](#setdifferencea-b-same-as-exclude)
 * [`SetComplement<A, A1>`](#setcomplementa-a1)
 * [`SymmetricDifference<A, B>`](#symmetricdifferencea-b)
 * [`NonNullable<A>`](#nonnullablea) (_\*standard-lib_)
