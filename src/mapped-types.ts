@@ -221,3 +221,27 @@ export interface _DeepPartialArray<T> extends Array<DeepPartial<T>> { }
 export type _DeepPartialObject<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;
 };
+
+type IfEquals<X, Y, A = X, B = never> =
+  (<T>() => T extends X ? 1 : 2) extends
+    (<T>() => T extends Y ? 1 : 2) ? A : B;
+
+/**
+ * WritableKeys
+ * @desc get union type of keys that are writable in object type `T`
+ * Credit: Matt McCutchen
+ * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
+ */
+export type WritableKeys<T extends object> = {
+  [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, P>
+}[keyof T];
+
+/**
+ * ReadonlyKeys
+ * @desc get union type of keys that are readonly in object type `T`
+ * Credit: Matt McCutchen
+ * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
+ */
+export type ReadonlyKeys<T extends object> = {
+  [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, never, P>
+}[keyof T];

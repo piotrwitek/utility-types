@@ -104,6 +104,8 @@ exports[`PickByValue testType<PickByValue<Props, string | number>>() 1`] = `"Pic
 
 exports[`PromiseType testType<PromiseType<Promise<string>>>() 1`] = `"string"`;
 
+exports[`ReadonlyKeys testType<ReadonlyKeys<ReadWriteProps>>() 1`] = `"\\"a\\""`;
+
 exports[`SetComplement testType<SetComplement<'1' | '2' | '3', '2' | '3'>>() 1`] = `"\\"1\\""`;
 
 exports[`SetDifference testType<SetDifference<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"1\\""`;
@@ -119,3 +121,5 @@ exports[`Subtract testType<Subtract<Props, DefaultProps>>() 1`] = `"Pick<Props, 
 exports[`SymmetricDifference testType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"1\\" | \\"4\\""`;
 
 exports[`Unionize testType<Unionize<Props>>() 1`] = `"{ name: string; } | { age: number; } | { visible: boolean; }"`;
+
+exports[`WritableKeys testType<WritableKeys<ReadWriteProps>>() 1`] = `"\\"b\\""`;

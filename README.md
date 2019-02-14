@@ -81,6 +81,8 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`Subtract<T, T1>`](#subtractt-t1)
 * [`Overwrite<T, U>`](#overwritet-u)
 * [`Assign<T, U>`](#assignt-u)
+* [`ReadonlyKeys<T>`](#readonlykeyst)
+* [`WritableKeys<T>`](#writablekeyst)
 
 ## Mapped Types
 
@@ -396,6 +398,38 @@ type NewProps = { age: string; other: string };
 
 type ExtendedProps = Assign<Props, NewProps>;
 // Expect: { name: string; age: number; visible: boolean; other: string; }
+```
+
+[⇧ back to top](#operations-on-objects)
+
+### `ReadonlyKeys<T>`
+
+Get union type of keys that are readonly in object type `T`
+
+**Usage:**
+
+```ts
+import { ReadonlyKeys } from 'utility-types';
+
+type Props = { readonly foo: string; bar: number };
+type ReadonlyProps = ReadonlyKeys<Props>;
+// Expect: "foo"
+```
+
+[⇧ back to top](#operations-on-objects)
+
+### `WritableKeys<T>`
+
+Get union type of keys that are writable (not readonly) in object type `T`
+
+**Usage:**
+
+```ts
+import { WritableKeys } from 'utility-types';
+
+type Props = { readonly foo: string; bar: number };
+type WritableProps = WritableKeys<Props>;
+// Expect: "bar"
 ```
 
 [⇧ back to top](#operations-on-objects)
