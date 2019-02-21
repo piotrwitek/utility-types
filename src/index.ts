@@ -15,6 +15,7 @@ export {
   $Shape,
   $NonMaybeType,
   Class,
+  Brand,
 } from './utility-types';
 
 export {
