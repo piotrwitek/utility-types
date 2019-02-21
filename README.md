@@ -110,6 +110,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`$Shape<T>`](#shapet)
 * [`$NonMaybeType<T>`](#nonmaybetypet)
 * [`Class<T>`](#classt)
+* [`Brand<T, U>`](#brandt-u)
 
 ## Deprecated API (use at own risk)
 * `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
@@ -828,6 +829,29 @@ class Store {}
 function makeStore(storeClass: Class<Store>): Store {
   return new storeClass();
 }
+```
+
+[⇧ back to top](#flows-utility-types)
+
+### `Brand<T, U>`
+
+Define nominal type of `U` based on type of `T`.
+
+```ts
+import { Brand } from 'utility-types';
+
+type USD = Brand<number, "USD">
+type EUR = Brand<number, "EUR">
+
+const usd = 10 as USD;
+const eur = 10 as EUR;
+
+function gross(net: USD, tax: USD): USD {
+  return (net + tax) as USD;
+}
+
+gross(usd, usd); // ok
+gross(eur, usd); // Type '"EUR"' is not assignable to type '"USD"'.
 ```
 
 [⇧ back to top](#flows-utility-types)

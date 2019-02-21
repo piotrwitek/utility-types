@@ -82,6 +82,6 @@ export type Class<T> = new (...args: any[]) => T;
 
 /**
  * Brand
- * @desc Define nominal type U of T
+ * @desc Define nominal type of U based on type of T.
  */
 export type Brand<T, U> = T & { __brand: U };
