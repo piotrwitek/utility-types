@@ -10,6 +10,7 @@ import {
   $Shape,
   $NonMaybeType,
   Class,
+  Brand,
 } from './utility-types';
 import { _DeepReadonlyObject } from './mapped-types';
 /**
@@ -112,4 +113,10 @@ it('$NonMaybeType', () => {
 it('Class', () => {
   // @dts-jest:pass:snap
   testType<Class<Foo>>();
+});
+
+// @dts-jest:group Brand
+it('Brand', () => {
+  // @dts-jest:pass:snap
+  testType<Brand<number, 'USD'>>();
 });
