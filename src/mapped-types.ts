@@ -6,24 +6,40 @@
 /**
  * SetIntersection (same as Extract)
  * @desc Set intersection of given union types `A` and `B`
+ * @example
+ *   // Expect: "2" | "3"
+ *   type ResultSet = SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>;
+ *   // Expect: () => void
+ *   type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
  */
 export type SetIntersection<A, B> = A extends B ? A : never;
 
 /**
  * SetDifference (same as Exclude)
  * @desc Set difference of given union types `A` and `B`
+ * @example
+ *   // Expect: "1"
+ *   type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
+ *   // Expect: string | number
+ *   type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
  */
 export type SetDifference<A, B> = A extends B ? never : A;
 
 /**
  * SetComplement
  * @desc Set complement of given union types `A` and (it's subset) `A1`
+ * @example
+ *   // Expect: "1"
+ *   type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
  */
 export type SetComplement<A, A1 extends A> = SetDifference<A, A1>;
 
 /**
  * SymmetricDifference
  * @desc Set difference of union and intersection of given union types `A` and `B`
+ * @example
+ *   // Expect: "1" | "4"
+ *   type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
  */
 export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
 
@@ -36,6 +52,10 @@ export type NonUndefined<A> = A extends undefined ? never : A;
 /**
  * FunctionKeys
  * @desc get union type of keys that are functions in object type `T`
+ * @example
+ *   // Expect: "setName"
+ *   type MixedProps = { name: string; setName: (name: string) => void };
+ *   type FunctionKeysProps = FunctionKeys<MixedProps>;
  */
 export type FunctionKeys<T extends object> = {
   [K in keyof T]: T[K] extends Function ? K : never
@@ -44,6 +64,10 @@ export type FunctionKeys<T extends object> = {
 /**
  * NonFunctionKeys
  * @desc get union type of keys that are non-functions in object type `T`
+ * @example
+ *   // Expect: "name"
+ *   type MixedProps = { name: string; setName: (name: string) => void };
+ *   type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
  */
 export type NonFunctionKeys<T extends object> = {
   [K in keyof T]: T[K] extends Function ? never : K
@@ -52,6 +76,10 @@ export type NonFunctionKeys<T extends object> = {
 /**
  * Omit (complements Pick)
  * @desc From `T` remove a set of properties `K`
+ * @example
+ *   // Expect: { name: string; visible: boolean; }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type RequiredProps = Omit<Props, 'age'>;
  */
 export type Omit<T extends object, K extends keyof T> = T extends any
   ? Pick<T, SetDifference<keyof T, K>>
@@ -61,6 +89,10 @@ export type Omit<T extends object, K extends keyof T> = T extends any
  * PickByValue
  * @desc From `T` pick a set of properties with value type of `ValueType`.
  * Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
+ * @example
+ *   // Expect: { name: string; age: number }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type RequiredProps = PickByValue<Props, string | number>;
  */
 export type PickByValue<T, ValueType> = Pick<
   T,
@@ -71,6 +103,10 @@ export type PickByValue<T, ValueType> = Pick<
  * OmitByValue
  * @desc From `T` remove a set of properties with value type of `ValueType`.
  * Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
+ * @example
+ *   // Expect: { visible: boolean }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type RequiredProps = OmitByValue<Props, string | number>;
  */
 export type OmitByValue<T, ValueType> = Pick<
   T,
@@ -80,6 +116,11 @@ export type OmitByValue<T, ValueType> = Pick<
 /**
  * Intersection
  * @desc From `T` pick properties that exist in `U`
+ * @example
+ *   // Expect: { age: number; }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type DefaultProps = { age: number };
+ *   type DuplicatedProps = Intersection<Props, DefaultProps>;
  */
 export type Intersection<T extends object, U extends object> = T extends any
   ? Pick<T, SetIntersection<keyof T, keyof U>>
@@ -88,6 +129,11 @@ export type Intersection<T extends object, U extends object> = T extends any
 /**
  * Diff
  * @desc From `T` remove properties that exist in `U`
+ * @example
+ *   // Expect: { name: string; visible: boolean; }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type DefaultProps = { age: number };
+ *   type RequiredProps = Diff<Props, DefaultProps>;
  */
 export type Diff<T extends object, U extends object> = Pick<
   T,
@@ -97,6 +143,11 @@ export type Diff<T extends object, U extends object> = Pick<
 /**
  * Subtract
  * @desc From `T` remove properties that exist in `T1` (`T1` is a subtype of `T`)
+ * @example
+ *   // Expect: { name: string; visible: boolean; }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type DefaultProps = { age: number };
+ *   type RequiredProps = Subtract<Props, DefaultProps>;
  */
 export type Subtract<T extends T1, T1 extends object> = Pick<
   T,
@@ -106,6 +157,11 @@ export type Subtract<T extends T1, T1 extends object> = Pick<
 /**
  * Overwrite
  * @desc From `U` overwrite properties to `T`
+ * @example
+ *   // Expect: { name: string; age: string; visible: boolean; }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type NewProps = { age: string; other: string };
+ *   type ReplacedProps = Overwrite<Props, NewProps>;
  */
 export type Overwrite<
   T extends object,
@@ -116,6 +172,11 @@ export type Overwrite<
 /**
  * Assign
  * @desc From `U` assign properties to `T` (just like object assign)
+ * @example
+ *   // Expect: { name: string; age: number; visible: boolean; other: string; }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type NewProps = { age: string; other: string };
+ *   type ExtendedProps = Assign<Props, NewProps>;
  */
 export type Assign<
   T extends object,
@@ -132,6 +193,10 @@ export type Exact<A extends object> = A & { __brand: keyof A };
 /**
  * Unionize
  * @desc Disjoin object to form union of objects, each with single property
+ * @example
+ *   // Expect: { name: string; } | { age: number; } | { visible: boolean; }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type UnionizedType = Unionize<Props>;
  */
 export type Unionize<T extends object> = {
   [P in keyof T]: { [Q in P]: T[P] }
@@ -140,6 +205,9 @@ export type Unionize<T extends object> = {
 /**
  * PromiseType
  * @desc Obtain Promise resolve type
+ * @example
+ *   // Expect: string;
+ *   type Response = PromiseType<Promise<string>>;
  */
 export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
   ? U
@@ -149,6 +217,22 @@ export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
 /**
  * DeepReadonly
  * @desc Readonly that works for deeply nested structure
+ * @example
+ *   // Expect: {
+ *   //   readonly first: {
+ *   //     readonly second: {
+ *   //       readonly name: string;
+ *   //     };
+ *   //   };
+ *   // }
+ *   type NestedProps = {
+ *     first: {
+ *       second: {
+ *         name: string;
+ *       };
+ *     };
+ *   };
+ *   type ReadonlyNestedProps = DeepReadonly<NestedProps>;
  */
 export type DeepReadonly<T> = T extends (...args: any[]) => any
   ? T
@@ -168,6 +252,22 @@ export type _DeepReadonlyObject<T> = {
 /**
  * DeepRequired
  * @desc Required that works for deeply nested structure
+ * @example
+ *   // Expect: {
+ *   //   first: {
+ *   //     second: {
+ *   //       name: string;
+ *   //     };
+ *   //   };
+ *   // }
+ *   type NestedProps = {
+ *     first?: {
+ *       second?: {
+ *         name?: string;
+ *       };
+ *     };
+ *   };
+ *   type RequiredNestedProps = DeepRequired<NestedProps>;
  */
 export type DeepRequired<T> = T extends (...args: any[]) => any
   ? T
@@ -188,6 +288,23 @@ export type _DeepRequiredObject<T> = {
 /**
  * DeepNonNullable
  * @desc NonNullable that works for deeply nested structure
+ * @example
+ *   // Expect: {
+ *   //   first: {
+ *   //     second: {
+ *   //       name: string;
+ *   //     };
+ *   //   };
+ *   // }
+ *   type NestedProps = {
+ *     first?: null | {
+ *       second?: null | {
+ *         name?: string | null |
+ *         undefined;
+ *       };
+ *     };
+ *   };
+ *   type RequiredNestedProps = DeepNonNullable<NestedProps>;
  */
 export type DeepNonNullable<T> = T extends (...args: any[]) => any
   ? T
@@ -208,6 +325,22 @@ export type _DeepNonNullableObject<T> = {
 /**
  * DeepPartial
  * @desc Partial that works for deeply nested structure
+ * @example
+ *   // Expect: {
+ *   //   first?: {
+ *   //     second?: {
+ *   //       name?: string;
+ *   //     };
+ *   //   };
+ *   // }
+ *   type NestedProps = {
+ *     first: {
+ *       second: {
+ *         name: string;
+ *       };
+ *     };
+ *   };
+ *   type PartialNestedProps = DeepPartial<NestedProps>;
  */
 export type DeepPartial<T> =
   T extends Function ? T :
@@ -231,6 +364,10 @@ type IfEquals<X, Y, A = X, B = never> =
  * @desc get union type of keys that are writable in object type `T`
  * Credit: Matt McCutchen
  * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
+ * @example
+ *   // Expect: "bar"
+ *   type Props = { readonly foo: string; bar: number };
+ *   type WritableProps = WritableKeys<Props>;
  */
 export type WritableKeys<T extends object> = {
   [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, P>
@@ -241,6 +378,10 @@ export type WritableKeys<T extends object> = {
  * @desc get union type of keys that are readonly in object type `T`
  * Credit: Matt McCutchen
  * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
+ * @example
+ *   // Expect: "foo"
+ *   type Props = { readonly foo: string; bar: number };
+ *   type ReadonlyProps = ReadonlyKeys<Props>;
  */
 export type ReadonlyKeys<T extends object> = {
   [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, never, P>

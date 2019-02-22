@@ -4,6 +4,10 @@ import { SetComplement, DeepReadonly } from './mapped-types';
  * $Keys
  * @desc get the union type of all the keys in an object type `T`
  * @see https://flow.org/en/docs/types/utilities/#toc-keys
+ * @example
+ *   // Expect: "name" | "age" | "visible"
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type PropsKeys = $Keys<Props>;
  */
 export type $Keys<T extends object> = keyof T;
 
@@ -11,6 +15,10 @@ export type $Keys<T extends object> = keyof T;
  * $Values
  * @desc get the union type of all the values in an object type `T`
  * @see https://flow.org/en/docs/types/utilities/#toc-values
+ * @example
+ *   // Expect: string | number | boolean
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type PropsValues = $Values<Props>;
  */
 export type $Values<T extends object> = T[keyof T];
 
@@ -18,6 +26,10 @@ export type $Values<T extends object> = T[keyof T];
  * $ReadOnly
  * @desc get the read-only version of a given object type `T` (it works on nested data structure)
  * @see https://flow.org/en/docs/types/utilities/#toc-readonly
+ * @example
+ *   // Expect: Readonly<{ name: string; age?: number | undefined; visible: boolean; }>
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type ReadOnlyProps = $ReadOnly<Props>;
  */
 export type $ReadOnly<T extends object> = DeepReadonly<T>;
 
@@ -25,6 +37,11 @@ export type $ReadOnly<T extends object> = DeepReadonly<T>;
  * $Diff
  * @desc get the set difference of a given object types `T` and `U` (`T \ U`)
  * @see https://flow.org/en/docs/types/utilities/#toc-diff
+ * @example
+ *   // Expect: { name: string; visible: boolean; }
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type DefaultProps = { age: number };
+ *   type RequiredProps = Diff<Props, DefaultProps>;
  */
 export type $Diff<T extends U, U extends object> = Pick<
   T,
@@ -35,6 +52,15 @@ export type $Diff<T extends U, U extends object> = Pick<
  * $PropertyType
  * @desc get the type of property of an object at a given key `K`
  * @see https://flow.org/en/docs/types/utilities/#toc-propertytype
+ * @example
+ *   // Expect: string;
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type NameType = $PropertyType<Props, 'name'>;
+ *   // Expect: boolean
+ *   type Tuple = [boolean, number];
+ *   type A = $PropertyType<Tuple, '0'>;
+ *   // Expect: number
+ *   type B = $PropertyType<Tuple, '1'>;
  */
 export type $PropertyType<T extends object, K extends keyof T> = T[K];
 
@@ -42,6 +68,21 @@ export type $PropertyType<T extends object, K extends keyof T> = T[K];
  * $ElementType
  * @desc get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`
  * @see https://flow.org/en/docs/types/utilities/#toc-elementtype
+ * @example
+ *   // Expect: string;
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type NameType = $ElementType<Props, 'name'>;
+ *   // Expect: boolean
+ *   type Tuple = [boolean, number];
+ *   type A = $ElementType<Tuple, '0'>;
+ *   // Expect: number
+ *   type B = $ElementType<Tuple, '1'>;
+ *   // Expect: boolean
+ *   type Arr = boolean[];
+ *   type ItemsType = $ElementType<Arr, number>;
+ *   // Expect: number
+ *   type Obj = { [key: string]: number };
+ *   type ValuesType = $ElementType<Obj, string>;
  */
 export type $ElementType<
   T extends { [P in K & any]: any },
@@ -52,6 +93,17 @@ export type $ElementType<
  * $Call
  * @desc get the return type from a given typeof expression
  * @see https://flow.org/en/docs/types/utilities/#toc-call
+ * @example
+ *   // Common use-case
+ *   const add = (amount: number) => ({ type: 'ADD' as 'ADD', payload: amount });
+ *   type AddAction = $Call<typeof returnOfIncrement>; // { type: 'ADD'; payload: number }
+ *   // Examples migrated from Flow docs
+ *   type ExtractPropType<T extends { prop: any }> = (arg: T) => T['prop'];
+ *   type Obj = { prop: number };
+ *   type PropType = $Call<ExtractPropType<Obj>>; // number
+ *   type ExtractReturnType<T extends () => any> = (arg: T) => ReturnType<T>;
+ *   type Fn = () => number;
+ *   type FnReturnType = $Call<ExtractReturnType<Fn>>; // number
  */
 export type $Call<Fn extends (...args: any[]) => any> = Fn extends (
   arg: any
@@ -63,6 +115,10 @@ export type $Call<Fn extends (...args: any[]) => any> = Fn extends (
  * $Shape
  * @desc Copies the shape of the type supplied, but marks every field optional.
  * @see https://flow.org/en/docs/types/utilities/#toc-shape
+ * @example
+ *   // Expect: Partial<Props>
+ *   type Props = { name: string; age: number; visible: boolean };
+ *   type PartialProps = $Shape<Props>;
  */
 export type $Shape<T extends object> = Partial<T>;
 
@@ -70,6 +126,10 @@ export type $Shape<T extends object> = Partial<T>;
  * $NonMaybeType
  * @desc Excludes null and undefined from T
  * @see https://flow.org/en/docs/types/utilities/#toc-nonmaybe
+ * @example
+ *   // Expect: string
+ *   type MaybeName = string | null;
+ *   type Name = $NonMaybeType<MaybeName>;
  */
 export type $NonMaybeType<T> = NonNullable<T>;
 
@@ -77,5 +137,10 @@ export type $NonMaybeType<T> = NonNullable<T>;
  * Class
  * @desc Represents constructor of type T
  * @see https://flow.org/en/docs/types/utilities/#toc-class
+ * @example
+ *   class Store {}
+ *   function makeStore(storeClass: Class<Store>): Store {
+ *     return new storeClass();
+ *   }
  */
 export type Class<T> = new (...args: any[]) => T;
