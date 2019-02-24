@@ -15,7 +15,6 @@ export {
   $Shape,
   $NonMaybeType,
   Class,
-  Brand,
 } from './utility-types';
 
 export {
@@ -40,6 +39,7 @@ export {
   Unionize,
   WritableKeys,
   ReadonlyKeys,
+  Brand,
 } from './mapped-types';
 
 // deprecated
