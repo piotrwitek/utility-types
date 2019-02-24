@@ -23,6 +23,7 @@ import {
   DeepPartial,
   WritableKeys,
   ReadonlyKeys,
+  Brand,
   _DeepNonNullableArray,
   _DeepNonNullableObject,
   _DeepReadonlyArray,
@@ -351,4 +352,10 @@ it('WritableKeys', () => {
 it('ReadonlyKeys', () => {
   // @dts-jest:pass:snap
   testType<ReadonlyKeys<ReadWriteProps>>();
+});
+
+// @dts-jest:group Brand
+it('Brand', () => {
+  // @dts-jest:pass:snap
+  testType<Brand<number, 'USD'>>();
 });

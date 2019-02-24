@@ -79,9 +79,3 @@ export type $NonMaybeType<T> = NonNullable<T>;
  * @see https://flow.org/en/docs/types/utilities/#toc-class
  */
 export type Class<T> = new (...args: any[]) => T;
-
-/**
- * Brand
- * @desc Define nominal type of U based on type of T.
- */
-export type Brand<T, U> = T & { __brand: U };

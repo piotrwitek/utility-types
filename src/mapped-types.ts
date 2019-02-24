@@ -245,3 +245,9 @@ export type WritableKeys<T extends object> = {
 export type ReadonlyKeys<T extends object> = {
   [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, never, P>
 }[keyof T];
+
+/**
+ * Brand
+ * @desc Define nominal type of U based on type of T.
+ */
+export type Brand<T, U> = T & { __brand: U };
