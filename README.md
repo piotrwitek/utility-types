@@ -97,6 +97,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`DeepRequired<T>`](#deeprequiredt)
 * [`DeepNonNullable<T>`](#deepnonnullablet)
 * [`DeepPartial<T>`](#deeppartialt)
+* [`Brand<T, U>`](#brandt-u)
 
 ## Flow's Utility Types
 
@@ -617,6 +618,34 @@ type PartialNestedProps = DeepPartial<NestedProps>;
 ```
 
 [⇧ back to top](#mapped-types)
+
+---
+
+### `Brand<T, U>`
+
+Define nominal type of `U` based on type of `T`.
+
+**Usage:**
+
+```ts
+import { Brand } from 'utility-types';
+
+type USD = Brand<number, "USD">
+type EUR = Brand<number, "EUR">
+
+const tax = 5 as USD;
+const usd = 10 as USD;
+const eur = 10 as EUR;
+
+function gross(net: USD): USD {
+  return (net + tax) as USD;
+}
+
+gross(usd); // ok
+gross(eur); // Type '"EUR"' is not assignable to type '"USD"'.
+```
+
+[⇧ back to top](#flows-utility-types)
 
 ---
 

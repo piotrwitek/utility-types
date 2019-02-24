@@ -39,6 +39,7 @@ export {
   Unionize,
   WritableKeys,
   ReadonlyKeys,
+  Brand,
 } from './mapped-types';
 
 // deprecated

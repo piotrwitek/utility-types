@@ -2,6 +2,8 @@
 
 exports[`Assign testType<Assign<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
 
+exports[`Brand testType<Brand<number, 'USD'>>() 1`] = `"Brand<number, \\"USD\\">"`;
+
 exports[`DeepNonNullable testType<
       DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
     >() 1`] = `"string"`;
