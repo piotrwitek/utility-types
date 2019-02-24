@@ -633,15 +633,16 @@ import { Brand } from 'utility-types';
 type USD = Brand<number, "USD">
 type EUR = Brand<number, "EUR">
 
+const tax = 5 as USD;
 const usd = 10 as USD;
 const eur = 10 as EUR;
 
-function gross(net: USD, tax: USD): USD {
+function gross(net: USD): USD {
   return (net + tax) as USD;
 }
 
-gross(usd, usd); // ok
-gross(eur, usd); // Type '"EUR"' is not assignable to type '"USD"'.
+gross(usd); // ok
+gross(eur); // Type '"EUR"' is not assignable to type '"USD"'.
 ```
 
 [⇧ back to top](#flows-utility-types)
