@@ -1,7 +1,25 @@
 /**
- * Credits to all the people who given inspiration and shared some very usefull code snippets
+ * Credits to all the people who given inspiration and shared some very useful code snippets
  * in the following github issue: https://github.com/Microsoft/TypeScript/issues/12215
  */
+
+/**
+ * Primitive
+ * @desc The primitive types in TypeScript
+ * @example
+ *   // Expect: object
+ *   // type ResultStripPrimitives = Exclude<string | object, Primitive>
+ */
+export type Primitive = number | boolean | string | symbol;
+
+/**
+ * Falsey
+ * @desc The falsey values in TypeScript, except NaN
+ * @example
+ *   // Expect: "a" | "b"
+ *   // type ResultCompact = Exclude<'a' | 'b' | undefined | false, Falsey>;
+ */
+export type Falsey = null | undefined | false | 0 | '';
 
 /**
  * SetIntersection (same as Extract)
