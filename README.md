@@ -1,5 +1,5 @@
 # utility-types
-Collection of generic types for TypeScript, complementing built-in mapped types and aliases - think lodash for reusable types.
+Collection of utility types, complementing TypeScript built-in mapped types and aliases (think "lodash" for static types).
 
 [![Latest Stable Version](https://img.shields.io/npm/v/utility-types.svg)](https://www.npmjs.com/package/utility-types)
 [![Build Status](https://semaphoreci.com/api/v1/piotrekwitek/utility-types/branches/master/shields_badge.svg)](https://semaphoreci.com/piotrekwitek/utility-types)
@@ -62,46 +62,45 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`Primitive`](#primitive)
 * [`Falsey`](#falsey)
 
-## Operations on sets
+## Union operators
 
 * [`SetIntersection<A, B>`](#setintersectiona-b-same-as-extract)
 * [`SetDifference<A, B>`](#setdifferencea-b-same-as-exclude)
 * [`SetComplement<A, A1>`](#setcomplementa-a1)
 * [`SymmetricDifference<A, B>`](#symmetricdifferencea-b)
-* [`NonNullable<A>`](#nonnullablea) (_\*standard-lib_)
-* [`NonUndefined<A>`](#nonundefineda)
-* [`Exclude<A, B>`](#excludea-b) (_\*standard-lib_)
-* [`Extract<A, B>`](#extracta-b) (_\*standard-lib_)
+* [`Exclude<A, B>`](#excludea-b) (_\*built-in_)
+* [`Extract<A, B>`](#extracta-b) (_\*built-in_)
+* [`NonNullable<T>`](#nonnullablea) (_\*built-in_)
+* [`NonUndefined<T>`](#nonundefineda)
 
-## Operations on objects
+## Object operators
 
 * [`FunctionKeys<T>`](#functionkeyst)
 * [`NonFunctionKeys<T>`](#nonfunctionkeyst)
-* [`Pick<T, K>`](#pickt-k) (_\*standard-lib_)
+* [`ReadonlyKeys<T>`](#readonlykeyst)
+* [`WritableKeys<T>`](#writablekeyst)
+* [`Partial<T>`](#partialt) (_\*built-in_)
+* [`DeepPartial<T>`](#deeppartialt)
+* [`Required<T>`](#requiredt) (_\*built-in_)
+* [`DeepRequired<T>`](#deeprequiredt)
+* [`Readonly<T>`](#readonlyt) (_\*built-in_)
+* [`DeepReadonly<T>`](#deepreadonlyt)
+* [`Pick<T, K>`](#pickt-k) (_\*built-in_)
 * [`Omit<T, K>`](#omitt-k)
-* [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
-* [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
+* ~~[`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)~~ WIP
+* ~~[`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)~~ WIP
 * [`Intersection<T, U>`](#intersectiont-u)
 * [`Diff<T, U>`](#difft-u)
 * [`Subtract<T, T1>`](#subtractt-t1)
 * [`Overwrite<T, U>`](#overwritet-u)
 * [`Assign<T, U>`](#assignt-u)
-* [`ReadonlyKeys<T>`](#readonlykeyst)
-* [`WritableKeys<T>`](#writablekeyst)
 
-## Mapped Types
+## Special operators
 
-* [`Partial<T>`](#partialt) (_\*standard-lib_)
-* [`Required<T>`](#requiredt) (_\*standard-lib_)
-* [`Readonly<T>`](#readonlyt) (_\*standard-lib_)
-* [`ReturnType<T>`](#returntypet) (_\*standard-lib_)
-* [`InstanceType<T>`](#instancetypet) (_\*standard-lib_)
+* [`ReturnType<T>`](#returntypet) (_\*built-in_)
+* [`InstanceType<T>`](#instancetypet) (_\*built-in_)
+* [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
-* [`PromiseType<T>`](#promisetypet) (replaced deprecated `UnboxPromise<T>`)
-* [`DeepReadonly<T>`](#deepreadonlyt)
-* [`DeepRequired<T>`](#deeprequiredt)
-* [`DeepNonNullable<T>`](#deepnonnullablet)
-* [`DeepPartial<T>`](#deeppartialt)
 * [`Brand<T, U>`](#brandt-u)
 
 ## Flow's Utility Types
@@ -122,7 +121,18 @@ Issues can be funded by anyone and the money will be transparently distributed t
 
 ---
 
-## Operations on sets
+### `Primitive`
+
+Type representing primitive types in TypeScript: `number | boolean | string | symbol`
+
+[⇧ back to top](#table-of-contents)
+
+### `Falsey`
+
+Type representing falsey values in TypeScript: `null | undefined | false | 0 | ''`
+> Except `NaN` which cannot be represented as a type literal
+
+[⇧ back to top](#table-of-contents)
 
 ### `SetIntersection<A, B>` (same as Extract)
 
@@ -139,7 +149,7 @@ type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
 // Expect: () => void
 ```
 
-[⇧ back to top](#operations-on-sets)
+[⇧ back to top](#table-of-contents)
 
 ### `SetDifference<A, B>` (same as Exclude)
 
@@ -156,7 +166,7 @@ type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
 // Expect: string | number
 ```
 
-[⇧ back to top](#operations-on-sets)
+[⇧ back to top](#table-of-contents)
 
 ### `SetComplement<A, A1>`
 
@@ -171,7 +181,7 @@ type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
 // Expect: "1"
 ```
 
-[⇧ back to top](#operations-on-sets)
+[⇧ back to top](#table-of-contents)
 
 ### `SymmetricDifference<A, B>`
 
@@ -186,49 +196,31 @@ type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "1" | "4"
 ```
 
-[⇧ back to top](#operations-on-sets)
+[⇧ back to top](#table-of-contents)
 
 ### `NonNullable<A>`
 
 Exclude `null` and `undefined` from set `A`
 
-[⇧ back to top](#operations-on-sets)
+[⇧ back to top](#table-of-contents)
 
 ### `NonUndefined<A>`
 
 Exclude `undefined` from set `A`
 
-[⇧ back to top](#operations-on-sets)
+[⇧ back to top](#table-of-contents)
 
 ### `Exclude<A, B>`
 
 Exclude subset `B` from set `A`
 
-[⇧ back to top](#operations-on-sets)
+[⇧ back to top](#table-of-contents)
 
 ### `Extract<A, B>`
 
 Extract subset `B` from set `A`
 
-[⇧ back to top](#operations-on-sets)
-
----
-
-## Aliases
-
-### `Primitive`
-
-The primitive types in TypeScript
-
-[⇧ back to top](#aliases)
-
-### `Falsey`
-
-The falsey values in TypeScript, except NaN which cannot be represented as a type literal
-
-[⇧ back to top](#aliases)
-
----
+[⇧ back to top](#table-of-contents)
 
 ## Operations on objects
 
@@ -246,7 +238,7 @@ type FunctionKeysProps = FunctionKeys<MixedProps>;
 // Expect: "setName"
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `NonFunctionKeys<T>`
 
@@ -262,13 +254,13 @@ type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
 // Expect: "name"
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `Pick<T, K>`
 
 From `T` pick a set of properties `K`
 
-> _(part of standard-lib)_
+> _(part of built-in)_
 
 **Usage:**
 
@@ -279,7 +271,7 @@ type RequiredProps = Pick<Props, 'name'>;
 // Expect: { name: string }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `Omit<T, K>`
 
@@ -296,7 +288,7 @@ type RequiredProps = Omit<Props, 'age'>;
 // Expect: { name: string; visible: boolean; }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `PickByValue<T, ValueType>`
 
@@ -314,7 +306,7 @@ type RequiredProps = PickByValue<Props, string | number>;
 // Expect: { name: string; age: number }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `OmitByValue<T, ValueType>`
 
@@ -332,7 +324,7 @@ type RequiredProps = OmitByValue<Props, string | number>;
 // Expect: { visible: boolean }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `Intersection<T, U>`
 
@@ -350,7 +342,7 @@ type DuplicatedProps = Intersection<Props, DefaultProps>;
 // Expect: { age: number; }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `Diff<T, U>`
 
@@ -368,7 +360,7 @@ type RequiredProps = Diff<Props, DefaultProps>;
 // Expect: { name: string; visible: boolean; }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `Subtract<T, T1>`
 
@@ -386,7 +378,7 @@ type RequiredProps = Subtract<Props, DefaultProps>;
 // Expect: { name: string; visible: boolean; }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `Overwrite<T, U>`
 
@@ -404,7 +396,7 @@ type ReplacedProps = Overwrite<Props, NewProps>;
 // Expect: { name: string; age: string; visible: boolean; }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `Assign<T, U>`
 
@@ -422,7 +414,7 @@ type ExtendedProps = Assign<Props, NewProps>;
 // Expect: { name: string; age: number; visible: boolean; other: string; }
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `ReadonlyKeys<T>`
 
@@ -438,7 +430,7 @@ type ReadonlyProps = ReadonlyKeys<Props>;
 // Expect: "foo"
 ```
 
-[⇧ back to top](#operations-on-objects)
+[⇧ back to top](#table-of-contents)
 
 ### `WritableKeys<T>`
 
@@ -454,41 +446,37 @@ type WritableProps = WritableKeys<Props>;
 // Expect: "bar"
 ```
 
-[⇧ back to top](#operations-on-objects)
-
----
-
-## Mapped Types
+[⇧ back to top](#table-of-contents)
 
 ### `Partial<T>`
 
 Make all properties of object type optional
 
-[⇧ back to top](#mapped-types)
+[⇧ back to top](#table-of-contents)
 
 ### `Required<T>`
 
 Make all properties of object type non-optional
 
-[⇧ back to top](#mapped-types)
+[⇧ back to top](#table-of-contents)
 
 ### `Readonly<T>`
 
 Make all properties of object type readonly
 
-[⇧ back to top](#mapped-types)
+[⇧ back to top](#table-of-contents)
 
 ### `ReturnType<T>`
 
 Obtain the return type of a function
 
-[⇧ back to top](#mapped-types)
+[⇧ back to top](#table-of-contents)
 
 ### `InstanceType<T>`
 
 Obtain the instance type of a class
 
-[⇧ back to top](#mapped-types)
+[⇧ back to top](#table-of-contents)
 
 ### `Unionize<T>`
 
@@ -505,7 +493,7 @@ type UnionizedType = Unionize<Props>;
 // Expect: { name: string; } | { age: number; } | { visible: boolean; }
 ```
 
-[⇧ back to top](#mapped-types)
+[⇧ back to top](#table-of-contents)
 
 ### `PromiseType<T>`
 
@@ -520,7 +508,7 @@ type Response = PromiseType<Promise<string>>;
 // Expect: string
 ```
 
-[⇧ back to top](#mapped-types)
+[⇧ back to top](#table-of-contents)
 
 ### `DeepReadonly<T>`
 
@@ -548,9 +536,7 @@ type ReadonlyNestedProps = DeepReadonly<NestedProps>;
 // }
 ```
 
-[⇧ back to top](#mapped-types)
-
----
+[⇧ back to top](#table-of-contents)
 
 ### `DeepRequired<T>`
 
@@ -578,9 +564,7 @@ type RequiredNestedProps = DeepRequired<NestedProps>;
 // }
 ```
 
-[⇧ back to top](#mapped-types)
-
----
+[⇧ back to top](#table-of-contents)
 
 ### `DeepNonNullable<T>`
 
@@ -608,9 +592,7 @@ type RequiredNestedProps = DeepNonNullable<NestedProps>;
 // }
 ```
 
-[⇧ back to top](#mapped-types)
-
----
+[⇧ back to top](#table-of-contents)
 
 ### `DeepPartial<T>`
 
@@ -638,9 +620,7 @@ type PartialNestedProps = DeepPartial<NestedProps>;
 // }
 ```
 
-[⇧ back to top](#mapped-types)
-
----
+[⇧ back to top](#table-of-contents)
 
 ### `Brand<T, U>`
 
@@ -873,7 +853,6 @@ https://flow.org/en/docs/types/utilities/#toc-class
 ```ts
 import { Class } from 'utility-types';
 
-class Store {}
 
 function makeStore(storeClass: Class<Store>): Store {
   return new storeClass();

@@ -5,7 +5,7 @@
 
 /**
  * Primitive
- * @desc The primitive types in TypeScript
+ * @desc Type representing primitive types in TypeScript: `number | boolean | string | symbol`
  * @example
  *   // Expect: object
  *   // type ResultStripPrimitives = Exclude<string | object, Primitive>
@@ -14,7 +14,7 @@ export type Primitive = number | boolean | string | symbol;
 
 /**
  * Falsey
- * @desc The falsey values in TypeScript, except NaN
+ * @desc Type representing falsey values in TypeScript: `null | undefined | false | 0 | ''`
  * @example
  *   // Expect: "a" | "b"
  *   // type ResultCompact = Exclude<'a' | 'b' | undefined | false, Falsey>;
@@ -373,22 +373,24 @@ export type _DeepNonNullableObject<T> = {
  *   };
  *   type PartialNestedProps = DeepPartial<NestedProps>;
  */
-export type DeepPartial<T> =
-  T extends Function ? T :
-  T extends Array<infer U> ? _DeepPartialArray<U> :
-  T extends object ? _DeepPartialObject<T> :
-  T | undefined;
+export type DeepPartial<T> = T extends Function
+  ? T
+  : T extends Array<infer U>
+  ? _DeepPartialArray<U>
+  : T extends object
+  ? _DeepPartialObject<T>
+  : T | undefined;
 /** @private */
 // tslint:disable-next-line:class-name
-export interface _DeepPartialArray<T> extends Array<DeepPartial<T>> { }
+export interface _DeepPartialArray<T> extends Array<DeepPartial<T>> {}
 /** @private */
-export type _DeepPartialObject<T> = {
-  [P in keyof T]?: DeepPartial<T[P]>;
-};
+export type _DeepPartialObject<T> = { [P in keyof T]?: DeepPartial<T[P]> };
 
-type IfEquals<X, Y, A = X, B = never> =
-  (<T>() => T extends X ? 1 : 2) extends
-    (<T>() => T extends Y ? 1 : 2) ? A : B;
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
+  ? 1
+  : 2) extends (<T>() => T extends Y ? 1 : 2)
+  ? A
+  : B;
 
 /**
  * WritableKeys
@@ -401,7 +403,11 @@ type IfEquals<X, Y, A = X, B = never> =
  *   type WritableProps = WritableKeys<Props>;
  */
 export type WritableKeys<T extends object> = {
-  [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, P>
+  [P in keyof T]-?: IfEquals<
+    { [Q in P]: T[P] },
+    { -readonly [Q in P]: T[P] },
+    P
+  >
 }[keyof T];
 
 /**
@@ -415,7 +421,12 @@ export type WritableKeys<T extends object> = {
  *   type ReadonlyProps = ReadonlyKeys<Props>;
  */
 export type ReadonlyKeys<T extends object> = {
-  [P in keyof T]-?: IfEquals<{ [Q in P]: T[P] }, { -readonly [Q in P]: T[P] }, never, P>
+  [P in keyof T]-?: IfEquals<
+    { [Q in P]: T[P] },
+    { -readonly [Q in P]: T[P] },
+    never,
+    P
+  >
 }[keyof T];
 
 /**
