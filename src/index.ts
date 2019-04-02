@@ -6,23 +6,24 @@
 
 export {
   $Call,
-  $Keys,
-  $Values,
-  $ReadOnly,
   $Diff,
-  $PropertyType,
   $ElementType,
-  $Shape,
+  $Keys,
   $NonMaybeType,
+  $PropertyType,
+  $ReadOnly,
+  $Shape,
+  $Values,
   Class,
 } from './utility-types';
 
 export {
   Assign,
-  DeepReadonly,
-  DeepRequired,
+  Brand,
   DeepNonNullable,
   DeepPartial,
+  DeepReadonly,
+  DeepRequired,
   Diff,
   Falsey,
   FunctionKeys,
@@ -33,6 +34,7 @@ export {
   Overwrite,
   Primitive,
   PromiseType,
+  ReadonlyKeys,
   SetComplement,
   SetDifference,
   SetIntersection,
@@ -40,8 +42,6 @@ export {
   SymmetricDifference,
   Unionize,
   WritableKeys,
-  ReadonlyKeys,
-  Brand,
 } from './mapped-types';
 
 // deprecated
