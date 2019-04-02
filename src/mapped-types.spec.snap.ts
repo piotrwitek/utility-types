@@ -1,5 +1,7 @@
 import { testType } from '../utils/test-utils';
 import {
+  Primitive,
+  Falsey,
   SetIntersection,
   SetDifference,
   SetComplement,
@@ -47,6 +49,18 @@ type ReadWriteProps = { readonly a: number; b: string };
 /**
  * Tests
  */
+
+// @dts-jest:group Primitive
+it('Primitive', () => {
+  // @dts-jest:pass:snap -> Primitive
+  testType<Primitive>();
+});
+
+// @dts-jest:group Falsey
+it('Falsey', () => {
+  // @dts-jest:pass:snap -> Falsey
+  testType<Falsey>();
+});
 
 // @dts-jest:group SetIntersection
 it('SetIntersection', () => {
