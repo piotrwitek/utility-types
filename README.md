@@ -57,6 +57,11 @@ Issues can be funded by anyone and the money will be transparently distributed t
 
 # Table of Contents
 
+## Aliases
+
+* [`Primitive`](#primitive)
+* [`Falsey`](#falsey)
+
 ## Operations on sets
 
 * [`SetIntersection<A, B>`](#setintersectiona-b-same-as-extract)
@@ -206,6 +211,22 @@ Exclude subset `B` from set `A`
 Extract subset `B` from set `A`
 
 [⇧ back to top](#operations-on-sets)
+
+---
+
+## Aliases
+
+### `Primitive`
+
+The primitive types in TypeScript
+
+[⇧ back to top](#aliases)
+
+### `Falsey`
+
+The falsey values in TypeScript, except NaN which cannot be represented as a type literal
+
+[⇧ back to top](#aliases)
 
 ---
 

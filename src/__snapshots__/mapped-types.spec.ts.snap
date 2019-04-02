@@ -82,6 +82,8 @@ exports[`DeepRequired testType<ReturnType<DeepRequired<NestedFunctionProps>['fir
 
 exports[`Diff testType<Diff<Props, NewProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
+exports[`Falsey testType<Falsey>() 1`] = `"Falsey"`;
+
 exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() 1`] = `"\\"setName\\""`;
 
 exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\"> | Pick<NewProps, \\"age\\">"`;
@@ -103,6 +105,8 @@ exports[`OmitByValue testType<OmitByValue<Props, string | number>>() 1`] = `"Pic
 exports[`Overwrite testType<Overwrite<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
 exports[`PickByValue testType<PickByValue<Props, string | number>>() 1`] = `"Pick<Props, \\"name\\" | \\"age\\">"`;
+
+exports[`Primitive testType<Primitive>() 1`] = `"Primitive"`;
 
 exports[`PromiseType testType<PromiseType<Promise<string>>>() 1`] = `"string"`;
 
