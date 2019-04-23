@@ -69,7 +69,6 @@ export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
  */
 export type NonUndefined<A> = A extends undefined ? never : A;
 
-
 /**
  * GetKeys
  * @desc get union type of keys in object type `T`
