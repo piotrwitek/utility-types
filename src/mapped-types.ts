@@ -70,7 +70,7 @@ export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
 export type NonUndefined<A> = A extends undefined ? never : A;
 
 /**
- * GetKeys
+ * Keys
  * @desc get union type of keys in object type `T`
  * @example
  *   type MixedProps = { name: string; setName: (name: string) => void };
@@ -78,9 +78,7 @@ export type NonUndefined<A> = A extends undefined ? never : A;
  *   // Expect: "name" | "setName"
  *   type FunctionKeysProps = FunctionKeys<MixedProps>;
  */
-export type Keys<T extends object> = {
-  [K in keyof T]: T[K] extends any ? K : never
-}[keyof T];
+export type Keys<T extends object> = keyof T
 
 /**
  * FunctionKeys
