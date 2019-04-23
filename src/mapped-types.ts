@@ -78,7 +78,7 @@ export type NonUndefined<A> = A extends undefined ? never : A;
  *   // Expect: "name" | "setName"
  *   type FunctionKeysProps = FunctionKeys<MixedProps>;
  */
-export type Keys<T extends object> = keyof T
+export type Keys<T extends object> = keyof T;
 
 /**
  * FunctionKeys
