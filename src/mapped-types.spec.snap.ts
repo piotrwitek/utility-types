@@ -110,56 +110,100 @@ it('NonFunctionKeys', () => {
   testType<NonFunctionKeys<MixedProps>>();
 });
 
-// @dts-jest:group Omit
-it('Omit', () => {
-  // @dts-jest:pass:snap -> Pick<Props, "name" | "visible">
-  testType<Omit<Props, 'age'>>();
-  // @dts-jest:pass:snap -> Pick<Props, "name" | "visible"> | Pick<NewProps, "other">
-  testType<Omit<Props | NewProps, 'age'>>();
-});
-
 // @dts-jest:group PickByValue
 it('PickByValue', () => {
   // @dts-jest:pass:snap -> Pick<Props, "name" | "age">
   testType<PickByValue<Props, string | number>>();
 });
 
+// @dts-jest:group Omit
+it('Omit', () => {
+  // @dts-jest:pass:snap -> Omit<Props, "age">
+  testType<Omit<Props, 'age'>>();
+  // @dts-jest:pass:snap -> Omit<Props | NewProps, "age">
+  testType<Omit<Props | NewProps, 'age'>>();
+
+  const fn = <T extends Props>(props: T) => {
+    // @dts-jest:pass:snap -> Omit<T, "age">
+    testType<Omit<T, 'age'>>();
+
+    const { age, ...rest } = props;
+    // @dts-jest:pass:snap -> any
+    const result: Omit<T, 'age'> = rest;
+  };
+});
+
 // @dts-jest:group OmitByValue
 it('OmitByValue', () => {
   // @dts-jest:pass:snap -> Pick<Props, "visible">
   testType<OmitByValue<Props, string | number>>();
+
+  const fn = <T extends Props>(props: T) => {
+    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]: T[Key] extends string | number ? never : Key; }[keyof T]>
+    testType<OmitByValue<T, string | number>>();
+  };
 });
 
 // @dts-jest:group Intersection
 it('Intersection', () => {
   // @dts-jest:pass:snap -> Pick<Props, "age">
   testType<Intersection<Props, DefaultProps>>();
-  // @dts-jest:pass:snap -> Pick<Props, "age"> | Pick<NewProps, "age">
+  // @dts-jest:pass:snap -> Pick<Props | NewProps, "age">
   testType<Intersection<Props | NewProps, DefaultProps>>();
+
+  const fn = <T extends Props>(props: T) => {
+    const { age, ...rest } = props;
+    // @dts-jest:pass:snap -> any
+    const result: Intersection<T, Omit<T, 'age'>> = rest;
+  };
 });
 
 // @dts-jest:group Diff
 it('Diff', () => {
   // @dts-jest:pass:snap -> Pick<Props, "name" | "visible">
   testType<Diff<Props, NewProps>>();
+
+  const fn = <T extends Props>(props: T) => {
+    const { age, ...rest } = props;
+    // @dts-jest:pass:snap -> any
+    const result: Diff<T, Pick<T, 'age'>> = rest;
+  };
 });
 
 // @dts-jest:group Subtract
 it('Subtract', () => {
   // @dts-jest:pass:snap -> Pick<Props, "name" | "visible">
   testType<Subtract<Props, DefaultProps>>();
+
+  const fn = <T extends Props>(props: T) => {
+    const { age, ...rest } = props;
+    // @dts-jest:pass:snap -> any
+    const result: Subtract<T, Pick<T, 'age'>> = rest;
+  };
 });
 
 // @dts-jest:group Overwrite
 it('Overwrite', () => {
   // @dts-jest:pass:snap -> Pick<Pick<Props, "name" | "visible"> & Pick<NewProps, "age">, "name" | "age" | "visible">
   testType<Overwrite<Props, NewProps>>();
+
+  const fn = <T extends Props>(props: T) => {
+    const { age, ...rest } = props;
+    // @dts-jest:pass:snap -> any
+    const result: Overwrite<Omit<T, 'age'>, T> = rest;
+  };
 });
 
 // @dts-jest:group Assign
 it('Assign', () => {
   // @dts-jest:pass:snap -> Pick<Pick<Props, "name" | "visible"> & Pick<NewProps, "age"> & Pick<NewProps, "other">, "name" | "age" | "visible" | "other">
   testType<Assign<Props, NewProps>>();
+
+  const fn = <T extends Props>(props: T) => {
+    const { age, ...rest } = props;
+    // @dts-jest:pass:snap -> any
+    const result: Assign<{}, Omit<T, 'age'>> = rest;
+  };
 });
 
 // @dts-jest:group Unionize
