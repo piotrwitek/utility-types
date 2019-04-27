@@ -104,9 +104,7 @@ export type NonFunctionKeys<T extends object> = {
  *   // Expect: { name: string; visible: boolean; }
  *   type RequiredProps = Omit<Props, 'age'>;
  */
-export type Omit<T extends object, K extends keyof T> = T extends any
-  ? Pick<T, SetDifference<keyof T, K>>
-  : never;
+export type Omit<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P] };
 
 /**
  * PickByValue
@@ -148,9 +146,10 @@ export type OmitByValue<T, ValueType> = Pick<
  *   // Expect: { age: number; }
  *   type DuplicatedProps = Intersection<Props, DefaultProps>;
  */
-export type Intersection<T extends object, U extends object> = T extends any
-  ? Pick<T, SetIntersection<keyof T, keyof U>>
-  : never;
+export type Intersection<T extends object, U extends object> = Pick<
+  T,
+  Extract<keyof T, keyof U> & Extract<keyof U, keyof T>
+>;
 
 /**
  * Diff

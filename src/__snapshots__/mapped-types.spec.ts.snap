@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Assign const result: Assign<{}, Omit<T, 'age'>> = rest 1`] = `"any"`;
+
 exports[`Assign testType<Assign<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
 
 exports[`Brand testType<Brand<number, 'USD'>>() 1`] = `"Brand<number, \\"USD\\">"`;
@@ -80,13 +82,17 @@ exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']['nam
 
 exports[`DeepRequired testType<ReturnType<DeepRequired<NestedFunctionProps>['first']['second']>>() 1`] = `"string"`;
 
+exports[`Diff const result: Diff<T, Pick<T, 'age'>> = rest 1`] = `"any"`;
+
 exports[`Diff testType<Diff<Props, NewProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
 exports[`Falsey testType<Falsey>() 1`] = `"Falsey"`;
 
 exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() 1`] = `"\\"setName\\""`;
 
-exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\"> | Pick<NewProps, \\"age\\">"`;
+exports[`Intersection const result: Intersection<T, Omit<T, 'age'>> = rest 1`] = `"any"`;
+
+exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() 1`] = `"Pick<Props | NewProps, \\"age\\">"`;
 
 exports[`Intersection testType<Intersection<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\">"`;
 
@@ -96,11 +102,19 @@ exports[`NonUndefined testType<NonUndefined<'1' | '2' | undefined>>() 1`] = `"\\
 
 exports[`NonUndefined testType<NonUndefined<undefined>>() 1`] = `"never"`;
 
-exports[`Omit testType<Omit<Props | NewProps, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\"> | Pick<NewProps, \\"other\\">"`;
+exports[`Omit const result: Omit<T, 'age'> = rest 1`] = `"any"`;
 
-exports[`Omit testType<Omit<Props, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+exports[`Omit testType<Omit<Props | NewProps, 'age'>>() 1`] = `"Omit<Props | NewProps, \\"age\\">"`;
+
+exports[`Omit testType<Omit<Props, 'age'>>() 1`] = `"Omit<Props, \\"age\\">"`;
+
+exports[`Omit testType<Omit<T, 'age'>>() 1`] = `"Omit<T, \\"age\\">"`;
 
 exports[`OmitByValue testType<OmitByValue<Props, string | number>>() 1`] = `"Pick<Props, \\"visible\\">"`;
+
+exports[`OmitByValue testType<OmitByValue<T, string | number>>() 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends string | number ? never : Key; }[keyof T]>"`;
+
+exports[`Overwrite const result: Overwrite<Omit<T, 'age'>, T> = rest 1`] = `"any"`;
 
 exports[`Overwrite testType<Overwrite<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
@@ -121,6 +135,8 @@ exports[`SetDifference testType<SetDifference<string | number | (() => void), ()
 exports[`SetIntersection testType<SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"2\\" | \\"3\\""`;
 
 exports[`SetIntersection testType<SetIntersection<string | number | (() => void), () => void>>() 1`] = `"() => void"`;
+
+exports[`Subtract const result: Subtract<T, Pick<T, 'age'>> = rest 1`] = `"any"`;
 
 exports[`Subtract testType<Subtract<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
