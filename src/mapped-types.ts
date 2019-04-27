@@ -8,7 +8,7 @@
  * @desc Type representing primitive types in TypeScript: `number | boolean | string | symbol`
  * @example
  *   // Expect: object
- *   // type ResultStripPrimitives = Exclude<string | object, Primitive>
+ *   type ResultStripPrimitives = Exclude<string | object, Primitive>
  */
 export type Primitive = number | boolean | string | symbol;
 
@@ -17,7 +17,7 @@ export type Primitive = number | boolean | string | symbol;
  * @desc Type representing falsey values in TypeScript: `null | undefined | false | 0 | ''`
  * @example
  *   // Expect: "a" | "b"
- *   // type ResultCompact = Exclude<'a' | 'b' | undefined | false, Falsey>;
+ *   type ResultCompact = Exclude<'a' | 'b' | undefined | false, Falsey>;
  */
 export type Falsey = null | undefined | false | 0 | '';
 
@@ -93,6 +93,73 @@ export type FunctionKeys<T extends object> = {
  */
 export type NonFunctionKeys<T extends object> = {
   [K in keyof T]: T[K] extends Function ? never : K
+}[keyof T];
+
+/**
+ * WritableKeys
+ * @desc get union type of keys that are writable in object type `T`
+ * Credit: Matt McCutchen
+ * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
+ * @example
+ *   type Props = { readonly foo: string; bar: number };
+ *
+ *   // Expect: "bar"
+ *   type WritableProps = WritableKeys<Props>;
+ */
+export type WritableKeys<T extends object> = {
+  [P in keyof T]-?: IfEquals<
+    { [Q in P]: T[P] },
+    { -readonly [Q in P]: T[P] },
+    P
+  >
+}[keyof T];
+
+/**
+ * ReadonlyKeys
+ * @desc get union type of keys that are readonly in object type `T`
+ * Credit: Matt McCutchen
+ * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
+ * @example
+ *   type Props = { readonly foo: string; bar: number };
+ *
+ *   // Expect: "foo"
+ *   type ReadonlyProps = ReadonlyKeys<Props>;
+ */
+export type ReadonlyKeys<T extends object> = {
+  [P in keyof T]-?: IfEquals<
+    { [Q in P]: T[P] },
+    { -readonly [Q in P]: T[P] },
+    never,
+    P
+  >
+}[keyof T];
+
+/**
+ * RequiredKeys
+ * @desc get union type of keys that are required in object type `T`
+ * @see https://stackoverflow.com/questions/52984808/is-there-a-way-to-get-all-required-properties-of-a-typescript-object
+ * @example
+ *   type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
+ *
+ *   // Expect: "req" | "reqUndef"
+ *   type RequiredProps = RequiredKeys<Props>;
+ */
+export type RequiredKeys<T> = {
+  [K in keyof T]-?: {} extends Pick<T, K> ? never : K
+}[keyof T];
+
+/**
+ * OptionalKeys
+ * @desc get union type of keys that are optional in object type `T`
+ * @see https://stackoverflow.com/questions/52984808/is-there-a-way-to-get-all-required-properties-of-a-typescript-object
+ * @example
+ *   type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
+ *
+ *   // Expect: "opt" | "optUndef"
+ *   type OptionalProps = OptionalKeys<Props>;
+ */
+export type OptionalKeys<T> = {
+  [K in keyof T]-?: {} extends Pick<T, K> ? K : never
 }[keyof T];
 
 /**
@@ -391,43 +458,6 @@ type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
   : 2) extends (<T>() => T extends Y ? 1 : 2)
   ? A
   : B;
-
-/**
- * WritableKeys
- * @desc get union type of keys that are writable in object type `T`
- * Credit: Matt McCutchen
- * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
- * @example
- *   // Expect: "bar"
- *   type Props = { readonly foo: string; bar: number };
- *   type WritableProps = WritableKeys<Props>;
- */
-export type WritableKeys<T extends object> = {
-  [P in keyof T]-?: IfEquals<
-    { [Q in P]: T[P] },
-    { -readonly [Q in P]: T[P] },
-    P
-  >
-}[keyof T];
-
-/**
- * ReadonlyKeys
- * @desc get union type of keys that are readonly in object type `T`
- * Credit: Matt McCutchen
- * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
- * @example
- *   // Expect: "foo"
- *   type Props = { readonly foo: string; bar: number };
- *   type ReadonlyProps = ReadonlyKeys<Props>;
- */
-export type ReadonlyKeys<T extends object> = {
-  [P in keyof T]-?: IfEquals<
-    { [Q in P]: T[P] },
-    { -readonly [Q in P]: T[P] },
-    never,
-    P
-  >
-}[keyof T];
 
 /**
  * Brand

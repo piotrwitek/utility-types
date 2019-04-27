@@ -79,6 +79,8 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`NonFunctionKeys<T>`](#nonfunctionkeyst)
 * [`ReadonlyKeys<T>`](#readonlykeyst)
 * [`WritableKeys<T>`](#writablekeyst)
+* [`RequiredKeys<T>`](#requiredkeyst)
+* [`OptionalKeys<T>`](#optionalkeyst)
 * [`Partial<T>`](#partialt) (_\*built-in_)
 * [`DeepPartial<T>`](#deeppartialt)
 * [`Required<T>`](#requiredt) (_\*built-in_)
@@ -143,10 +145,10 @@ Set intersection of given union types `A` and `B`
 ```ts
 import { SetIntersection } from 'utility-types';
 
-type ResultSet = SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "2" | "3"
-type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
+type ResultSet = SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: () => void
+type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -160,10 +162,10 @@ Set difference of given union types `A` and `B`
 ```ts
 import { SetDifference } from 'utility-types';
 
-type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "1"
-type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
+type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: string | number
+type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -177,8 +179,8 @@ Set complement of given union types `A` and (it's subset) `A1`
 ```ts
 import { SetComplement } from 'utility-types';
 
-type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
 // Expect: "1"
+type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -192,8 +194,8 @@ Set difference of union and intersection of given union types `A` and `B`
 ```ts
 import { SymmetricDifference } from 'utility-types';
 
-type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 // Expect: "1" | "4"
+type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -234,8 +236,9 @@ Get union type of keys that are functions in object type `T`
 import { FunctionKeys } from 'utility-types';
 
 type MixedProps = { name: string; setName: (name: string) => void };
-type FunctionKeysProps = FunctionKeys<MixedProps>;
+
 // Expect: "setName"
+type FunctionKeysProps = FunctionKeys<MixedProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -250,8 +253,77 @@ Get union type of keys that are non-functions in object type `T`
 import { NonFunctionKeys } from 'utility-types';
 
 type MixedProps = { name: string; setName: (name: string) => void };
-type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
+
 // Expect: "name"
+type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `ReadonlyKeys<T>`
+
+Get union type of keys that are readonly in object type `T`
+
+**Usage:**
+
+```ts
+import { ReadonlyKeys } from 'utility-types';
+
+type Props = { readonly foo: string; bar: number };
+
+// Expect: "foo"
+type ReadonlyProps = ReadonlyKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `WritableKeys<T>`
+
+Get union type of keys that are writable (not readonly) in object type `T`
+
+**Usage:**
+
+```ts
+import { WritableKeys } from 'utility-types';
+
+type Props = { readonly foo: string; bar: number };
+
+// Expect: "bar"
+type WritableProps = WritableKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `RequiredKeys<T>`
+
+Get union type of keys that are required in object type `T`
+
+**Usage:**
+
+```ts
+import { RequiredKeys } from 'utility-types';
+
+type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
+
+// Expect: "req" | "reqUndef"
+type RequiredProps = ReadonlyKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `OptionalKeys<T>`
+
+Get union type of keys that are optional in object type `T`
+
+**Usage:**
+
+```ts
+import { OptionalKeys } from 'utility-types';
+
+type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
+
+// Expect: "opt" | "optUndef"
+type OptionalProps = OptionalKeys<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -267,8 +339,8 @@ From `T` pick a set of properties `K`
 ```ts
 type Props = { name: string; age: number; visible: boolean };
 
-type RequiredProps = Pick<Props, 'name'>;
 // Expect: { name: string }
+type RequiredProps = Pick<Props, 'name'>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -284,8 +356,8 @@ import { Omit } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-type RequiredProps = Omit<Props, 'age'>;
 // Expect: { name: string; visible: boolean; }
+type RequiredProps = Omit<Props, 'age'>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -302,8 +374,8 @@ import { PickByValue } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-type RequiredProps = PickByValue<Props, string | number>;
 // Expect: { name: string; age: number }
+type RequiredProps = PickByValue<Props, string | number>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -320,8 +392,8 @@ import { OmitByValue } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-type RequiredProps = OmitByValue<Props, string | number>;
 // Expect: { visible: boolean }
+type RequiredProps = OmitByValue<Props, string | number>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -338,8 +410,8 @@ import { Intersection } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 
-type DuplicatedProps = Intersection<Props, DefaultProps>;
 // Expect: { age: number; }
+type DuplicatedProps = Intersection<Props, DefaultProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -356,8 +428,8 @@ import { Diff } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 
-type RequiredProps = Diff<Props, DefaultProps>;
 // Expect: { name: string; visible: boolean; }
+type RequiredProps = Diff<Props, DefaultProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -374,8 +446,8 @@ import { Subtract } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 
-type RequiredProps = Subtract<Props, DefaultProps>;
 // Expect: { name: string; visible: boolean; }
+type RequiredProps = Subtract<Props, DefaultProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -392,8 +464,8 @@ import { Overwrite } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 type NewProps = { age: string; other: string };
 
-type ReplacedProps = Overwrite<Props, NewProps>;
 // Expect: { name: string; age: string; visible: boolean; }
+type ReplacedProps = Overwrite<Props, NewProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -410,40 +482,8 @@ import { Assign } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 type NewProps = { age: string; other: string };
 
-type ExtendedProps = Assign<Props, NewProps>;
 // Expect: { name: string; age: number; visible: boolean; other: string; }
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `ReadonlyKeys<T>`
-
-Get union type of keys that are readonly in object type `T`
-
-**Usage:**
-
-```ts
-import { ReadonlyKeys } from 'utility-types';
-
-type Props = { readonly foo: string; bar: number };
-type ReadonlyProps = ReadonlyKeys<Props>;
-// Expect: "foo"
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `WritableKeys<T>`
-
-Get union type of keys that are writable (not readonly) in object type `T`
-
-**Usage:**
-
-```ts
-import { WritableKeys } from 'utility-types';
-
-type Props = { readonly foo: string; bar: number };
-type WritableProps = WritableKeys<Props>;
-// Expect: "bar"
+type ExtendedProps = Assign<Props, NewProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -489,8 +529,8 @@ import { Unionize } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-type UnionizedType = Unionize<Props>;
 // Expect: { name: string; } | { age: number; } | { visible: boolean; }
+type UnionizedType = Unionize<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -504,8 +544,8 @@ Obtain Promise resolve type
 ```ts
 import { PromiseType } from 'utility-types';
 
-type Response = PromiseType<Promise<string>>;
 // Expect: string
+type Response = PromiseType<Promise<string>>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -526,7 +566,7 @@ type NestedProps = {
     };
   };
 };
-type ReadonlyNestedProps = DeepReadonly<NestedProps>;
+
 // Expect: {
 //   readonly first: {
 //     readonly second: {
@@ -534,6 +574,7 @@ type ReadonlyNestedProps = DeepReadonly<NestedProps>;
 //     };
 //   };
 // }
+type ReadonlyNestedProps = DeepReadonly<NestedProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -554,7 +595,7 @@ type NestedProps = {
     };
   };
 };
-type RequiredNestedProps = DeepRequired<NestedProps>;
+
 // Expect: {
 //   first: {
 //     second: {
@@ -562,6 +603,7 @@ type RequiredNestedProps = DeepRequired<NestedProps>;
 //     };
 //   };
 // }
+type RequiredNestedProps = DeepRequired<NestedProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -582,7 +624,7 @@ type NestedProps = {
     };
   };
 };
-type RequiredNestedProps = DeepNonNullable<NestedProps>;
+
 // Expect: {
 //   first: {
 //     second: {
@@ -590,6 +632,7 @@ type RequiredNestedProps = DeepNonNullable<NestedProps>;
 //     };
 //   };
 // }
+type RequiredNestedProps = DeepNonNullable<NestedProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -610,7 +653,7 @@ type NestedProps = {
     };
   };
 };
-type PartialNestedProps = DeepPartial<NestedProps>;
+
 // Expect: {
 //   first?: {
 //     second?: {
@@ -618,6 +661,7 @@ type PartialNestedProps = DeepPartial<NestedProps>;
 //     };
 //   };
 // }
+type PartialNestedProps = DeepPartial<NestedProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -664,8 +708,8 @@ import { $Keys } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-type PropsKeys = $Keys<Props>;
 // Expect: "name" | "age" | "visible"
+type PropsKeys = $Keys<Props>;
 ```
 
 [⇧ back to top](#flows-utility-types)
@@ -682,8 +726,8 @@ import { $Values } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-type PropsValues = $Values<Props>;
 // Expect: string | number | boolean
+type PropsValues = $Values<Props>;
 ```
 
 [⇧ back to top](#flows-utility-types)
@@ -700,8 +744,8 @@ import { $ReadOnly } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-type ReadOnlyProps = $ReadOnly<Props>;
 // Expect: Readonly<{ name: string; age?: number | undefined; visible: boolean; }>
+type ReadOnlyProps = $ReadOnly<Props>;
 ```
 
 [⇧ back to top](#flows-utility-types)
@@ -719,8 +763,8 @@ import { $Diff } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 
-type RequiredProps = $Diff<Props, DefaultProps>;
 // Expect: { name: string; visible: boolean; }
+type RequiredProps = $Diff<Props, DefaultProps>;
 ```
 
 [⇧ back to top](#flows-utility-types)
@@ -736,14 +780,14 @@ https://flow.org/en/docs/types/utilities/#toc-propertytype
 import { $PropertyType } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
-type NameType = $PropertyType<Props, 'name'>;
 // Expect: string
+type NameType = $PropertyType<Props, 'name'>;
 
 type Tuple = [boolean, number];
-type A = $PropertyType<Tuple, '0'>;
 // Expect: boolean
-type B = $PropertyType<Tuple, '1'>;
+type A = $PropertyType<Tuple, '0'>;
 // Expect: number
+type B = $PropertyType<Tuple, '1'>;
 ```
 
 [⇧ back to top](#flows-utility-types)
@@ -759,22 +803,22 @@ https://flow.org/en/docs/types/utilities/#toc-elementtype
 import { $ElementType } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
-type NameType = $ElementType<Props, 'name'>;
 // Expect: string
+type NameType = $ElementType<Props, 'name'>;
 
 type Tuple = [boolean, number];
-type A = $ElementType<Tuple, 0>;
 // Expect: boolean
-type B = $ElementType<Tuple, 1>;
+type A = $ElementType<Tuple, 0>;
 // Expect: number
+type B = $ElementType<Tuple, 1>;
 
 type Arr = boolean[];
-type ItemsType = $ElementType<Arr, number>;
 // Expect: boolean
+type ItemsType = $ElementType<Arr, number>;
 
 type Obj = { [key: string]: number };
-type ValuesType = $ElementType<Obj, string>;
 // Expect: number
+type ValuesType = $ElementType<Obj, string>;
 ```
 
 [⇧ back to top](#flows-utility-types)
@@ -818,8 +862,8 @@ import { $Shape } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-type PartialProps = $Shape<Props>;
 // Expect: Partial<Props>
+type PartialProps = $Shape<Props>;
 ```
 
 [⇧ back to top](#flows-utility-types)
@@ -836,8 +880,8 @@ import { $NonMaybeType } from 'utility-types';
 
 type MaybeName = string | null;
 
-type Name = $NonMaybeType<MaybeName>;
 // Expect: string
+type Name = $NonMaybeType<MaybeName>;
 ```
 
 [⇧ back to top](#flows-utility-types)
