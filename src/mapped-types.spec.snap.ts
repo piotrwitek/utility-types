@@ -34,6 +34,8 @@ import {
   _DeepRequiredObject,
   _DeepPartialObject,
   _DeepPartialArray,
+  RequiredKeys,
+  OptionalKeys,
 } from './mapped-types';
 
 /**
@@ -45,137 +47,167 @@ type DefaultProps = { age: number };
 type NewProps = { age: string; other: string };
 type MixedProps = { name: string; setName: (name: string) => void };
 type ReadWriteProps = { readonly a: number; b: string };
+type RequiredOptionalProps = {
+  req: number;
+  reqUndef: number | undefined;
+  opt?: string;
+  optUndef?: number | undefined;
+};
 
 /**
  * Tests
  */
 
 // @dts-jest:group Primitive
-it('Primitive', () => {
+{
   // @dts-jest:pass:snap -> Primitive
   testType<Primitive>();
-});
+}
 
 // @dts-jest:group Falsey
-it('Falsey', () => {
+{
   // @dts-jest:pass:snap -> Falsey
   testType<Falsey>();
-});
+}
 
 // @dts-jest:group SetIntersection
-it('SetIntersection', () => {
+{
   // @dts-jest:pass:snap -> "2" | "3"
   testType<SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>>();
   // @dts-jest:pass:snap -> () => void
   testType<SetIntersection<string | number | (() => void), () => void>>();
-});
+}
 
 // @dts-jest:group SetDifference
-it('SetDifference', () => {
+{
   // @dts-jest:pass:snap -> "1"
   testType<SetDifference<'1' | '2' | '3', '2' | '3' | '4'>>();
   // @dts-jest:pass:snap -> string | number
   testType<SetDifference<string | number | (() => void), () => void>>();
-});
+}
 
 // @dts-jest:group SetComplement
-it('SetComplement', () => {
+{
   // @dts-jest:pass:snap -> "1"
   testType<SetComplement<'1' | '2' | '3', '2' | '3'>>();
-});
+}
 
 // @dts-jest:group SymmetricDifference
-it('SymmetricDifference', () => {
+{
   // @dts-jest:pass:snap -> "1" | "4"
   testType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>();
-});
+}
 
 // @dts-jest:group NonUndefined
-it('NonUndefined', () => {
+{
   // @dts-jest:pass:snap -> "1" | "2"
   testType<NonUndefined<'1' | '2' | undefined>>();
   // @dts-jest:pass:snap -> never
   testType<NonUndefined<undefined>>();
-});
+}
 
 // @dts-jest:group FunctionKeys
-it('FunctionKeys', () => {
+{
   // @dts-jest:pass:snap -> "setName"
   testType<FunctionKeys<MixedProps>>();
-});
+}
 
 // @dts-jest:group NonFunctionKeys
-it('NonFunctionKeys', () => {
+{
   // @dts-jest:pass:snap -> "name"
   testType<NonFunctionKeys<MixedProps>>();
-});
+}
+
+// @dts-jest:group WritableKeys
+{
+  // @dts-jest:pass:snap -> "b"
+  testType<WritableKeys<ReadWriteProps>>();
+}
+
+// @dts-jest:group ReadonlyKeys
+{
+  // @dts-jest:pass:snap -> "a"
+  testType<ReadonlyKeys<ReadWriteProps>>();
+}
+
+// @dts-jest:group RequiredKeys
+{
+  // @dts-jest:pass:snap -> "req" | "reqUndef"
+  testType<RequiredKeys<RequiredOptionalProps>>();
+}
+
+// @dts-jest:group OptionalKeys
+{
+  // @dts-jest:pass:snap -> "opt" | "optUndef"
+  testType<OptionalKeys<RequiredOptionalProps>>();
+}
 
 // @dts-jest:group Omit
-it('Omit', () => {
+{
   // @dts-jest:pass:snap -> Pick<Props, "name" | "visible">
   testType<Omit<Props, 'age'>>();
   // @dts-jest:pass:snap -> Pick<Props, "name" | "visible"> | Pick<NewProps, "other">
   testType<Omit<Props | NewProps, 'age'>>();
-});
+}
 
 // @dts-jest:group PickByValue
-it('PickByValue', () => {
+{
   // @dts-jest:pass:snap -> Pick<Props, "name" | "age">
   testType<PickByValue<Props, string | number>>();
-});
+}
 
 // @dts-jest:group OmitByValue
-it('OmitByValue', () => {
+{
   // @dts-jest:pass:snap -> Pick<Props, "visible">
   testType<OmitByValue<Props, string | number>>();
-});
+}
 
 // @dts-jest:group Intersection
-it('Intersection', () => {
+{
   // @dts-jest:pass:snap -> Pick<Props, "age">
   testType<Intersection<Props, DefaultProps>>();
   // @dts-jest:pass:snap -> Pick<Props, "age"> | Pick<NewProps, "age">
   testType<Intersection<Props | NewProps, DefaultProps>>();
-});
+}
 
 // @dts-jest:group Diff
-it('Diff', () => {
+{
   // @dts-jest:pass:snap -> Pick<Props, "name" | "visible">
   testType<Diff<Props, NewProps>>();
-});
+}
 
 // @dts-jest:group Subtract
-it('Subtract', () => {
+{
   // @dts-jest:pass:snap -> Pick<Props, "name" | "visible">
   testType<Subtract<Props, DefaultProps>>();
-});
+}
 
 // @dts-jest:group Overwrite
-it('Overwrite', () => {
+{
   // @dts-jest:pass:snap -> Pick<Pick<Props, "name" | "visible"> & Pick<NewProps, "age">, "name" | "age" | "visible">
   testType<Overwrite<Props, NewProps>>();
-});
+}
 
 // @dts-jest:group Assign
-it('Assign', () => {
+{
   // @dts-jest:pass:snap -> Pick<Pick<Props, "name" | "visible"> & Pick<NewProps, "age"> & Pick<NewProps, "other">, "name" | "age" | "visible" | "other">
   testType<Assign<Props, NewProps>>();
-});
+}
 
 // @dts-jest:group Unionize
-it('Unionize', () => {
+{
   // @dts-jest:pass:snap -> { name: string; } | { age: number; } | { visible: boolean; }
   testType<Unionize<Props>>();
-});
+}
 
 // @dts-jest:group PromiseType
-it('PromiseType', () => {
+{
   // @dts-jest:pass:snap -> string
   testType<PromiseType<Promise<string>>>();
-});
+}
 
 // @dts-jest:group DeepReadonly
-it('DeepReadonly', () => {
+{
   type NestedProps = {
     first: {
       second: {
@@ -213,10 +245,10 @@ it('DeepReadonly', () => {
   testType<DeepReadonly<NestedFunctionProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
   testType<ReturnType<DeepReadonly<NestedFunctionProps>['first']['second']>>();
-});
+}
 
 // @dts-jest:group DeepRequired
-it('DeepRequired', () => {
+{
   type NestedProps = {
     first?: {
       second?: {
@@ -254,10 +286,10 @@ it('DeepRequired', () => {
   testType<DeepRequired<NestedFunctionProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
   testType<ReturnType<DeepRequired<NestedFunctionProps>['first']['second']>>();
-});
+}
 
 // @dts-jest:group DeepNonNullable
-it('DeepNonNullable', () => {
+{
   type NestedProps = {
     first?: null | {
       second?: null | {
@@ -299,10 +331,10 @@ it('DeepNonNullable', () => {
   testType<
     ReturnType<DeepNonNullable<NestedFunctionProps>['first']['second']>
   >();
-});
+}
 
 // @dts-jest:group DeepPartial
-it('DeepPartial', () => {
+{
   type NestedProps = {
     first: {
       second: {
@@ -354,22 +386,10 @@ it('DeepPartial', () => {
   testType<typeof functionProp>();
   // @dts-jest:pass:snap -> string
   testType<ReturnType<NonNullable<typeof functionProp>>>();
-});
-
-// @dts-jest:group WritableKeys
-it('WritableKeys', () => {
-  // @dts-jest:pass:snap -> "b"
-  testType<WritableKeys<ReadWriteProps>>();
-});
-
-// @dts-jest:group ReadonlyKeys
-it('ReadonlyKeys', () => {
-  // @dts-jest:pass:snap -> "a"
-  testType<ReadonlyKeys<ReadWriteProps>>();
-});
+}
 
 // @dts-jest:group Brand
-it('Brand', () => {
+{
   // @dts-jest:pass:snap -> Brand<number, "USD">
   testType<Brand<number, 'USD'>>();
-});
+}

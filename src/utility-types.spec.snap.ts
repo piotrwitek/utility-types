@@ -105,7 +105,7 @@ it('$Shape', () => {
 // @dts-jest:group $NonMaybeType
 it('$NonMaybeType', () => {
   // @dts-jest:pass:snap -> string
-  testType<$NonMaybeType<string|null|undefined>>();
+  testType<$NonMaybeType<string | null | undefined>>();
 });
 
 // @dts-jest:group Class
