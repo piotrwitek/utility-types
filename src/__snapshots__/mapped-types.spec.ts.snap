@@ -104,11 +104,11 @@ exports[`NonUndefined testType<NonUndefined<undefined>>() 1`] = `"never"`;
 
 exports[`Omit const result: Omit<T, 'age'> = rest 1`] = `"any"`;
 
-exports[`Omit testType<Omit<Props | NewProps, 'age'>>() 1`] = `"Omit<Props | NewProps, \\"age\\">"`;
+exports[`Omit testType<Omit<Props | NewProps, 'age'>>() 1`] = `"Pick<Props | NewProps, never>"`;
 
-exports[`Omit testType<Omit<Props, 'age'>>() 1`] = `"Omit<Props, \\"age\\">"`;
+exports[`Omit testType<Omit<Props, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`Omit testType<Omit<T, 'age'>>() 1`] = `"Omit<T, \\"age\\">"`;
+exports[`Omit testType<Omit<T, 'age'>>() 1`] = `"Pick<T, SetDifference<keyof T, \\"age\\">>"`;
 
 exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"opt\\" | \\"optUndef\\" | undefined>"`;
 

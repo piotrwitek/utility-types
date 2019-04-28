@@ -237,7 +237,7 @@ export type PickByValueExact<T, ValueType> = Pick<
  *   // Expect: { name: string; visible: boolean; }
  *   type Props = Omit<Props, 'age'>;
  */
-export type Omit<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P] };
+export type Omit<T, K extends keyof any> = Pick<T, SetDifference<keyof T, K>>;
 
 /**
  * OmitByValue

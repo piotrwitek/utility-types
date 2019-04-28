@@ -176,13 +176,13 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group Omit
 {
-  // @dts-jest:pass:snap -> Omit<Props, "age">
+  // @dts-jest:pass:snap -> Pick<Props, "name" | "visible">
   testType<Omit<Props, 'age'>>();
-  // @dts-jest:pass:snap -> Omit<Props | NewProps, "age">
+  // @dts-jest:pass:snap -> Pick<Props | NewProps, never>
   testType<Omit<Props | NewProps, 'age'>>();
 
   const fn = <T extends Props>(props: T) => {
-    // @dts-jest:pass:snap -> Omit<T, "age">
+    // @dts-jest:pass:snap -> Pick<T, SetDifference<keyof T, "age">>
     testType<Omit<T, 'age'>>();
 
     const { age, ...rest } = props;
