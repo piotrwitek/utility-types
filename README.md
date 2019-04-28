@@ -55,6 +55,8 @@ Issues can be funded by anyone and the money will be transparently distributed t
 
 ---
 
+* _(built-in)_ - types built-in TypeScript, no need to import
+
 # Table of Contents
 
 ## Aliases
@@ -68,9 +70,9 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`SetDifference<A, B>`](#setdifferencea-b-same-as-exclude)
 * [`SetComplement<A, A1>`](#setcomplementa-a1)
 * [`SymmetricDifference<A, B>`](#symmetricdifferencea-b)
-* [`Exclude<A, B>`](#excludea-b) (_\*built-in_)
-* [`Extract<A, B>`](#extracta-b) (_\*built-in_)
-* [`NonNullable<T>`](#nonnullablea) (_\*built-in_)
+* [`Exclude<A, B>`](#excludea-b) _(built-in)_
+* [`Extract<A, B>`](#extracta-b) _(built-in)_
+* [`NonNullable<T>`](#nonnullablea) _(built-in)_
 * [`NonUndefined<T>`](#nonundefineda)
 
 ## Object operators
@@ -81,16 +83,16 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`WritableKeys<T>`](#writablekeyst)
 * [`RequiredKeys<T>`](#requiredkeyst)
 * [`OptionalKeys<T>`](#optionalkeyst)
-* [`Partial<T>`](#partialt) (_\*built-in_)
+* [`Partial<T>`](#partialt) _(built-in)_
 * [`DeepPartial<T>`](#deeppartialt)
-* [`Required<T>`](#requiredt) (_\*built-in_)
+* [`Required<T>`](#requiredt) _(built-in)_
 * [`DeepRequired<T>`](#deeprequiredt)
-* [`Readonly<T>`](#readonlyt) (_\*built-in_)
+* [`Readonly<T>`](#readonlyt) _(built-in)_
 * [`DeepReadonly<T>`](#deepreadonlyt)
-* [`Pick<T, K>`](#pickt-k) (_\*built-in_)
+* [`Pick<T, K>` _(built-in)_](#pickt-k-built-in) 
 * [`Omit<T, K>`](#omitt-k)
-* ~~[`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)~~ WIP
-* ~~[`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)~~ WIP
+* [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
+* [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
 * [`Intersection<T, U>`](#intersectiont-u)
 * [`Diff<T, U>`](#difft-u)
 * [`Subtract<T, T1>`](#subtractt-t1)
@@ -99,8 +101,8 @@ Issues can be funded by anyone and the money will be transparently distributed t
 
 ## Special operators
 
-* [`ReturnType<T>`](#returntypet) (_\*built-in_)
-* [`InstanceType<T>`](#instancetypet) (_\*built-in_)
+* [`ReturnType<T>`](#returntypet) _(built-in)_
+* [`InstanceType<T>`](#instancetypet) _(built-in)_
 * [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
 * [`Brand<T, U>`](#brandt-u)
@@ -328,26 +330,65 @@ type OptionalProps = OptionalKeys<Props>;
 
 [⇧ back to top](#table-of-contents)
 
-### `Pick<T, K>`
+---
 
-From `T` pick a set of properties `K`
+### `Pick<T, K>` _(built-in)_
 
-> _(part of built-in)_
+From `T` pick a set of properties by key `K`
 
 **Usage:**
 
 ```ts
 type Props = { name: string; age: number; visible: boolean };
 
-// Expect: { name: string }
-type RequiredProps = Pick<Props, 'name'>;
+// Expect: { age: number; }
+type Props = Pick<Props, 'age'>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `PickByValue<T, ValueType>`
+
+From `T` pick a set of properties by value matching `ValueType`.
+_(Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c))_
+
+**Usage:**
+
+```ts
+import { PickByValue } from 'utility-types';
+
+type Props = { req: number; reqUndef: number | undefined; opt?: string; };
+
+// Expect: { req: number }
+type Props = PickByValue<Props, number>;
+// Expect: { req: number; reqUndef: number | undefined; }
+type Props = PickByValue<Props, number | undefined>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `PickByValueExact<T, ValueType>`
+
+From `T` pick a set of properties by value matching exact `ValueType`.
+
+**Usage:**
+
+```ts
+import { PickByValueExact } from 'utility-types';
+
+type Props = { req: number; reqUndef: number | undefined; opt?: string; };
+
+// Expect: { req: number }
+type Props = PickByValueExact<Props, number>;
+// Expect: { reqUndef: number | undefined; }
+type Props = PickByValueExact<Props, number | undefined>;
 ```
 
 [⇧ back to top](#table-of-contents)
 
 ### `Omit<T, K>`
 
-From `T` remove a set of properties `K`
+From `T` remove a set of properties by key `K`
 
 **Usage:**
 
@@ -357,43 +398,46 @@ import { Omit } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 
 // Expect: { name: string; visible: boolean; }
-type RequiredProps = Omit<Props, 'age'>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `PickByValue<T, ValueType>`
-
-From `T` pick a set of properties with value type of `ValueType`.
-Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
-
-**Usage:**
-
-```ts
-import { PickByValue } from 'utility-types';
-
-type Props = { name: string; age: number; visible: boolean };
-
-// Expect: { name: string; age: number }
-type RequiredProps = PickByValue<Props, string | number>;
+type Props = Omit<Props, 'age'>;
 ```
 
 [⇧ back to top](#table-of-contents)
 
 ### `OmitByValue<T, ValueType>`
 
-From `T` remove a set of properties with value type of `ValueType`.
-Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
+From `T` remove a set of properties by value matching `ValueType`.
+_(Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c))_
 
 **Usage:**
 
 ```ts
 import { OmitByValue } from 'utility-types';
 
-type Props = { name: string; age: number; visible: boolean };
+type Props = { req: number; reqUndef: number | undefined; opt?: string; };
 
-// Expect: { visible: boolean }
-type RequiredProps = OmitByValue<Props, string | number>;
+// Expect: { reqUndef: number | undefined; opt?: string; }
+type Props = OmitByValue<Props, number>;
+// Expect: { opt?: string; }
+type Props = OmitByValue<Props, number | undefined>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `OmitByValueExact<T, ValueType>`
+
+From `T` remove a set of properties by value matching exact `ValueType`.
+
+**Usage:**
+
+```ts
+import { OmitByValueExact } from 'utility-types';
+
+type Props = { req: number; reqUndef: number | undefined; opt?: string; };
+
+// Expect: { reqUndef: number | undefined; opt?: string; }
+type Props = OmitByValueExact<Props, number>;
+// Expect: { req: number; opt?: string }
+type Props = OmitByValueExact<Props, number | undefined>;
 ```
 
 [⇧ back to top](#table-of-contents)

@@ -98,7 +98,7 @@ exports[`Intersection testType<Intersection<Props, DefaultProps>>() 1`] = `"Pick
 
 exports[`NonFunctionKeys testType<NonFunctionKeys<MixedProps>>() 1`] = `"\\"name\\""`;
 
-exports[`NonUndefined testType<NonUndefined<'1' | '2' | undefined>>() 1`] = `"\\"1\\" | \\"2\\""`;
+exports[`NonUndefined testType<NonUndefined<string | null | undefined>>() 1`] = `"string | null"`;
 
 exports[`NonUndefined testType<NonUndefined<undefined>>() 1`] = `"never"`;
 
@@ -110,9 +110,21 @@ exports[`Omit testType<Omit<Props, 'age'>>() 1`] = `"Omit<Props, \\"age\\">"`;
 
 exports[`Omit testType<Omit<T, 'age'>>() 1`] = `"Omit<T, \\"age\\">"`;
 
-exports[`OmitByValue testType<OmitByValue<Props, string | number>>() 1`] = `"Pick<Props, \\"visible\\">"`;
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"opt\\" | \\"optUndef\\" | undefined>"`;
+
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number>>() 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
 exports[`OmitByValue testType<OmitByValue<T, string | boolean>>() 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends string | boolean ? never : Key; }[keyof T]>"`;
+
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number>>() 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+
+exports[`OmitByValueExact testType<OmitByValueExact<T, number>>() 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>"`;
 
 exports[`OptionalKeys testType<OptionalKeys<RequiredOptionalProps>>() 1`] = `"\\"opt\\" | \\"optUndef\\""`;
 
@@ -120,9 +132,21 @@ exports[`Overwrite const result: Overwrite<Omit<T, 'age'>, T> = rest 1`] = `"any
 
 exports[`Overwrite testType<Overwrite<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`PickByValue testType<PickByValue<Props, string | number>>() 1`] = `"Pick<Props, \\"name\\" | \\"age\\">"`;
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | undefined>"`;
 
-exports[`PickByValue testType<PickByValue<T, string | boolean>>() 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends string | boolean ? Key : never; }[keyof T]>"`;
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
+
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
+
+exports[`PickByValue testType<PickByValue<T, number>>() 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends number ? Key : never; }[keyof T]>"`;
+
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | undefined>"`;
+
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
+
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
+
+exports[`PickByValueExact testType<PickByValueExact<T, number>>() 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>"`;
 
 exports[`Primitive testType<Primitive>() 1`] = `"Primitive"`;
 

@@ -7,8 +7,10 @@
  * Primitive
  * @desc Type representing primitive types in TypeScript: `number | boolean | string | symbol`
  * @example
- *   // Expect: object
- *   type ResultStripPrimitives = Exclude<string | object, Primitive>
+ *   type Various = number | boolean | string | symbol | object;
+ *
+ *    // Expect: object
+ *   Exclude<Various, Primitive>
  */
 export type Primitive = number | boolean | string | symbol;
 
@@ -16,8 +18,10 @@ export type Primitive = number | boolean | string | symbol;
  * Falsey
  * @desc Type representing falsey values in TypeScript: `null | undefined | false | 0 | ''`
  * @example
+ *   type Various = 'a' | 'b' | undefined | false;
+ *
  *   // Expect: "a" | "b"
- *   type ResultCompact = Exclude<'a' | 'b' | undefined | false, Falsey>;
+ *   Exclude<Various, Falsey>;
  */
 export type Falsey = null | undefined | false | 0 | '';
 
@@ -26,10 +30,10 @@ export type Falsey = null | undefined | false | 0 | '';
  * @desc Set intersection of given union types `A` and `B`
  * @example
  *   // Expect: "2" | "3"
- *   type ResultSet = SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>;
+ *   SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>;
  *
  *   // Expect: () => void
- *   type ResultSetMixed = SetIntersection<string | number | (() => void), Function>;
+ *   SetIntersection<string | number | (() => void), Function>;
  */
 export type SetIntersection<A, B> = A extends B ? A : never;
 
@@ -38,10 +42,10 @@ export type SetIntersection<A, B> = A extends B ? A : never;
  * @desc Set difference of given union types `A` and `B`
  * @example
  *   // Expect: "1"
- *   type ResultSet = SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
+ *   SetDifference<'1' | '2' | '3', '2' | '3' | '4'>;
  *
  *   // Expect: string | number
- *   type ResultSetMixed = SetDifference<string | number | (() => void), Function>;
+ *   SetDifference<string | number | (() => void), Function>;
  */
 export type SetDifference<A, B> = A extends B ? never : A;
 
@@ -50,7 +54,7 @@ export type SetDifference<A, B> = A extends B ? never : A;
  * @desc Set complement of given union types `A` and (it's subset) `A1`
  * @example
  *   // Expect: "1"
- *   type ResultSet = SetComplement<'1' | '2' | '3', '2' | '3'>;
+ *   SetComplement<'1' | '2' | '3', '2' | '3'>;
  */
 export type SetComplement<A, A1 extends A> = SetDifference<A, A1>;
 
@@ -59,15 +63,27 @@ export type SetComplement<A, A1 extends A> = SetDifference<A, A1>;
  * @desc Set difference of union and intersection of given union types `A` and `B`
  * @example
  *   // Expect: "1" | "4"
- *   type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
+ *   SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
  */
 export type SymmetricDifference<A, B> = SetDifference<A | B, A & B>;
 
 /**
  * NonUndefined
  * @desc Exclude undefined from set `A`
+ * @example
+ *   // Expect: "string | null"
+ *   SymmetricDifference<string | null | undefined>;
  */
 export type NonUndefined<A> = A extends undefined ? never : A;
+
+/**
+ * NonNullable
+ * @desc Exclude undefined and null from set `A`
+ * @example
+ *   // Expect: "string"
+ *   SymmetricDifference<string | null | undefined>;
+ */
+// type NonNullable - built-in
 
 /**
  * FunctionKeys
@@ -76,7 +92,7 @@ export type NonUndefined<A> = A extends undefined ? never : A;
  *   type MixedProps = { name: string; setName: (name: string) => void };
  *
  *   // Expect: "setName"
- *   type FunctionKeysProps = FunctionKeys<MixedProps>;
+ *   type Keys = FunctionKeys<MixedProps>;
  */
 export type FunctionKeys<T extends object> = {
   [K in keyof T]: T[K] extends Function ? K : never
@@ -89,7 +105,7 @@ export type FunctionKeys<T extends object> = {
  *   type MixedProps = { name: string; setName: (name: string) => void };
  *
  *   // Expect: "name"
- *   type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
+ *   type Keys = NonFunctionKeys<MixedProps>;
  */
 export type NonFunctionKeys<T extends object> = {
   [K in keyof T]: T[K] extends Function ? never : K
@@ -104,7 +120,7 @@ export type NonFunctionKeys<T extends object> = {
  *   type Props = { readonly foo: string; bar: number };
  *
  *   // Expect: "bar"
- *   type WritableProps = WritableKeys<Props>;
+ *   type Keys = WritableKeys<Props>;
  */
 export type WritableKeys<T extends object> = {
   [P in keyof T]-?: IfEquals<
@@ -123,7 +139,7 @@ export type WritableKeys<T extends object> = {
  *   type Props = { readonly foo: string; bar: number };
  *
  *   // Expect: "foo"
- *   type ReadonlyProps = ReadonlyKeys<Props>;
+ *   type Keys = ReadonlyKeys<Props>;
  */
 export type ReadonlyKeys<T extends object> = {
   [P in keyof T]-?: IfEquals<
@@ -142,7 +158,7 @@ export type ReadonlyKeys<T extends object> = {
  *   type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
  *
  *   // Expect: "req" | "reqUndef"
- *   type RequiredProps = RequiredKeys<Props>;
+ *   type Keys = RequiredKeys<Props>;
  */
 export type RequiredKeys<T> = {
   [K in keyof T]-?: {} extends Pick<T, K> ? never : K
@@ -156,32 +172,34 @@ export type RequiredKeys<T> = {
  *   type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
  *
  *   // Expect: "opt" | "optUndef"
- *   type OptionalProps = OptionalKeys<Props>;
+ *   type Keys = OptionalKeys<Props>;
  */
 export type OptionalKeys<T> = {
   [K in keyof T]-?: {} extends Pick<T, K> ? K : never
 }[keyof T];
 
 /**
- * Omit (complements Pick)
- * @desc From `T` remove a set of properties `K`
+ * Pick (complements Omit)
+ * @desc From `T` pick a set of properties by key `K`
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
  *
- *   // Expect: { name: string; visible: boolean; }
- *   type RequiredProps = Omit<Props, 'age'>;
+ *   // Expect: { age: number; }
+ *   type Props = Pick<Props, 'age'>;
  */
-export type Omit<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P] };
+namespace Pick {}
 
 /**
  * PickByValue
- * @desc From `T` pick a set of properties with value type of `ValueType`.
+ * @desc From `T` pick a set of properties by value matching `ValueType`.
  * Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
  * @example
- *   type Props = { name: string; age: number; visible: boolean };
+ *   type Props = { req: number; reqUndef: number | undefined; opt?: string; };
  *
- *   // Expect: { name: string; age: number }
- *   type RequiredProps = PickByValue<Props, string | number>;
+ *   // Expect: { req: number }
+ *   type Props = PickByValue<Props, number>;
+ *   // Expect: { req: number; reqUndef: number | undefined; }
+ *   type Props = PickByValue<Props, number | undefined>;
  */
 export type PickByValue<T, ValueType> = Pick<
   T,
@@ -189,18 +207,75 @@ export type PickByValue<T, ValueType> = Pick<
 >;
 
 /**
- * OmitByValue
- * @desc From `T` remove a set of properties with value type of `ValueType`.
- * Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
+ * PickByValueExact
+ * @desc From `T` pick a set of properties by value matching exact `ValueType`.
+ * @example
+ *   type Props = { req: number; reqUndef: number | undefined; opt?: string; };
+ *
+ *   // Expect: { req: number }
+ *   type Props = PickByValueExact<Props, number>;
+ *   // Expect: { reqUndef: number | undefined; }
+ *   type Props = PickByValueExact<Props, number | undefined>;
+ */
+export type PickByValueExact<T, ValueType> = Pick<
+  T,
+  {
+    [Key in keyof T]: [ValueType] extends [T[Key]]
+      ? [T[Key]] extends [ValueType]
+        ? Key
+        : never
+      : never
+  }[keyof T]
+>;
+
+/**
+ * Omit (complements Pick)
+ * @desc From `T` remove a set of properties by key `K`
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
  *
- *   // Expect: { visible: boolean }
- *   type RequiredProps = OmitByValue<Props, string | number>;
+ *   // Expect: { name: string; visible: boolean; }
+ *   type Props = Omit<Props, 'age'>;
+ */
+export type Omit<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P] };
+
+/**
+ * OmitByValue
+ * @desc From `T` remove a set of properties by value matching `ValueType`.
+ * Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c)
+ * @example
+ *   type Props = { req: number; reqUndef: number | undefined; opt?: string; };
+ *
+ *   // Expect: { reqUndef: number | undefined; opt?: string; }
+ *   type Props = OmitByValue<Props, number>;
+ *   // Expect: { opt?: string; }
+ *   type Props = OmitByValue<Props, number | undefined>;
  */
 export type OmitByValue<T, ValueType> = Pick<
   T,
   { [Key in keyof T]: T[Key] extends ValueType ? never : Key }[keyof T]
+>;
+
+/**
+ * OmitByValueExact
+ * @desc From `T` remove a set of properties by value matching exact `ValueType`.
+ * @example
+ *   type Props = { req: number; reqUndef: number | undefined; opt?: string; };
+ *
+ *   // Expect: { reqUndef: number | undefined; opt?: string; }
+ *   type Props = OmitByValueExact<Props, number>;
+ *   // Expect: { req: number; opt?: string }
+ *   type Props = OmitByValueExact<Props, number | undefined>;
+ */
+export type OmitByValueExact<T, ValueType> = Pick<
+  T,
+  {
+    [Key in keyof T]: [ValueType] extends [T[Key]]
+      ? [T[Key]] extends [ValueType]
+        ? never
+        : Key
+      : Key
+  }[keyof T]
 >;
 
 /**
@@ -211,7 +286,7 @@ export type OmitByValue<T, ValueType> = Pick<
  *   type DefaultProps = { age: number };
  *
  *   // Expect: { age: number; }
- *   type DuplicatedProps = Intersection<Props, DefaultProps>;
+ *   type DuplicateProps = Intersection<Props, DefaultProps>;
  */
 export type Intersection<T extends object, U extends object> = Pick<
   T,
@@ -226,7 +301,7 @@ export type Intersection<T extends object, U extends object> = Pick<
  *   type DefaultProps = { age: number };
  *
  *   // Expect: { name: string; visible: boolean; }
- *   type RequiredProps = Diff<Props, DefaultProps>;
+ *   type DiffProps = Diff<Props, DefaultProps>;
  */
 export type Diff<T extends object, U extends object> = Pick<
   T,
@@ -241,7 +316,7 @@ export type Diff<T extends object, U extends object> = Pick<
  *   type DefaultProps = { age: number };
  *
  *   // Expect: { name: string; visible: boolean; }
- *   type RequiredProps = Subtract<Props, DefaultProps>;
+ *   type RestProps = Subtract<Props, DefaultProps>;
  */
 export type Subtract<T extends T1, T1 extends object> = Pick<
   T,
