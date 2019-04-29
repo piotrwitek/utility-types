@@ -141,7 +141,7 @@ Type representing falsey values in TypeScript: `null | undefined | false | 0 | '
 
 ### mixed
 
-Alias for `unknown`
+An arbitrary type that could be anything (same as `unknown`)
 
 [⇧ back to top](#table-of-contents)
 
