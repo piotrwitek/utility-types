@@ -142,6 +142,7 @@ Type representing falsey values in TypeScript: `null | undefined | false | 0 | '
 ### mixed
 
 An arbitrary type that could be anything (same as `unknown`)
+https://flow.org/en/docs/types/mixed
 
 [⇧ back to top](#table-of-contents)
 
