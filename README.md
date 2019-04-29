@@ -63,6 +63,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 
 * [`Primitive`](#primitive)
 * [`Falsey`](#falsey)
+* [`mixed`](#mixed)
 
 ## Union operators
 
@@ -135,6 +136,12 @@ Type representing primitive types in TypeScript: `number | boolean | string | sy
 
 Type representing falsey values in TypeScript: `null | undefined | false | 0 | ''`
 > Except `NaN` which cannot be represented as a type literal
+
+[⇧ back to top](#table-of-contents)
+
+### mixed
+
+Alias for `unknown`
 
 [⇧ back to top](#table-of-contents)
 
