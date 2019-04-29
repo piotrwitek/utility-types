@@ -10,7 +10,7 @@ import {
   $Shape,
   $NonMaybeType,
   Class,
-  mixed
+  mixed,
 } from './utility-types';
 import { _DeepReadonlyObject } from './mapped-types';
 /**
@@ -119,4 +119,4 @@ it('Class', () => {
 it('mixed', () => {
   // @dts-jest:pass:snap
   testType<mixed>();
-})
+});
