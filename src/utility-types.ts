@@ -156,3 +156,20 @@ export type $NonMaybeType<T> = NonNullable<T>;
  *   }
  */
 export type Class<T> = new (...args: any[]) => T;
+
+/**
+ * mixed
+ * @desc An arbitrary type that could be anything
+ * @see https://flow.org/en/docs/types/mixed
+ * @example
+ *
+ * function stringify(value: mixed) {
+ *     // ...
+ *   }
+ *
+ *   stringify("foo");
+ *   stringify(3.14);
+ *   stringify(null);
+ *   stringify({});
+ */
+export type mixed = unknown;
