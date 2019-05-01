@@ -952,7 +952,7 @@ function makeStore(storeClass: Class<Store>): Store {
 
 ### mixed
 
-An arbitrary type that could be anything (same as `unknown`)
+An arbitrary type that could be anything (same as `unknown`)  
 https://flow.org/en/docs/types/mixed
 
 [⇧ back to top](#table-of-contents)
