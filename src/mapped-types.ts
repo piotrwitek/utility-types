@@ -561,16 +561,16 @@ export type Brand<T, U> = T & { __brand: U };
  * @example
  *    type Props = {
  *      name: string;
- *      age: string;
- *      height: number;
+ *      age: number;
+ *      visible: boolean;
  *    };
  *
- *    // Expect: { name?: string; age?: string; height?: number; }
+ *    // Expect: { name?: string; age?: number; visible?: boolean; }
  *    type Props = Optional<Props>;
  *
- *    // Expect: { name: string; age?: string; height?: number; }
- *    type Props = Optional<Props, 'age' | 'height'>;
+ *    // Expect: { name: string; age?: number; visible?: boolean; }
+ *    type Props = Optional<Props, 'age' | 'visible'>;
  */
-export type Optional<T extends {}, K = keyof any> = K extends (keyof T)
+export type Optional<T extends object, K = keyof any> = K extends (keyof T)
   ? (Omit<T, K> & { [key in K]?: T[key] })
   : Partial<T>;

@@ -38,6 +38,7 @@ import {
   OptionalKeys,
   PickByValueExact,
   OmitByValueExact,
+  Optional,
 } from './mapped-types';
 
 /**
@@ -481,4 +482,13 @@ type RequiredOptionalProps = {
 {
   // @dts-jest:pass:snap -> Brand<number, "USD">
   testType<Brand<number, 'USD'>>();
+}
+
+// @dts-jest:group Optional
+{
+  // @dts-jest:pass:snap -> Partial<Props>
+  testType<Optional<Props>>();
+
+  // @dts-jest:pass:snap -> (Pick<Props, "name" | "visible"> & { age?: number | undefined; }) | (Pick<Props, "name" | "age"> & { visible?: boolean | undefined; })
+  testType<Optional<Props, 'age' | 'visible'>>();
 }
