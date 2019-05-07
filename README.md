@@ -82,6 +82,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`ReadonlyKeys<T>`](#readonlykeyst)
 * [`WritableKeys<T>`](#writablekeyst)
 * [`RequiredKeys<T>`](#requiredkeyst)
+* [`Optional<T>`](#optionalst)
 * [`OptionalKeys<T>`](#optionalkeyst)
 * [`Partial<T>`](#partialt) _(built-in)_
 * [`DeepPartial<T>`](#deeppartialt)
@@ -309,6 +310,25 @@ type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef
 
 // Expect: "req" | "reqUndef"
 type RequiredProps = ReadonlyKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Optional<T, K>`
+
+From `T` make a set of properties by key `K` become optional
+
+**Usage:**
+
+```ts
+import { Optional } from 'utility-types';
+
+type Props = { name: string; age: string; height: number; };
+
+// Expect: { name?: string; age?: string; height?: number; }
+type Props = Optional<Props>
+// Expect: { name: string; age?: string; height?: number; }
+type Props = Optional<Props, 'age' | 'height'>;
 ```
 
 [⇧ back to top](#table-of-contents)
