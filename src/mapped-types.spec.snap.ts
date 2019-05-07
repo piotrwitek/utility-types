@@ -486,9 +486,13 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group Optional
 {
-  // @dts-jest:pass:snap -> Partial<Props>
-  testType<Optional<Props>>();
+  // @dts-jest:pass:snap -> Optional<Props, "name" | "age" | "visible">
+  testType<Optional<Props>>({});
+  // @dts-jest:pass:snap -> Optional<Props, "name" | "age" | "visible">
+  testType<Optional<Props>>({ age: 99 });
 
-  // @dts-jest:pass:snap -> (Pick<Props, "name" | "visible"> & { age?: number | undefined; }) | (Pick<Props, "name" | "age"> & { visible?: boolean | undefined; })
-  testType<Optional<Props, 'age' | 'visible'>>();
+  // @dts-jest:pass:snap -> Optional<Props, "age" | "visible">
+  testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' });
+  // @dts-jest:pass:snap -> Optional<Props, "age" | "visible">
+  testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo', age: 99 });
 }

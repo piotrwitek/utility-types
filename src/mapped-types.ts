@@ -150,6 +150,12 @@ export type ReadonlyKeys<T extends object> = {
   >
 }[keyof T];
 
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
+  ? 1
+  : 2) extends (<T>() => T extends Y ? 1 : 2)
+  ? A
+  : B;
+
 /**
  * RequiredKeys
  * @desc get union type of keys that are required in object type `T`
@@ -527,12 +533,6 @@ export interface _DeepPartialArray<T> extends Array<DeepPartial<T>> {}
 /** @private */
 export type _DeepPartialObject<T> = { [P in keyof T]?: DeepPartial<T[P]> };
 
-type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
-  ? 1
-  : 2) extends (<T>() => T extends Y ? 1 : 2)
-  ? A
-  : B;
-
 /**
  * Brand
  * @desc Define nominal type of U based on type of T.
@@ -571,6 +571,8 @@ export type Brand<T, U> = T & { __brand: U };
  *    // Expect: { name: string; age?: number; visible?: boolean; }
  *    type Props = Optional<Props, 'age' | 'visible'>;
  */
-export type Optional<T extends object, K = keyof any> = K extends (keyof T)
-  ? (Omit<T, K> & { [key in K]?: T[key] })
-  : Partial<T>;
+export type Optional<T extends object, K extends keyof T = keyof T> = Omit<
+  T,
+  K
+> &
+  Partial<Pick<T, K>>;

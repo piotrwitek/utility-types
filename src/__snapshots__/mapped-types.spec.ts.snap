@@ -126,9 +126,13 @@ exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, undef
 
 exports[`OmitByValueExact testType<OmitByValueExact<T, number>>() 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>"`;
 
-exports[`Optional testType<Optional<Props, 'age' | 'visible'>>() 1`] = `"(Pick<Props, \\"name\\" | \\"visible\\"> & { age?: number | undefined; }) | (Pick<Props, \\"name\\" | \\"age\\"> & { visible?: boolean | undefined; })"`;
+exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' }) 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
 
-exports[`Optional testType<Optional<Props>>() 1`] = `"Partial<Props>"`;
+exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo', age: 99 }) 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
+
+exports[`Optional testType<Optional<Props>>({ age: 99 }) 1`] = `"Optional<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+
+exports[`Optional testType<Optional<Props>>({}) 1`] = `"Optional<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
 exports[`OptionalKeys testType<OptionalKeys<RequiredOptionalProps>>() 1`] = `"\\"opt\\" | \\"optUndef\\""`;
 

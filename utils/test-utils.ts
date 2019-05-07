@@ -1,5 +1,5 @@
 /** @internal */
-export function testType<T>(): T {
+export function testType<T>(a?: T): T {
   return undefined as any;
 }
 
