@@ -323,12 +323,12 @@ From `T` make a set of properties by key `K` become optional
 ```ts
 import { Optional } from 'utility-types';
 
-type Props = { name: string; age: string; height: number; };
+type Props = { name: string; age: number; visilbe: boolean; };
 
-// Expect: { name?: string; age?: string; height?: number; }
+// Expect: { name?: string; age?: number; visilbe?: boolean; }
 type Props = Optional<Props>
-// Expect: { name: string; age?: string; height?: number; }
-type Props = Optional<Props, 'age' | 'height'>;
+// Expect: { name: string; age?: number; visilbe?: boolean; }
+type Props = Optional<Props, 'age' | 'visilbe'>;
 ```
 
 [⇧ back to top](#table-of-contents)
