@@ -119,6 +119,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`$Shape<T>`](#shapet)
 * [`$NonMaybeType<T>`](#nonmaybetypet)
 * [`Class<T>`](#classt)
+* [`mixed`](#mixed)
 
 ## Deprecated API (use at own risk)
 * `getReturnOfExpression()` - from TS v2.0 it's better to use type-level `ReturnType` instead
@@ -948,6 +949,13 @@ function makeStore(storeClass: Class<Store>): Store {
 ```
 
 [⇧ back to top](#flows-utility-types)
+
+### mixed
+
+An arbitrary type that could be anything (same as `unknown`)  
+https://flow.org/en/docs/types/mixed
+
+[⇧ back to top](#table-of-contents)
 
 ---
 
