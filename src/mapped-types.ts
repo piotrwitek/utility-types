@@ -571,5 +571,6 @@ export type Brand<T, U> = T & { __brand: U };
  *    // Expect: { name: string; age?: string; height?: number; }
  *    type Props = Optional<Props, 'age' | 'height'>;
  */
-export type Optional<T extends {}, K = keyof any> =  K extends (keyof T) ? (Omit<T, K> &
-  { [key in K]?: T[key] }) : Partial<T>;
+export type Optional<T extends {}, K = keyof any> = K extends (keyof T)
+  ? (Omit<T, K> & { [key in K]?: T[key] })
+  : Partial<T>;
