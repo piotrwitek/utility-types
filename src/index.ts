@@ -35,6 +35,7 @@ export {
   OmitByValueExact,
   OptionalKeys,
   Overwrite,
+  PartOptional,
   PickByValue,
   PickByValueExact,
   Primitive,
