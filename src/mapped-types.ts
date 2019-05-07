@@ -556,7 +556,7 @@ type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
 export type Brand<T, U> = T & { __brand: U };
 
 /**
- * PartOptional
+ * Optional
  * @desc From `T` make a set of properties by key `K` become optional
  * @example
  *    type Props = {
@@ -564,8 +564,12 @@ export type Brand<T, U> = T & { __brand: U };
  *      age: string;
  *      height: number;
  *    };
+ *
+ *    // Expect: { name?: string; age?: string; height?: number; }
+ *    type Props = Optional<Props>;
+ *
  *    // Expect: { name: string; age?: string; height?: number; }
- *    type Props = PartOptional<Props, 'age' | 'height'>;
+ *    type Props = Optional<Props, 'age' | 'height'>;
  */
-export type PartOptional<T extends {}, K extends keyof T> = Omit<T, K> &
-  { [key in K]?: T[key] };
+export type Optional<T extends {}, K = keyof any> =  K extends (keyof T) ? (Omit<T, K> &
+  { [key in K]?: T[key] }) : Partial<T>;
