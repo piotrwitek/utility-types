@@ -82,7 +82,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`ReadonlyKeys<T>`](#readonlykeyst)
 * [`WritableKeys<T>`](#writablekeyst)
 * [`RequiredKeys<T>`](#requiredkeyst)
-* [`Optional<T>`](#optionalst)
+* [`Optional<T, K>`](#optionalt-k)
 * [`OptionalKeys<T>`](#optionalkeyst)
 * [`Partial<T>`](#partialt) _(built-in)_
 * [`DeepPartial<T>`](#deeppartialt)
