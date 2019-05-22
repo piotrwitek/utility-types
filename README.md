@@ -91,7 +91,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`Readonly<T>`](#readonlyt) _(built-in)_
 * [`DeepReadonly<T>`](#deepreadonlyt)
 * [`Pick<T, K>` _(built-in)_](#pickt-k-built-in) 
-* [`Omit<T, K>`](#omitt-k)
+* [`Omit<T, K>`](#omitt-k) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
 * [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
 * [`Intersection<T, U>`](#intersectiont-u)
