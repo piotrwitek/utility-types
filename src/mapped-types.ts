@@ -7,10 +7,10 @@
  * Primitive
  * @desc Type representing primitive types in TypeScript: `number | bigint | boolean | string | symbol`
  * @example
- *   type Various = number | boolean | string | symbol | object;
+ *   type Various = number | string | object;
  *
  *    // Expect: object
- *   Exclude<Various, Primitive>
+ *   type Cleaned = Exclude<Various, Primitive>
  */
 export type Primitive = number | bigint | boolean | string | symbol;
 
