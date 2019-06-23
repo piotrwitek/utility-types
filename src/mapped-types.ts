@@ -5,7 +5,7 @@
 
 /**
  * Primitive
- * @desc Type representing primitive types in TypeScript: `number | boolean | string | symbol`
+ * @desc Type representing primitive types in TypeScript: `number | bigint | boolean | string | symbol`
  * @example
  *   type Various = number | boolean | string | symbol | object;
  *
