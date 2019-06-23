@@ -129,7 +129,9 @@ Issues can be funded by anyone and the money will be transparently distributed t
 
 ### `Primitive`
 
-Type representing primitive types in TypeScript: `number | boolean | string | symbol`
+Type representing primitive types in JavaScript, and thus TypeScript: `number | bigint | boolean | string | symbol`
+
+You can test for singular of these types with [`typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
 
 [⇧ back to top](#table-of-contents)
 
