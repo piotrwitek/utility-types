@@ -12,7 +12,7 @@
  *    // Expect: object
  *   Exclude<Various, Primitive>
  */
-export type Primitive = number | boolean | string | symbol;
+export type Primitive = number | bigint | boolean | string | symbol;
 
 /**
  * Falsey
