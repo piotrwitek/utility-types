@@ -981,6 +981,12 @@ https://flow.org/en/docs/types/mixed
 
 ---
 
+## Related Projects
+
+- [`ts-toolbelt`](https://github.com/pirix-gh/ts-toolbelt) - Higher type safety for TypeScript 
+
+---
+
 MIT License
 
 Copyright (c) 2016 Piotr Witek <mailto:piotrek.witek@gmail.com> (http://piotrwitek.github.io)
