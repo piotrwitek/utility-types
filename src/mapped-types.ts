@@ -23,7 +23,7 @@ export type Primitive = number | bigint | boolean | string | symbol;
  *   // Expect: "a" | "b"
  *   Exclude<Various, Falsey>;
  */
-export type Falsey = null | undefined | false | 0 | '';
+export type Falsey = null | undefined | false | 0 | -0 | '';
 
 /**
  * SetIntersection (same as Extract)
