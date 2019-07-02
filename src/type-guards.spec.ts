@@ -22,7 +22,7 @@ it('narrows to correct type', () => {
 it('returns true for falsey and narrows type', () => {
   const falseyTestVals: unknown[] = ['', null, undefined, false, 0];
 
-  falseyTestVals.forEach((val) => {
+  falseyTestVals.forEach(val => {
     if (isFalsey(val)) {
       // @dts-jest:pass:snap
       val;
@@ -33,15 +33,14 @@ it('returns true for falsey and narrows type', () => {
 
   const testResults = falseyTestVals.map(isFalsey);
 
-  testResults.forEach((val) => expect(val).toBe(true));
-
+  testResults.forEach(val => expect(val).toBe(true));
 });
 
 // @dts-jest:group isFalsey-Group-Truthy
 it('returns false for truthy and narrows type', () => {
   const truthyTestVals: unknown[] = [' ', true, {}, []];
 
-  truthyTestVals.forEach((val) => {
+  truthyTestVals.forEach(val => {
     if (isFalsey(val)) {
       // @dts-jest:pass:snap
       val;
@@ -52,6 +51,5 @@ it('returns false for truthy and narrows type', () => {
 
   const testResults = truthyTestVals.map(isFalsey);
 
-  testResults.forEach((val) => expect(val).toBe(false));
-
+  testResults.forEach(val => expect(val).toBe(false));
 });
