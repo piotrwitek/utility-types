@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`isPrimitive param 1`] = `"Primitive[]"`;
+exports[`isFalsey-Group-Falsey val 1`] = `"import(\\"C:/Users/smaier/Documents/Workspace/utility-types/src/mapped-types\\").Falsey"`;
+
+exports[`isFalsey-Group-Falsey val 2`] = `"unknown"`;
+
+exports[`isFalsey-Group-Truthy val 1`] = `"import(\\"C:/Users/smaier/Documents/Workspace/utility-types/src/mapped-types\\").Falsey"`;
+
+exports[`isFalsey-Group-Truthy val 2`] = `"unknown"`;
+
+exports[`isPrimitive param 1`] = `"Primitive"`;
+
+exports[`isPrimitive param 2`] = `"Primitive[]"`;
