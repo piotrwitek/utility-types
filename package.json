@@ -13,11 +13,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run pre-push"
+      "pre-push": "npm run prettier:fix && npm run lint && npm run tsc && npm run test:update"
     }
   },
   "scripts": {
-    "pre-push": "npm run prettier:fix && npm run lint && npm run tsc && npm run test:update",
     "ci-check": "npm run prettier && npm run lint && npm run tsc && npm run test",
     "reinstall": "rm -rf node_modules/ dist/ && npm install",
     "prettier": "prettier --list-different 'src/**/*.ts' || (echo '\nPlease fix code formatting by running:\nnpm run prettier:fix\n'; exit 1)",
@@ -25,9 +24,9 @@
     "lint": "tslint --project ./tsconfig.json",
     "tsc": "tsc -p . --noEmit",
     "tsc:watch": "tsc -p . --noEmit -w",
-    "test": "jest --config jest.config.json",
-    "test:watch": "jest --config jest.config.json --watch",
+    "test": "jest --config jest.config.json && dts-jest-remap ./src/*.spec.ts --rename {{basename}}.snap.{{extname}} --check",
     "test:update": "jest --config jest.config.json --no-cache -u && dts-jest-remap ./src/*.spec.ts --rename {{basename}}.snap.{{extname}}",
+    "test:watch": "jest --config jest.config.json --watch",
     "prebuild": "rm -rf dist/",
     "build": "tsc -p ./tsconfig.build.json --outDir dist/",
     "prepublishOnly": "npm run reinstall && npm run ci-check && npm run build"
