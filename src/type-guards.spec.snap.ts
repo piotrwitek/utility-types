@@ -1,4 +1,4 @@
-import { Primitive } from './mapped-types';
+import { Primitive, Falsey } from './mapped-types';
 import { isPrimitive, isFalsey } from './type-guards';
 
 // @dts-jest:group isPrimitive
@@ -24,7 +24,7 @@ it('returns true for falsey and narrows type', () => {
 
   falseyTestVals.forEach(val => {
     if (isFalsey(val)) {
-      // @dts-jest:pass:snap -> import("C:/Users/smaier/Documents/Workspace/utility-types/src/mapped-types").Falsey
+      // @dts-jest:pass:snap -> Falsey
       val;
     }
     // @dts-jest:pass:snap -> unknown
@@ -42,7 +42,7 @@ it('returns false for truthy and narrows type', () => {
 
   truthyTestVals.forEach(val => {
     if (isFalsey(val)) {
-      // @dts-jest:pass:snap -> import("C:/Users/smaier/Documents/Workspace/utility-types/src/mapped-types").Falsey
+      // @dts-jest:pass:snap -> Falsey
       val;
     }
     // @dts-jest:pass:snap -> unknown

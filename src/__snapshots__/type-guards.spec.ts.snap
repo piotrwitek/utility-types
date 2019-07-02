@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`isFalsey-Group-Falsey val 1`] = `"import(\\"C:/Users/smaier/Documents/Workspace/utility-types/src/mapped-types\\").Falsey"`;
+exports[`isFalsey-Group-Falsey val 1`] = `"Falsey"`;
 
 exports[`isFalsey-Group-Falsey val 2`] = `"unknown"`;
 
-exports[`isFalsey-Group-Truthy val 1`] = `"import(\\"C:/Users/smaier/Documents/Workspace/utility-types/src/mapped-types\\").Falsey"`;
+exports[`isFalsey-Group-Truthy val 1`] = `"Falsey"`;
 
 exports[`isFalsey-Group-Truthy val 2`] = `"unknown"`;
 

@@ -1,4 +1,4 @@
-import { Primitive } from './mapped-types';
+import { Primitive, Falsey } from './mapped-types';
 import { isPrimitive, isFalsey } from './type-guards';
 
 // @dts-jest:group isPrimitive
