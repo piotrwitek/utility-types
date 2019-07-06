@@ -51,5 +51,7 @@ export {
   WritableKeys,
 } from './mapped-types';
 
+export * from './type-guards';
+
 // deprecated
 export { getReturnOfExpression } from './functional-helpers';

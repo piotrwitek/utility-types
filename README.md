@@ -64,6 +64,11 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`Primitive`](#primitive)
 * [`Falsey`](#falsey)
 
+## Type Guards
+
+* ['isPrimitive'](#isprimitive)
+* ['isFalsey'](#isfalsey)
+
 ## Union operators
 
 * [`SetIntersection<A, B>`](#setintersectiona-b-same-as-extract)
@@ -141,6 +146,30 @@ Type representing falsey values in TypeScript: `null | undefined | false | 0 | '
 > Except `NaN` which cannot be represented as a type literal
 
 [⇧ back to top](#table-of-contents)
+
+### `isPrimitive`
+
+This is a [TypeScript Typeguard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types) for the [`Primitive`](#primitive) type.
+
+This can be useful to control the type of a parameter as the program flows. Example:
+
+```ts
+const consumer = (param: Primitive[] | Primitive): string => {
+    if (isPrimitive(param)) {
+        // typeof param === Primitive
+        return String(param) + ' was Primitive';
+    }
+    // typeof param === Primitive[]
+    const resultArray = param
+        .map(consumer)
+        .map(rootString => '\n\t' + rootString);
+    return resultArray.reduce((comm, newV) => comm + newV, 'this was nested:');
+};
+```
+
+### `isFalsey`
+
+As `isPrimitive` but for the type [`Falsey`](#falsey).
 
 ### `SetIntersection<A, B>` (same as Extract)
 
