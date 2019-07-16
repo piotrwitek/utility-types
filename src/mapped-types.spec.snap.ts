@@ -48,7 +48,12 @@ import {
 type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
 type NewProps = { age: string; other: string };
-type MixedProps = { name: string; setName: (name: string) => void };
+type MixedProps = {
+  name: string;
+  setName: (name: string) => void;
+  someKeys?: string;
+  someFn?: (...args: any) => any;
+};
 type ReadWriteProps = { readonly a: number; b: string };
 type RequiredOptionalProps = {
   req: number;
