@@ -98,7 +98,9 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`Pick<T, K>` _(built-in)_](#pickt-k-built-in) 
 * [`Omit<T, K>`](#omitt-k) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
+* [`PickByValueExact<T, ValueType>`](#pickbyvalueexactt-valuetype)
 * [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
+* [`OmitByValueExact<T, ValueType>`](#omitbyvalueexactt-valuetype)
 * [`Intersection<T, U>`](#intersectiont-u)
 * [`Diff<T, U>`](#difft-u)
 * [`Subtract<T, T1>`](#subtractt-t1)
