@@ -89,26 +89,26 @@ export type NonUndefined<A> = A extends undefined ? never : A;
  * FunctionKeys
  * @desc get union type of keys that are functions in object type `T`
  * @example
- *   type MixedProps = { name: string; setName: (name: string) => void };
+ *  type MixedProps = {name: string; setName: (name: string) => void; someKeys?: string; someFn?: (...args: any) => any;};
  *
- *   // Expect: "setName"
+ *   // Expect: "setName | someFn"
  *   type Keys = FunctionKeys<MixedProps>;
  */
 export type FunctionKeys<T extends object> = {
-  [K in keyof T]: T[K] extends Function ? K : never
+  [K in keyof T]-?: NonUndefined<T[K]> extends Function ? K : never
 }[keyof T];
 
 /**
  * NonFunctionKeys
  * @desc get union type of keys that are non-functions in object type `T`
  * @example
- *   type MixedProps = { name: string; setName: (name: string) => void };
+ *   type MixedProps = {name: string; setName: (name: string) => void; someKeys?: string; someFn?: (...args: any) => any;};
  *
- *   // Expect: "name"
+ *   // Expect: "name | someKey"
  *   type Keys = NonFunctionKeys<MixedProps>;
  */
 export type NonFunctionKeys<T extends object> = {
-  [K in keyof T]: T[K] extends Function ? never : K
+  [K in keyof T]-?: NonUndefined<T[K]> extends Function ? never : K
 }[keyof T];
 
 /**
