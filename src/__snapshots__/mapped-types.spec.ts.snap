@@ -88,7 +88,7 @@ exports[`Diff testType<Diff<Props, NewProps>>() 1`] = `"Pick<Props, \\"name\\" |
 
 exports[`Falsey testType<Falsey>() 1`] = `"Falsey"`;
 
-exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() 1`] = `"\\"setName\\""`;
+exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() 1`] = `"\\"setName\\" | \\"someFn\\""`;
 
 exports[`Intersection const result: Intersection<T, Omit<T, 'age'>> = rest 1`] = `"any"`;
 
@@ -96,7 +96,7 @@ exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() 1
 
 exports[`Intersection testType<Intersection<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\">"`;
 
-exports[`NonFunctionKeys testType<NonFunctionKeys<MixedProps>>() 1`] = `"\\"name\\""`;
+exports[`NonFunctionKeys testType<NonFunctionKeys<MixedProps>>() 1`] = `"\\"name\\" | \\"someKeys\\""`;
 
 exports[`NonUndefined testType<NonUndefined<string | null | undefined>>() 1`] = `"string | null"`;
 

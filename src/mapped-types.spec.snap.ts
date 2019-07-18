@@ -116,13 +116,13 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group FunctionKeys
 {
-  // @dts-jest:pass:snap -> "setName | someFn "
+  // @dts-jest:pass:snap -> "setName" | "someFn"
   testType<FunctionKeys<MixedProps>>();
 }
 
 // @dts-jest:group NonFunctionKeys
 {
-  // @dts-jest:pass:snap -> "name | someKeys"
+  // @dts-jest:pass:snap -> "name" | "someKeys"
   testType<NonFunctionKeys<MixedProps>>();
 }
 
