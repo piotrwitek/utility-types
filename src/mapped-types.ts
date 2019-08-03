@@ -316,7 +316,7 @@ export type Diff<T extends object, U extends object> = Pick<
 
 /**
  * Subtract
- * @desc From `T` remove properties that exist in `T1` (`T1` is a subtype of `T`)
+ * @desc From `T` remove properties that exist in `T1` (`T1` has a subset of the properties of `T`)
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
  *   type DefaultProps = { age: number };

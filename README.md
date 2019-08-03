@@ -534,7 +534,7 @@ type RequiredProps = Diff<Props, DefaultProps>;
 
 ### `Subtract<T, T1>`
 
-From `T` remove properties that exist in `T1` (`T` is a subtype of `T1`)
+From `T` remove properties that exist in `T1` (`T1` has a subset of the properties of `T`)
 
 **Usage:**
 
