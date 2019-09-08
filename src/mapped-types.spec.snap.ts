@@ -39,6 +39,7 @@ import {
   PickByValueExact,
   OmitByValueExact,
   Optional,
+  ValuesType,
 } from './mapped-types';
 
 /**
@@ -500,4 +501,29 @@ type RequiredOptionalProps = {
   testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' });
   // @dts-jest:pass:snap -> Optional<Props, "age" | "visible">
   testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo', age: 99 });
+}
+
+// @dts-jest:group ValuesType
+{
+  // @dts-jest:pass:snap -> string | number | boolean
+  testType<ValuesType<Props>>();
+
+  // @dts-jest:pass:snap -> number
+  testType<ValuesType<number[]>>();
+  // @dts-jest:pass:snap -> symbol
+  testType<ValuesType<readonly symbol[]>>();
+  // @dts-jest:pass:snap -> string
+  testType<ValuesType<ReadonlyArray<string>>>();
+
+  // @dts-jest:pass:snap -> 1 | 2
+  testType<ValuesType<[1, 2]>>();
+  // @dts-jest:pass:snap -> 1 | 2
+  testType<ValuesType<readonly [1, 2]>>();
+
+  // @dts-jest:pass:snap -> number
+  testType<ValuesType<Uint8Array>>();
+  // @dts-jest:pass:snap -> number
+  testType<ValuesType<Uint16Array>>();
+  // @dts-jest:pass:snap -> number
+  testType<ValuesType<Uint32Array>>();
 }

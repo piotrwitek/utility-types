@@ -182,4 +182,22 @@ exports[`SymmetricDifference testType<SymmetricDifference<'1' | '2' | '3', '2' |
 
 exports[`Unionize testType<Unionize<Props>>() 1`] = `"{ name: string; } | { age: number; } | { visible: boolean; }"`;
 
+exports[`ValuesType testType<ValuesType<[1, 2]>>() 1`] = `"1 | 2"`;
+
+exports[`ValuesType testType<ValuesType<Props>>() 1`] = `"string | number | boolean"`;
+
+exports[`ValuesType testType<ValuesType<ReadonlyArray<string>>>() 1`] = `"string"`;
+
+exports[`ValuesType testType<ValuesType<Uint8Array>>() 1`] = `"number"`;
+
+exports[`ValuesType testType<ValuesType<Uint16Array>>() 1`] = `"number"`;
+
+exports[`ValuesType testType<ValuesType<Uint32Array>>() 1`] = `"number"`;
+
+exports[`ValuesType testType<ValuesType<number[]>>() 1`] = `"number"`;
+
+exports[`ValuesType testType<ValuesType<readonly [1, 2]>>() 1`] = `"1 | 2"`;
+
+exports[`ValuesType testType<ValuesType<readonly symbol[]>>() 1`] = `"symbol"`;
+
 exports[`WritableKeys testType<WritableKeys<ReadWriteProps>>() 1`] = `"\\"b\\""`;

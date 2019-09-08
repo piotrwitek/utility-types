@@ -14,6 +14,7 @@ export {
   $ReadOnly,
   $Shape,
   $Values,
+  $ValuesType,
   Class,
 } from './utility-types';
 
@@ -48,6 +49,7 @@ export {
   Subtract,
   SymmetricDifference,
   Unionize,
+  ValuesType,
   WritableKeys,
 } from './mapped-types';
 

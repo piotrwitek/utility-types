@@ -3,6 +3,7 @@ import {
   $Call,
   $Keys,
   $Values,
+  $ValuesType,
   $ReadOnly,
   $Diff,
   $PropertyType,
@@ -36,6 +37,31 @@ it('$Keys', () => {
 it('$Values', () => {
   // @dts-jest:pass:snap -> string | number | boolean
   testType<$Values<Props>>();
+});
+
+// @dts-jest:group $ValuesType
+it('$ValuesType', () => {
+  // @dts-jest:pass:snap -> string | number | boolean
+  testType<$ValuesType<Props>>();
+
+  // @dts-jest:pass:snap -> number
+  testType<$ValuesType<number[]>>();
+  // @dts-jest:pass:snap -> symbol
+  testType<$ValuesType<readonly symbol[]>>();
+  // @dts-jest:pass:snap -> string
+  testType<$ValuesType<ReadonlyArray<string>>>();
+
+  // @dts-jest:pass:snap -> 1 | 2
+  testType<$ValuesType<[1, 2]>>();
+  // @dts-jest:pass:snap -> 1 | 2
+  testType<$ValuesType<readonly [1, 2]>>();
+
+  // @dts-jest:pass:snap -> number
+  testType<$ValuesType<Uint8Array>>();
+  // @dts-jest:pass:snap -> number
+  testType<$ValuesType<Uint16Array>>();
+  // @dts-jest:pass:snap -> number
+  testType<$ValuesType<Uint32Array>>();
 });
 
 // @dts-jest:group $ReadOnly
