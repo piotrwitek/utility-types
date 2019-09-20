@@ -1015,6 +1015,7 @@ https://flow.org/en/docs/types/mixed
 ## Related Projects
 
 - [`ts-toolbelt`](https://github.com/pirix-gh/ts-toolbelt) - Higher type safety for TypeScript 
+- [`$mol_type`](https://github.com/eigenmethod/mol/tree/master/type) - Collection of TypeScript meta types for complex logic
 
 ---
 
