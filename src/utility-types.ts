@@ -25,25 +25,6 @@ export type $Keys<T extends object> = keyof T;
 export type $Values<T extends object> = T[keyof T];
 
 /**
- * $ValuesType
- * @desc get the union type of all the values in an object, array or array-like type `T`
- * @example
- *   type Props = { name: string; age: number; visible: boolean };
- *
- *   // Expect: string | number | boolean
- *   type PropsValues = $ValuesType<Props>;
- */
-export type $ValuesType<
-  T extends ReadonlyArray<any> | ArrayLike<any> | Record<any, any>
-> = T extends ReadonlyArray<any>
-  ? T[number]
-  : T extends ArrayLike<any>
-  ? T[number]
-  : T extends object
-  ? T[keyof T]
-  : never;
-
-/**
  * $ReadOnly
  * @desc get the read-only version of a given object type `T` (it works on nested data structure)
  * @see https://flow.org/en/docs/types/utilities/#toc-readonly

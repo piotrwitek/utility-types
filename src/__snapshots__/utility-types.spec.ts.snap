@@ -34,24 +34,6 @@ exports[`$Shape testType<$Shape<Props>>() 1`] = `"Partial<Props>"`;
 
 exports[`$Values testType<$Values<Props>>() 1`] = `"string | number | boolean"`;
 
-exports[`$ValuesType testType<$ValuesType<Props>>() 1`] = `"string | number | boolean"`;
-
-exports[`$ValuesType testType<$ValuesType<number[]>>() 1`] = `"number"`;
-
-exports[`$ValuesType testType<$ValuesType<ReadonlyArray<string>>>() 1`] = `"string"`;
-
-exports[`$ValuesType testType<$ValuesType<readonly symbol[]>>() 1`] = `"symbol"`;
-
-exports[`$ValuesType testType<$ValuesType<[1, 2]>>() 1`] = `"1 | 2"`;
-
-exports[`$ValuesType testType<$ValuesType<readonly [1, 2]>>() 1`] = `"1 | 2"`;
-
-exports[`$ValuesType testType<$ValuesType<Uint8Array>>() 1`] = `"number"`;
-
-exports[`$ValuesType testType<$ValuesType<Uint16Array>>() 1`] = `"number"`;
-
-exports[`$ValuesType testType<$ValuesType<Uint32Array>>() 1`] = `"number"`;
-
 exports[`Class testType<Class<Foo>>() 1`] = `"Class<Foo>"`;
 
 exports[`mixed testType<mixed>() 1`] = `"unknown"`;

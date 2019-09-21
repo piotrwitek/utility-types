@@ -14,7 +14,6 @@ export {
   $ReadOnly,
   $Shape,
   $Values,
-  $ValuesType,
   Class,
 } from './utility-types';
 
