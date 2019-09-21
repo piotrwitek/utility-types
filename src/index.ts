@@ -48,6 +48,7 @@ export {
   Subtract,
   SymmetricDifference,
   Unionize,
+  ValuesType,
   WritableKeys,
 } from './mapped-types';
 

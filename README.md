@@ -106,6 +106,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`Subtract<T, T1>`](#subtractt-t1)
 * [`Overwrite<T, U>`](#overwritet-u)
 * [`Assign<T, U>`](#assignt-u)
+* [`ValuesType<T>`](#valuestypet)
 
 ## Special operators
 
@@ -582,6 +583,34 @@ type NewProps = { age: string; other: string };
 
 // Expect: { name: string; age: number; visible: boolean; other: string; }
 type ExtendedProps = Assign<Props, NewProps>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `ValuesType<T>`
+
+Get the union type of all the values in an object, tuple, array or array-like type `T`.
+
+**Usage:**
+
+```ts
+import { ValuesType } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean };
+// Expect: string | number | boolean
+type PropsValues = $ValuesType<Props>;
+
+type NumberArray = number[];
+// Expect: number
+type NumberItems = $ValuesType<NumberArray>;
+
+type ReadonlyNumberTuple = readonly [1, 2];
+// Expect: 1 | 2
+type AnotherNumberUnion = $ValuesType<NumberTuple>;
+
+type BinaryArray = Uint8Array;
+// Expect: number
+type BinaryItems = $ValuesType<BinaryArray>;
 ```
 
 [⇧ back to top](#table-of-contents)
