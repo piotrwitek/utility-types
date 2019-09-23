@@ -795,7 +795,7 @@ type PartialNestedProps = DeepPartial<NestedProps>;
 
 ### `Brand<T, U>`
 
-Define nominal type of `U` based on type of `T`.
+Define nominal type of `U` based on type of `T`. Similar to Opaque types in Flow.
 
 **Usage:**
 
