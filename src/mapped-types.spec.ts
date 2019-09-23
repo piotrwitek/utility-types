@@ -40,6 +40,7 @@ import {
   OmitByValueExact,
   Optional,
   ValuesType,
+  Required,
 } from './mapped-types';
 
 /**
@@ -526,4 +527,16 @@ type RequiredOptionalProps = {
   testType<ValuesType<Uint16Array>>();
   // @dts-jest:pass:snap
   testType<ValuesType<Uint32Array>>();
+}
+
+// @dts-jest:group Required
+{
+  // @dts-jest:pass:snap
+  testType<Required<Partial<Props>>>({ name: 'Yolo', age: 99, visible: true });
+
+  // @dts-jest:pass:snap
+  testType<Required<Partial<Props>, 'age' | 'visible'>>({
+    age: 99,
+    visible: true,
+  });
 }

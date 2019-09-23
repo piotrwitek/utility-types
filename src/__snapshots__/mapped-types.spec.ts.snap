@@ -162,6 +162,13 @@ exports[`PromiseType testType<PromiseType<Promise<string>>>() 1`] = `"string"`;
 
 exports[`ReadonlyKeys testType<ReadonlyKeys<ReadWriteProps>>() 1`] = `"\\"a\\""`;
 
+exports[`Required testType<Required<Partial<Props>, 'age' | 'visible'>>({
+      age: 99,
+      visible: true,
+    }) 1`] = `"Required<Partial<Props>, \\"age\\" | \\"visible\\">"`;
+
+exports[`Required testType<Required<Partial<Props>>>({ name: 'Yolo', age: 99, visible: true }) 1`] = `"Required<Partial<Props>, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+
 exports[`RequiredKeys testType<RequiredKeys<RequiredOptionalProps>>() 1`] = `"\\"req\\" | \\"reqUndef\\""`;
 
 exports[`SetComplement testType<SetComplement<'1' | '2' | '3', '2' | '3'>>() 1`] = `"\\"1\\""`;
