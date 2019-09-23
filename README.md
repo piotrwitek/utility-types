@@ -91,7 +91,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`OptionalKeys<T>`](#optionalkeyst)
 * [`Partial<T>`](#partialt) _(built-in)_
 * [`DeepPartial<T>`](#deeppartialt)
-* [`Required<T>`](#requiredt) _(built-in)_
+* [`Required<T, K>`](#requiredt)
 * [`DeepRequired<T>`](#deeprequiredt)
 * [`Readonly<T>`](#readonlyt) _(built-in)_
 * [`DeepReadonly<T>`](#deepreadonlyt)
@@ -621,9 +621,22 @@ Make all properties of object type optional
 
 [⇧ back to top](#table-of-contents)
 
-### `Required<T>`
+### `Required<T, K>`
 
-Make all properties of object type non-optional
+From `T` make a set of properties by key `K` become required
+
+**Usage:**
+
+```ts
+import { Required } from 'utility-types';
+
+type Props = { name?: string; age?: number; visible?: boolean; };
+
+// Expect: { name: string; age: number; visible: boolean; }
+type Props = Required<Props>
+// Expect: { name?: string; age: number; visible: boolean; }
+type Props = Required<Props, 'age' | 'visible'>;
+```
 
 [⇧ back to top](#table-of-contents)
 
