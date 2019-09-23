@@ -615,9 +615,6 @@ export type ValuesType<
   ? T[keyof T]
   : never;
 
-// Copy of builtin Required to make definition of custom Required simpler
-type RequiredCopy<T> = { [P in keyof T]-?: T[P] };
-
 /**
  * Required
  * @desc From `T` make a set of properties by key `K` become required
@@ -634,8 +631,9 @@ type RequiredCopy<T> = { [P in keyof T]-?: T[P] };
  *    // Expect: { name?: string; age: number; visible: boolean; }
  *    type Props = Required<Props, 'age' | 'visible'>;
  */
-export type Required<T extends object, K extends keyof T = keyof T> = Omit<
+type AugmentedRequired<T extends object, K extends keyof T = keyof T> = Omit<
   T,
   K
 > &
-  RequiredCopy<Pick<T, K>>;
+  Required<Pick<T, K>>;
+export { AugmentedRequired as Required };
