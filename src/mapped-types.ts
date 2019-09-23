@@ -535,7 +535,7 @@ export type _DeepPartialObject<T> = { [P in keyof T]?: DeepPartial<T[P]> };
 
 /**
  * Brand
- * @desc Define nominal type of U based on type of T.
+ * @desc Define nominal type of U based on type of T. Similar to Opaque types in Flow.
  * @example
  *   type USD = Brand<number, "USD">
  *   type EUR = Brand<number, "EUR">
