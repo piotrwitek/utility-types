@@ -631,9 +631,7 @@ export type ValuesType<
  *    // Expect: { name?: string; age: number; visible: boolean; }
  *    type Props = Required<Props, 'age' | 'visible'>;
  */
-type AugmentedRequired<T extends object, K extends keyof T = keyof T> = Omit<
-  T,
-  K
-> &
-  Required<Pick<T, K>>;
-export { AugmentedRequired as Required };
+export type AugmentedRequired<
+  T extends object,
+  K extends keyof T = keyof T
+> = Omit<T, K> & Required<Pick<T, K>>;

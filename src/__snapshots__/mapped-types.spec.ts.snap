@@ -4,6 +4,17 @@ exports[`Assign const result: Assign<{}, Omit<T, 'age'>> = rest 1`] = `"any"`;
 
 exports[`Assign testType<Assign<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
 
+exports[`AugmentedRequired testType<AugmentedRequired<Partial<Props>, 'age' | 'visible'>>({
+      age: 99,
+      visible: true,
+    }) 1`] = `"AugmentedRequired<Partial<Props>, \\"age\\" | \\"visible\\">"`;
+
+exports[`AugmentedRequired testType<AugmentedRequired<Partial<Props>>>({
+      name: 'Yolo',
+      age: 99,
+      visible: true,
+    }) 1`] = `"AugmentedRequired<Partial<Props>, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+
 exports[`Brand testType<Brand<number, 'USD'>>() 1`] = `"Brand<number, \\"USD\\">"`;
 
 exports[`DeepNonNullable testType<
@@ -161,13 +172,6 @@ exports[`Primitive testType<Primitive>() 1`] = `"Primitive"`;
 exports[`PromiseType testType<PromiseType<Promise<string>>>() 1`] = `"string"`;
 
 exports[`ReadonlyKeys testType<ReadonlyKeys<ReadWriteProps>>() 1`] = `"\\"a\\""`;
-
-exports[`Required testType<Required<Partial<Props>, 'age' | 'visible'>>({
-      age: 99,
-      visible: true,
-    }) 1`] = `"Required<Partial<Props>, \\"age\\" | \\"visible\\">"`;
-
-exports[`Required testType<Required<Partial<Props>>>({ name: 'Yolo', age: 99, visible: true }) 1`] = `"Required<Partial<Props>, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
 exports[`RequiredKeys testType<RequiredKeys<RequiredOptionalProps>>() 1`] = `"\\"req\\" | \\"reqUndef\\""`;
 

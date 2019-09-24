@@ -40,7 +40,7 @@ import {
   OmitByValueExact,
   Optional,
   ValuesType,
-  Required,
+  AugmentedRequired,
 } from './mapped-types';
 
 /**
@@ -529,13 +529,17 @@ type RequiredOptionalProps = {
   testType<ValuesType<Uint32Array>>();
 }
 
-// @dts-jest:group Required
+// @dts-jest:group AugmentedRequired
 {
-  // @dts-jest:pass:snap -> Required<Partial<Props>, "name" | "age" | "visible">
-  testType<Required<Partial<Props>>>({ name: 'Yolo', age: 99, visible: true });
+  // @dts-jest:pass:snap -> AugmentedRequired<Partial<Props>, "name" | "age" | "visible">
+  testType<AugmentedRequired<Partial<Props>>>({
+    name: 'Yolo',
+    age: 99,
+    visible: true,
+  });
 
-  // @dts-jest:pass:snap -> Required<Partial<Props>, "age" | "visible">
-  testType<Required<Partial<Props>, 'age' | 'visible'>>({
+  // @dts-jest:pass:snap -> AugmentedRequired<Partial<Props>, "age" | "visible">
+  testType<AugmentedRequired<Partial<Props>, 'age' | 'visible'>>({
     age: 99,
     visible: true,
   });
