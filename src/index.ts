@@ -50,6 +50,7 @@ export {
   Unionize,
   ValuesType,
   WritableKeys,
+  AugmentedRequired as Required,
 } from './mapped-types';
 
 export * from './type-guards';
