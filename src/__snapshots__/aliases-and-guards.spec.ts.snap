@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Falsy testType<Falsy>() 1`] = `"Falsy"`;
+
+exports[`Primitive testType<Primitive>() 1`] = `"Primitive"`;
+
+exports[`isFalsy-Falsy val 1`] = `"Falsy"`;
+
+exports[`isFalsy-Falsy val 2`] = `"unknown"`;
+
+exports[`isFalsy-Truthy val 1`] = `"Falsy"`;
+
+exports[`isFalsy-Truthy val 2`] = `"unknown"`;
+
+exports[`isPrimitive param 1`] = `"Primitive"`;
+
+exports[`isPrimitive param 2`] = `"Primitive[]"`;

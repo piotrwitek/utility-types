@@ -62,7 +62,12 @@ Issues can be funded by anyone and the money will be transparently distributed t
 ## Aliases
 
 * [`Primitive`](#primitive)
-* [`Falsey`](#falsey)
+* [`Falsy`](#falsy)
+
+## Type Guards
+
+* ['isPrimitive'](#isprimitive)
+* ['isFalsy'](#isfalsy)
 
 ## Union operators
 
@@ -138,9 +143,9 @@ You can test for singular of these types with [`typeof`](https://developer.mozil
 
 [⇧ back to top](#table-of-contents)
 
-### `Falsey`
+### `Falsy`
 
-Type representing falsey values in TypeScript: `null | undefined | false | 0 | ''`
+Type representing falsy values in TypeScript: `null | undefined | false | 0 | ''`
 > Except `NaN` which cannot be represented as a type literal
 
 [⇧ back to top](#table-of-contents)
@@ -165,9 +170,9 @@ const consumer = (param: Primitive[] | Primitive): string => {
 };
 ```
 
-### `isFalsey`
+### `isFalsy`
 
-As `isPrimitive` but for the type [`Falsey`](#falsey).
+As `isPrimitive` but for the type [`Falsy`](#falsy).
 
 ### `SetIntersection<A, B>` (same as Extract)
 

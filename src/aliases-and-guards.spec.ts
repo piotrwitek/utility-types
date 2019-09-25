@@ -1,5 +1,11 @@
-import { Primitive, Falsey } from './mapped-types';
-import { isPrimitive, isFalsey } from './type-guards';
+import { testType } from '../utils/test-utils';
+import { Primitive, isPrimitive, Falsy, isFalsy } from './aliases-and-guards';
+
+// @dts-jest:group Primitive
+{
+  // @dts-jest:pass:snap
+  testType<Primitive>();
+}
 
 // @dts-jest:group isPrimitive
 it('narrows to correct type', () => {
@@ -18,12 +24,18 @@ it('narrows to correct type', () => {
   };
 });
 
-// @dts-jest:group isFalsey-Group-Falsey
-it('returns true for falsey and narrows type', () => {
-  const falseyTestVals: unknown[] = ['', null, undefined, false, 0];
+// @dts-jest:group Falsy
+{
+  // @dts-jest:pass:snap
+  testType<Falsy>();
+}
 
-  falseyTestVals.forEach(val => {
-    if (isFalsey(val)) {
+// @dts-jest:group isFalsy-Falsy
+it('returns true for falsy and narrows type', () => {
+  const falsyTestVals: unknown[] = ['', null, undefined, false, 0];
+
+  falsyTestVals.forEach(val => {
+    if (isFalsy(val)) {
       // @dts-jest:pass:snap
       val;
     }
@@ -31,17 +43,17 @@ it('returns true for falsey and narrows type', () => {
     val;
   });
 
-  const testResults = falseyTestVals.map(isFalsey);
+  const testResults = falsyTestVals.map(isFalsy);
 
   testResults.forEach(val => expect(val).toBe(true));
 });
 
-// @dts-jest:group isFalsey-Group-Truthy
+// @dts-jest:group isFalsy-Truthy
 it('returns false for truthy and narrows type', () => {
   const truthyTestVals: unknown[] = [' ', true, {}, []];
 
   truthyTestVals.forEach(val => {
-    if (isFalsey(val)) {
+    if (isFalsy(val)) {
       // @dts-jest:pass:snap
       val;
     }
@@ -49,7 +61,7 @@ it('returns false for truthy and narrows type', () => {
     val;
   });
 
-  const testResults = truthyTestVals.map(isFalsey);
+  const testResults = truthyTestVals.map(isFalsy);
 
   testResults.forEach(val => expect(val).toBe(false));
 });

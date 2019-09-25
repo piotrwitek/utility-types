@@ -1,7 +1,5 @@
 import { testType } from '../utils/test-utils';
 import {
-  Primitive,
-  Falsey,
   SetIntersection,
   SetDifference,
   SetComplement,
@@ -67,18 +65,6 @@ type RequiredOptionalProps = {
 /**
  * Tests
  */
-
-// @dts-jest:group Primitive
-{
-  // @dts-jest:pass:snap -> Primitive
-  testType<Primitive>();
-}
-
-// @dts-jest:group Falsey
-{
-  // @dts-jest:pass:snap -> Falsey
-  testType<Falsey>();
-}
 
 // @dts-jest:group SetIntersection
 {

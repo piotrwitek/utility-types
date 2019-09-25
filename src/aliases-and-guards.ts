@@ -1,4 +1,24 @@
-import { Primitive, Falsey } from './mapped-types';
+/**
+ * Primitive
+ * @desc Type representing primitive types in TypeScript: `number | bigint | boolean | string | symbol`
+ * @example
+ *   type Various = number | string | object;
+ *
+ *    // Expect: object
+ *   type Cleaned = Exclude<Various, Primitive>
+ */
+export type Primitive = number | bigint | boolean | string | symbol;
+
+/**
+ * Falsy
+ * @desc Type representing falsy values in TypeScript: `null | undefined | false | 0 | ''`
+ * @example
+ *   type Various = 'a' | 'b' | undefined | false;
+ *
+ *   // Expect: "a" | "b"
+ *   Exclude<Various, Falsy>;
+ */
+export type Falsy = null | undefined | false | 0 | '';
 
 /**
  * Tests for one of the [`Primitive`](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) types using the JavaScript [`typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof) operator
@@ -32,12 +52,12 @@ export const isPrimitive = (val: unknown): val is Primitive => {
 };
 
 /**
- * Tests for Falsey by simply applying negation `!` to the tested `val`.
+ * Tests for Falsy by simply applying negation `!` to the tested `val`.
  *
  * The value is mostly in added type-information and explicity,
  * but in case of this simple type much the same can often be archived by just using negation `!`:
  * @example
- *   const consumer = (value: boolean | Falsey) => {
+ *   const consumer = (value: boolean | Falsy) => {
  *     if (!value) {
  *         return ;
  *     }
@@ -45,4 +65,4 @@ export const isPrimitive = (val: unknown): val is Primitive => {
  *     // do stuff
  *   };
  */
-export const isFalsey = (val: unknown): val is Falsey => !val;
+export const isFalsy = (val: unknown): val is Falsy => !val;

@@ -105,8 +105,6 @@ exports[`Diff const result: Diff<T, Pick<T, 'age'>> = rest 1`] = `"any"`;
 
 exports[`Diff testType<Diff<Props, NewProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`Falsey testType<Falsey>() 1`] = `"Falsey"`;
-
 exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() 1`] = `"\\"setName\\" | \\"someFn\\""`;
 
 exports[`Intersection const result: Intersection<T, Omit<T, 'age'>> = rest 1`] = `"any"`;
@@ -174,8 +172,6 @@ exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, numbe
 exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
 
 exports[`PickByValueExact testType<PickByValueExact<T, number>>() 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>"`;
-
-exports[`Primitive testType<Primitive>() 1`] = `"Primitive"`;
 
 exports[`PromiseType testType<PromiseType<Promise<string>>>() 1`] = `"string"`;
 
