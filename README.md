@@ -64,11 +64,6 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`Primitive`](#primitive)
 * [`Falsey`](#falsey)
 
-## Type Guards
-
-* ['isPrimitive'](#isprimitive)
-* ['isFalsey'](#isfalsey)
-
 ## Union operators
 
 * [`SetIntersection<A, B>`](#setintersectiona-b-same-as-extract)

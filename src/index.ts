@@ -41,6 +41,7 @@ export {
   Primitive,
   PromiseType,
   ReadonlyKeys,
+  AugmentedRequired as Required,
   RequiredKeys,
   SetComplement,
   SetDifference,
@@ -50,7 +51,6 @@ export {
   Unionize,
   ValuesType,
   WritableKeys,
-  AugmentedRequired as Required,
 } from './mapped-types';
 
 export * from './type-guards';
