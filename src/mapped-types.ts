@@ -414,7 +414,7 @@ export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
  */
 export type DeepReadonly<T> = T extends (...args: any[]) => any
   ? T
-  : T extends any[]
+  : T extends ReadonlyArray<any>
   ? _DeepReadonlyArray<T[number]>
   : T extends object
   ? _DeepReadonlyObject<T>

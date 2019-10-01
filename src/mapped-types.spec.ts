@@ -329,6 +329,8 @@ type RequiredOptionalProps = {
   // @dts-jest:pass:snap
   testType<DeepReadonly<NestedArrayProps>['first']['second']>();
   // @dts-jest:pass:snap
+  testType<DeepReadonly<DeepReadonly<NestedArrayProps>>['first']['second']>();
+  // @dts-jest:pass:snap
   testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>();
 
   type NestedFunctionProps = {
