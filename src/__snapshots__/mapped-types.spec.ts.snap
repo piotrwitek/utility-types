@@ -57,7 +57,7 @@ exports[`DeepPartial testType<typeof partialNested.first>() 1`] = `"_DeepPartial
 
 exports[`DeepPartial testType<typeof second>() 1`] = `"_DeepPartialObject<{ name: string; }> | undefined"`;
 
-exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedArrayProps>>['first']['second']>() 1`] = `"_DeepReadonlyArray<_DeepReadonlyObject<{ name: string; }>>"`;
+exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedArrayProps>>['first']['second']>() 1`] = `"_DeepReadonlyArray<{ name: string; }>"`;
 
 exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: { name: string; }[]; }>"`;
 

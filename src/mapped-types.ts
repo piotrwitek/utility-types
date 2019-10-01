@@ -412,7 +412,10 @@ export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
  *   };
  *   type ReadonlyNestedProps = DeepReadonly<NestedProps>;
  */
-export type DeepReadonly<T> = T extends (...args: any[]) => any
+declare const __deepReadonly: unique symbol;
+export type DeepReadonly<T> = T extends
+  | ((...args: any[]) => any)
+  | { readonly __deepReadonly?: typeof __deepReadonly }
   ? T
   : T extends ReadonlyArray<any>
   ? _DeepReadonlyArray<T[number]>
@@ -421,11 +424,13 @@ export type DeepReadonly<T> = T extends (...args: any[]) => any
   : T;
 /** @private */
 // tslint:disable-next-line:class-name
-export interface _DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
+export interface _DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {
+  readonly __deepReadonly?: typeof __deepReadonly;
+}
 /** @private */
 export type _DeepReadonlyObject<T> = {
   readonly [P in keyof T]: DeepReadonly<T[P]>
-};
+} & { readonly __deepReadonly?: typeof __deepReadonly };
 
 /**
  * DeepRequired
