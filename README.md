@@ -593,19 +593,19 @@ import { ValuesType } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 // Expect: string | number | boolean
-type PropsValues = $ValuesType<Props>;
+type PropsValues = ValuesType<Props>;
 
 type NumberArray = number[];
 // Expect: number
-type NumberItems = $ValuesType<NumberArray>;
+type NumberItems = ValuesType<NumberArray>;
 
 type ReadonlyNumberTuple = readonly [1, 2];
 // Expect: 1 | 2
-type AnotherNumberUnion = $ValuesType<NumberTuple>;
+type AnotherNumberUnion = ValuesType<NumberTuple>;
 
 type BinaryArray = Uint8Array;
 // Expect: number
-type BinaryItems = $ValuesType<BinaryArray>;
+type BinaryItems = ValuesType<BinaryArray>;
 ```
 
 [⇧ back to top](#table-of-contents)
