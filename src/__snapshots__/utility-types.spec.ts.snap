@@ -28,7 +28,7 @@ exports[`$PropertyType testType<$PropertyType<[boolean, number], '1'>>() 1`] = `
 
 exports[`$PropertyType testType<$PropertyType<Props, 'name'>>() 1`] = `"string"`;
 
-exports[`$ReadOnly testType<$ReadOnly<Props>>() 1`] = `"_DeepReadonlyObject<Props>"`;
+exports[`$ReadOnly testType<$ReadOnly<Props>>() 1`] = `"_DeepReadonlyObject<{ name: string; age: number; visible: boolean; }>"`;
 
 exports[`$Shape testType<$Shape<Props>>() 1`] = `"Partial<Props>"`;
 

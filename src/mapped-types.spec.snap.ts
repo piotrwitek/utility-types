@@ -314,6 +314,8 @@ type RequiredOptionalProps = {
   };
   // @dts-jest:pass:snap -> _DeepReadonlyObject<{ second: { name: string; }; }>
   testType<DeepReadonly<NestedProps>['first']>();
+  // @dts-jest:pass:snap -> _DeepReadonlyObject<{ second: { name: string; }; }>
+  testType<DeepReadonly<DeepReadonly<NestedProps>['first']>>();
   // @dts-jest:pass:snap -> _DeepReadonlyObject<{ name: string; }>
   testType<DeepReadonly<NestedProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
