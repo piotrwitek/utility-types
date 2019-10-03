@@ -412,13 +412,7 @@ export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
  *   };
  *   type ReadonlyNestedProps = DeepReadonly<NestedProps>;
  */
-export type DeepReadonly<T> = T extends
-  | ((...args: any[]) => any)
-  | string
-  | number
-  | boolean
-  | null
-  | undefined
+export type DeepReadonly<T> = T extends ((...args: any[]) => any) | Primitive
   ? T
   : T extends _DeepReadonlyArray<infer U>
   ? _DeepReadonlyArray<U>

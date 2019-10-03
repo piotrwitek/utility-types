@@ -314,8 +314,6 @@ type RequiredOptionalProps = {
   };
   // @dts-jest:pass:snap -> _DeepReadonlyObject<{ second: { name: string; }; }>
   testType<DeepReadonly<NestedProps>['first']>();
-  // @dts-jest:pass:snap -> _DeepReadonlyObject<{ second: { name: string; }; }>
-  testType<DeepReadonly<DeepReadonly<NestedProps>['first']>>();
   // @dts-jest:pass:snap -> _DeepReadonlyObject<{ name: string; }>
   testType<DeepReadonly<NestedProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
@@ -330,8 +328,6 @@ type RequiredOptionalProps = {
   testType<DeepReadonly<NestedArrayProps>['first']>();
   // @dts-jest:pass:snap -> _DeepReadonlyArray<{ name: string; }>
   testType<DeepReadonly<NestedArrayProps>['first']['second']>();
-  // @dts-jest:pass:snap -> _DeepReadonlyArray<{ name: string; }>
-  testType<DeepReadonly<DeepReadonly<NestedArrayProps>>['first']['second']>();
   // @dts-jest:pass:snap -> string
   testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>();
 
@@ -346,6 +342,16 @@ type RequiredOptionalProps = {
   testType<DeepReadonly<NestedFunctionProps>['first']['second']>();
   // @dts-jest:pass:snap -> string
   testType<ReturnType<DeepReadonly<NestedFunctionProps>['first']['second']>>();
+
+  // @dts-jest:pass:snap -> _DeepReadonlyObject<{ first: { second: { name: string; }; }; }>
+  testType<DeepReadonly<DeepReadonly<NestedProps>>>();
+  // @dts-jest:pass:snap -> _DeepReadonlyObject<{ first: { second: { name: string; }[]; }; }>
+  testType<DeepReadonly<DeepReadonly<NestedArrayProps>>>();
+
+  // @dts-jest:pass:snap -> string | number | bigint | boolean | symbol | null | undefined
+  testType<
+    DeepReadonly<string | null | undefined | boolean | number | bigint | symbol>
+  >();
 }
 
 // @dts-jest:group DeepRequired
