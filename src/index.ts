@@ -25,7 +25,6 @@ export {
   DeepReadonly,
   DeepRequired,
   Diff,
-  Falsey,
   FunctionKeys,
   Intersection,
   NonFunctionKeys,
@@ -38,7 +37,6 @@ export {
   Optional,
   PickByValue,
   PickByValueExact,
-  Primitive,
   PromiseType,
   ReadonlyKeys,
   AugmentedRequired as Required,
@@ -53,7 +51,13 @@ export {
   WritableKeys,
 } from './mapped-types';
 
-export * from './type-guards';
+export {
+  Falsy,
+  Falsy as Falsey, // deprecated in v3, backward compatibility until v4
+  isFalsy,
+  Primitive,
+  isPrimitive,
+} from './aliases-and-guards';
 
 // deprecated
 export { getReturnOfExpression } from './functional-helpers';

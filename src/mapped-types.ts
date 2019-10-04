@@ -1,29 +1,9 @@
+import { Primitive } from './aliases-and-guards';
+
 /**
  * Credits to all the people who given inspiration and shared some very useful code snippets
  * in the following github issue: https://github.com/Microsoft/TypeScript/issues/12215
  */
-
-/**
- * Primitive
- * @desc Type representing primitive types in TypeScript: `number | bigint | boolean | string | symbol`
- * @example
- *   type Various = number | string | object;
- *
- *    // Expect: object
- *   type Cleaned = Exclude<Various, Primitive>
- */
-export type Primitive = number | bigint | boolean | string | symbol;
-
-/**
- * Falsey
- * @desc Type representing falsey values in TypeScript: `null | undefined | false | 0 | ''`
- * @example
- *   type Various = 'a' | 'b' | undefined | false;
- *
- *   // Expect: "a" | "b"
- *   Exclude<Various, Falsey>;
- */
-export type Falsey = null | undefined | false | 0 | '';
 
 /**
  * SetIntersection (same as Extract)
