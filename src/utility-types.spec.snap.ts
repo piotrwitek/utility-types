@@ -40,7 +40,7 @@ it('$Values', () => {
 
 // @dts-jest:group $ReadOnly
 it('$ReadOnly', () => {
-  // @dts-jest:pass:snap -> _DeepReadonlyObject<Props>
+  // @dts-jest:pass:snap -> _DeepReadonlyObject<{ name: string; age: number; visible: boolean; }>
   testType<$ReadOnly<Props>>();
 });
 

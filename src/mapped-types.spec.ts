@@ -342,6 +342,16 @@ type RequiredOptionalProps = {
   testType<DeepReadonly<NestedFunctionProps>['first']['second']>();
   // @dts-jest:pass:snap
   testType<ReturnType<DeepReadonly<NestedFunctionProps>['first']['second']>>();
+
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<DeepReadonly<NestedProps>>>();
+  // @dts-jest:pass:snap
+  testType<DeepReadonly<DeepReadonly<NestedArrayProps>>>();
+
+  // @dts-jest:pass:snap
+  testType<
+    DeepReadonly<string | null | undefined | boolean | number | bigint | symbol>
+  >();
 }
 
 // @dts-jest:group DeepRequired

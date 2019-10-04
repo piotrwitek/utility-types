@@ -412,12 +412,12 @@ export type PromiseType<T extends Promise<any>> = T extends Promise<infer U>
  *   };
  *   type ReadonlyNestedProps = DeepReadonly<NestedProps>;
  */
-export type DeepReadonly<T> = T extends (...args: any[]) => any
+export type DeepReadonly<T> = T extends ((...args: any[]) => any) | Primitive
   ? T
-  : T extends any[]
-  ? _DeepReadonlyArray<T[number]>
-  : T extends object
-  ? _DeepReadonlyObject<T>
+  : T extends _DeepReadonlyArray<infer U>
+  ? _DeepReadonlyArray<U>
+  : T extends _DeepReadonlyObject<infer V>
+  ? _DeepReadonlyObject<V>
   : T;
 /** @private */
 // tslint:disable-next-line:class-name
