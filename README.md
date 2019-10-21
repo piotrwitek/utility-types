@@ -853,7 +853,7 @@ gross(usd); // ok
 gross(eur); // Type '"EUR"' is not assignable to type '"USD"'.
 ```
 
-[⇧ back to top](#flows-utility-types)
+[⇧ back to top](#table-of-contents)
 
 ### `UnionToIntersection<U>`
 
