@@ -113,6 +113,18 @@ exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() 1
 
 exports[`Intersection testType<Intersection<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\">"`;
 
+exports[`Mutable testType<Mutable<Readonly<Props>>>({
+      name: 'Yolo',
+      age: 99,
+      visible: true,
+    }) 1`] = `"Mutable<Readonly<Props>>"`;
+
+exports[`Mutable testType<Mutable<Readonly<Props>>['age']>(99) 1`] = `"number"`;
+
+exports[`Mutable testType<Mutable<Readonly<Props>>['name']>('Yolo') 1`] = `"string"`;
+
+exports[`Mutable testType<Mutable<Readonly<Props>>['visible']>(true) 1`] = `"boolean"`;
+
 exports[`NonFunctionKeys testType<NonFunctionKeys<MixedProps>>() 1`] = `"\\"name\\" | \\"someKeys\\""`;
 
 exports[`NonUndefined testType<NonUndefined<string | null | undefined>>() 1`] = `"string | null"`;

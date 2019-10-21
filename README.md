@@ -95,6 +95,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`DeepRequired<T>`](#deeprequiredt)
 * [`Readonly<T>`](#readonlyt) _(built-in)_
 * [`DeepReadonly<T>`](#deepreadonlyt)
+* [`Mutable<T>`](#mutablet)
 * [`Pick<T, K>` _(built-in)_](#pickt-k-built-in) 
 * [`Omit<T, K>`](#omitt-k) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
@@ -644,6 +645,25 @@ type Props = Required<Props, 'age' | 'visible'>;
 ### `Readonly<T>`
 
 Make all properties of object type readonly
+
+[⇧ back to top](#table-of-contents)
+
+### `Mutable<T>`
+
+From `T` make all properties become mutable
+
+```ts
+import { Mutable } from 'utility-types';
+
+type Props = {
+  readonly name: string;
+  readonly age: number;
+  readonly visible: boolean;
+};
+
+// Expect: { name: string; age: number; visible: boolean; }
+Mutable<Props>;
+```
 
 [⇧ back to top](#table-of-contents)
 

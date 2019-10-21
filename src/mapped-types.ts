@@ -630,3 +630,18 @@ export type UnionToIntersection<U> = (U extends any
   : never) extends (k: infer I) => void
   ? I
   : never;
+
+/**
+ * Mutable
+ * @desc From `T` make all properties become mutable
+ * @example
+ *    type Props = {
+ *      readonly name: string;
+ *      readonly age: number;
+ *      readonly visible: boolean;
+ *    };
+ *
+ *    // Expect: { name: string; age: number; visible: boolean; }
+ *    Mutable<Props>;
+ */
+export type Mutable<T> = { -readonly [P in keyof T]: T[P] };
