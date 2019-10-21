@@ -2,7 +2,7 @@ import { SetComplement, DeepReadonly } from './mapped-types';
 
 /**
  * $Keys
- * @desc get the union type of all the keys in an object type `T`
+ * @desc Get the union type of all the keys in an object type `T`
  * @see https://flow.org/en/docs/types/utilities/#toc-keys
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
@@ -14,7 +14,7 @@ export type $Keys<T extends object> = keyof T;
 
 /**
  * $Values
- * @desc get the union type of all the values in an object type `T`
+ * @desc Get the union type of all the values in an object type `T`
  * @see https://flow.org/en/docs/types/utilities/#toc-values
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
@@ -26,7 +26,7 @@ export type $Values<T extends object> = T[keyof T];
 
 /**
  * $ReadOnly
- * @desc get the read-only version of a given object type `T` (it works on nested data structure)
+ * @desc Get the read-only version of a given object type `T` (it works on nested data structure)
  * @see https://flow.org/en/docs/types/utilities/#toc-readonly
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
@@ -38,7 +38,7 @@ export type $ReadOnly<T extends object> = DeepReadonly<T>;
 
 /**
  * $Diff
- * @desc get the set difference of a given object types `T` and `U` (`T \ U`)
+ * @desc Get the set difference of a given object types `T` and `U` (`T \ U`)
  * @see https://flow.org/en/docs/types/utilities/#toc-diff
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
@@ -54,7 +54,7 @@ export type $Diff<T extends U, U extends object> = Pick<
 
 /**
  * $PropertyType
- * @desc get the type of property of an object at a given key `K`
+ * @desc Get the type of property of an object at a given key `K`
  * @see https://flow.org/en/docs/types/utilities/#toc-propertytype
  * @example
  *   // Expect: string;
@@ -71,7 +71,7 @@ export type $PropertyType<T extends object, K extends keyof T> = T[K];
 
 /**
  * $ElementType
- * @desc get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`
+ * @desc Get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`
  * @see https://flow.org/en/docs/types/utilities/#toc-elementtype
  * @example
  *   // Expect: string;
@@ -99,7 +99,7 @@ export type $ElementType<
 
 /**
  * $Call
- * @desc get the return type from a given typeof expression
+ * @desc Get the return type from a given typeof expression
  * @see https://flow.org/en/docs/types/utilities/#toc-call
  * @example
  *   // Common use-case

@@ -67,7 +67,7 @@ export type NonUndefined<A> = A extends undefined ? never : A;
 
 /**
  * FunctionKeys
- * @desc get union type of keys that are functions in object type `T`
+ * @desc Get union type of keys that are functions in object type `T`
  * @example
  *  type MixedProps = {name: string; setName: (name: string) => void; someKeys?: string; someFn?: (...args: any) => any;};
  *
@@ -80,7 +80,7 @@ export type FunctionKeys<T extends object> = {
 
 /**
  * NonFunctionKeys
- * @desc get union type of keys that are non-functions in object type `T`
+ * @desc Get union type of keys that are non-functions in object type `T`
  * @example
  *   type MixedProps = {name: string; setName: (name: string) => void; someKeys?: string; someFn?: (...args: any) => any;};
  *
@@ -93,7 +93,7 @@ export type NonFunctionKeys<T extends object> = {
 
 /**
  * MutableKeys
- * @desc get union type of keys that are writable in object type `T`
+ * @desc Get union type of keys that are mutable in object type `T`
  * Credit: Matt McCutchen
  * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
  * @example
@@ -113,7 +113,7 @@ export type WritableKeys<T extends object> = MutableKeys<T>;
 
 /**
  * ReadonlyKeys
- * @desc get union type of keys that are readonly in object type `T`
+ * @desc Get union type of keys that are readonly in object type `T`
  * Credit: Matt McCutchen
  * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
  * @example
@@ -139,7 +139,7 @@ type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
 
 /**
  * RequiredKeys
- * @desc get union type of keys that are required in object type `T`
+ * @desc Get union type of keys that are required in object type `T`
  * @see https://stackoverflow.com/questions/52984808/is-there-a-way-to-get-all-required-properties-of-a-typescript-object
  * @example
  *   type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
@@ -153,7 +153,7 @@ export type RequiredKeys<T> = {
 
 /**
  * OptionalKeys
- * @desc get union type of keys that are optional in object type `T`
+ * @desc Get union type of keys that are optional in object type `T`
  * @see https://stackoverflow.com/questions/52984808/is-there-a-way-to-get-all-required-properties-of-a-typescript-object
  * @example
  *   type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
@@ -344,7 +344,7 @@ export type Assign<
 
 /**
  * Exact
- * @desc create branded object type for exact type matching
+ * @desc Create branded object type for exact type matching
  */
 export type Exact<A extends object> = A & { __brand: keyof A };
 
@@ -560,7 +560,7 @@ export type Optional<T extends object, K extends keyof T = keyof T> = Omit<
 
 /**
  * ValuesType
- * @desc get the union type of all the values in an object, array or array-like type `T`
+ * @desc Get the union type of all the values in an object, array or array-like type `T`
  * @example
  *    type Props = { name: string; age: number; visible: boolean };
  *    // Expect: string | number | boolean
