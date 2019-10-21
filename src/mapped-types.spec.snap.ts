@@ -39,6 +39,7 @@ import {
   Optional,
   ValuesType,
   AugmentedRequired,
+  UnionToIntersection,
 } from './mapped-types';
 
 /**
@@ -539,4 +540,27 @@ type RequiredOptionalProps = {
     age: 99,
     visible: true,
   });
+}
+
+// @dts-jest:group UnionToIntersection
+{
+  // @dts-jest:pass:snap -> { name: string; } & { age: number; } & { visible: boolean; }
+  testType<
+    UnionToIntersection<
+      { name: string } | { age: number } | { visible: boolean }
+    >
+  >({
+    name: 'Yolo',
+    age: 99,
+    visible: true,
+  });
+
+  // @dts-jest:pass:snap -> false & true
+  testType<UnionToIntersection<boolean>>();
+
+  // @dts-jest:pass:snap -> false & true
+  testType<UnionToIntersection<true | false>>();
+
+  // @dts-jest:pass:snap -> "name" & "age"
+  testType<UnionToIntersection<'name' | 'age'>>();
 }

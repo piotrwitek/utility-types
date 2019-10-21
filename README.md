@@ -115,6 +115,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
 * [`Brand<T, U>`](#brandt-u)
+* [`UnionToIntersection<U>`](#uniontointersectionu)
 
 ## Flow's Utility Types
 
@@ -831,6 +832,21 @@ gross(eur); // Type '"EUR"' is not assignable to type '"USD"'.
 ```
 
 [⇧ back to top](#flows-utility-types)
+
+### `UnionToIntersection<U>`
+
+Get intersection type given union type `U`
+
+**Usage:**
+
+```ts
+import { UnionToIntersection } from 'utility-types';
+
+// Expect: { name: string } & { age: number } & { visible: boolean }
+UnionToIntersection<{ name: string } | { age: number } | { visible: boolean }>
+```
+
+[⇧ back to top](#table-of-contents)
 
 ---
 
