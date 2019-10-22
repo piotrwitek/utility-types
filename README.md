@@ -85,7 +85,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`FunctionKeys<T>`](#functionkeyst)
 * [`NonFunctionKeys<T>`](#nonfunctionkeyst)
 * [`ReadonlyKeys<T>`](#readonlykeyst)
-* [`WritableKeys<T>`](#writablekeyst)
+* [`MutableKeys<T>`](#mutablekeyst)
 * [`RequiredKeys<T>`](#requiredkeyst)
 * [`Optional<T, K>`](#optionalt-k)
 * [`OptionalKeys<T>`](#optionalkeyst)
@@ -95,6 +95,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`DeepRequired<T>`](#deeprequiredt)
 * [`Readonly<T>`](#readonlyt) _(built-in)_
 * [`DeepReadonly<T>`](#deepreadonlyt)
+* [`Mutable<T>`](#mutablet)
 * [`Pick<T, K>` _(built-in)_](#pickt-k-built-in) 
 * [`Omit<T, K>`](#omitt-k) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
@@ -316,19 +317,21 @@ type ReadonlyProps = ReadonlyKeys<Props>;
 
 [⇧ back to top](#table-of-contents)
 
-### `WritableKeys<T>`
+### `MutableKeys<T>`
 
-Get union type of keys that are writable (not readonly) in object type `T`
+Get union type of keys that are mutable (not readonly) in object type `T`
+
+Alias: `WritableKeys<T>`
 
 **Usage:**
 
 ```ts
-import { WritableKeys } from 'utility-types';
+import { MutableKeys } from 'utility-types';
 
 type Props = { readonly foo: string; bar: number };
 
 // Expect: "bar"
-type WritableProps = WritableKeys<Props>;
+type MutableProps = MutableKeys<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -644,6 +647,25 @@ type Props = Required<Props, 'age' | 'visible'>;
 ### `Readonly<T>`
 
 Make all properties of object type readonly
+
+[⇧ back to top](#table-of-contents)
+
+### `Mutable<T>`
+
+From `T` make all properties become mutable
+
+```ts
+import { Mutable } from 'utility-types';
+
+type Props = {
+  readonly name: string;
+  readonly age: number;
+  readonly visible: boolean;
+};
+
+// Expect: { name: string; age: number; visible: boolean; }
+Mutable<Props>;
+```
 
 [⇧ back to top](#table-of-contents)
 
