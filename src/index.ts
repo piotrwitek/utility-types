@@ -28,6 +28,7 @@ export {
   FunctionKeys,
   Intersection,
   Mutable,
+  MutableKeys,
   NonFunctionKeys,
   NonUndefined,
   Omit,

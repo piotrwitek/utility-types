@@ -92,7 +92,7 @@ export type NonFunctionKeys<T extends object> = {
 }[keyof T];
 
 /**
- * WritableKeys
+ * MutableKeys
  * @desc get union type of keys that are writable in object type `T`
  * Credit: Matt McCutchen
  * https://stackoverflow.com/questions/52443276/how-to-exclude-getter-only-properties-from-type-in-typescript
@@ -100,15 +100,16 @@ export type NonFunctionKeys<T extends object> = {
  *   type Props = { readonly foo: string; bar: number };
  *
  *   // Expect: "bar"
- *   type Keys = WritableKeys<Props>;
+ *   type Keys = MutableKeys<Props>;
  */
-export type WritableKeys<T extends object> = {
+export type MutableKeys<T extends object> = {
   [P in keyof T]-?: IfEquals<
     { [Q in P]: T[P] },
     { -readonly [Q in P]: T[P] },
     P
   >
 }[keyof T];
+export type WritableKeys<T extends object> = MutableKeys<T>;
 
 /**
  * ReadonlyKeys

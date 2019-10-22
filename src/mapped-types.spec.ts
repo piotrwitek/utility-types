@@ -21,7 +21,7 @@ import {
   DeepRequired,
   DeepNonNullable,
   DeepPartial,
-  WritableKeys,
+  MutableKeys,
   ReadonlyKeys,
   Brand,
   _DeepNonNullableArray,
@@ -116,10 +116,10 @@ type RequiredOptionalProps = {
   testType<NonFunctionKeys<MixedProps>>();
 }
 
-// @dts-jest:group WritableKeys
+// @dts-jest:group MutableKeys
 {
   // @dts-jest:pass:snap
-  testType<WritableKeys<ReadWriteProps>>();
+  testType<MutableKeys<ReadWriteProps>>();
 }
 
 // @dts-jest:group ReadonlyKeys

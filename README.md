@@ -85,7 +85,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`FunctionKeys<T>`](#functionkeyst)
 * [`NonFunctionKeys<T>`](#nonfunctionkeyst)
 * [`ReadonlyKeys<T>`](#readonlykeyst)
-* [`WritableKeys<T>`](#writablekeyst)
+* [`MutableKeys<T>`](#mutablekeyst)
 * [`RequiredKeys<T>`](#requiredkeyst)
 * [`Optional<T, K>`](#optionalt-k)
 * [`OptionalKeys<T>`](#optionalkeyst)
@@ -317,19 +317,21 @@ type ReadonlyProps = ReadonlyKeys<Props>;
 
 [⇧ back to top](#table-of-contents)
 
-### `WritableKeys<T>`
+### `MutableKeys<T>`
 
-Get union type of keys that are writable (not readonly) in object type `T`
+Get union type of keys that are mutable (not readonly) in object type `T`
+
+Alias: `WritableKeys<T>`
 
 **Usage:**
 
 ```ts
-import { WritableKeys } from 'utility-types';
+import { MutableKeys } from 'utility-types';
 
 type Props = { readonly foo: string; bar: number };
 
 // Expect: "bar"
-type WritableProps = WritableKeys<Props>;
+type MutableProps = MutableKeys<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
