@@ -876,7 +876,7 @@ UnionToIntersection<{ name: string } | { age: number } | { visible: boolean }>
 
 ### `$Keys<T>`
 
-get the union type of all the keys in an object type `T`
+get the union type of all the keys in an object type `T`<br>
 https://flow.org/en/docs/types/utilities/#toc-keys
 
 **Usage:**
@@ -894,7 +894,7 @@ type PropsKeys = $Keys<Props>;
 
 ### `$Values<T>`
 
-get the union type of all the values in an object type `T`
+get the union type of all the values in an object type `T`<br>
 https://flow.org/en/docs/types/utilities/#toc-values
 
 **Usage:**
@@ -912,7 +912,7 @@ type PropsValues = $Values<Props>;
 
 ### <a id="readonly2"></a> `$ReadOnly<T>`
 
-get the read-only version of a given object type `T`
+get the read-only version of a given object type `T`<br>
 https://flow.org/en/docs/types/utilities/#toc-readonly
 
 **Usage:**
@@ -930,7 +930,7 @@ type ReadOnlyProps = $ReadOnly<Props>;
 
 ### <a id="diff2"></a> `$Diff<T, U>`
 
-get the set difference of a given object types `T` and `U` (`T \ U`)
+get the set difference of a given object types `T` and `U` (`T \ U`)<br>
 https://flow.org/en/docs/types/utilities/#toc-diff
 
 **Usage:**
@@ -949,7 +949,7 @@ type RequiredProps = $Diff<Props, DefaultProps>;
 
 ### `$PropertyType<T, K>`
 
-get the type of property of an object at a given key `K`
+get the type of property of an object at a given key `K`<br>
 https://flow.org/en/docs/types/utilities/#toc-propertytype
 
 **Usage:**
@@ -972,7 +972,7 @@ type B = $PropertyType<Tuple, '1'>;
 
 ### `$ElementType<T, K>`
 
-get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`
+get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`<br>
 https://flow.org/en/docs/types/utilities/#toc-elementtype
 
 **Usage:**
@@ -1003,7 +1003,7 @@ type ValuesType = $ElementType<Obj, string>;
 
 ### `$Call<T>`
 
-get the return type of a given expression type
+get the return type of a given expression type<br>
 https://flow.org/en/docs/types/utilities/#toc-call
 
 **Usage:**
@@ -1030,7 +1030,7 @@ type FnReturnType = $Call<ExtractReturnType<Fn>>; // number
 
 ### `$Shape<T>`
 
-Copies the shape of the type supplied, but marks every field optional.
+Copies the shape of the type supplied, but marks every field optional.<br>
 https://flow.org/en/docs/types/utilities/#toc-shape
 
 **Usage:**
@@ -1048,7 +1048,7 @@ type PartialProps = $Shape<Props>;
 
 ### `$NonMaybeType<T>`
 
-Converts a type `T` to a non-maybe type. In other words, the values of `$NonMaybeType<T>` are the values of `T` except for `null` and `undefined`.
+Converts a type `T` to a non-maybe type. In other words, the values of `$NonMaybeType<T>` are the values of `T` except for `null` and `undefined`.<br>
 https://flow.org/en/docs/types/utilities/#toc-nonmaybe
 
 **Usage:**
@@ -1066,7 +1066,7 @@ type Name = $NonMaybeType<MaybeName>;
 
 ### `Class<T>`
 
-Given a type T representing instances of a class C, the type Class<T> is the type of the class C
+Given a type T representing instances of a class C, the type Class<T> is the type of the class C<br>
 https://flow.org/en/docs/types/utilities/#toc-class
 \* Differs from original Flow's util - implements only constructor part and won't include any static members. Additionally classes in Typescript are not treated as nominal
 
@@ -1085,7 +1085,7 @@ function makeStore(storeClass: Class<Store>): Store {
 
 ### mixed
 
-An arbitrary type that could be anything (same as `unknown`)
+An arbitrary type that could be anything (same as `unknown`)<br>
 https://flow.org/en/docs/types/mixed
 
 [⇧ back to top](#table-of-contents)
