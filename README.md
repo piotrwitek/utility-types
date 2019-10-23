@@ -654,6 +654,8 @@ Make all properties of object type readonly
 
 From `T` make all properties become mutable
 
+Alias: `Writable<T>`
+
 ```ts
 import { Mutable } from 'utility-types';
 

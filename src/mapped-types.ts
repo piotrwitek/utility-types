@@ -646,3 +646,4 @@ export type UnionToIntersection<U> = (U extends any
  *    Mutable<Props>;
  */
 export type Mutable<T> = { -readonly [P in keyof T]: T[P] };
+export type Writable<T> = Mutable<T>;
