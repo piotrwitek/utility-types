@@ -10,7 +10,7 @@ Collection of utility types, complementing TypeScript built-in mapped types and 
 [![NPM Downloads](https://img.shields.io/npm/dm/utility-types.svg)](https://www.npmjs.com/package/utility-types)
 [![NPM Downloads](https://img.shields.io/npm/dt/utility-types.svg)](https://www.npmjs.com/package/utility-types)
 
-> #### _Found it useful? Want more updates?_ [**Show your support by giving a :star:**](https://github.com/piotrwitek/utility-types/stargazers)  
+> #### _Found it useful? Want more updates?_ [**Show your support by giving a :star:**](https://github.com/piotrwitek/utility-types/stargazers)
 
 ## TypeScript compatibility notes
 * v1 - minimum TS v2.7.2
@@ -96,7 +96,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 * [`Readonly<T>`](#readonlyt) _(built-in)_
 * [`DeepReadonly<T>`](#deepreadonlyt)
 * [`Mutable<T>`](#mutablet)
-* [`Pick<T, K>` _(built-in)_](#pickt-k-built-in) 
+* [`Pick<T, K>` _(built-in)_](#pickt-k-built-in)
 * [`Omit<T, K>`](#omitt-k) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
 * [`PickByValueExact<T, ValueType>`](#pickbyvalueexactt-valuetype)
@@ -654,6 +654,8 @@ Make all properties of object type readonly
 
 From `T` make all properties become mutable
 
+Alias: `Writable<T>`
+
 ```ts
 import { Mutable } from 'utility-types';
 
@@ -853,7 +855,7 @@ gross(usd); // ok
 gross(eur); // Type '"EUR"' is not assignable to type '"USD"'.
 ```
 
-[⇧ back to top](#flows-utility-types)
+[⇧ back to top](#table-of-contents)
 
 ### `UnionToIntersection<U>`
 
@@ -876,7 +878,7 @@ UnionToIntersection<{ name: string } | { age: number } | { visible: boolean }>
 
 ### `$Keys<T>`
 
-get the union type of all the keys in an object type `T`  
+get the union type of all the keys in an object type `T`<br>
 https://flow.org/en/docs/types/utilities/#toc-keys
 
 **Usage:**
@@ -894,7 +896,7 @@ type PropsKeys = $Keys<Props>;
 
 ### `$Values<T>`
 
-get the union type of all the values in an object type `T`  
+get the union type of all the values in an object type `T`<br>
 https://flow.org/en/docs/types/utilities/#toc-values
 
 **Usage:**
@@ -912,7 +914,7 @@ type PropsValues = $Values<Props>;
 
 ### <a id="readonly2"></a> `$ReadOnly<T>`
 
-get the read-only version of a given object type `T`  
+get the read-only version of a given object type `T`<br>
 https://flow.org/en/docs/types/utilities/#toc-readonly
 
 **Usage:**
@@ -930,7 +932,7 @@ type ReadOnlyProps = $ReadOnly<Props>;
 
 ### <a id="diff2"></a> `$Diff<T, U>`
 
-get the set difference of a given object types `T` and `U` (`T \ U`)  
+get the set difference of a given object types `T` and `U` (`T \ U`)<br>
 https://flow.org/en/docs/types/utilities/#toc-diff
 
 **Usage:**
@@ -949,7 +951,7 @@ type RequiredProps = $Diff<Props, DefaultProps>;
 
 ### `$PropertyType<T, K>`
 
-get the type of property of an object at a given key `K`  
+get the type of property of an object at a given key `K`<br>
 https://flow.org/en/docs/types/utilities/#toc-propertytype
 
 **Usage:**
@@ -972,7 +974,7 @@ type B = $PropertyType<Tuple, '1'>;
 
 ### `$ElementType<T, K>`
 
-get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`  
+get the type of elements inside of array, tuple or object of type `T`, that matches the given index type `K`<br>
 https://flow.org/en/docs/types/utilities/#toc-elementtype
 
 **Usage:**
@@ -1003,7 +1005,7 @@ type ValuesType = $ElementType<Obj, string>;
 
 ### `$Call<T>`
 
-get the return type of a given expression type
+get the return type of a given expression type<br>
 https://flow.org/en/docs/types/utilities/#toc-call
 
 **Usage:**
@@ -1030,7 +1032,7 @@ type FnReturnType = $Call<ExtractReturnType<Fn>>; // number
 
 ### `$Shape<T>`
 
-Copies the shape of the type supplied, but marks every field optional.
+Copies the shape of the type supplied, but marks every field optional.<br>
 https://flow.org/en/docs/types/utilities/#toc-shape
 
 **Usage:**
@@ -1048,7 +1050,7 @@ type PartialProps = $Shape<Props>;
 
 ### `$NonMaybeType<T>`
 
-Converts a type `T` to a non-maybe type. In other words, the values of `$NonMaybeType<T>` are the values of `T` except for `null` and `undefined`.  
+Converts a type `T` to a non-maybe type. In other words, the values of `$NonMaybeType<T>` are the values of `T` except for `null` and `undefined`.<br>
 https://flow.org/en/docs/types/utilities/#toc-nonmaybe
 
 **Usage:**
@@ -1066,9 +1068,9 @@ type Name = $NonMaybeType<MaybeName>;
 
 ### `Class<T>`
 
-Given a type T representing instances of a class C, the type Class<T> is the type of the class C  
-https://flow.org/en/docs/types/utilities/#toc-class  
-\* Differs from original Flow's util - implements only constructor part and won't include any static members. Additionally classes in Typescript are not treated as nominal 
+Given a type T representing instances of a class C, the type Class<T> is the type of the class C<br>
+https://flow.org/en/docs/types/utilities/#toc-class
+\* Differs from original Flow's util - implements only constructor part and won't include any static members. Additionally classes in Typescript are not treated as nominal
 
 **Usage:**
 
@@ -1085,7 +1087,7 @@ function makeStore(storeClass: Class<Store>): Store {
 
 ### mixed
 
-An arbitrary type that could be anything (same as `unknown`)  
+An arbitrary type that could be anything (same as `unknown`)<br>
 https://flow.org/en/docs/types/mixed
 
 [⇧ back to top](#table-of-contents)
@@ -1094,7 +1096,7 @@ https://flow.org/en/docs/types/mixed
 
 ## Related Projects
 
-- [`ts-toolbelt`](https://github.com/pirix-gh/ts-toolbelt) - Higher type safety for TypeScript 
+- [`ts-toolbelt`](https://github.com/pirix-gh/ts-toolbelt) - Higher type safety for TypeScript
 - [`$mol_type`](https://github.com/eigenmethod/mol/tree/master/type) - Collection of TypeScript meta types for complex logic
 
 ---

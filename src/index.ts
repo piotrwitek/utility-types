@@ -51,6 +51,7 @@ export {
   Unionize,
   UnionToIntersection,
   ValuesType,
+  Writable,
   WritableKeys,
 } from './mapped-types';
 
