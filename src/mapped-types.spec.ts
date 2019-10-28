@@ -337,9 +337,7 @@ type RequiredOptionalProps = {
   testType<DeepReadonly<DeepReadonly<NestedArrayProps>>>();
 
   // @dts-jest:pass:snap
-  testType<
-    DeepReadonly<string | null | undefined | boolean | number | bigint | symbol>
-  >();
+  testType<DeepReadonly<string | null | boolean | number | bigint | symbol>>();
 }
 
 // @dts-jest:group DeepRequired

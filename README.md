@@ -139,7 +139,7 @@ Issues can be funded by anyone and the money will be transparently distributed t
 
 ### `Primitive`
 
-Type representing primitive types in JavaScript, and thus TypeScript: `number | bigint | boolean | string | symbol`
+Type representing primitive types in JavaScript, and thus TypeScript: `string | number | bigint | boolean |  symbol | null | undefined`
 
 You can test for singular of these types with [`typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
 
@@ -147,7 +147,7 @@ You can test for singular of these types with [`typeof`](https://developer.mozil
 
 ### `Falsy`
 
-Type representing falsy values in TypeScript: `null | undefined | false | 0 | ''`
+Type representing falsy values in TypeScript: `false | "" | 0 | null | undefined`
 > Except `NaN` which cannot be represented as a type literal
 
 [⇧ back to top](#table-of-contents)
