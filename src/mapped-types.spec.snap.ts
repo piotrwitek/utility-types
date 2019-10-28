@@ -336,10 +336,8 @@ type RequiredOptionalProps = {
   // @dts-jest:pass:snap -> _DeepReadonlyObject<{ first: { second: { name: string; }[]; }; }>
   testType<DeepReadonly<DeepReadonly<NestedArrayProps>>>();
 
-  // @dts-jest:pass:snap -> string | number | bigint | boolean | symbol | null | undefined
-  testType<
-    DeepReadonly<string | null | undefined | boolean | number | bigint | symbol>
-  >();
+  // @dts-jest:pass:snap -> string | number | bigint | boolean | symbol | null
+  testType<DeepReadonly<string | null | boolean | number | bigint | symbol>>();
 }
 
 // @dts-jest:group DeepRequired

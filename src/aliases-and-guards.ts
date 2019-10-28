@@ -1,24 +1,31 @@
 /**
  * Primitive
- * @desc Type representing primitive types in TypeScript: `number | bigint | boolean | string | symbol`
+ * @desc Type representing [`Primitive`](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) types in TypeScript: `string | number | bigint | boolean |  symbol | null | undefined`
  * @example
  *   type Various = number | string | object;
  *
  *    // Expect: object
  *   type Cleaned = Exclude<Various, Primitive>
  */
-export type Primitive = number | bigint | boolean | string | symbol;
+export type Primitive =
+  | string
+  | number
+  | bigint
+  | boolean
+  | symbol
+  | null
+  | undefined;
 
 /**
  * Falsy
- * @desc Type representing falsy values in TypeScript: `null | undefined | false | 0 | ''`
+ * @desc Type representing falsy values in TypeScript: `false | "" | 0 | null | undefined`
  * @example
  *   type Various = 'a' | 'b' | undefined | false;
  *
  *   // Expect: "a" | "b"
  *   Exclude<Various, Falsy>;
  */
-export type Falsy = null | undefined | false | 0 | '';
+export type Falsy = false | '' | 0 | null | undefined;
 
 /**
  * Tests for one of the [`Primitive`](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) types using the JavaScript [`typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof) operator
@@ -38,12 +45,15 @@ export type Falsy = null | undefined | false | 0 | '';
  *   };
  */
 export const isPrimitive = (val: unknown): val is Primitive => {
+  if (val === null || val === undefined) {
+    return true;
+  }
   switch (typeof val) {
     case 'string':
-    case 'symbol':
     case 'number':
     case 'bigint':
-    case 'boolean': {
+    case 'boolean':
+    case 'symbol': {
       return true;
     }
     default:

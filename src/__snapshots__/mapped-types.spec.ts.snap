@@ -57,10 +57,6 @@ exports[`DeepPartial testType<typeof partialNested.first>() 1`] = `"_DeepPartial
 
 exports[`DeepPartial testType<typeof second>() 1`] = `"_DeepPartialObject<{ name: string; }> | undefined"`;
 
-exports[`DeepReadonly testType<
-      DeepReadonly<string | null | undefined | boolean | number | bigint | symbol>
-    >() 1`] = `"string | number | bigint | boolean | symbol | null | undefined"`;
-
 exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedArrayProps>>>() 1`] = `"_DeepReadonlyObject<{ first: { second: { name: string; }[]; }; }>"`;
 
 exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedProps>>>() 1`] = `"_DeepReadonlyObject<{ first: { second: { name: string; }; }; }>"`;
@@ -80,6 +76,8 @@ exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']>() 1`] = `"_De
 exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']>() 1`] = `"_DeepReadonlyObject<{ name: string; }>"`;
 
 exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
+
+exports[`DeepReadonly testType<DeepReadonly<string | null | boolean | number | bigint | symbol>>() 1`] = `"string | number | bigint | boolean | symbol | null"`;
 
 exports[`DeepReadonly testType<ReturnType<DeepReadonly<NestedFunctionProps>['first']['second']>>() 1`] = `"string"`;
 
