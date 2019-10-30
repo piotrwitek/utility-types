@@ -1,16 +1,38 @@
+<div align="center">
+
 # utility-types
+
 Collection of utility types, complementing TypeScript built-in mapped types and aliases (think "lodash" for static types).
 
 [![Latest Stable Version](https://img.shields.io/npm/v/utility-types.svg)](https://www.npmjs.com/package/utility-types)
-[![Build Status](https://semaphoreci.com/api/v1/piotrekwitek/utility-types/branches/master/shields_badge.svg)](https://semaphoreci.com/piotrekwitek/utility-types)
-[![Dependency Status](https://img.shields.io/david/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types)
-[![peerDependency Status](https://img.shields.io/david/peer/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types#info=devDependencies)
-[![License](https://img.shields.io/npm/l/utility-types.svg?style=flat)](https://david-dm.org/piotrwitek/typesafe-actions?type=peer)
-
 [![NPM Downloads](https://img.shields.io/npm/dm/utility-types.svg)](https://www.npmjs.com/package/utility-types)
 [![NPM Downloads](https://img.shields.io/npm/dt/utility-types.svg)](https://www.npmjs.com/package/utility-types)
+[![Bundlephobia Size](https://img.shields.io/bundlephobia/minzip/utility-types.svg)](https://www.npmjs.com/package/utility-types)
 
-> #### _Found it useful? Want more updates?_ [**Show your support by giving a :star:**](https://github.com/piotrwitek/utility-types/stargazers)
+[![Build Status](https://semaphoreci.com/api/v1/piotrekwitek/utility-types/branches/master/shields_badge.svg)](https://semaphoreci.com/piotrekwitek/utility-types)
+[![Dependency Status](https://img.shields.io/david/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types)
+[![License](https://img.shields.io/npm/l/utility-types.svg?style=flat)](https://david-dm.org/piotrwitek/utility-types?type=peer)
+[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/utility-types)
+
+_Found it useful? Want more updates?_
+
+[**Show your support by giving a :star:**](https://github.com/piotrwitek/utility-types/stargazers)
+
+<a href="https://www.buymeacoffee.com/piotrekwitek">
+  <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me a Coffee">
+</a>
+<a href="https://www.patreon.com/piotrekwitek">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" alt="Become a Patron" width="160">
+</a>
+
+<br/><hr/>
+
+:tada: _Now updated to support **TypeScript v3.7**_ :tada:
+
+<hr/><br/>
+
+</div>
+
 
 ## TypeScript compatibility notes
 * v1 - minimum TS v2.7.2
