@@ -554,13 +554,13 @@ type RequiredOptionalProps = {
     visible: true,
   });
 
-  // @dts-jest:pass:snap -> false & true
+  // @dts-jest:pass:snap -> never
   testType<UnionToIntersection<boolean>>();
 
-  // @dts-jest:pass:snap -> false & true
+  // @dts-jest:pass:snap -> never
   testType<UnionToIntersection<true | false>>();
 
-  // @dts-jest:pass:snap -> "name" & "age"
+  // @dts-jest:pass:snap -> never
   testType<UnionToIntersection<'name' | 'age'>>();
 }
 
