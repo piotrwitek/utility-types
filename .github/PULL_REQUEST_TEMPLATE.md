@@ -9,7 +9,7 @@
 
 ## Checklist
 
-* [ ] I have read [CONTRIBUTING.md](../CONTRIBUTING.md)
+* [ ] I have read [CONTRIBUTING.md](https://github.com/piotrwitek/utility-types/blob/master/CONTRIBUTING.md)
 * [ ] I have linked all related issues above
 * [ ] I have rebased my branch
 
