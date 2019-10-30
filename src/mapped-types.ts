@@ -75,7 +75,7 @@ export type NonUndefined<A> = A extends undefined ? never : A;
  *   type Keys = FunctionKeys<MixedProps>;
  */
 export type FunctionKeys<T extends object> = {
-  [K in keyof T]-?: NonUndefined<T[K]> extends Function ? K : never
+  [K in keyof T]-?: NonUndefined<T[K]> extends Function ? K : never;
 }[keyof T];
 
 /**
@@ -88,7 +88,7 @@ export type FunctionKeys<T extends object> = {
  *   type Keys = NonFunctionKeys<MixedProps>;
  */
 export type NonFunctionKeys<T extends object> = {
-  [K in keyof T]-?: NonUndefined<T[K]> extends Function ? never : K
+  [K in keyof T]-?: NonUndefined<T[K]> extends Function ? never : K;
 }[keyof T];
 
 /**
@@ -107,7 +107,7 @@ export type MutableKeys<T extends object> = {
     { [Q in P]: T[P] },
     { -readonly [Q in P]: T[P] },
     P
-  >
+  >;
 }[keyof T];
 export type WritableKeys<T extends object> = MutableKeys<T>;
 
@@ -128,7 +128,7 @@ export type ReadonlyKeys<T extends object> = {
     { -readonly [Q in P]: T[P] },
     never,
     P
-  >
+  >;
 }[keyof T];
 
 type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
@@ -148,7 +148,7 @@ type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
  *   type Keys = RequiredKeys<Props>;
  */
 export type RequiredKeys<T> = {
-  [K in keyof T]-?: {} extends Pick<T, K> ? never : K
+  [K in keyof T]-?: {} extends Pick<T, K> ? never : K;
 }[keyof T];
 
 /**
@@ -162,7 +162,7 @@ export type RequiredKeys<T> = {
  *   type Keys = OptionalKeys<Props>;
  */
 export type OptionalKeys<T> = {
-  [K in keyof T]-?: {} extends Pick<T, K> ? K : never
+  [K in keyof T]-?: {} extends Pick<T, K> ? K : never;
 }[keyof T];
 
 /**
@@ -211,7 +211,7 @@ export type PickByValueExact<T, ValueType> = Pick<
       ? [T[Key]] extends [ValueType]
         ? Key
         : never
-      : never
+      : never;
   }[keyof T]
 >;
 
@@ -261,7 +261,7 @@ export type OmitByValueExact<T, ValueType> = Pick<
       ? [T[Key]] extends [ValueType]
         ? never
         : Key
-      : Key
+      : Key;
   }[keyof T]
 >;
 
@@ -358,7 +358,7 @@ export type Exact<A extends object> = A & { __brand: keyof A };
  *   type UnionizedType = Unionize<Props>;
  */
 export type Unionize<T extends object> = {
-  [P in keyof T]: { [Q in P]: T[P] }
+  [P in keyof T]: { [Q in P]: T[P] };
 }[keyof T];
 
 /**
@@ -405,7 +405,7 @@ export type DeepReadonly<T> = T extends ((...args: any[]) => any) | Primitive
 export interface _DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 /** @private */
 export type _DeepReadonlyObject<T> = {
-  readonly [P in keyof T]: DeepReadonly<T[P]>
+  readonly [P in keyof T]: DeepReadonly<T[P]>;
 };
 
 /**
@@ -441,7 +441,7 @@ export interface _DeepRequiredArray<T>
   extends Array<DeepRequired<NonUndefined<T>>> {}
 /** @private */
 export type _DeepRequiredObject<T> = {
-  [P in keyof T]-?: DeepRequired<NonUndefined<T[P]>>
+  [P in keyof T]-?: DeepRequired<NonUndefined<T[P]>>;
 };
 
 /**
@@ -478,7 +478,7 @@ export interface _DeepNonNullableArray<T>
   extends Array<DeepNonNullable<NonNullable<T>>> {}
 /** @private */
 export type _DeepNonNullableObject<T> = {
-  [P in keyof T]-?: DeepNonNullable<NonNullable<T[P]>>
+  [P in keyof T]-?: DeepNonNullable<NonNullable<T[P]>>;
 };
 
 /**

@@ -37,10 +37,10 @@
     "dts-jest": "22.0.4",
     "husky": "2.2.0",
     "jest": "21.2.1",
-    "prettier": "1.17.0",
+    "prettier": "1.18.2",
     "ts-jest": "23.10.5",
-    "tslint": "5.16.0",
-    "typescript": "3.4.5"
+    "tslint": "5.20.0",
+    "typescript": "3.7.1-rc"
   },
   "keywords": [
     "typescript",
