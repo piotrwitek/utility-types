@@ -33,47 +33,46 @@ _Found it useful? Want more updates?_
 
 </div>
 
+## Features
 
-## TypeScript compatibility notes
-* v1 - minimum TS v2.7.2
-* v2 - minimum TS v2.8.1 (rewritten to conditional types)
-* v3 - minimum TS v3.1.0
-
-## Motivation
-
-The primary goal of this library is to provide a set of proven Utility Types that should complement existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html).
-
-The secondary goal is to provide a few additional utility types compatible with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/) helping with gradual migration between "Flow" and "TypeScript" projects.
+* Providing a set of [Common Types](#table-of-contents) for TypeScript projects that are idiomatic and complementary to existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html) so you don't need to copy them between the projects.
+* Providing a set of [Additional Types](#) compatible with [Flow's Utility Types](https://flow.org/en/docs/types/utilities/) to allow much easier migration to `TypeScript`.
 
 ## Goals
 
-* provide a set of consistent Utility Types that are idiomatic and complementary to existing [TypeScript Mapped Types](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
-* provide migration from [Flow's Utility Types](https://flow.org/en/docs/types/utilities/)
-* clean idiomatic implementation based on composition of smaller generic types that are easy to follow and learn how they work
-
-## Features
-
-* Thoroughly tested for type correctness with type-testing library `dts-jest`
-* Safe with minimal footprint - no third-party dependencies
+* Quality - thoroughly tested for type correctness with type-testing library `dts-jest`
+* Secure and minimal - no third-party dependencies
 * No runtime cost - it's type-level only
 
 ## Installation
 
 ```bash
-npm install --save utility-types
+# NPM
+npm install utility-types
+
+# YARN
+yarn add utility-types
 ```
 
-## Contributing Guide
-We are open for contributions. If you're planning to contribute please make sure to read the contributing guide: [CONTRIBUTING.md](/CONTRIBUTING.md)
+## Compatibility Notes
 
-## Sponsor
-**Utility-Types** is an independent open-source project created by people investing their free time for the benefit of our community.
+**TypeScript support**
+* `v3.x.x` - TypeScript v3.1+
+* `v2.x.x` - TypeScript v2.8.1+
+* `v1.x.x` - TypeScript v2.7.2+
 
-If you are using **Utility-Types** please consider donating as this will guarantee the project will be updated and maintained in the long run.
+## Funding Issues
+**Utility-Types** is an open-source project created by people investing their time for the benefit of our community.
 
-Issues can be funded by anyone and the money will be transparently distributed to the contributors handling a particular issue.
+Issues like bug fixes or feature requests can be very quickly resolved when funded through the IssueHunt platform.
+
+I highly recommend adding a bounty to the issue that you're waiting for to attract some contributors willing to work on it.
 
 [![Let's fund issues in this repository](https://issuehunt.io/static/embed/issuehunt-button-v1.svg)](https://issuehunt.io/repos/76400842)
+
+## Contributing
+
+We are open for contributions. If you're planning to contribute please make sure to read the contributing guide as it can save you from wasting your time: [CONTRIBUTING.md](/CONTRIBUTING.md)
 
 ---
 
@@ -1123,6 +1122,8 @@ https://flow.org/en/docs/types/mixed
 
 ---
 
-MIT License
+## License
+
+[MIT License](/LICENSE)
 
 Copyright (c) 2016 Piotr Witek <mailto:piotrek.witek@gmail.com> (http://piotrwitek.github.io)
