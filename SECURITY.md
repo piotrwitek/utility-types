@@ -15,4 +15,4 @@ You can report a security vulnerability to this email: piotrek.witek@gmail.com
 
 You'll get a response back to your email shortly after we read your report.
 After analysis of vulnerability is completed we will send you the results and 
-keep you updated about next steps.
+keep you updated about the next steps.
