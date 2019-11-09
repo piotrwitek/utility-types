@@ -148,6 +148,8 @@ type RequiredOptionalProps = {
   testType<PickByValue<RequiredOptionalProps, number | undefined>>();
   // @dts-jest:pass:snap
   testType<PickByValue<RequiredOptionalProps, undefined>>();
+  // @dts-jest:pass:snap
+  testType<keyof PickByValue<RequiredOptionalProps, number>>();
 
   const fn = <T extends Props>(props: T) => {
     // @dts-jest:pass:snap
@@ -163,6 +165,8 @@ type RequiredOptionalProps = {
   testType<PickByValueExact<RequiredOptionalProps, number | undefined>>();
   // @dts-jest:pass:snap
   testType<PickByValueExact<RequiredOptionalProps, undefined>>();
+  // @dts-jest:pass:snap
+  testType<keyof PickByValueExact<RequiredOptionalProps, number>>();
 
   const fn = <T extends Props>(props: T) => {
     // @dts-jest:pass:snap
@@ -195,6 +199,8 @@ type RequiredOptionalProps = {
   testType<OmitByValue<RequiredOptionalProps, number | undefined>>();
   // @dts-jest:pass:snap
   testType<OmitByValue<RequiredOptionalProps, undefined>>();
+  // @dts-jest:pass:snap
+  testType<keyof OmitByValue<RequiredOptionalProps, number>>();
 
   const fn = <T extends Props>(props: T) => {
     // @dts-jest:pass:snap
@@ -210,6 +216,8 @@ type RequiredOptionalProps = {
   testType<OmitByValueExact<RequiredOptionalProps, number | undefined>>();
   // @dts-jest:pass:snap
   testType<OmitByValueExact<RequiredOptionalProps, undefined>>();
+  // @dts-jest:pass:snap
+  testType<keyof OmitByValueExact<RequiredOptionalProps, number>>();
 
   const fn = <T extends Props>(props: T) => {
     // @dts-jest:pass:snap

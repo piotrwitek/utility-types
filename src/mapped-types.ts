@@ -190,7 +190,7 @@ namespace Pick {}
  */
 export type PickByValue<T, ValueType> = Pick<
   T,
-  { [Key in keyof T]: T[Key] extends ValueType ? Key : never }[keyof T]
+  { [Key in keyof T]-?: T[Key] extends ValueType ? Key : never }[keyof T]
 >;
 
 /**
@@ -207,7 +207,7 @@ export type PickByValue<T, ValueType> = Pick<
 export type PickByValueExact<T, ValueType> = Pick<
   T,
   {
-    [Key in keyof T]: [ValueType] extends [T[Key]]
+    [Key in keyof T]-?: [ValueType] extends [T[Key]]
       ? [T[Key]] extends [ValueType]
         ? Key
         : never
@@ -240,7 +240,7 @@ export type Omit<T, K extends keyof any> = Pick<T, SetDifference<keyof T, K>>;
  */
 export type OmitByValue<T, ValueType> = Pick<
   T,
-  { [Key in keyof T]: T[Key] extends ValueType ? never : Key }[keyof T]
+  { [Key in keyof T]-?: T[Key] extends ValueType ? never : Key }[keyof T]
 >;
 
 /**
@@ -257,7 +257,7 @@ export type OmitByValue<T, ValueType> = Pick<
 export type OmitByValueExact<T, ValueType> = Pick<
   T,
   {
-    [Key in keyof T]: [ValueType] extends [T[Key]]
+    [Key in keyof T]-?: [ValueType] extends [T[Key]]
       ? [T[Key]] extends [ValueType]
         ? never
         : Key

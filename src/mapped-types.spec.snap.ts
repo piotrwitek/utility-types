@@ -142,30 +142,34 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group PickByValue
 {
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req">
   testType<PickByValue<RequiredOptionalProps, number>>();
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | "reqUndef" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | "reqUndef">
   testType<PickByValue<RequiredOptionalProps, number | undefined>>();
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, never>
   testType<PickByValue<RequiredOptionalProps, undefined>>();
+  // @dts-jest:pass:snap -> "req"
+  testType<keyof PickByValue<RequiredOptionalProps, number>>();
 
   const fn = <T extends Props>(props: T) => {
-    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]: T[Key] extends number ? Key : never; }[keyof T]>
+    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]-?: T[Key] extends number ? Key : never; }[keyof T]>
     testType<PickByValue<T, number>>();
   };
 }
 
 // @dts-jest:group PickByValueExact
 {
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req">
   testType<PickByValueExact<RequiredOptionalProps, number>>();
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "reqUndef" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "reqUndef">
   testType<PickByValueExact<RequiredOptionalProps, number | undefined>>();
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, never>
   testType<PickByValueExact<RequiredOptionalProps, undefined>>();
+  // @dts-jest:pass:snap -> "req"
+  testType<keyof PickByValueExact<RequiredOptionalProps, number>>();
 
   const fn = <T extends Props>(props: T) => {
-    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>
+    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]-?: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>
     testType<PickByValueExact<T, number>>();
   };
 }
@@ -189,30 +193,34 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group OmitByValue
 {
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "reqUndef" | "opt" | "optUndef" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "reqUndef" | "opt" | "optUndef">
   testType<OmitByValue<RequiredOptionalProps, number>>();
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "opt" | "optUndef" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "opt" | "optUndef">
   testType<OmitByValue<RequiredOptionalProps, number | undefined>>();
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | "reqUndef" | "opt" | "optUndef" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | "reqUndef" | "opt" | "optUndef">
   testType<OmitByValue<RequiredOptionalProps, undefined>>();
+  // @dts-jest:pass:snap -> "reqUndef" | "opt" | "optUndef"
+  testType<keyof OmitByValue<RequiredOptionalProps, number>>();
 
   const fn = <T extends Props>(props: T) => {
-    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]: T[Key] extends string | boolean ? never : Key; }[keyof T]>
+    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]-?: T[Key] extends string | boolean ? never : Key; }[keyof T]>
     testType<OmitByValue<T, string | boolean>>();
   };
 }
 
 // @dts-jest:group OmitByValueExact
 {
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "reqUndef" | "opt" | "optUndef" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "reqUndef" | "opt" | "optUndef">
   testType<OmitByValueExact<RequiredOptionalProps, number>>();
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | "opt" | "optUndef" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | "opt" | "optUndef">
   testType<OmitByValueExact<RequiredOptionalProps, number | undefined>>();
-  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | "reqUndef" | "opt" | "optUndef" | undefined>
+  // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req" | "reqUndef" | "opt" | "optUndef">
   testType<OmitByValueExact<RequiredOptionalProps, undefined>>();
+  // @dts-jest:pass:snap -> "reqUndef" | "opt" | "optUndef"
+  testType<keyof OmitByValueExact<RequiredOptionalProps, number>>();
 
   const fn = <T extends Props>(props: T) => {
-    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>
+    // @dts-jest:pass:snap -> Pick<T, { [Key in keyof T]-?: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>
     testType<OmitByValueExact<T, number>>();
   };
 }
