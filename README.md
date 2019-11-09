@@ -104,11 +104,11 @@ We are open for contributions. If you're planning to contribute please make sure
 
 * [`FunctionKeys<T>`](#functionkeyst)
 * [`NonFunctionKeys<T>`](#nonfunctionkeyst)
-* [`ReadonlyKeys<T>`](#readonlykeyst)
 * [`MutableKeys<T>`](#mutablekeyst)
+* [`ReadonlyKeys<T>`](#readonlykeyst)
 * [`RequiredKeys<T>`](#requiredkeyst)
-* [`Optional<T, K>`](#optionalt-k)
 * [`OptionalKeys<T>`](#optionalkeyst)
+* [`Optional<T, K>`](#optionalt-k)
 * [`Partial<T>`](#partialt) _(built-in)_
 * [`DeepPartial<T>`](#deeppartialt)
 * [`Required<T, K>`](#requiredt-k)
@@ -307,7 +307,7 @@ import { FunctionKeys } from 'utility-types';
 type MixedProps = { name: string; setName: (name: string) => void };
 
 // Expect: "setName"
-type FunctionKeysProps = FunctionKeys<MixedProps>;
+type Keys = FunctionKeys<MixedProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -324,24 +324,7 @@ import { NonFunctionKeys } from 'utility-types';
 type MixedProps = { name: string; setName: (name: string) => void };
 
 // Expect: "name"
-type NonFunctionKeysProps = NonFunctionKeys<MixedProps>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `ReadonlyKeys<T>`
-
-Get union type of keys that are readonly in object type `T`
-
-**Usage:**
-
-```ts
-import { ReadonlyKeys } from 'utility-types';
-
-type Props = { readonly foo: string; bar: number };
-
-// Expect: "foo"
-type ReadonlyProps = ReadonlyKeys<Props>;
+type Keys = NonFunctionKeys<MixedProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -360,7 +343,24 @@ import { MutableKeys } from 'utility-types';
 type Props = { readonly foo: string; bar: number };
 
 // Expect: "bar"
-type MutableProps = MutableKeys<Props>;
+type Keys = MutableKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `ReadonlyKeys<T>`
+
+Get union type of keys that are readonly in object type `T`
+
+**Usage:**
+
+```ts
+import { ReadonlyKeys } from 'utility-types';
+
+type Props = { readonly foo: string; bar: number };
+
+// Expect: "foo"
+type Keys = ReadonlyKeys<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -377,7 +377,24 @@ import { RequiredKeys } from 'utility-types';
 type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
 
 // Expect: "req" | "reqUndef"
-type RequiredProps = ReadonlyKeys<Props>;
+type Keys = RequiredKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `OptionalKeys<T>`
+
+Get union type of keys that are optional in object type `T`
+
+**Usage:**
+
+```ts
+import { OptionalKeys } from 'utility-types';
+
+type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
+
+// Expect: "opt" | "optUndef"
+type Keys = OptionalKeys<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -401,24 +418,6 @@ type Props = Optional<Props, 'age' | 'visible'>;
 
 [⇧ back to top](#table-of-contents)
 
-### `OptionalKeys<T>`
-
-Get union type of keys that are optional in object type `T`
-
-**Usage:**
-
-```ts
-import { OptionalKeys } from 'utility-types';
-
-type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef?: number | undefined; };
-
-// Expect: "opt" | "optUndef"
-type OptionalProps = OptionalKeys<Props>;
-```
-
-[⇧ back to top](#table-of-contents)
-
----
 
 ### `Pick<T, K>` _(built-in)_
 

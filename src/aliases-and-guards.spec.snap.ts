@@ -30,38 +30,32 @@ it('narrows to correct type', () => {
   testType<Falsy>();
 }
 
-// @dts-jest:group isFalsy - test falsy values
-it('returns true for falsy and narrows type', () => {
-  const falsyTestVals: unknown[] = ['', null, undefined, false, 0];
-
-  falsyTestVals.forEach(val => {
-    if (isFalsy(val)) {
-      // @dts-jest:pass:snap -> Falsy
-      val;
+// @dts-jest:group isFalsy
+it('narrows to correct type', () => {
+  const consumer = (param: Falsy | string): string => {
+    if (isFalsy(param)) {
+      // @dts-jest:pass:snap -> false | 0 | null | undefined
+      param;
+      return String(param) + ' was Falsy';
     }
-    // @dts-jest:pass:snap -> unknown
-    val;
-  });
+    // @dts-jest:pass:snap -> string
+    param;
+    return param.toString();
+  };
+});
+
+// @dts-jest:group isFalsy - test falsy values
+it('returns true for falsy', () => {
+  const falsyTestVals: unknown[] = [false, '', 0, null, undefined];
 
   const testResults = falsyTestVals.map(isFalsy);
-
   testResults.forEach(val => expect(val).toBe(true));
 });
 
 // @dts-jest:group isFalsy - test truthy values
-it('returns false for truthy and narrows type', () => {
+it('returns false for truthy', () => {
   const truthyTestVals: unknown[] = [' ', true, {}, []];
 
-  truthyTestVals.forEach(val => {
-    if (isFalsy(val)) {
-      // @dts-jest:pass:snap -> Falsy
-      val;
-    }
-    // @dts-jest:pass:snap -> unknown
-    val;
-  });
-
   const testResults = truthyTestVals.map(isFalsy);
-
   testResults.forEach(val => expect(val).toBe(false));
 });

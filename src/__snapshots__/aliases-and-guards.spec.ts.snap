@@ -4,13 +4,9 @@ exports[`Falsy testType<Falsy>() (type) should match snapshot 1`] = `"Falsy"`;
 
 exports[`Primitive testType<Primitive>() (type) should match snapshot 1`] = `"Primitive"`;
 
-exports[`isFalsy - test falsy values val (type) should match snapshot 1`] = `"Falsy"`;
+exports[`isFalsy param (type) should match snapshot 1`] = `"false | 0 | null | undefined"`;
 
-exports[`isFalsy - test falsy values val (type) should match snapshot 2`] = `"unknown"`;
-
-exports[`isFalsy - test truthy values val (type) should match snapshot 1`] = `"Falsy"`;
-
-exports[`isFalsy - test truthy values val (type) should match snapshot 2`] = `"unknown"`;
+exports[`isFalsy param (type) should match snapshot 2`] = `"string"`;
 
 exports[`isPrimitive param (type) should match snapshot 1`] = `"Primitive"`;
 
