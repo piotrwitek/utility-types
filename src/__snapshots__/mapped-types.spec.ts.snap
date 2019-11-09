@@ -139,25 +139,25 @@ exports[`Omit testType<Omit<Props, 'age'>>() (type) should match snapshot 1`] = 
 
 exports[`Omit testType<Omit<T, 'age'>>() (type) should match snapshot 1`] = `"Pick<T, SetDifference<keyof T, \\"age\\">>"`;
 
-exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"opt\\" | \\"optUndef\\">"`;
 
-exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\">"`;
 
-exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\">"`;
 
-exports[`OmitByValue testType<OmitByValue<T, string | boolean>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends string | boolean ? never : Key; }[keyof T]>"`;
+exports[`OmitByValue testType<OmitByValue<T, string | boolean>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]-?: T[Key] extends string | boolean ? never : Key; }[keyof T]>"`;
 
-exports[`OmitByValue testType<keyof OmitByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined"`;
+exports[`OmitByValue testType<keyof OmitByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"reqUndef\\" | \\"opt\\" | \\"optUndef\\""`;
 
-exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"opt\\" | \\"optUndef\\">"`;
 
-exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\">"`;
 
-exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\">"`;
 
-exports[`OmitByValueExact testType<OmitByValueExact<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>"`;
+exports[`OmitByValueExact testType<OmitByValueExact<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]-?: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>"`;
 
-exports[`OmitByValueExact testType<keyof OmitByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined"`;
+exports[`OmitByValueExact testType<keyof OmitByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"reqUndef\\" | \\"opt\\" | \\"optUndef\\""`;
 
 exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' }) (type) should match snapshot 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
 
@@ -173,25 +173,25 @@ exports[`Overwrite const result: Overwrite<Omit<T, 'age'>, T> = rest (type) shou
 
 exports[`Overwrite testType<Overwrite<Props, NewProps>>() (type) should match snapshot 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | undefined>"`;
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\">"`;
 
-exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\">"`;
 
-exports[`PickByValue testType<PickByValue<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, never>"`;
 
-exports[`PickByValue testType<PickByValue<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends number ? Key : never; }[keyof T]>"`;
+exports[`PickByValue testType<PickByValue<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]-?: T[Key] extends number ? Key : never; }[keyof T]>"`;
 
-exports[`PickByValue testType<keyof PickByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"req\\" | undefined"`;
+exports[`PickByValue testType<keyof PickByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"req\\""`;
 
-exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | undefined>"`;
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\">"`;
 
-exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\">"`;
 
-exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, never>"`;
 
-exports[`PickByValueExact testType<PickByValueExact<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>"`;
+exports[`PickByValueExact testType<PickByValueExact<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]-?: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>"`;
 
-exports[`PickByValueExact testType<keyof PickByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"req\\" | undefined"`;
+exports[`PickByValueExact testType<keyof PickByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"req\\""`;
 
 exports[`PromiseType testType<PromiseType<Promise<string>>>() (type) should match snapshot 1`] = `"string"`;
 
