@@ -147,6 +147,8 @@ exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, undefined>>() (
 
 exports[`OmitByValue testType<OmitByValue<T, string | boolean>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends string | boolean ? never : Key; }[keyof T]>"`;
 
+exports[`OmitByValue testType<keyof OmitByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined"`;
+
 exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
 exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
@@ -154,6 +156,8 @@ exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, numbe
 exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
 exports[`OmitByValueExact testType<OmitByValueExact<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>"`;
+
+exports[`OmitByValueExact testType<keyof OmitByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined"`;
 
 exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' }) (type) should match snapshot 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
 
@@ -177,6 +181,8 @@ exports[`PickByValue testType<PickByValue<RequiredOptionalProps, undefined>>() (
 
 exports[`PickByValue testType<PickByValue<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends number ? Key : never; }[keyof T]>"`;
 
+exports[`PickByValue testType<keyof PickByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"req\\" | undefined"`;
+
 exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | undefined>"`;
 
 exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
@@ -184,6 +190,8 @@ exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, numbe
 exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
 
 exports[`PickByValueExact testType<PickByValueExact<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>"`;
+
+exports[`PickByValueExact testType<keyof PickByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"req\\" | undefined"`;
 
 exports[`PromiseType testType<PromiseType<Promise<string>>>() (type) should match snapshot 1`] = `"string"`;
 
