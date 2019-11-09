@@ -131,9 +131,9 @@ export type ReadonlyKeys<T extends object> = {
   >;
 }[keyof T];
 
-type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
-  ? 1
-  : 2) extends (<T>() => T extends Y ? 1 : 2)
+type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <
+  T
+>() => T extends Y ? 1 : 2
   ? A
   : B;
 
@@ -627,8 +627,8 @@ export type AugmentedRequired<
  *   UnionToIntersection<{ name: string } | { age: number } | { visible: boolean }>
  */
 export type UnionToIntersection<U> = (U extends any
-  ? (k: U) => void
-  : never) extends (k: infer I) => void
+? (k: U) => void
+: never) extends (k: infer I) => void
   ? I
   : never;
 

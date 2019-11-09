@@ -30,7 +30,7 @@ it('narrows to correct type', () => {
   testType<Falsy>();
 }
 
-// @dts-jest:group isFalsy-Falsy
+// @dts-jest:group isFalsy - test falsy values
 it('returns true for falsy and narrows type', () => {
   const falsyTestVals: unknown[] = ['', null, undefined, false, 0];
 
@@ -48,7 +48,7 @@ it('returns true for falsy and narrows type', () => {
   testResults.forEach(val => expect(val).toBe(true));
 });
 
-// @dts-jest:group isFalsy-Truthy
+// @dts-jest:group isFalsy - test truthy values
 it('returns false for truthy and narrows type', () => {
   const truthyTestVals: unknown[] = [' ', true, {}, []];
 
