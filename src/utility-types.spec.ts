@@ -27,31 +27,31 @@ class Foo {}
  */
 
 // @dts-jest:group $Keys
-it('$Keys', () => {
+{
   // @dts-jest:pass:snap
   testType<$Keys<Props>>();
-});
+}
 
 // @dts-jest:group $Values
-it('$Values', () => {
+{
   // @dts-jest:pass:snap
   testType<$Values<Props>>();
-});
+}
 
 // @dts-jest:group $ReadOnly
-it('$ReadOnly', () => {
+{
   // @dts-jest:pass:snap
   testType<$ReadOnly<Props>>();
-});
+}
 
 // @dts-jest:group $Diff
-it('$Diff', () => {
+{
   // @dts-jest:pass:snap
   testType<$Diff<Props, DefaultProps>>();
-});
+}
 
 // @dts-jest:group $PropertyType
-it('$PropertyType', () => {
+{
   // @dts-jest:pass:snap
   testType<$PropertyType<Props, 'name'>>();
 
@@ -59,10 +59,10 @@ it('$PropertyType', () => {
   testType<$PropertyType<[boolean, number], '0'>>();
   // @dts-jest:pass:snap
   testType<$PropertyType<[boolean, number], '1'>>();
-});
+}
 
 // @dts-jest:group $ElementType
-it('$ElementType', () => {
+{
   // @dts-jest:pass:snap
   testType<$ElementType<Props, 'name'>>();
 
@@ -76,10 +76,10 @@ it('$ElementType', () => {
 
   // @dts-jest:pass:snap
   testType<$ElementType<{ [key: string]: number }, string>>();
-});
+}
 
 // @dts-jest:group $Call
-it('$Call', () => {
+{
   // @dts-jest:pass:snap
   testType<$Call<(amount: number) => { type: 'ADD'; payload: number }>>();
 
@@ -95,28 +95,28 @@ it('$Call', () => {
   type FnReturnType = $Call<ExtractReturnType<Fn>>;
   // @dts-jest:pass:snap
   testType<FnReturnType>();
-});
+}
 
 // @dts-jest:group $Shape
-it('$Shape', () => {
+{
   // @dts-jest:pass:snap
   testType<$Shape<Props>>();
-});
+}
 
 // @dts-jest:group $NonMaybeType
-it('$NonMaybeType', () => {
+{
   // @dts-jest:pass:snap
   testType<$NonMaybeType<string | null | undefined>>();
-});
+}
 
 // @dts-jest:group Class
-it('Class', () => {
+{
   // @dts-jest:pass:snap
   testType<Class<Foo>>();
-});
+}
 
 // @dts-jest:group mixed
-it('mixed', () => {
+{
   // @dts-jest:pass:snap
   testType<mixed>();
-});
+}

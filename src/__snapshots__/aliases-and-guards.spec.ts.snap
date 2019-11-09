@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Falsy testType<Falsy>() 1`] = `"Falsy"`;
+exports[`Falsy testType<Falsy>() (type) should match snapshot 1`] = `"Falsy"`;
 
-exports[`Primitive testType<Primitive>() 1`] = `"Primitive"`;
+exports[`Primitive testType<Primitive>() (type) should match snapshot 1`] = `"Primitive"`;
 
-exports[`isFalsy-Falsy val 1`] = `"Falsy"`;
+exports[`isFalsy-Falsy val (type) should match snapshot 1`] = `"Falsy"`;
 
-exports[`isFalsy-Falsy val 2`] = `"unknown"`;
+exports[`isFalsy-Falsy val (type) should match snapshot 2`] = `"unknown"`;
 
-exports[`isFalsy-Truthy val 1`] = `"Falsy"`;
+exports[`isFalsy-Truthy val (type) should match snapshot 1`] = `"Falsy"`;
 
-exports[`isFalsy-Truthy val 2`] = `"unknown"`;
+exports[`isFalsy-Truthy val (type) should match snapshot 2`] = `"unknown"`;
 
-exports[`isPrimitive param 1`] = `"Primitive"`;
+exports[`isPrimitive param (type) should match snapshot 1`] = `"Primitive"`;
 
-exports[`isPrimitive param 2`] = `"Primitive[]"`;
+exports[`isPrimitive param (type) should match snapshot 2`] = `"Primitive[]"`;

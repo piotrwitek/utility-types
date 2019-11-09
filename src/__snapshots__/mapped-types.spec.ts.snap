@@ -1,211 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Assign const result: Assign<{}, Omit<T, 'age'>> = rest 1`] = `"any"`;
+exports[`Assign const result: Assign<{}, Omit<T, 'age'>> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Assign testType<Assign<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
+exports[`Assign testType<Assign<Props, NewProps>>() (type) should match snapshot 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
 
 exports[`AugmentedRequired testType<AugmentedRequired<Partial<Props>, 'age' | 'visible'>>({
       age: 99,
       visible: true,
-    }) 1`] = `"AugmentedRequired<Partial<Props>, \\"age\\" | \\"visible\\">"`;
+    }) (type) should match snapshot 1`] = `"AugmentedRequired<Partial<Props>, \\"age\\" | \\"visible\\">"`;
 
 exports[`AugmentedRequired testType<AugmentedRequired<Partial<Props>>>({
       name: 'Yolo',
       age: 99,
       visible: true,
-    }) 1`] = `"AugmentedRequired<Partial<Props>, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+    }) (type) should match snapshot 1`] = `"AugmentedRequired<Partial<Props>, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`Brand testType<Brand<number, 'USD'>>() 1`] = `"Brand<number, \\"USD\\">"`;
+exports[`Brand testType<Brand<number, 'USD'>>() (type) should match snapshot 1`] = `"Brand<number, \\"USD\\">"`;
 
 exports[`DeepNonNullable testType<
       DeepNonNullable<NestedArrayProps>['first']['second'][number]['name']
-    >() 1`] = `"string"`;
+    >() (type) should match snapshot 1`] = `"string"`;
 
 exports[`DeepNonNullable testType<
       ReturnType<DeepNonNullable<NestedFunctionProps>['first']['second']>
-    >() 1`] = `"string"`;
+    >() (type) should match snapshot 1`] = `"string"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']>() 1`] = `"_DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']>() (type) should match snapshot 1`] = `"_DeepNonNullableObject<{ second?: ({ name?: string | null | undefined; } | null | undefined)[] | undefined; }>"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']['second']>() 1`] = `"_DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedArrayProps>['first']['second']>() (type) should match snapshot 1`] = `"_DeepNonNullableArray<{ name?: string | null | undefined; } | null | undefined>"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedFunctionProps>['first']>() 1`] = `"_DeepNonNullableObject<{ second?: ((value: number) => string) | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedFunctionProps>['first']>() (type) should match snapshot 1`] = `"_DeepNonNullableObject<{ second?: ((value: number) => string) | undefined; }>"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedFunctionProps>['first']['second']>() 1`] = `"(value: number) => string"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedFunctionProps>['first']['second']>() (type) should match snapshot 1`] = `"(value: number) => string"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']>() 1`] = `"_DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']>() (type) should match snapshot 1`] = `"_DeepNonNullableObject<{ second?: { name?: string | null | undefined; } | null | undefined; }>"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']>() 1`] = `"_DeepNonNullableObject<{ name?: string | null | undefined; }>"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']>() (type) should match snapshot 1`] = `"_DeepNonNullableObject<{ name?: string | null | undefined; }>"`;
 
-exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
+exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']['name']>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`DeepPartial testType<ReturnType<NonNullable<typeof functionProp>>>() 1`] = `"string"`;
+exports[`DeepPartial testType<ReturnType<NonNullable<typeof functionProp>>>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`DeepPartial testType<typeof arrayItem.name>() 1`] = `"string | undefined"`;
+exports[`DeepPartial testType<typeof arrayItem.name>() (type) should match snapshot 1`] = `"string | undefined"`;
 
-exports[`DeepPartial testType<typeof arrayProp>() 1`] = `"_DeepPartialArray<{ name: string; }> | undefined"`;
+exports[`DeepPartial testType<typeof arrayProp>() (type) should match snapshot 1`] = `"_DeepPartialArray<{ name: string; }> | undefined"`;
 
-exports[`DeepPartial testType<typeof functionProp>() 1`] = `"((value: number) => string) | undefined"`;
+exports[`DeepPartial testType<typeof functionProp>() (type) should match snapshot 1`] = `"((value: number) => string) | undefined"`;
 
-exports[`DeepPartial testType<typeof name>() 1`] = `"string | undefined"`;
+exports[`DeepPartial testType<typeof name>() (type) should match snapshot 1`] = `"string | undefined"`;
 
-exports[`DeepPartial testType<typeof nestedArrayPartial.first>() 1`] = `"_DeepPartialObject<{ second: { name: string; }[]; }> | undefined"`;
+exports[`DeepPartial testType<typeof nestedArrayPartial.first>() (type) should match snapshot 1`] = `"_DeepPartialObject<{ second: { name: string; }[]; }> | undefined"`;
 
-exports[`DeepPartial testType<typeof nestedFunctionPartial.first>() 1`] = `"_DeepPartialObject<{ second: (value: number) => string; }> | undefined"`;
+exports[`DeepPartial testType<typeof nestedFunctionPartial.first>() (type) should match snapshot 1`] = `"_DeepPartialObject<{ second: (value: number) => string; }> | undefined"`;
 
-exports[`DeepPartial testType<typeof partialNested.first>() 1`] = `"_DeepPartialObject<{ second: { name: string; }; }> | undefined"`;
+exports[`DeepPartial testType<typeof partialNested.first>() (type) should match snapshot 1`] = `"_DeepPartialObject<{ second: { name: string; }; }> | undefined"`;
 
-exports[`DeepPartial testType<typeof second>() 1`] = `"_DeepPartialObject<{ name: string; }> | undefined"`;
+exports[`DeepPartial testType<typeof second>() (type) should match snapshot 1`] = `"_DeepPartialObject<{ name: string; }> | undefined"`;
 
-exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedArrayProps>>>() 1`] = `"_DeepReadonlyObject<{ first: { second: { name: string; }[]; }; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedArrayProps>>>() (type) should match snapshot 1`] = `"_DeepReadonlyObject<{ first: { second: { name: string; }[]; }; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedProps>>>() 1`] = `"_DeepReadonlyObject<{ first: { second: { name: string; }; }; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedProps>>>() (type) should match snapshot 1`] = `"_DeepReadonlyObject<{ first: { second: { name: string; }; }; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: { name: string; }[]; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']>() (type) should match snapshot 1`] = `"_DeepReadonlyObject<{ second: { name: string; }[]; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second']>() 1`] = `"_DeepReadonlyArray<{ name: string; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second']>() (type) should match snapshot 1`] = `"_DeepReadonlyArray<{ name: string; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>() 1`] = `"string"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedArrayProps>['first']['second'][number]['name']>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedFunctionProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: (value: number) => string; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedFunctionProps>['first']>() (type) should match snapshot 1`] = `"_DeepReadonlyObject<{ second: (value: number) => string; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedFunctionProps>['first']['second']>() 1`] = `"(value: number) => string"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedFunctionProps>['first']['second']>() (type) should match snapshot 1`] = `"(value: number) => string"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']>() 1`] = `"_DeepReadonlyObject<{ second: { name: string; }; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']>() (type) should match snapshot 1`] = `"_DeepReadonlyObject<{ second: { name: string; }; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']>() 1`] = `"_DeepReadonlyObject<{ name: string; }>"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']>() (type) should match snapshot 1`] = `"_DeepReadonlyObject<{ name: string; }>"`;
 
-exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']['name']>() 1`] = `"string"`;
+exports[`DeepReadonly testType<DeepReadonly<NestedProps>['first']['second']['name']>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`DeepReadonly testType<DeepReadonly<string | null | boolean | number | bigint | symbol>>() 1`] = `"string | number | bigint | boolean | symbol | null"`;
+exports[`DeepReadonly testType<DeepReadonly<string | null | boolean | number | bigint | symbol>>() (type) should match snapshot 1`] = `"string | number | bigint | boolean | symbol | null"`;
 
-exports[`DeepReadonly testType<ReturnType<DeepReadonly<NestedFunctionProps>['first']['second']>>() 1`] = `"string"`;
+exports[`DeepReadonly testType<ReturnType<DeepReadonly<NestedFunctionProps>['first']['second']>>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']>() 1`] = `"_DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']>() (type) should match snapshot 1`] = `"_DeepRequiredObject<{ second?: ({ name?: string | null | undefined; } | undefined)[] | undefined; }>"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second']>() 1`] = `"_DeepRequiredArray<{ name?: string | null | undefined; } | undefined>"`;
+exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second']>() (type) should match snapshot 1`] = `"_DeepRequiredArray<{ name?: string | null | undefined; } | undefined>"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second'][number]['name']>() 1`] = `"string | null"`;
+exports[`DeepRequired testType<DeepRequired<NestedArrayProps>['first']['second'][number]['name']>() (type) should match snapshot 1`] = `"string | null"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedFunctionProps>['first']>() 1`] = `"_DeepRequiredObject<{ second?: ((value: number) => string) | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedFunctionProps>['first']>() (type) should match snapshot 1`] = `"_DeepRequiredObject<{ second?: ((value: number) => string) | undefined; }>"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedFunctionProps>['first']['second']>() 1`] = `"(value: number) => string"`;
+exports[`DeepRequired testType<DeepRequired<NestedFunctionProps>['first']['second']>() (type) should match snapshot 1`] = `"(value: number) => string"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedProps>['first']>() 1`] = `"_DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedProps>['first']>() (type) should match snapshot 1`] = `"_DeepRequiredObject<{ second?: { name?: string | null | undefined; } | undefined; }>"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']>() 1`] = `"_DeepRequiredObject<{ name?: string | null | undefined; }>"`;
+exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']>() (type) should match snapshot 1`] = `"_DeepRequiredObject<{ name?: string | null | undefined; }>"`;
 
-exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']['name']>() 1`] = `"string | null"`;
+exports[`DeepRequired testType<DeepRequired<NestedProps>['first']['second']['name']>() (type) should match snapshot 1`] = `"string | null"`;
 
-exports[`DeepRequired testType<ReturnType<DeepRequired<NestedFunctionProps>['first']['second']>>() 1`] = `"string"`;
+exports[`DeepRequired testType<ReturnType<DeepRequired<NestedFunctionProps>['first']['second']>>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`Diff const result: Diff<T, Pick<T, 'age'>> = rest 1`] = `"any"`;
+exports[`Diff const result: Diff<T, Pick<T, 'age'>> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Diff testType<Diff<Props, NewProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+exports[`Diff testType<Diff<Props, NewProps>>() (type) should match snapshot 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() 1`] = `"\\"setName\\" | \\"someFn\\""`;
+exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() (type) should match snapshot 1`] = `"\\"setName\\" | \\"someFn\\""`;
 
-exports[`Intersection const result: Intersection<T, Omit<T, 'age'>> = rest 1`] = `"any"`;
+exports[`Intersection const result: Intersection<T, Omit<T, 'age'>> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() 1`] = `"Pick<Props | NewProps, \\"age\\">"`;
+exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props | NewProps, \\"age\\">"`;
 
-exports[`Intersection testType<Intersection<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"age\\">"`;
+exports[`Intersection testType<Intersection<Props, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props, \\"age\\">"`;
 
 exports[`Mutable testType<Mutable<Readonly<Props>>>({
       name: 'Yolo',
       age: 99,
       visible: true,
-    }) 1`] = `"Mutable<Readonly<Props>>"`;
+    }) (type) should match snapshot 1`] = `"Mutable<Readonly<Props>>"`;
 
-exports[`Mutable testType<Mutable<Readonly<Props>>['age']>(99) 1`] = `"number"`;
+exports[`Mutable testType<Mutable<Readonly<Props>>['age']>(99) (type) should match snapshot 1`] = `"number"`;
 
-exports[`Mutable testType<Mutable<Readonly<Props>>['name']>('Yolo') 1`] = `"string"`;
+exports[`Mutable testType<Mutable<Readonly<Props>>['name']>('Yolo') (type) should match snapshot 1`] = `"string"`;
 
-exports[`Mutable testType<Mutable<Readonly<Props>>['visible']>(true) 1`] = `"boolean"`;
+exports[`Mutable testType<Mutable<Readonly<Props>>['visible']>(true) (type) should match snapshot 1`] = `"boolean"`;
 
-exports[`MutableKeys testType<MutableKeys<ReadWriteProps>>() 1`] = `"\\"b\\""`;
+exports[`MutableKeys testType<MutableKeys<ReadWriteProps>>() (type) should match snapshot 1`] = `"\\"b\\""`;
 
-exports[`NonFunctionKeys testType<NonFunctionKeys<MixedProps>>() 1`] = `"\\"name\\" | \\"someKeys\\""`;
+exports[`NonFunctionKeys testType<NonFunctionKeys<MixedProps>>() (type) should match snapshot 1`] = `"\\"name\\" | \\"someKeys\\""`;
 
-exports[`NonUndefined testType<NonUndefined<string | null | undefined>>() 1`] = `"string | null"`;
+exports[`NonUndefined testType<NonUndefined<string | null | undefined>>() (type) should match snapshot 1`] = `"string | null"`;
 
-exports[`NonUndefined testType<NonUndefined<undefined>>() 1`] = `"never"`;
+exports[`NonUndefined testType<NonUndefined<undefined>>() (type) should match snapshot 1`] = `"never"`;
 
-exports[`Omit const result: Omit<T, 'age'> = rest 1`] = `"any"`;
+exports[`Omit const result: Omit<T, 'age'> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Omit testType<Omit<Props | NewProps, 'age'>>() 1`] = `"Pick<Props | NewProps, never>"`;
+exports[`Omit testType<Omit<Props | NewProps, 'age'>>() (type) should match snapshot 1`] = `"Pick<Props | NewProps, never>"`;
 
-exports[`Omit testType<Omit<Props, 'age'>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+exports[`Omit testType<Omit<Props, 'age'>>() (type) should match snapshot 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`Omit testType<Omit<T, 'age'>>() 1`] = `"Pick<T, SetDifference<keyof T, \\"age\\">>"`;
+exports[`Omit testType<Omit<T, 'age'>>() (type) should match snapshot 1`] = `"Pick<T, SetDifference<keyof T, \\"age\\">>"`;
 
-exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
-exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number>>() 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
-exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValue testType<OmitByValue<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
-exports[`OmitByValue testType<OmitByValue<T, string | boolean>>() 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends string | boolean ? never : Key; }[keyof T]>"`;
+exports[`OmitByValue testType<OmitByValue<T, string | boolean>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends string | boolean ? never : Key; }[keyof T]>"`;
 
-exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
-exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number>>() 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
-exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
+exports[`OmitByValueExact testType<OmitByValueExact<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | \\"opt\\" | \\"optUndef\\" | undefined>"`;
 
-exports[`OmitByValueExact testType<OmitByValueExact<T, number>>() 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>"`;
+exports[`OmitByValueExact testType<OmitByValueExact<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? never : Key : Key; }[keyof T]>"`;
 
-exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' }) 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
+exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' }) (type) should match snapshot 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
 
-exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo', age: 99 }) 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
+exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo', age: 99 }) (type) should match snapshot 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
 
-exports[`Optional testType<Optional<Props>>({ age: 99 }) 1`] = `"Optional<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+exports[`Optional testType<Optional<Props>>({ age: 99 }) (type) should match snapshot 1`] = `"Optional<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`Optional testType<Optional<Props>>({}) 1`] = `"Optional<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+exports[`Optional testType<Optional<Props>>({}) (type) should match snapshot 1`] = `"Optional<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`OptionalKeys testType<OptionalKeys<RequiredOptionalProps>>() 1`] = `"\\"opt\\" | \\"optUndef\\""`;
+exports[`OptionalKeys testType<OptionalKeys<RequiredOptionalProps>>() (type) should match snapshot 1`] = `"\\"opt\\" | \\"optUndef\\""`;
 
-exports[`Overwrite const result: Overwrite<Omit<T, 'age'>, T> = rest 1`] = `"any"`;
+exports[`Overwrite const result: Overwrite<Omit<T, 'age'>, T> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Overwrite testType<Overwrite<Props, NewProps>>() 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+exports[`Overwrite testType<Overwrite<Props, NewProps>>() (type) should match snapshot 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\">, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | undefined>"`;
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | \\"reqUndef\\" | undefined>"`;
 
-exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
 
-exports[`PickByValue testType<PickByValue<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
+exports[`PickByValue testType<PickByValue<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
 
-exports[`PickByValue testType<PickByValue<T, number>>() 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends number ? Key : never; }[keyof T]>"`;
+exports[`PickByValue testType<PickByValue<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: T[Key] extends number ? Key : never; }[keyof T]>"`;
 
-exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number | undefined>>() 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | undefined>"`;
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number | undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"reqUndef\\" | undefined>"`;
 
-exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number>>() 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, \\"req\\" | undefined>"`;
 
-exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, undefined>>() 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
+exports[`PickByValueExact testType<PickByValueExact<RequiredOptionalProps, undefined>>() (type) should match snapshot 1`] = `"Pick<RequiredOptionalProps, undefined>"`;
 
-exports[`PickByValueExact testType<PickByValueExact<T, number>>() 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>"`;
+exports[`PickByValueExact testType<PickByValueExact<T, number>>() (type) should match snapshot 1`] = `"Pick<T, { [Key in keyof T]: [number] extends [T[Key]] ? [T[Key]] extends [T[Key] & number] ? Key : never : never; }[keyof T]>"`;
 
-exports[`PromiseType testType<PromiseType<Promise<string>>>() 1`] = `"string"`;
+exports[`PromiseType testType<PromiseType<Promise<string>>>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`ReadonlyKeys testType<ReadonlyKeys<ReadWriteProps>>() 1`] = `"\\"a\\""`;
+exports[`ReadonlyKeys testType<ReadonlyKeys<ReadWriteProps>>() (type) should match snapshot 1`] = `"\\"a\\""`;
 
-exports[`RequiredKeys testType<RequiredKeys<RequiredOptionalProps>>() 1`] = `"\\"req\\" | \\"reqUndef\\""`;
+exports[`RequiredKeys testType<RequiredKeys<RequiredOptionalProps>>() (type) should match snapshot 1`] = `"\\"req\\" | \\"reqUndef\\""`;
 
-exports[`SetComplement testType<SetComplement<'1' | '2' | '3', '2' | '3'>>() 1`] = `"\\"1\\""`;
+exports[`SetComplement testType<SetComplement<'1' | '2' | '3', '2' | '3'>>() (type) should match snapshot 1`] = `"\\"1\\""`;
 
-exports[`SetDifference testType<SetDifference<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"1\\""`;
+exports[`SetDifference testType<SetDifference<'1' | '2' | '3', '2' | '3' | '4'>>() (type) should match snapshot 1`] = `"\\"1\\""`;
 
-exports[`SetDifference testType<SetDifference<string | number | (() => void), () => void>>() 1`] = `"string | number"`;
+exports[`SetDifference testType<SetDifference<string | number | (() => void), () => void>>() (type) should match snapshot 1`] = `"string | number"`;
 
-exports[`SetIntersection testType<SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"2\\" | \\"3\\""`;
+exports[`SetIntersection testType<SetIntersection<'1' | '2' | '3', '2' | '3' | '4'>>() (type) should match snapshot 1`] = `"\\"2\\" | \\"3\\""`;
 
-exports[`SetIntersection testType<SetIntersection<string | number | (() => void), () => void>>() 1`] = `"() => void"`;
+exports[`SetIntersection testType<SetIntersection<string | number | (() => void), () => void>>() (type) should match snapshot 1`] = `"() => void"`;
 
-exports[`Subtract const result: Subtract<T, Pick<T, 'age'>> = rest 1`] = `"any"`;
+exports[`Subtract const result: Subtract<T, Pick<T, 'age'>> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Subtract testType<Subtract<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+exports[`Subtract testType<Subtract<Props, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`SymmetricDifference testType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>() 1`] = `"\\"1\\" | \\"4\\""`;
+exports[`SymmetricDifference testType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>() (type) should match snapshot 1`] = `"\\"1\\" | \\"4\\""`;
 
 exports[`UnionToIntersection testType<
       UnionToIntersection<
@@ -215,30 +215,30 @@ exports[`UnionToIntersection testType<
       name: 'Yolo',
       age: 99,
       visible: true,
-    }) 1`] = `"{ name: string; } & { age: number; } & { visible: boolean; }"`;
+    }) (type) should match snapshot 1`] = `"{ name: string; } & { age: number; } & { visible: boolean; }"`;
 
-exports[`UnionToIntersection testType<UnionToIntersection<'name' | 'age'>>() 1`] = `"never"`;
+exports[`UnionToIntersection testType<UnionToIntersection<'name' | 'age'>>() (type) should match snapshot 1`] = `"never"`;
 
-exports[`UnionToIntersection testType<UnionToIntersection<boolean>>() 1`] = `"never"`;
+exports[`UnionToIntersection testType<UnionToIntersection<boolean>>() (type) should match snapshot 1`] = `"never"`;
 
-exports[`UnionToIntersection testType<UnionToIntersection<true | false>>() 1`] = `"never"`;
+exports[`UnionToIntersection testType<UnionToIntersection<true | false>>() (type) should match snapshot 1`] = `"never"`;
 
-exports[`Unionize testType<Unionize<Props>>() 1`] = `"{ name: string; } | { age: number; } | { visible: boolean; }"`;
+exports[`Unionize testType<Unionize<Props>>() (type) should match snapshot 1`] = `"{ name: string; } | { age: number; } | { visible: boolean; }"`;
 
-exports[`ValuesType testType<ValuesType<[1, 2]>>() 1`] = `"1 | 2"`;
+exports[`ValuesType testType<ValuesType<[1, 2]>>() (type) should match snapshot 1`] = `"1 | 2"`;
 
-exports[`ValuesType testType<ValuesType<Props>>() 1`] = `"string | number | boolean"`;
+exports[`ValuesType testType<ValuesType<Props>>() (type) should match snapshot 1`] = `"string | number | boolean"`;
 
-exports[`ValuesType testType<ValuesType<ReadonlyArray<string>>>() 1`] = `"string"`;
+exports[`ValuesType testType<ValuesType<ReadonlyArray<string>>>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`ValuesType testType<ValuesType<Uint8Array>>() 1`] = `"number"`;
+exports[`ValuesType testType<ValuesType<Uint8Array>>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`ValuesType testType<ValuesType<Uint16Array>>() 1`] = `"number"`;
+exports[`ValuesType testType<ValuesType<Uint16Array>>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`ValuesType testType<ValuesType<Uint32Array>>() 1`] = `"number"`;
+exports[`ValuesType testType<ValuesType<Uint32Array>>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`ValuesType testType<ValuesType<number[]>>() 1`] = `"number"`;
+exports[`ValuesType testType<ValuesType<number[]>>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`ValuesType testType<ValuesType<readonly [1, 2]>>() 1`] = `"1 | 2"`;
+exports[`ValuesType testType<ValuesType<readonly [1, 2]>>() (type) should match snapshot 1`] = `"1 | 2"`;
 
-exports[`ValuesType testType<ValuesType<readonly symbol[]>>() 1`] = `"symbol"`;
+exports[`ValuesType testType<ValuesType<readonly symbol[]>>() (type) should match snapshot 1`] = `"symbol"`;

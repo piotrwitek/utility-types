@@ -1,39 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`$Call testType<$Call<(amount: number) => { type: 'ADD'; payload: number }>>() 1`] = `"{ type: \\"ADD\\"; payload: number; }"`;
+exports[`$Call testType<$Call<(amount: number) => { type: 'ADD'; payload: number }>>() (type) should match snapshot 1`] = `"{ type: \\"ADD\\"; payload: number; }"`;
 
-exports[`$Call testType<FnReturnType>() 1`] = `"number"`;
+exports[`$Call testType<FnReturnType>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`$Call testType<PropType>() 1`] = `"number"`;
+exports[`$Call testType<PropType>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`$Diff testType<$Diff<Props, DefaultProps>>() 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
+exports[`$Diff testType<$Diff<Props, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
-exports[`$ElementType testType<$ElementType<[boolean, number], 0>>() 1`] = `"boolean"`;
+exports[`$ElementType testType<$ElementType<[boolean, number], 0>>() (type) should match snapshot 1`] = `"boolean"`;
 
-exports[`$ElementType testType<$ElementType<[boolean, number], 1>>() 1`] = `"number"`;
+exports[`$ElementType testType<$ElementType<[boolean, number], 1>>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`$ElementType testType<$ElementType<{ [key: string]: number }, string>>() 1`] = `"number"`;
+exports[`$ElementType testType<$ElementType<{ [key: string]: number }, string>>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`$ElementType testType<$ElementType<Props, 'name'>>() 1`] = `"string"`;
+exports[`$ElementType testType<$ElementType<Props, 'name'>>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`$ElementType testType<$ElementType<boolean[], number>>() 1`] = `"boolean"`;
+exports[`$ElementType testType<$ElementType<boolean[], number>>() (type) should match snapshot 1`] = `"boolean"`;
 
-exports[`$Keys testType<$Keys<Props>>() 1`] = `"\\"name\\" | \\"age\\" | \\"visible\\""`;
+exports[`$Keys testType<$Keys<Props>>() (type) should match snapshot 1`] = `"\\"name\\" | \\"age\\" | \\"visible\\""`;
 
-exports[`$NonMaybeType testType<$NonMaybeType<string | null | undefined>>() 1`] = `"string"`;
+exports[`$NonMaybeType testType<$NonMaybeType<string | null | undefined>>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`$PropertyType testType<$PropertyType<[boolean, number], '0'>>() 1`] = `"boolean"`;
+exports[`$PropertyType testType<$PropertyType<[boolean, number], '0'>>() (type) should match snapshot 1`] = `"boolean"`;
 
-exports[`$PropertyType testType<$PropertyType<[boolean, number], '1'>>() 1`] = `"number"`;
+exports[`$PropertyType testType<$PropertyType<[boolean, number], '1'>>() (type) should match snapshot 1`] = `"number"`;
 
-exports[`$PropertyType testType<$PropertyType<Props, 'name'>>() 1`] = `"string"`;
+exports[`$PropertyType testType<$PropertyType<Props, 'name'>>() (type) should match snapshot 1`] = `"string"`;
 
-exports[`$ReadOnly testType<$ReadOnly<Props>>() 1`] = `"_DeepReadonlyObject<{ name: string; age: number; visible: boolean; }>"`;
+exports[`$ReadOnly testType<$ReadOnly<Props>>() (type) should match snapshot 1`] = `"_DeepReadonlyObject<{ name: string; age: number; visible: boolean; }>"`;
 
-exports[`$Shape testType<$Shape<Props>>() 1`] = `"Partial<Props>"`;
+exports[`$Shape testType<$Shape<Props>>() (type) should match snapshot 1`] = `"Partial<Props>"`;
 
-exports[`$Values testType<$Values<Props>>() 1`] = `"string | number | boolean"`;
+exports[`$Values testType<$Values<Props>>() (type) should match snapshot 1`] = `"string | number | boolean"`;
 
-exports[`Class testType<Class<Foo>>() 1`] = `"Class<Foo>"`;
+exports[`Class testType<Class<Foo>>() (type) should match snapshot 1`] = `"Class<Foo>"`;
 
-exports[`mixed testType<mixed>() 1`] = `"unknown"`;
+exports[`mixed testType<mixed>() (type) should match snapshot 1`] = `"unknown"`;
