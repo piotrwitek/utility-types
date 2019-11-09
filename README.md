@@ -82,15 +82,12 @@ We are open for contributions. If you're planning to contribute please make sure
 
 # Table of Contents
 
-## Aliases
+## Aliases & Type Guards
 
 * [`Primitive`](#primitive)
+* [`isPrimitive`](#isprimitive)
 * [`Falsy`](#falsy)
-
-## Type Guards
-
-* ['isPrimitive'](#isprimitive)
-* ['isFalsy'](#isfalsy)
+* [`isFalsy`](#isfalsy)
 
 ## Union operators
 
@@ -166,15 +163,6 @@ Type representing primitive types in JavaScript, and thus TypeScript: `string | 
 
 You can test for singular of these types with [`typeof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
 
-[⇧ back to top](#table-of-contents)
-
-### `Falsy`
-
-Type representing falsy values in TypeScript: `false | "" | 0 | null | undefined`
-> Except `NaN` which cannot be represented as a type literal
-
-[⇧ back to top](#table-of-contents)
-
 ### `isPrimitive`
 
 This is a [TypeScript Typeguard](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types) for the [`Primitive`](#primitive) type.
@@ -195,9 +183,27 @@ const consumer = (param: Primitive[] | Primitive): string => {
 };
 ```
 
+[⇧ back to top](#table-of-contents)
+
+### `Falsy`
+
+Type representing falsy values in TypeScript: `false | "" | 0 | null | undefined`
+> Except `NaN` which cannot be represented as a type literal
+
 ### `isFalsy`
 
-As `isPrimitive` but for the type [`Falsy`](#falsy).
+```ts
+const consumer = (param: Falsy | string): string => {
+    if (isFalsy(param)) {
+        // typeof param === Falsy
+        return String(param) + ' was Falsy';
+    }
+    // typeof param === string
+    return param.toString();
+};
+```
+
+[⇧ back to top](#table-of-contents)
 
 ### `SetIntersection<A, B>` (same as Extract)
 
