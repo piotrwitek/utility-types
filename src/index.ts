@@ -21,6 +21,7 @@ export {
   Assign,
   Brand,
   DeepNonNullable,
+  DeepOptional,
   DeepPartial,
   DeepReadonly,
   DeepRequired,

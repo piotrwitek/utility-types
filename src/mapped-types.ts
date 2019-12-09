@@ -508,6 +508,7 @@ export type DeepPartial<T> = T extends Function
   : T extends object
   ? _DeepPartialObject<T>
   : T | undefined;
+export type DeepOptional<T> = DeepPartial<T>;
 /** @private */
 // tslint:disable-next-line:class-name
 export interface _DeepPartialArray<T> extends Array<DeepPartial<T>> {}

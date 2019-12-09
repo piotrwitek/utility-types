@@ -855,6 +855,8 @@ type RequiredNestedProps = DeepNonNullable<NestedProps>;
 
 Partial that works for deeply nested structures
 
+Alias: `DeepOptional<T>` 
+
 **Usage:**
 
 ```ts
