@@ -22,6 +22,26 @@ exports[`AugmentedMutable testType<AugmentedMutable<Readonly<Props>>['name']>('Y
 
 exports[`AugmentedMutable testType<AugmentedMutable<Readonly<Props>>['visible']>(true) (type) should match snapshot 1`] = `"boolean"`;
 
+exports[`AugmentedReadonly testType<AugmentedReadonly<Props, 'name' | 'age'>>({
+      name: 'Yolo',
+      age: 99,
+      visible: true,
+    }) (type) should match snapshot 1`] = `"AugmentedReadonly<Props, \\"name\\" | \\"age\\">"`;
+
+exports[`AugmentedReadonly testType<AugmentedReadonly<Props>>({
+      name: 'Yolo',
+      age: 99,
+      visible: true,
+    }) (type) should match snapshot 1`] = `"AugmentedReadonly<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+
+exports[`AugmentedReadonly testType<AugmentedReadonly<Props>['age']>() (type) should match snapshot 1`] = `"number"`;
+
+exports[`AugmentedReadonly testType<AugmentedReadonly<Props>['name']>() (type) should match snapshot 1`] = `"string"`;
+
+exports[`AugmentedReadonly testType<AugmentedReadonly<Props>['visible']>() (type) should match snapshot 1`] = `"boolean"`;
+
+exports[`AugmentedReadonly testType<ReadonlyKeys<AugmentedReadonly<Props, 'name' | 'age'>>>() (type) should match snapshot 1`] = `"\\"name\\" | \\"age\\""`;
+
 exports[`AugmentedRequired testType<AugmentedRequired<Partial<Props>, 'age' | 'visible'>>({
       age: 99,
       visible: true,

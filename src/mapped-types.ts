@@ -653,3 +653,30 @@ type Mutable<T> = { -readonly [P in keyof T]: T[P] };
 export type AugmentedMutable<T, K extends keyof T = keyof T> = Omit<T, K> &
   Mutable<Pick<T, K>>;
 export type Writable<T, K extends keyof T = keyof T> = AugmentedMutable<T, K>;
+
+/**
+ * Readonly
+ * @desc From `T`, make a set of properties, whose keys are in the union `K`, readonly
+ * @example
+ *    type Props = {
+ *      name: string;
+ *      age: number;
+ *      visible: boolean;
+ *    };
+ *
+ *    // Expect: {
+ *    //   readonly name: string;
+ *    //   readonly age: number;
+ *    //   readonly visible: boolean;
+ *    // }
+ *    Readonly<Props>;
+ *
+ *    // Expect: {
+ *    //   name: string;
+ *    //   readonly age: number;
+ *    //   readonly visible: boolean;
+ *    // }
+ *    Readonly<Props, 'age' | 'visible'>;
+ */
+export type AugmentedReadonly<T, K extends keyof T = keyof T> = Omit<T, K> &
+  Readonly<Pick<T, K>>;

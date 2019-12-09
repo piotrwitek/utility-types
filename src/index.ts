@@ -40,6 +40,7 @@ export {
   PickByValue,
   PickByValueExact,
   PromiseType,
+  AugmentedReadonly as Readonly,
   ReadonlyKeys,
   AugmentedRequired as Required,
   RequiredKeys,

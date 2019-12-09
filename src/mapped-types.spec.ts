@@ -41,6 +41,7 @@ import {
   AugmentedRequired,
   UnionToIntersection,
   AugmentedMutable,
+  AugmentedReadonly,
 } from './mapped-types';
 
 /**
@@ -596,4 +597,33 @@ type RequiredOptionalProps = {
 
   // @dts-jest:pass:snap
   testType<AugmentedMutable<Readonly<Props>>['visible']>(true);
+}
+
+// @dts-jest:group AugmentedReadonly
+{
+  // @dts-jest:pass:snap
+  testType<AugmentedReadonly<Props>>({
+    name: 'Yolo',
+    age: 99,
+    visible: true,
+  });
+
+  // @dts-jest:pass:snap
+  testType<AugmentedReadonly<Props, 'name' | 'age'>>({
+    name: 'Yolo',
+    age: 99,
+    visible: true,
+  });
+
+  // @dts-jest:pass:snap
+  testType<ReadonlyKeys<AugmentedReadonly<Props, 'name' | 'age'>>>();
+
+  // @dts-jest:pass:snap
+  testType<AugmentedReadonly<Props>['name']>();
+
+  // @dts-jest:pass:snap
+  testType<AugmentedReadonly<Props>['age']>();
+
+  // @dts-jest:pass:snap
+  testType<AugmentedReadonly<Props>['visible']>();
 }
