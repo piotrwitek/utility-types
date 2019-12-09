@@ -4,6 +4,24 @@ exports[`Assign const result: Assign<{}, Omit<T, 'age'>> = rest (type) should ma
 
 exports[`Assign testType<Assign<Props, NewProps>>() (type) should match snapshot 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
 
+exports[`AugmentedMutable testType<AugmentedMutable<Readonly<Props>, 'name' | 'age'>>({
+      name: 'Yolo',
+      age: 99,
+      visible: true,
+    }) (type) should match snapshot 1`] = `"AugmentedMutable<Readonly<Props>, \\"name\\" | \\"age\\">"`;
+
+exports[`AugmentedMutable testType<AugmentedMutable<Readonly<Props>>>({
+      name: 'Yolo',
+      age: 99,
+      visible: true,
+    }) (type) should match snapshot 1`] = `"AugmentedMutable<Readonly<Props>, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+
+exports[`AugmentedMutable testType<AugmentedMutable<Readonly<Props>>['age']>(99) (type) should match snapshot 1`] = `"number"`;
+
+exports[`AugmentedMutable testType<AugmentedMutable<Readonly<Props>>['name']>('Yolo') (type) should match snapshot 1`] = `"string"`;
+
+exports[`AugmentedMutable testType<AugmentedMutable<Readonly<Props>>['visible']>(true) (type) should match snapshot 1`] = `"boolean"`;
+
 exports[`AugmentedRequired testType<AugmentedRequired<Partial<Props>, 'age' | 'visible'>>({
       age: 99,
       visible: true,
@@ -110,18 +128,6 @@ exports[`Intersection const result: Intersection<T, Omit<T, 'age'>> = rest (type
 exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props | NewProps, \\"age\\">"`;
 
 exports[`Intersection testType<Intersection<Props, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props, \\"age\\">"`;
-
-exports[`Mutable testType<Mutable<Readonly<Props>>>({
-      name: 'Yolo',
-      age: 99,
-      visible: true,
-    }) (type) should match snapshot 1`] = `"Mutable<Readonly<Props>>"`;
-
-exports[`Mutable testType<Mutable<Readonly<Props>>['age']>(99) (type) should match snapshot 1`] = `"number"`;
-
-exports[`Mutable testType<Mutable<Readonly<Props>>['name']>('Yolo') (type) should match snapshot 1`] = `"string"`;
-
-exports[`Mutable testType<Mutable<Readonly<Props>>['visible']>(true) (type) should match snapshot 1`] = `"boolean"`;
 
 exports[`MutableKeys testType<MutableKeys<ReadWriteProps>>() (type) should match snapshot 1`] = `"\\"b\\""`;
 

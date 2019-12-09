@@ -115,7 +115,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`DeepRequired<T>`](#deeprequiredt)
 * [`Readonly<T>`](#readonlyt) _(built-in)_
 * [`DeepReadonly<T>`](#deepreadonlyt)
-* [`Mutable<T>`](#mutablet)
+* [`Mutable<T, K>`](#mutablet-k)
 * [`Pick<T, K>` _(built-in)_](#pickt-k-built-in)
 * [`Omit<T, K>`](#omitt-k) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
@@ -678,11 +678,11 @@ Make all properties of object type readonly
 
 [⇧ back to top](#table-of-contents)
 
-### `Mutable<T>`
+### `Mutable<T, K>`
 
-From `T` make all properties become mutable
+From `T`, make a set of properties, whose keys are in the union `K`, mutable
 
-Alias: `Writable<T>`
+Alias: `Writable<T, K>`
 
 ```ts
 import { Mutable } from 'utility-types';
@@ -695,6 +695,9 @@ type Props = {
 
 // Expect: { name: string; age: number; visible: boolean; }
 Mutable<Props>;
+
+// Expect: { readonly name: string; age: number; visible: boolean; }
+Mutable<Props, 'age' | 'visible'>;
 ```
 
 [⇧ back to top](#table-of-contents)

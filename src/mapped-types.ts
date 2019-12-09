@@ -632,9 +632,11 @@ export type UnionToIntersection<U> = (U extends any
   ? I
   : never;
 
+type Mutable<T> = { -readonly [P in keyof T]: T[P] };
+
 /**
  * Mutable
- * @desc From `T` make all properties become mutable
+ * @desc From `T`, make a set of properties, whose keys are in the union `K`, mutable
  * @example
  *    type Props = {
  *      readonly name: string;
@@ -644,6 +646,10 @@ export type UnionToIntersection<U> = (U extends any
  *
  *    // Expect: { name: string; age: number; visible: boolean; }
  *    Mutable<Props>;
+ *
+ *    // Expect: { readonly name: string; age: number; visible: boolean; }
+ *    Mutable<Props, 'age' | 'visible'>;
  */
-export type Mutable<T> = { -readonly [P in keyof T]: T[P] };
-export type Writable<T> = Mutable<T>;
+export type AugmentedMutable<T, K extends keyof T = keyof T> = Omit<T, K> &
+  Mutable<Pick<T, K>>;
+export type Writable<T, K extends keyof T = keyof T> = AugmentedMutable<T, K>;

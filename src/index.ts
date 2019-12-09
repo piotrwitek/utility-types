@@ -27,7 +27,7 @@ export {
   Diff,
   FunctionKeys,
   Intersection,
-  Mutable,
+  AugmentedMutable as Mutable,
   MutableKeys,
   NonFunctionKeys,
   NonUndefined,
