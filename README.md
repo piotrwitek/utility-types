@@ -108,8 +108,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`ReadonlyKeys<T>`](#readonlykeyst)
 * [`RequiredKeys<T>`](#requiredkeyst)
 * [`OptionalKeys<T>`](#optionalkeyst)
-* [`Optional<T, K>`](#optionalt-k)
-* [`Partial<T>`](#partialt) _(built-in)_
+* [`Partial<T, K>`](#partialt-k)
 * [`DeepPartial<T>`](#deeppartialt)
 * [`Required<T, K>`](#requiredt-k)
 * [`DeepRequired<T>`](#deeprequiredt)
@@ -399,26 +398,6 @@ type Keys = OptionalKeys<Props>;
 
 [⇧ back to top](#table-of-contents)
 
-### `Optional<T, K>`
-
-From `T` make a set of properties by key `K` become optional
-
-**Usage:**
-
-```ts
-import { Optional } from 'utility-types';
-
-type Props = { name: string; age: number; visible: boolean; };
-
-// Expect: { name?: string; age?: number; visible?: boolean; }
-type Props = Optional<Props>
-// Expect: { name: string; age?: number; visible?: boolean; }
-type Props = Optional<Props, 'age' | 'visible'>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-
 ### `Pick<T, K>` _(built-in)_
 
 From `T` pick a set of properties by key `K`
@@ -647,9 +626,24 @@ type BinaryItems = ValuesType<BinaryArray>;
 
 [⇧ back to top](#table-of-contents)
 
-### `Partial<T>`
+### `Partial<T, K>`
 
-Make all properties of object type optional
+From `T` make a set of properties by key `K` become optional
+
+Alias: `Optional<T, K>`
+
+**Usage:**
+
+```ts
+import { Partial } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean; };
+
+// Expect: { name?: string; age?: number; visible?: boolean; }
+type Props = Partial<Props>
+// Expect: { name: string; age?: number; visible?: boolean; }
+type Props = Partial<Props, 'age' | 'visible'>;
+```
 
 [⇧ back to top](#table-of-contents)
 

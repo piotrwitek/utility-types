@@ -36,7 +36,7 @@ import {
   OptionalKeys,
   PickByValueExact,
   OmitByValueExact,
-  Optional,
+  AugmentedPartial,
   ValuesType,
   AugmentedRequired,
   UnionToIntersection,
@@ -499,14 +499,17 @@ type RequiredOptionalProps = {
 // @dts-jest:group Optional
 {
   // @dts-jest:pass:snap
-  testType<Optional<Props>>({});
+  testType<AugmentedPartial<Props>>({});
   // @dts-jest:pass:snap
-  testType<Optional<Props>>({ age: 99 });
+  testType<AugmentedPartial<Props>>({ age: 99 });
 
   // @dts-jest:pass:snap
-  testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' });
+  testType<AugmentedPartial<Props, 'age' | 'visible'>>({ name: 'Yolo' });
   // @dts-jest:pass:snap
-  testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo', age: 99 });
+  testType<AugmentedPartial<Props, 'age' | 'visible'>>({
+    name: 'Yolo',
+    age: 99,
+  });
 }
 
 // @dts-jest:group ValuesType

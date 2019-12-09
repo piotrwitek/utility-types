@@ -36,7 +36,7 @@ import {
   OptionalKeys,
   PickByValueExact,
   OmitByValueExact,
-  Optional,
+  AugmentedPartial,
   ValuesType,
   AugmentedRequired,
   UnionToIntersection,
@@ -498,15 +498,18 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group Optional
 {
-  // @dts-jest:pass:snap -> Optional<Props, "name" | "age" | "visible">
-  testType<Optional<Props>>({});
-  // @dts-jest:pass:snap -> Optional<Props, "name" | "age" | "visible">
-  testType<Optional<Props>>({ age: 99 });
+  // @dts-jest:pass:snap -> AugmentedPartial<Props, "name" | "age" | "visible">
+  testType<AugmentedPartial<Props>>({});
+  // @dts-jest:pass:snap -> AugmentedPartial<Props, "name" | "age" | "visible">
+  testType<AugmentedPartial<Props>>({ age: 99 });
 
-  // @dts-jest:pass:snap -> Optional<Props, "age" | "visible">
-  testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' });
-  // @dts-jest:pass:snap -> Optional<Props, "age" | "visible">
-  testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo', age: 99 });
+  // @dts-jest:pass:snap -> AugmentedPartial<Props, "age" | "visible">
+  testType<AugmentedPartial<Props, 'age' | 'visible'>>({ name: 'Yolo' });
+  // @dts-jest:pass:snap -> AugmentedPartial<Props, "age" | "visible">
+  testType<AugmentedPartial<Props, 'age' | 'visible'>>({
+    name: 'Yolo',
+    age: 99,
+  });
 }
 
 // @dts-jest:group ValuesType

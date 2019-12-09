@@ -537,7 +537,7 @@ export type _DeepPartialObject<T> = { [P in keyof T]?: DeepPartial<T[P]> };
 export type Brand<T, U> = T & { __brand: U };
 
 /**
- * Optional
+ * Partial
  * @desc From `T` make a set of properties by key `K` become optional
  * @example
  *    type Props = {
@@ -547,16 +547,19 @@ export type Brand<T, U> = T & { __brand: U };
  *    };
  *
  *    // Expect: { name?: string; age?: number; visible?: boolean; }
- *    type Props = Optional<Props>;
+ *    type Props = Partial<Props>;
  *
  *    // Expect: { name: string; age?: number; visible?: boolean; }
- *    type Props = Optional<Props, 'age' | 'visible'>;
+ *    type Props = Partial<Props, 'age' | 'visible'>;
  */
-export type Optional<T extends object, K extends keyof T = keyof T> = Omit<
-  T,
-  K
-> &
-  Partial<Pick<T, K>>;
+export type AugmentedPartial<
+  T extends object,
+  K extends keyof T = keyof T
+> = Omit<T, K> & Partial<Pick<T, K>>;
+export type Optional<
+  T extends object,
+  K extends keyof T = keyof T
+> = AugmentedPartial<T, K>;
 
 /**
  * ValuesType

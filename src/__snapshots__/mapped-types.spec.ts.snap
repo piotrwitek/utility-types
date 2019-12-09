@@ -185,13 +185,16 @@ exports[`OmitByValueExact testType<OmitByValueExact<T, number>>() (type) should 
 
 exports[`OmitByValueExact testType<keyof OmitByValueExact<RequiredOptionalProps, number>>() (type) should match snapshot 1`] = `"\\"reqUndef\\" | \\"opt\\" | \\"optUndef\\""`;
 
-exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo' }) (type) should match snapshot 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
+exports[`Optional testType<AugmentedPartial<Props, 'age' | 'visible'>>({
+      name: 'Yolo',
+      age: 99,
+    }) (type) should match snapshot 1`] = `"AugmentedPartial<Props, \\"age\\" | \\"visible\\">"`;
 
-exports[`Optional testType<Optional<Props, 'age' | 'visible'>>({ name: 'Yolo', age: 99 }) (type) should match snapshot 1`] = `"Optional<Props, \\"age\\" | \\"visible\\">"`;
+exports[`Optional testType<AugmentedPartial<Props, 'age' | 'visible'>>({ name: 'Yolo' }) (type) should match snapshot 1`] = `"AugmentedPartial<Props, \\"age\\" | \\"visible\\">"`;
 
-exports[`Optional testType<Optional<Props>>({ age: 99 }) (type) should match snapshot 1`] = `"Optional<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+exports[`Optional testType<AugmentedPartial<Props>>({ age: 99 }) (type) should match snapshot 1`] = `"AugmentedPartial<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
-exports[`Optional testType<Optional<Props>>({}) (type) should match snapshot 1`] = `"Optional<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
+exports[`Optional testType<AugmentedPartial<Props>>({}) (type) should match snapshot 1`] = `"AugmentedPartial<Props, \\"name\\" | \\"age\\" | \\"visible\\">"`;
 
 exports[`OptionalKeys testType<OptionalKeys<RequiredOptionalProps>>() (type) should match snapshot 1`] = `"\\"opt\\" | \\"optUndef\\""`;
 
