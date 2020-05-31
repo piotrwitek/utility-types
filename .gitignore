@@ -35,3 +35,9 @@ node_modules
 
 # Build
 dist/
+
+# omit tests and snapshots
+deno_dist/**.snap.ts
+deno_dist/__snapshots__
+deno_dist/**.spec.ts
+deno_dist/**.tst.ts
