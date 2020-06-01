@@ -13,8 +13,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run build:deno",
-      "pre-push": "npm run build:deno && npm run test:deno npm run prettier:fix && npm run lint && npm run tsc && npm run test:update"
+      "pre-commit": "npm run build:deno && git add ./deno_dist",
+      "pre-push": "npm run test:deno && npm run prettier:fix && npm run lint && npm run tsc && npm run test:update"
     }
   },
   "scripts": {
