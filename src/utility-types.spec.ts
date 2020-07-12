@@ -26,7 +26,7 @@ type MappingProps = {
   baz: string;
 };
 
-class Foo { }
+class Foo {}
 
 /**
  * Tests
