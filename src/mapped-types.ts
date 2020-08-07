@@ -90,9 +90,7 @@ export type FunctionKeys<T extends object> = {
  *   type Keys = NonFunctionKeys<MixedProps>;
  */
 export type NonFunctionKeys<T extends object> = {
-  [P in keyof T]-?: SetDifference<NonNullable<T[P]>, Function> extends never
-    ? never
-    : P;
+  [K in keyof T]-?: NonUndefined<T[K]> extends Function ? never : K;
 }[keyof T];
 
 /**
