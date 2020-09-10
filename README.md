@@ -88,6 +88,8 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`isPrimitive`](#isprimitive)
 * [`Falsy`](#falsy)
 * [`isFalsy`](#isfalsy)
+* [`Nullish`](#nullish)
+* [`isNullish`](#isnullish)
 
 ## Union operators
 
@@ -197,6 +199,27 @@ const consumer = (param: Falsy | string): string => {
     if (isFalsy(param)) {
         // typeof param === Falsy
         return String(param) + ' was Falsy';
+    }
+    // typeof param === string
+    return param.toString();
+};
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Nullish`
+
+Type representing [nullish values](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing) in TypeScript: `null | undefined`
+
+[⇧ back to top](#table-of-contents)
+
+### `isNullish`
+
+```ts
+const consumer = (param: Nullish | string): string => {
+    if (isNullish(param)) {
+        // typeof param === Nullish
+        return String(param) + ' was Nullish';
     }
     // typeof param === string
     return param.toString();
