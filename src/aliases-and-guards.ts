@@ -87,3 +87,17 @@ export const isPrimitive = (val: unknown): val is Primitive => {
  *   };
  */
 export const isFalsy = (val: unknown): val is Falsy => !val;
+
+/**
+ * Tests for Nullish by simply comparing `val` for equality with `null`.
+ * @example
+ *   const consumer = (param: Nullish | string): string => {
+ *     if (isNullish(param)) {
+ *       // typeof param === Nullish
+ *       return String(param) + ' was Nullish';
+ *     }
+ *     // typeof param === string
+ *     return param.toString();
+ *   };
+ */
+export const isNullish = (val: unknown): val is Nullish => val == null;

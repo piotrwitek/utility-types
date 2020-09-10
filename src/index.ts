@@ -59,6 +59,8 @@ export {
   Falsy,
   Falsy as Falsey, // deprecated in v3, backward compatibility until v4
   isFalsy,
+  Nullish,
+  isNullish,
   Primitive,
   isPrimitive,
 } from './aliases-and-guards';

@@ -1,5 +1,12 @@
 import { testType } from '../utils/test-utils';
-import { Primitive, isPrimitive, Falsy, isFalsy } from './aliases-and-guards';
+import {
+  Primitive,
+  isPrimitive,
+  Falsy,
+  isFalsy,
+  isNullish,
+  Nullish,
+} from './aliases-and-guards';
 
 // @dts-jest:group Primitive
 {
@@ -57,5 +64,35 @@ it('returns false for truthy', () => {
   const truthyTestVals: unknown[] = [' ', true, {}, []];
 
   const testResults = truthyTestVals.map(isFalsy);
+  testResults.forEach(val => expect(val).toBe(false));
+});
+
+// @dts-jest:group isNullish
+it('narrows to correct type', () => {
+  const consumer = (param: Nullish | string): string => {
+    if (isNullish(param)) {
+      // @dts-jest:pass:snap -> Nullish
+      param;
+      return String(param) + ' was Nullish';
+    }
+    // @dts-jest:pass:snap -> string
+    param;
+    return param.toString();
+  };
+});
+
+// @dts-jest:group isNullish - test nullish values
+it('returns true for nullish', () => {
+  const nullishTestVals: unknown[] = [null, undefined];
+
+  const testResults = nullishTestVals.map(isNullish);
+  testResults.forEach(val => expect(val).toBe(true));
+});
+
+// @dts-jest:group isNullish - test non-nullish values
+it('returns false for non-nullish', () => {
+  const nonNullishTestVals: unknown[] = [false, '', 0, ' ', true, {}, []];
+
+  const testResults = nonNullishTestVals.map(isNullish);
   testResults.forEach(val => expect(val).toBe(false));
 });

@@ -8,6 +8,10 @@ exports[`isFalsy param (type) should match snapshot 1`] = `"false | 0 | null | u
 
 exports[`isFalsy param (type) should match snapshot 2`] = `"string"`;
 
+exports[`isNullish param (type) should match snapshot 1`] = `"Nullish"`;
+
+exports[`isNullish param (type) should match snapshot 2`] = `"string"`;
+
 exports[`isPrimitive param (type) should match snapshot 1`] = `"Primitive"`;
 
 exports[`isPrimitive param (type) should match snapshot 2`] = `"Primitive[]"`;
