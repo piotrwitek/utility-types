@@ -4,8 +4,8 @@ import {
   isPrimitive,
   Falsy,
   isFalsy,
-  isNullish,
   Nullish,
+  isNullish,
 } from './aliases-and-guards';
 
 // @dts-jest:group Primitive
