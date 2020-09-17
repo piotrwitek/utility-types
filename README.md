@@ -1059,6 +1059,8 @@ type ValuesType = $ElementType<Obj, string>;
 get the return type of a given expression type<br>
 https://flow.org/en/docs/types/utilities/#toc-call
 
+The built-in [`ReturnType`](https://www.typescriptlang.org/docs/handbook/utility-types.html#returntypetype) can be used to accomplish the same goal, although it may have some subtle differences.
+
 **Usage:**
 
 ```ts
