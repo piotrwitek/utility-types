@@ -975,7 +975,7 @@ import { $ReadOnly } from 'utility-types';
 
 type Props = { name: string; age: number; visible: boolean };
 
-// Expect: Readonly<{ name: string; age?: number | undefined; visible: boolean; }>
+// Expect: Readonly<{ name: string; age: number; visible: boolean; }>
 type ReadOnlyProps = $ReadOnly<Props>;
 ```
 

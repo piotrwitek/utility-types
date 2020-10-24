@@ -31,7 +31,7 @@ export type $Values<T extends object> = T[keyof T];
  * @example
  *   type Props = { name: string; age: number; visible: boolean };
  *
- *   // Expect: Readonly<{ name: string; age?: number | undefined; visible: boolean; }>
+ *   // Expect: Readonly<{ name: string; age: number; visible: boolean; }>
  *   type ReadOnlyProps = $ReadOnly<Props>;
  */
 export type $ReadOnly<T extends object> = DeepReadonly<T>;
