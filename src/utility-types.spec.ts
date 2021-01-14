@@ -10,7 +10,7 @@ import {
   $Shape,
   $NonMaybeType,
   Class,
-  mixed,
+  mixed, TupleOf,
 } from './utility-types';
 import { _DeepReadonlyObject } from './mapped-types';
 /**
@@ -119,4 +119,10 @@ class Foo {}
 {
   // @dts-jest:pass:snap
   testType<mixed>();
+}
+
+// @dts-jest:group TupleOf
+{
+  // @dts-jest:pass:snap
+  testType<TupleOf<number, 3>>();
 }
