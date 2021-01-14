@@ -40,7 +40,8 @@ import {
   ValuesType,
   AugmentedRequired,
   UnionToIntersection,
-  Mutable, TupleOf,
+  Mutable,
+  TupleOf,
 } from './mapped-types';
 
 /**
