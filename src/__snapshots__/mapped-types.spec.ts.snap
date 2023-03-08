@@ -39,6 +39,10 @@ exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second'
 
 exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']['name']>() (type) should match snapshot 1`] = `"string"`;
 
+exports[`DeepPartial testType<DeepPartial<NestedProps>>({}) (type) should match snapshot 1`] = `"DeepPartial<{ first: { second: { name: string; }; }; }>"`;
+
+exports[`DeepPartial testType<DeepPartial<T>>({}) (type) should match snapshot 1`] = `"DeepPartial<T>"`;
+
 exports[`DeepPartial testType<ReturnType<NonNullable<typeof functionProp>>>() (type) should match snapshot 1`] = `"string"`;
 
 exports[`DeepPartial testType<typeof arrayItem.name>() (type) should match snapshot 1`] = `"string | undefined"`;
@@ -49,13 +53,13 @@ exports[`DeepPartial testType<typeof functionProp>() (type) should match snapsho
 
 exports[`DeepPartial testType<typeof name>() (type) should match snapshot 1`] = `"string | undefined"`;
 
-exports[`DeepPartial testType<typeof nestedArrayPartial.first>() (type) should match snapshot 1`] = `"_DeepPartialObject<{ second: { name: string; }[]; }> | undefined"`;
+exports[`DeepPartial testType<typeof nestedArrayPartial.first>() (type) should match snapshot 1`] = `"DeepPartial<{ second: { name: string; }[]; }> | undefined"`;
 
-exports[`DeepPartial testType<typeof nestedFunctionPartial.first>() (type) should match snapshot 1`] = `"_DeepPartialObject<{ second: (value: number) => string; }> | undefined"`;
+exports[`DeepPartial testType<typeof nestedFunctionPartial.first>() (type) should match snapshot 1`] = `"DeepPartial<{ second: (value: number) => string; }> | undefined"`;
 
-exports[`DeepPartial testType<typeof partialNested.first>() (type) should match snapshot 1`] = `"_DeepPartialObject<{ second: { name: string; }; }> | undefined"`;
+exports[`DeepPartial testType<typeof partialNested.first>() (type) should match snapshot 1`] = `"DeepPartial<{ second: { name: string; }; }> | undefined"`;
 
-exports[`DeepPartial testType<typeof second>() (type) should match snapshot 1`] = `"_DeepPartialObject<{ name: string; }> | undefined"`;
+exports[`DeepPartial testType<typeof second>() (type) should match snapshot 1`] = `"DeepPartial<{ name: string; }> | undefined"`;
 
 exports[`DeepReadonly testType<DeepReadonly<DeepReadonly<NestedArrayProps>>>() (type) should match snapshot 1`] = `"_DeepReadonlyObject<{ first: { second: { name: string; }[]; }; }>"`;
 

@@ -501,18 +501,19 @@ export type _DeepNonNullableObject<T> = {
  *   };
  *   type PartialNestedProps = DeepPartial<NestedProps>;
  */
-export type DeepPartial<T> = T extends Function
+export type DeepPartial<T> = { [P in keyof T]?: _DeepPartial<T[P]> };
+
+/** @private */
+export type _DeepPartial<T> = T extends Function
   ? T
   : T extends Array<infer U>
   ? _DeepPartialArray<U>
   : T extends object
-  ? _DeepPartialObject<T>
+  ? DeepPartial<T>
   : T | undefined;
 /** @private */
 // tslint:disable-next-line:class-name
-export interface _DeepPartialArray<T> extends Array<DeepPartial<T>> {}
-/** @private */
-export type _DeepPartialObject<T> = { [P in keyof T]?: DeepPartial<T[P]> };
+export interface _DeepPartialArray<T> extends Array<_DeepPartial<T>> {}
 
 /**
  * Brand
