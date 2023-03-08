@@ -30,7 +30,7 @@ import {
   _DeepReadonlyObject,
   _DeepRequiredArray,
   _DeepRequiredObject,
-  _DeepPartialObject,
+  _DeepPartial,
   _DeepPartialArray,
   RequiredKeys,
   OptionalKeys,
@@ -444,11 +444,11 @@ type RequiredOptionalProps = {
     };
   };
   const partialNested: DeepPartial<NestedProps> = {} as any;
-  // @dts-jest:pass:snap -> _DeepPartialObject<{ second: { name: string; }; }> | undefined
+  // @dts-jest:pass:snap -> DeepPartial<{ second: { name: string; }; }> | undefined
   testType<typeof partialNested.first>();
 
   const second = partialNested.first!.second;
-  // @dts-jest:pass:snap -> _DeepPartialObject<{ name: string; }> | undefined
+  // @dts-jest:pass:snap -> DeepPartial<{ name: string; }> | undefined
   testType<typeof second>();
 
   const name = second!.name;
@@ -462,7 +462,7 @@ type RequiredOptionalProps = {
   };
 
   const nestedArrayPartial: DeepPartial<NestedArrayProps> = {};
-  // @dts-jest:pass:snap -> _DeepPartialObject<{ second: { name: string; }[]; }> | undefined
+  // @dts-jest:pass:snap -> DeepPartial<{ second: { name: string; }[]; }> | undefined
   testType<typeof nestedArrayPartial.first>();
 
   const arrayProp = nestedArrayPartial.first!.second;
@@ -479,7 +479,7 @@ type RequiredOptionalProps = {
     };
   };
   const nestedFunctionPartial: DeepPartial<NestedFunctionProps> = {};
-  // @dts-jest:pass:snap -> _DeepPartialObject<{ second: (value: number) => string; }> | undefined
+  // @dts-jest:pass:snap -> DeepPartial<{ second: (value: number) => string; }> | undefined
   testType<typeof nestedFunctionPartial.first>();
 
   const functionProp = nestedFunctionPartial.first!.second;
@@ -487,6 +487,14 @@ type RequiredOptionalProps = {
   testType<typeof functionProp>();
   // @dts-jest:pass:snap -> string
   testType<ReturnType<NonNullable<typeof functionProp>>>();
+
+  // @dts-jest:pass:snap -> DeepPartial<{ first: { second: { name: string; }; }; }>
+  testType<DeepPartial<NestedProps>>({});
+
+  <T extends object>() => {
+    // @dts-jest:pass:snap -> DeepPartial<T>
+    testType<DeepPartial<T>>({});
+  };
 }
 
 // @dts-jest:group Brand

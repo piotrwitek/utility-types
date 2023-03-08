@@ -30,7 +30,7 @@ import {
   _DeepReadonlyObject,
   _DeepRequiredArray,
   _DeepRequiredObject,
-  _DeepPartialObject,
+  _DeepPartial,
   _DeepPartialArray,
   RequiredKeys,
   OptionalKeys,
@@ -487,6 +487,14 @@ type RequiredOptionalProps = {
   testType<typeof functionProp>();
   // @dts-jest:pass:snap
   testType<ReturnType<NonNullable<typeof functionProp>>>();
+
+  // @dts-jest:pass:snap
+  testType<DeepPartial<NestedProps>>({});
+
+  <T extends object>() => {
+    // @dts-jest:pass:snap
+    testType<DeepPartial<T>>({});
+  };
 }
 
 // @dts-jest:group Brand
