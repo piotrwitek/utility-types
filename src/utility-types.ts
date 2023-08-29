@@ -104,7 +104,7 @@ export type $ElementType<
  * @example
  *   // Common use-case
  *   const add = (amount: number) => ({ type: 'ADD' as 'ADD', payload: amount });
- *   type AddAction = $Call<typeof returnOfIncrement>; // { type: 'ADD'; payload: number }
+ *   type AddAction = $Call<typeof add>; // { type: 'ADD'; payload: number }
  *
  *   // Examples migrated from Flow docs
  *   type ExtractPropType<T extends { prop: any }> = (arg: T) => T['prop'];
