@@ -4,6 +4,22 @@ exports[`Falsy testType<Falsy>() (type) should match snapshot 1`] = `"Falsy"`;
 
 exports[`Primitive testType<Primitive>() (type) should match snapshot 1`] = `"Primitive"`;
 
+exports[`hasProperty obj (type) should match snapshot 1`] = `"{ name: string; }"`;
+
+exports[`hasProperty obj1 (type) should match snapshot 1`] = `"{ name?: string | undefined; guestId: string; }"`;
+
+exports[`hasProperty obj1.guestId (type) should match snapshot 1`] = `"string"`;
+
+exports[`hasProperty obj1.name (type) should match snapshot 1`] = `"string | undefined"`;
+
+exports[`hasProperty obj2 (type) should match snapshot 1`] = `"{ name: string | undefined; }"`;
+
+exports[`hasProperty obj2.name (type) should match snapshot 1`] = `"string | undefined"`;
+
+exports[`hasProperty obj3 (type) should match snapshot 1`] = `"{ name?: string | undefined; }"`;
+
+exports[`hasProperty obj3.name (type) should match snapshot 1`] = `"string | undefined"`;
+
 exports[`isFalsy param (type) should match snapshot 1`] = `"false | 0 | null | undefined"`;
 
 exports[`isFalsy param (type) should match snapshot 2`] = `"string"`;

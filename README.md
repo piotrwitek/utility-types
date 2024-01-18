@@ -90,6 +90,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`isFalsy`](#isfalsy)
 * [`Nullish`](#nullish)
 * [`isNullish`](#isnullish)
+* [`hasProperty`](#hasproperty)
 
 ## Union operators
 
@@ -225,6 +226,20 @@ const consumer = (param: Nullish | string): string => {
     // typeof param === string
     return param.toString();
 };
+```
+
+### `hasProperty` 
+
+Check if the object has the property, similar to [the `in` operator](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#the-in-operator-narrowing) `'key' in obj` but unexistent properties are not allowed and it allows intellisense
+
+**Usage:**
+
+```ts
+import { hasProperty } from 'utility-types';
+
+if (hasProperty(obj, 'prop')) {
+  // `prop` in `obj`
+}
 ```
 
 [⇧ back to top](#table-of-contents)

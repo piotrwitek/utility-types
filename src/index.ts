@@ -64,6 +64,7 @@ export {
   isNullish,
   Primitive,
   isPrimitive,
+  hasProperty
 } from './aliases-and-guards';
 
 // deprecated
