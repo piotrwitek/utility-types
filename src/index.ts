@@ -53,6 +53,7 @@ export {
   ValuesType,
   Writable,
   WritableKeys,
+  PossibleKeys
 } from './mapped-types';
 
 export {

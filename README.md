@@ -130,6 +130,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Overwrite<T, U>`](#overwritet-u)
 * [`Assign<T, U>`](#assignt-u)
 * [`ValuesType<T>`](#valuestypet)
+* [`PossibleKeys<T>`](#possiblekeyst)
 
 ## Special operators
 
@@ -418,6 +419,24 @@ type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef
 
 // Expect: "opt" | "optUndef"
 type Keys = OptionalKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `PossibleKeys<T>`
+
+Similar to [`$Keys`](#keyst) or `keyof`, but get keys also from union types
+
+**Usage:**
+
+```ts
+type Props = { name: string; employeeId: string } | { name: string; guestId: string };
+// Expect: "name" | "employeeId" | "guestId"
+type PropsKeys1 = PossibleKeys<Props>;
+// Expect: "name"
+type PropsKeys2 = $Keys<Props>;
+// Expect: "name"
+type PropsKeys3 = keyof Props;
 ```
 
 [⇧ back to top](#table-of-contents)
