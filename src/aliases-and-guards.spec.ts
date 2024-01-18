@@ -7,6 +7,7 @@ import {
   Nullish,
   isNullish,
   hasProperty,
+  hasDefinedProperty,
 } from './aliases-and-guards';
 
 // @dts-jest:group Primitive
@@ -167,6 +168,71 @@ it('returns false if property is not in object', () => {
 
   // @ts-ignore
   if (hasProperty(obj, 'guestId')) {
+    // @dts-jest:pass:snap
+    obj;
+
+    throw new Error('should not reach here');
+  }
+});
+
+// @dts-jest:group hasDefinedProperty
+it('narrows to correct type', () => {
+  const obj1 = {
+    name: 'John',
+  } as {
+    name?: string;
+  };
+  if (hasDefinedProperty(obj1, 'name')) {
+    // @dts-jest:pass:snap
+    obj1;
+
+    // @dts-jest:pass:snap
+    obj1.name;
+    expect(obj1.name).toBe('John');
+  }
+
+  const obj2 = {
+    name: 'John',
+  } as {
+    name: string | undefined;
+  };
+  if (hasDefinedProperty(obj2, 'name')) {
+    // @dts-jest:pass:snap
+    obj2;
+
+    // @dts-jest:pass:snap
+    obj2.name;
+    expect(obj2.name).toBe('John');
+  }
+
+  const obj3 = {
+    name: 'John',
+  } as {
+    name: string | null | undefined;
+  };
+  if (hasDefinedProperty(obj3, 'name')) {
+    // @dts-jest:pass:snap
+    obj3;
+
+    // @dts-jest:pass:snap
+    obj3.name;
+    expect(obj3.name).toBe('John');
+  }
+});
+
+// @dts-jest:group hasDefinedProperty
+it('returns false if property is not in object', () => {
+  const obj = {
+    name: 'John',
+  } as {
+    name: string;
+  };
+
+  // @ts-ignore
+  expect(hasDefinedProperty(obj, 'guestId')).toBe(false);
+
+  // @ts-ignore
+  if (hasDefinedProperty(obj, 'guestId')) {
     // @dts-jest:pass:snap
     obj;
 

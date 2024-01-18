@@ -91,6 +91,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Nullish`](#nullish)
 * [`isNullish`](#isnullish)
 * [`hasProperty`](#hasproperty)
+* [`hasDefinedProperty`](#hasdefinedproperty)
 
 ## Union operators
 
@@ -239,6 +240,20 @@ import { hasProperty } from 'utility-types';
 
 if (hasProperty(obj, 'prop')) {
   // `prop` in `obj`
+}
+```
+
+### `hasDefinedProperty`
+
+Check if the object has the property and it is not `undefined`
+
+**Usage:**
+
+```ts
+import { hasDefinedProperty } from 'utility-types';
+
+if (hasDefinedProperty(obj, 'prop')) {
+  // `prop` in `obj` and `obj.prop` is not `undefined`
 }
 ```
 

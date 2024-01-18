@@ -4,6 +4,20 @@ exports[`Falsy testType<Falsy>() (type) should match snapshot 1`] = `"Falsy"`;
 
 exports[`Primitive testType<Primitive>() (type) should match snapshot 1`] = `"Primitive"`;
 
+exports[`hasDefinedProperty obj (type) should match snapshot 1`] = `"{ name: string; } & { name: string; }"`;
+
+exports[`hasDefinedProperty obj1 (type) should match snapshot 1`] = `"{ name?: string | undefined; } & { name: string; }"`;
+
+exports[`hasDefinedProperty obj1.name (type) should match snapshot 1`] = `"string"`;
+
+exports[`hasDefinedProperty obj2 (type) should match snapshot 1`] = `"{ name: string | undefined; } & { name: string; }"`;
+
+exports[`hasDefinedProperty obj2.name (type) should match snapshot 1`] = `"string"`;
+
+exports[`hasDefinedProperty obj3 (type) should match snapshot 1`] = `"{ name: string | null | undefined; } & { name: string | null; }"`;
+
+exports[`hasDefinedProperty obj3.name (type) should match snapshot 1`] = `"string | null"`;
+
 exports[`hasProperty obj (type) should match snapshot 1`] = `"{ name: string; }"`;
 
 exports[`hasProperty obj1 (type) should match snapshot 1`] = `"{ name?: string | undefined; guestId: string; }"`;
