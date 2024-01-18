@@ -92,6 +92,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`isNullish`](#isnullish)
 * [`hasProperty`](#hasproperty)
 * [`hasDefinedProperty`](#hasdefinedproperty)
+* [`hasValorizedProperty`](#hasvalorizedproperty)
 
 ## Union operators
 
@@ -254,6 +255,20 @@ import { hasDefinedProperty } from 'utility-types';
 
 if (hasDefinedProperty(obj, 'prop')) {
   // `prop` in `obj` and `obj.prop` is not `undefined`
+}
+```
+
+### `hasValorizedProperty`
+
+Check if the object has the property and it is not `undefined` and not `null`
+
+**Usage:**
+
+```ts
+import { hasValorizedProperty } from 'utility-types';
+
+if (hasValorizedProperty(obj, 'prop')) {
+  // `prop` in `obj` and `obj.prop` is not `undefined` and not `null`
 }
 ```
 

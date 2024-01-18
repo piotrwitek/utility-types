@@ -53,7 +53,7 @@ export {
   ValuesType,
   Writable,
   WritableKeys,
-  PossibleKeys
+  PossibleKeys,
 } from './mapped-types';
 
 export {
@@ -66,6 +66,7 @@ export {
   isPrimitive,
   hasProperty,
   hasDefinedProperty,
+  hasValorizedProperty,
 } from './aliases-and-guards';
 
 // deprecated

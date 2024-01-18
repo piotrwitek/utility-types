@@ -158,3 +158,33 @@ export const hasDefinedProperty = <O extends object, P extends PossibleKeys<O>>(
 ): obj is ExtractByPropertyAndAssertNotUndefined<O, P> => {
   return property in obj && obj[property] !== undefined;
 };
+
+type ExtractByPropertyAndAssertNotNullish<
+  O extends object,
+  P extends PossibleKeys<O>
+> = ExtractByProperty<O, P> &
+  { [K in P]: Exclude<ExtractByProperty<O, K>[K], null | undefined> };
+/**
+ * Check if the object has the property and it is not `null` or `undefined`
+ *
+ * @template O - object
+ * @template P - a property of O
+ * @param {O} obj: {@type O}
+ * @param {P} property: P
+ * @returns {boolean} `true` if the object has the property and is not `null` or `undefined`, `false` otherwise
+ *
+ * @example
+ *   if (hasValorizedProperty(obj, 'prop')) {
+ *     // `prop` in `obj` and `obj.prop` is not `null` or `undefined`
+ *   }
+ */
+export function hasValorizedProperty<
+  O extends object,
+  P extends PossibleKeys<O>
+>(
+  obj: O,
+  property: P
+  // @ts-ignore
+): obj is ExtractByPropertyAndAssertNotNullish<O, P> {
+  return property in obj && obj[property] != null;
+}
