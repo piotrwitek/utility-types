@@ -166,6 +166,23 @@ export type OptionalKeys<T> = {
 }[keyof T];
 
 /**
+ * PossibleKeys
+ * @desc Similar to {@link $Keys} or `keyof`, but get keys also from union types
+ * @example
+ *   type Props = { name: string; employeeId: string } | { name: string; guestId: string };
+ *
+ *   // Expect: "name" | "employeeId" | "guestId"
+ *   type PropsKeys1 = PossibleKeys<Props>;
+ *
+ *   // Expect: "name"
+ *   type PropsKeys2 = $Keys<Props>;
+ *
+ *   // Expect: "name"
+ *   type PropsKeys3 = keyof Props;
+ */
+export type PossibleKeys<T> = T extends T ? keyof T : never;
+
+/**
  * Pick (complements Omit)
  * @desc From `T` pick a set of properties by key `K`
  * @example

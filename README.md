@@ -90,6 +90,9 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`isFalsy`](#isfalsy)
 * [`Nullish`](#nullish)
 * [`isNullish`](#isnullish)
+* [`hasProperty`](#hasproperty)
+* [`hasDefinedProperty`](#hasdefinedproperty)
+* [`hasValorizedProperty`](#hasvalorizedproperty)
 
 ## Union operators
 
@@ -130,6 +133,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Overwrite<T, U>`](#overwritet-u)
 * [`Assign<T, U>`](#assignt-u)
 * [`ValuesType<T>`](#valuestypet)
+* [`PossibleKeys<T>`](#possiblekeyst)
 
 ## Special operators
 
@@ -224,6 +228,48 @@ const consumer = (param: Nullish | string): string => {
     // typeof param === string
     return param.toString();
 };
+```
+
+### `hasProperty` 
+
+Check if the object has the property, similar to [the `in` operator](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#the-in-operator-narrowing) `'key' in obj` but unexistent properties are not allowed and it allows intellisense
+
+**Usage:**
+
+```ts
+import { hasProperty } from 'utility-types';
+
+if (hasProperty(obj, 'prop')) {
+  // `prop` in `obj`
+}
+```
+
+### `hasDefinedProperty`
+
+Check if the object has the property and it is not `undefined`
+
+**Usage:**
+
+```ts
+import { hasDefinedProperty } from 'utility-types';
+
+if (hasDefinedProperty(obj, 'prop')) {
+  // `prop` in `obj` and `obj.prop` is not `undefined`
+}
+```
+
+### `hasValorizedProperty`
+
+Check if the object has the property and it is not `undefined` and not `null`
+
+**Usage:**
+
+```ts
+import { hasValorizedProperty } from 'utility-types';
+
+if (hasValorizedProperty(obj, 'prop')) {
+  // `prop` in `obj` and `obj.prop` is not `undefined` and not `null`
+}
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -418,6 +464,24 @@ type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef
 
 // Expect: "opt" | "optUndef"
 type Keys = OptionalKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `PossibleKeys<T>`
+
+Similar to [`$Keys`](#keyst) or `keyof`, but get keys also from union types
+
+**Usage:**
+
+```ts
+type Props = { name: string; employeeId: string } | { name: string; guestId: string };
+// Expect: "name" | "employeeId" | "guestId"
+type PropsKeys1 = PossibleKeys<Props>;
+// Expect: "name"
+type PropsKeys2 = $Keys<Props>;
+// Expect: "name"
+type PropsKeys3 = keyof Props;
 ```
 
 [⇧ back to top](#table-of-contents)

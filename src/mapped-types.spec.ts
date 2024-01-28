@@ -41,6 +41,7 @@ import {
   AugmentedRequired,
   UnionToIntersection,
   Mutable,
+  PossibleKeys,
 } from './mapped-types';
 
 /**
@@ -138,6 +139,23 @@ type RequiredOptionalProps = {
 {
   // @dts-jest:pass:snap
   testType<OptionalKeys<RequiredOptionalProps>>();
+}
+
+// @dts-jest:group $PossibleKeys
+{
+  // @dts-jest:pass:snap -> "name" | "employeeId" | "guestId"
+  testType<
+    PossibleKeys<
+      | {
+          name: string;
+          employeeId: string;
+        }
+      | {
+          name: string;
+          guestId: string;
+        }
+    >
+  >();
 }
 
 // @dts-jest:group PickByValue

@@ -1,3 +1,5 @@
+import { PossibleKeys } from './mapped-types';
+
 /**
  * Primitive
  * @desc Type representing [`Primitive`](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) types in TypeScript: `string | number | bigint | boolean |  symbol | null | undefined`
@@ -101,3 +103,88 @@ export const isFalsy = (val: unknown): val is Falsy => !val;
  *   };
  */
 export const isNullish = (val: unknown): val is Nullish => val == null;
+
+type ExtractByProperty<O extends object, P extends PossibleKeys<O>> = Extract<
+  O,
+  { [K in P]?: any }
+>;
+/**
+ * Check if the object has the property, similar to
+ * {@link https://www.typescriptlang.org/docs/handbook/2/narrowing.html#the-in-operator-narrowing | the `in` operator}
+ * `'key' in obj` but unexistent properties are not allowed and it allows intellisense
+ *
+ * @template O - object
+ * @template P - a property of O
+ * @param {O} obj: {@type O}
+ * @param {P} property: P
+ * @returns {boolean} `true` if the object has the property, `false` otherwise
+ *
+ * @example
+ *   if (hasProperty(obj, 'prop')) {
+ *     // `prop` in `obj`
+ *   }
+ */
+export const hasProperty = <O extends object, P extends PossibleKeys<O>>(
+  obj: O,
+  property: P
+  // @ts-ignore
+): obj is ExtractByProperty<O, P> => {
+  return property in obj;
+};
+
+type ExtractByPropertyAndAssertNotUndefined<
+  O extends object,
+  P extends PossibleKeys<O>
+> = ExtractByProperty<O, P> &
+  { [K in P]: Exclude<ExtractByProperty<O, K>[K], undefined> };
+/**
+ * Check if the object has the property and it is not `undefined`
+ *
+ * @template O - object
+ * @template P - a property of O
+ * @param {O} obj: {@type O}
+ * @param {P} property: P
+ * @returns {boolean} `true` if the object has the property and is not `undefined`, `false` otherwise
+ *
+ * @example
+ *   if (hasDefinedProperty(obj, 'prop')) {
+ *     // `prop` in `obj` and `obj.prop` is not `undefined`
+ *   }
+ */
+export const hasDefinedProperty = <O extends object, P extends PossibleKeys<O>>(
+  obj: O,
+  property: P
+  // @ts-ignore
+): obj is ExtractByPropertyAndAssertNotUndefined<O, P> => {
+  return property in obj && obj[property] !== undefined;
+};
+
+type ExtractByPropertyAndAssertNotNullish<
+  O extends object,
+  P extends PossibleKeys<O>
+> = ExtractByProperty<O, P> &
+  { [K in P]: Exclude<ExtractByProperty<O, K>[K], null | undefined> };
+/**
+ * Check if the object has the property and it is not `null` or `undefined`
+ *
+ * @template O - object
+ * @template P - a property of O
+ * @param {O} obj: {@type O}
+ * @param {P} property: P
+ * @returns {boolean} `true` if the object has the property and is not `null` or `undefined`, `false` otherwise
+ *
+ * @example
+ *   if (hasValorizedProperty(obj, 'prop')) {
+ *     // `prop` in `obj` and `obj.prop` is not `null` or `undefined`
+ *   }
+ */
+export function hasValorizedProperty<
+  O extends object,
+  P extends PossibleKeys<O>
+>(
+  obj: O,
+  property: P
+  // @ts-ignore
+): obj is ExtractByPropertyAndAssertNotNullish<O, P> {
+  return property in obj && obj[property] != null;
+}
