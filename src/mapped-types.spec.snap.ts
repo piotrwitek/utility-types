@@ -34,6 +34,7 @@ import {
   _DeepPartialArray,
   RequiredKeys,
   OptionalKeys,
+  UnionKeys,
   PickByValueExact,
   OmitByValueExact,
   Optional,
@@ -140,6 +141,12 @@ type RequiredOptionalProps = {
   testType<OptionalKeys<RequiredOptionalProps>>();
 }
 
+// @dts-jest:group UnionKeys
+{
+  // @dts-jest:pass:snap -> "name" | "age" | "other" | "visible"
+  testType<UnionKeys<NewProps | Props>>();
+}
+
 // @dts-jest:group PickByValue
 {
   // @dts-jest:pass:snap -> Pick<RequiredOptionalProps, "req">
@@ -178,7 +185,7 @@ type RequiredOptionalProps = {
 {
   // @dts-jest:pass:snap -> Pick<Props, "name" | "visible">
   testType<Omit<Props, 'age'>>();
-  // @dts-jest:pass:snap -> Pick<Props | NewProps, never>
+  // @dts-jest:pass:snap -> Pick<NewProps | Props, never>
   testType<Omit<Props | NewProps, 'age'>>();
 
   const fn = <T extends Props>(props: T) => {
@@ -229,7 +236,7 @@ type RequiredOptionalProps = {
 {
   // @dts-jest:pass:snap -> Pick<Props, "age">
   testType<Intersection<Props, DefaultProps>>();
-  // @dts-jest:pass:snap -> Pick<Props | NewProps, "age">
+  // @dts-jest:pass:snap -> Pick<NewProps | Props, "age">
   testType<Intersection<Props | NewProps, DefaultProps>>();
 
   const fn = <T extends Props>(props: T) => {
@@ -277,7 +284,7 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group Assign
 {
-  // @dts-jest:pass:snap -> Pick<Pick<Props, "name" | "visible"> & Pick<NewProps, "age"> & Pick<NewProps, "other">, "name" | "age" | "visible" | "other">
+  // @dts-jest:pass:snap -> Pick<Pick<Props, "name" | "visible"> & Pick<NewProps, "age"> & Pick<NewProps, "other">, "name" | "age" | "other" | "visible">
   testType<Assign<Props, NewProps>>();
 
   const fn = <T extends Props>(props: T) => {

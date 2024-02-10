@@ -2,7 +2,7 @@
 
 exports[`Assign const result: Assign<{}, Omit<T, 'age'>> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Assign testType<Assign<Props, NewProps>>() (type) should match snapshot 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"visible\\" | \\"other\\">"`;
+exports[`Assign testType<Assign<Props, NewProps>>() (type) should match snapshot 1`] = `"Pick<Pick<Props, \\"name\\" | \\"visible\\"> & Pick<NewProps, \\"age\\"> & Pick<NewProps, \\"other\\">, \\"name\\" | \\"age\\" | \\"other\\" | \\"visible\\">"`;
 
 exports[`AugmentedRequired testType<AugmentedRequired<Partial<Props>, 'age' | 'visible'>>({
       age: 99,
@@ -111,7 +111,7 @@ exports[`FunctionKeys testType<FunctionKeys<MixedProps>>() (type) should match s
 
 exports[`Intersection const result: Intersection<T, Omit<T, 'age'>> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props | NewProps, \\"age\\">"`;
+exports[`Intersection testType<Intersection<Props | NewProps, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<NewProps | Props, \\"age\\">"`;
 
 exports[`Intersection testType<Intersection<Props, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props, \\"age\\">"`;
 
@@ -137,7 +137,7 @@ exports[`NonUndefined testType<NonUndefined<undefined>>() (type) should match sn
 
 exports[`Omit const result: Omit<T, 'age'> = rest (type) should match snapshot 1`] = `"any"`;
 
-exports[`Omit testType<Omit<Props | NewProps, 'age'>>() (type) should match snapshot 1`] = `"Pick<Props | NewProps, never>"`;
+exports[`Omit testType<Omit<Props | NewProps, 'age'>>() (type) should match snapshot 1`] = `"Pick<NewProps | Props, never>"`;
 
 exports[`Omit testType<Omit<Props, 'age'>>() (type) should match snapshot 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
@@ -218,6 +218,8 @@ exports[`Subtract const result: Subtract<T, Pick<T, 'age'>> = rest (type) should
 exports[`Subtract testType<Subtract<Props, DefaultProps>>() (type) should match snapshot 1`] = `"Pick<Props, \\"name\\" | \\"visible\\">"`;
 
 exports[`SymmetricDifference testType<SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>>() (type) should match snapshot 1`] = `"\\"1\\" | \\"4\\""`;
+
+exports[`UnionKeys testType<UnionKeys<NewProps | Props>>() (type) should match snapshot 1`] = `"\\"name\\" | \\"age\\" | \\"other\\" | \\"visible\\""`;
 
 exports[`UnionToIntersection testType<
       UnionToIntersection<

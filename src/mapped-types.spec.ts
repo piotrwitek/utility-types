@@ -34,6 +34,7 @@ import {
   _DeepPartialArray,
   RequiredKeys,
   OptionalKeys,
+  UnionKeys,
   PickByValueExact,
   OmitByValueExact,
   Optional,
@@ -138,6 +139,12 @@ type RequiredOptionalProps = {
 {
   // @dts-jest:pass:snap
   testType<OptionalKeys<RequiredOptionalProps>>();
+}
+
+// @dts-jest:group UnionKeys
+{
+  // @dts-jest:pass:snap
+  testType<UnionKeys<NewProps | Props>>();
 }
 
 // @dts-jest:group PickByValue
