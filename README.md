@@ -109,6 +109,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`ReadonlyKeys<T>`](#readonlykeyst)
 * [`RequiredKeys<T>`](#requiredkeyst)
 * [`OptionalKeys<T>`](#optionalkeyst)
+* [`UnionKeys<T>`](#unionkeysu)
 * [`Optional<T, K>`](#optionalt-k)
 * [`Partial<T>`](#partialt) _(built-in)_
 * [`DeepPartial<T>`](#deeppartialt)
@@ -417,6 +418,23 @@ type Props = { req: number; reqUndef: number | undefined; opt?: string; optUndef
 
 // Expect: "opt" | "optUndef"
 type Keys = OptionalKeys<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `UnionKeys<U>`
+
+Get keys of all objects in the union type `U`
+
+**Usage:**
+
+```ts
+import { UnionKeys } from 'utility-types';
+
+type Props = { name: string } | { age: number } | { visible: boolean };
+
+// Expect: "name" | "age" | "visible"
+type Keys = UnionKeys<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)

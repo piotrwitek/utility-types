@@ -166,6 +166,17 @@ export type OptionalKeys<T> = {
 }[keyof T];
 
 /**
+ * UnionKeys
+ * @desc Get keys of all objects in the union type `U`
+ * Credit: filipomar
+ * @see https://github.com/piotrwitek/utility-types/issues/192
+ * @example
+ *   // Expect: 'name' | 'age' | 'visible'
+ *   UnionKeys<{ name: string; age: string } | { age: number } | { visible: boolean }>
+ */
+export type UnionKeys<U> = keyof UnionToIntersection<Partial<U>>;
+
+/**
  * Pick (complements Omit)
  * @desc From `T` pick a set of properties by key `K`
  * @example
