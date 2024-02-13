@@ -9,8 +9,7 @@ Collection of utility types, complementing TypeScript built-in mapped types and 
 [![NPM Downloads](https://img.shields.io/npm/dt/utility-types.svg)](https://www.npmjs.com/package/utility-types)
 [![Bundlephobia Size](https://img.shields.io/bundlephobia/minzip/utility-types.svg)](https://www.npmjs.com/package/utility-types)
 
-[![Build Status](https://semaphoreci.com/api/v1/piotrekwitek/utility-types/branches/master/shields_badge.svg)](https://semaphoreci.com/piotrekwitek/utility-types)
-[![Dependency Status](https://img.shields.io/david/piotrwitek/utility-types.svg)](https://david-dm.org/piotrwitek/utility-types)
+[![CI Check](https://github.com/piotrwitek/utility-types/actions/workflows/ci-check.yaml/badge.svg)](https://github.com/piotrwitek/utility-types/actions/workflows/ci-check.yaml)
 [![License](https://img.shields.io/npm/l/utility-types.svg?style=flat)](https://david-dm.org/piotrwitek/utility-types?type=peer)
 [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/utility-types)
 
@@ -29,7 +28,7 @@ _Found it useful? Want more updates?_
 
 ### **What's new?**
 
-:tada: _Now updated to support **TypeScript v3.7**_ :tada:
+:tada: _Added new utilities_ :tada:
 
 <hr/><br/>
 
