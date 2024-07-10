@@ -139,7 +139,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Unionize<T>`](#unionizet)
 * [`Brand<T, U>`](#brandt-u)
 * [`UnionToIntersection<U>`](#uniontointersectionu)
-* [`NonEmptyArray<T>`](#)
+* [`NonEmptyArray<T>`](#nonemptyarrayt)
 
 ## Flow's Utility Types
 
