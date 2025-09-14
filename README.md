@@ -139,6 +139,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Unionize<T>`](#unionizet)
 * [`Brand<T, U>`](#brandt-u)
 * [`UnionToIntersection<U>`](#uniontointersectionu)
+* [`NonEmptyArray<T>`](#nonemptyarrayt)
 
 ## Flow's Utility Types
 
@@ -940,6 +941,20 @@ UnionToIntersection<{ name: string } | { age: number } | { visible: boolean }>
 
 [⇧ back to top](#table-of-contents)
 
+### `NonEmptyArray<T>`
+
+Ensures that the array has at least one element of type `T`.
+
+**Usage:**
+
+```ts
+import { NonEmptyArray } from 'utility-types'
+
+type StringArray = NonEmptyArray<string>;
+
+const valid_array: StringArray = ["foo", "bar"] // Is accepted, as elements exist in the array.
+const invalid_array: StringArray = [] // Source has 0 element(s) but target requires at least 1.
+```
 ---
 
 ## Flow's Utility Types
