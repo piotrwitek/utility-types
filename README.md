@@ -653,7 +653,7 @@ import { Assign } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 type NewProps = { age: string; other: string };
 
-// Expect: { name: string; age: string; visible: boolean; other: string; }
+// Expect: { name: string; age: number; visible: boolean; other: string; }
 type ExtendedProps = Assign<Props, NewProps>;
 ```
 
