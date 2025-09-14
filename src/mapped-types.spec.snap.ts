@@ -56,6 +56,8 @@ type MixedProps = {
   setName: (name: string) => void;
   someKeys?: string;
   someFn?: (...args: any) => any;
+  undef: undefined;
+  unNull: null;
 };
 type ReadWriteProps = { readonly a: number; b: string };
 type RequiredOptionalProps = {
@@ -113,7 +115,7 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group NonFunctionKeys
 {
-  // @dts-jest:pass:snap -> "name" | "someKeys"
+  // @dts-jest:pass:snap -> "name" | "someKeys" | "unNull"
   testType<NonFunctionKeys<MixedProps>>();
 }
 
