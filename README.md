@@ -112,6 +112,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`UnionKeys<T>`](#unionkeysu)
 * [`Optional<T, K>`](#optionalt-k)
 * [`Partial<T>`](#partialt) _(built-in)_
+* [`Record<K, T>`](#recordk-t) _(built-in)_
 * [`DeepPartial<T>`](#deeppartialt)
 * [`Required<T, K>`](#requiredt-k)
 * [`DeepRequired<T>`](#deeprequiredt)
@@ -135,6 +136,8 @@ We are open for contributions. If you're planning to contribute please make sure
 
 * [`ReturnType<T>`](#returntypet) _(built-in)_
 * [`InstanceType<T>`](#instancetypet) _(built-in)_
+* [`Parameters<T>`](#parameterst) _(built-in)_
+* [`ConstructorParameters<T>`](#constructorparameterst) _(built-in)_
 * [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
 * [`Brand<T, U>`](#brandt-u)
@@ -458,6 +461,37 @@ type Props = Optional<Props, 'age' | 'visible'>;
 
 [⇧ back to top](#table-of-contents)
 
+### `Partial<T>` _(built-in)_
+
+Make all properties in `T` optional.
+
+**Usage:**
+
+```ts
+type User = { id: string; name: string; active: boolean };
+
+// Expect: { id?: string; name?: string; active?: boolean }
+type PartialUser = Partial<User>;
+
+// `Optional<T>` is equivalent to `Partial<T>`
+type OptionalUser = Optional<User>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Record<K, T>` _(built-in)_
+
+Construct an object type with keys `K` and value type `T`.
+
+**Usage:**
+
+```ts
+type Routes = Record<'home' | 'about', string>;
+
+// Expect: { home: string; about: string }
+```
+
+[⇧ back to top](#table-of-contents)
 
 ### `Pick<T, K>` _(built-in)_
 
@@ -748,6 +782,38 @@ Obtain the return type of a function
 ### `InstanceType<T>`
 
 Obtain the instance type of a class
+
+[⇧ back to top](#table-of-contents)
+
+### `Parameters<T>`
+
+Obtain function parameters as a tuple type.
+
+**Usage:**
+
+```ts
+type Fn = (name: string, retry?: number) => void;
+
+// Expect: [name: string, retry?: number | undefined]
+type Args = Parameters<Fn>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `ConstructorParameters<T>`
+
+Obtain constructor parameters as a tuple type.
+
+**Usage:**
+
+```ts
+class Service {
+  constructor(url: string, timeout: number) {}
+}
+
+// Expect: [url: string, timeout: number]
+type ServiceArgs = ConstructorParameters<typeof Service>;
+```
 
 [⇧ back to top](#table-of-contents)
 
