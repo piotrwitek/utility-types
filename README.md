@@ -120,6 +120,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Mutable<T>`](#mutablet)
 * [`Pick<T, K>` _(built-in)_](#pickt-k-built-in)
 * [`Omit<T, K>`](#omitt-k) _(built-in)_
+* [`Record<K, T>` _(built-in)_](#recordk-t-built-in)
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
 * [`PickByValueExact<T, ValueType>`](#pickbyvalueexactt-valuetype)
 * [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
@@ -133,7 +134,9 @@ We are open for contributions. If you're planning to contribute please make sure
 
 ## Special operators
 
+* [`Parameters<T>`](#parameterst-built-in) _(built-in)_
 * [`ReturnType<T>`](#returntypet) _(built-in)_
+* [`ConstructorParameters<T>`](#constructorparameterst-built-in) _(built-in)_
 * [`InstanceType<T>`](#instancetypet) _(built-in)_
 * [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
@@ -443,6 +446,8 @@ type Keys = UnionKeys<Props>;
 
 From `T` make a set of properties by key `K` become optional
 
+When `K` is omitted, this is equivalent to the built-in `Partial<T>`.
+
 **Usage:**
 
 ```ts
@@ -470,6 +475,48 @@ type Props = { name: string; age: number; visible: boolean };
 
 // Expect: { age: number; }
 type Props = Pick<Props, 'age'>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Omit<T, K>`
+
+From `T` remove a set of properties by key `K`
+
+**Usage:**
+
+```ts
+import { Omit } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { name: string; visible: boolean; }
+type Props = Omit<Props, 'age'>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Record<K, T>` _(built-in)_
+
+Construct an object type whose property keys are `K` and whose property values
+are `T`.
+
+**Usage:**
+
+```ts
+type Role = 'admin' | 'editor' | 'viewer';
+
+type RoleConfig = {
+  permissions: string[];
+  label: string;
+};
+
+// Expect: {
+//   admin: RoleConfig;
+//   editor: RoleConfig;
+//   viewer: RoleConfig;
+// }
+type RoleMap = Record<Role, RoleConfig>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -509,23 +556,6 @@ type Props = { req: number; reqUndef: number | undefined; opt?: string; };
 type Props = PickByValueExact<Props, number>;
 // Expect: { reqUndef: number | undefined; }
 type Props = PickByValueExact<Props, number | undefined>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `Omit<T, K>`
-
-From `T` remove a set of properties by key `K`
-
-**Usage:**
-
-```ts
-import { Omit } from 'utility-types';
-
-type Props = { name: string; age: number; visible: boolean };
-
-// Expect: { name: string; visible: boolean; }
-type Props = Omit<Props, 'age'>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -691,6 +721,15 @@ type BinaryItems = ValuesType<BinaryArray>;
 
 Make all properties of object type optional
 
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { name?: string; age?: number; visible?: boolean; }
+type PartialProps = Partial<Props>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Required<T, K>`
@@ -739,9 +778,41 @@ Mutable<Props>;
 
 [⇧ back to top](#table-of-contents)
 
+### `Parameters<T>` _(built-in)_
+
+Obtain the parameter types of a function type in a tuple.
+
+**Usage:**
+
+```ts
+type SubmitHandler = (value: string, retry: boolean) => Promise<void>;
+
+// Expect: [string, boolean]
+type SubmitArgs = Parameters<SubmitHandler>;
+```
+
+[⇧ back to top](#table-of-contents)
+
 ### `ReturnType<T>`
 
 Obtain the return type of a function
+
+[⇧ back to top](#table-of-contents)
+
+### `ConstructorParameters<T>` _(built-in)_
+
+Obtain the parameter types of a constructor function type in a tuple.
+
+**Usage:**
+
+```ts
+class User {
+  constructor(public id: string, public active: boolean) {}
+}
+
+// Expect: [string, boolean]
+type UserConstructorArgs = ConstructorParameters<typeof User>;
+```
 
 [⇧ back to top](#table-of-contents)
 
