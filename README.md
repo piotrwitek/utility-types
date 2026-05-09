@@ -118,9 +118,9 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Readonly<T>`](#readonlyt) _(built-in)_
 * [`DeepReadonly<T>`](#deepreadonlyt)
 * [`Mutable<T>`](#mutablet)
-* [`Pick<T, K>` _(built-in)_](#pickt-k-built-in)
-* [`Omit<T, K>`](#omitt-k) _(built-in)_
-* [`Record<K, T>` _(built-in)_](#recordk-t-built-in)
+* [`Pick<T, K>`](#pickt-k-built-in) _(built-in)_
+* [`Omit<T, K>`](#omitt-k-built-in) _(built-in)_
+* [`Record<K, T>`](#recordk-t-built-in) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
 * [`PickByValueExact<T, ValueType>`](#pickbyvalueexactt-valuetype)
 * [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
@@ -474,12 +474,12 @@ From `T` pick a set of properties by key `K`
 type Props = { name: string; age: number; visible: boolean };
 
 // Expect: { age: number; }
-type Props = Pick<Props, 'age'>;
+type PickedProps = Pick<Props, 'age'>;
 ```
 
 [⇧ back to top](#table-of-contents)
 
-### `Omit<T, K>`
+### `Omit<T, K>` _(built-in)_
 
 From `T` remove a set of properties by key `K`
 
@@ -491,7 +491,7 @@ import { Omit } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 
 // Expect: { name: string; visible: boolean; }
-type Props = Omit<Props, 'age'>;
+type OmittedProps = Omit<Props, 'age'>;
 ```
 
 [⇧ back to top](#table-of-contents)
