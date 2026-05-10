@@ -659,3 +659,16 @@ export type UnionToIntersection<U> = (U extends any
  */
 export type Mutable<T> = { -readonly [P in keyof T]: T[P] };
 export type Writable<T> = Mutable<T>;
+
+/**
+ * NonEmptyArray
+ * @desc Ensures that the array has at least one element of type `T`.
+ * Credit: davidtjones02 + Leandro-Albano
+ * @see https://github.com/piotrwitek/utility-types/issues/181
+ * @example
+ *    type StringArray = NonEmptyArray<string>;
+ *
+ *    const valid_array: StringArray = ["foo", "bar"]; // Is accepted, as elements exist in the array.
+ *    const invalid_array: StringArray = [] // Source has 0 element(s) but target requires at least 1.
+ */
+export type NonEmptyArray<T> = [T, ...T[]];

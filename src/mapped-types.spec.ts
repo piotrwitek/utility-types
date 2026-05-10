@@ -42,6 +42,7 @@ import {
   AugmentedRequired,
   UnionToIntersection,
   Mutable,
+  NonEmptyArray,
 } from './mapped-types';
 
 /**
@@ -604,4 +605,22 @@ type RequiredOptionalProps = {
 
   // @dts-jest:pass:snap
   testType<Mutable<Readonly<Props>>['visible']>(true);
+}
+
+// @dts-jest:group NonEmptyArray
+{
+  type ValidStringArray = NonEmptyArray<string>;
+
+  // @dts-jest:pass:snap
+  testType<ValidStringArray>(['foo', 'bar']);
+
+  type ValidNumberArray = NonEmptyArray<number>;
+
+  // @dts-jest:pass:snap
+  testType<ValidNumberArray>([1, 2, 3]);
+
+  type ValidObjectArray = NonEmptyArray<Record<string, string>>;
+
+  // @dts-jest:pass:snap
+  testType<ValidObjectArray>([{ foo: 'bar' }, { baz: 'qux' }]);
 }
