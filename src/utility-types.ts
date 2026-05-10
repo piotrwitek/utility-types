@@ -95,7 +95,7 @@ export type $PropertyType<T extends object, K extends keyof T> = T[K];
 export type $ElementType<
   T extends { [P in K & any]: any },
   K extends keyof T | number
-> = T[K];
+> = T extends [] ? T[K] : T[Exclude<K, Exclude<number, keyof any>>];
 
 /**
  * $Call
