@@ -29,7 +29,7 @@ export type Falsy = false | '' | 0 | null | undefined;
 
 /**
  * Nullish
- * @desc Type representing [nullish values][https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing] in TypeScript: `null | undefined`
+ * @desc Type representing [nullish values](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing) in TypeScript: `null | undefined`
  * @example
  *   type Various = 'a' | 'b' | undefined;
  *

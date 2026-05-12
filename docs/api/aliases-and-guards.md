@@ -119,7 +119,7 @@ const consumer = (value: Primitive | Primitive[]) => {
 
 ## `Nullish`
 
-Type representing [nullish values][https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing] in TypeScript: `null | undefined`
+Type representing [nullish values](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html#nullish-coalescing) in TypeScript: `null | undefined`
 
 ```ts
 export type Nullish = null | undefined;

@@ -358,7 +358,7 @@ export type NonUndefined<A> = A extends undefined ? never : A;
 
 ```ts
 // Expect: "string | null"
-  SymmetricDifference<string | null | undefined>;
+  NonUndefined<string | null | undefined>;
 ```
 
 ## `Omit`
