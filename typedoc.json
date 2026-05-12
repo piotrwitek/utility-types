@@ -1,0 +1,11 @@
+{
+  "name": "utility-types",
+  "out": "docs",
+  "mode": "modules",
+  "tsconfig": "tsconfig.build.json",
+  "readme": "README.md",
+  "excludeExternals": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "includeVersion": true
+}
