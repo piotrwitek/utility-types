@@ -314,8 +314,8 @@ Exclude `undefined` from set `A`
 ```ts
 import { NonUndefined } from 'utility-types';
 
-// Expect: string | null
-type NonUndefinedName = NonUndefined<string | null | undefined>;
+// Expect: string | number | null
+type NonUndefinedName = NonUndefined<string | number | null | undefined>;
 ```
 
 [⇧ back to top](#table-of-contents)
