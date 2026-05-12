@@ -1,0 +1,5 @@
+- [Overview](README.md)
+- [Mapped Types](api/mapped-types.md)
+- [Flow's Utility Types](api/utility-types.md)
+- [Aliases & Type Guards](api/aliases-and-guards.md)
+- [Deprecated API](api/functional-helpers.md)
