@@ -45,7 +45,7 @@ export type $ReadOnly<T extends object> = DeepReadonly<T>;
  *   type DefaultProps = { age: number };
  *
  *   // Expect: { name: string; visible: boolean; }
- *   type RequiredProps = Diff<Props, DefaultProps>;
+ *   type RequiredProps = $Diff<Props, DefaultProps>;
  */
 export type $Diff<T extends U, U extends object> = Pick<
   T,
