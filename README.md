@@ -296,11 +296,27 @@ type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 
 Exclude `null` and `undefined` from set `A`
 
+**Usage:**
+
+```ts
+// Expect: string | number
+type NonNullableName = NonNullable<string | number | null | undefined>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `NonUndefined<A>`
 
 Exclude `undefined` from set `A`
+
+**Usage:**
+
+```ts
+import { NonUndefined } from 'utility-types';
+
+// Expect: string | null
+type NonUndefinedName = NonUndefined<string | null | undefined>;
+```
 
 [⇧ back to top](#table-of-contents)
 
@@ -308,11 +324,25 @@ Exclude `undefined` from set `A`
 
 Exclude subset `B` from set `A`
 
+**Usage:**
+
+```ts
+// Expect: "1"
+type ResultSet = Exclude<'1' | '2' | '3', '2' | '3' | '4'>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Extract<A, B>`
 
 Extract subset `B` from set `A`
+
+**Usage:**
+
+```ts
+// Expect: "2" | "3"
+type ResultSet = Extract<'1' | '2' | '3', '2' | '3' | '4'>;
+```
 
 [⇧ back to top](#table-of-contents)
 
@@ -678,7 +708,7 @@ type NumberItems = ValuesType<NumberArray>;
 
 type ReadonlyNumberTuple = readonly [1, 2];
 // Expect: 1 | 2
-type AnotherNumberUnion = ValuesType<NumberTuple>;
+type AnotherNumberUnion = ValuesType<ReadonlyNumberTuple>;
 
 type BinaryArray = Uint8Array;
 // Expect: number
@@ -690,6 +720,15 @@ type BinaryItems = ValuesType<BinaryArray>;
 ### `Partial<T>`
 
 Make all properties of object type optional
+
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { name?: string; age?: number; visible?: boolean; }
+type PartialProps = Partial<Props>;
+```
 
 [⇧ back to top](#table-of-contents)
 
@@ -716,6 +755,15 @@ type Props = Required<Props, 'age' | 'visible'>;
 
 Make all properties of object type readonly
 
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { readonly name: string; readonly age: number; readonly visible: boolean; }
+type ReadonlyProps = Readonly<Props>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Mutable<T>`
@@ -734,7 +782,7 @@ type Props = {
 };
 
 // Expect: { name: string; age: number; visible: boolean; }
-Mutable<Props>;
+type MutableProps = Mutable<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -743,11 +791,29 @@ Mutable<Props>;
 
 Obtain the return type of a function
 
+**Usage:**
+
+```ts
+// Expect: string
+type FuncReturnType = ReturnType<() => string>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `InstanceType<T>`
 
 Obtain the instance type of a class
+
+**Usage:**
+
+```ts
+class Store {
+  id = 'store';
+}
+
+// Expect: Store
+type StoreInstance = InstanceType<typeof Store>;
+```
 
 [⇧ back to top](#table-of-contents)
 
@@ -935,7 +1001,9 @@ Get intersection type given union type `U`
 import { UnionToIntersection } from 'utility-types';
 
 // Expect: { name: string } & { age: number } & { visible: boolean }
-UnionToIntersection<{ name: string } | { age: number } | { visible: boolean }>
+type Props = UnionToIntersection<
+  { name: string } | { age: number } | { visible: boolean }
+>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -1147,6 +1215,9 @@ https://flow.org/en/docs/types/utilities/#toc-class
 ```ts
 import { Class } from 'utility-types';
 
+class Store {
+  name = 'store';
+}
 
 function makeStore(storeClass: Class<Store>): Store {
   return new storeClass();
