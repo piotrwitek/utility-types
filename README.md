@@ -477,7 +477,7 @@ type Props = Pick<Props, 'age'>;
 ### `PickByValue<T, ValueType>`
 
 From `T` pick a set of properties by value matching `ValueType`.
-_(Credit: [Piotr Lewandowski](https://medium.com/dailyjs/typescript-create-a-condition-based-subset-types-9d902cea5b8c))_
+_(Credit: [Iván Ovejero](https://ivov.dev/posts/advanced-typescript#advanced-mapped-types))_
 
 **Usage:**
 
