@@ -68,7 +68,7 @@ type Props = { name: string; age: number; visible: boolean };
   type DefaultProps = { age: number };
 
   // Expect: { name: string; visible: boolean; }
-  type RequiredProps = Diff<Props, DefaultProps>;
+  type RequiredProps = $Diff<Props, DefaultProps>;
 ```
 
 ## `$ElementType`

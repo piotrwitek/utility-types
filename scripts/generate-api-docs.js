@@ -117,22 +117,23 @@ function stripJsDoc(text) {
   return text.replace(/^\/\*\*[\s\S]*?\*\/\s*/, '');
 }
 
-function trimImplementation(text) {
-  var stripped = stripJsDoc(text).trim();
-  var arrowIndex = stripped.indexOf('=> {');
-  if (arrowIndex !== -1) {
-    return stripped.slice(0, arrowIndex + 2).trim() + ' ...';
-  }
-  return stripped;
-}
-
 function getDeclarationSnippet(declaration, publicName, checker) {
   if (ts.isVariableDeclaration(declaration)) {
     var type = checker.typeToString(checker.getTypeAtLocation(declaration.name));
     return 'export const ' + publicName + ': ' + type + ';';
   }
 
-  return trimImplementation(declaration.getText(declaration.getSourceFile()));
+  var sourceFile = declaration.getSourceFile();
+  var text = declaration.getText(sourceFile);
+  var stripped = stripJsDoc(text).trim();
+
+  if (ts.isFunctionDeclaration(declaration) && declaration.body) {
+    var bodyStart = declaration.body.getStart(sourceFile);
+    var nodeStart = declaration.getStart(sourceFile);
+    return stripped.slice(0, bodyStart - nodeStart).trim() + ';';
+  }
+
+  return stripped;
 }
 
 function getSymbolDocumentation(symbol, checker) {
@@ -182,8 +183,15 @@ function getNotes(symbol, checker) {
 }
 
 function getExports(program, checker) {
-  var index = program.getSourceFile(path.join(srcDir, 'index.ts'));
+  var indexFile = path.join(srcDir, 'index.ts');
+  var index = program.getSourceFile(indexFile);
+  if (!index) {
+    throw new Error('Could not find entry point: ' + indexFile);
+  }
   var moduleSymbol = checker.getSymbolAtLocation(index);
+  if (!moduleSymbol) {
+    throw new Error('Could not read module symbol for entry point: ' + indexFile);
+  }
 
   return checker
     .getExportsOfModule(moduleSymbol)

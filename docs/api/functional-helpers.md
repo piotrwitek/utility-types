@@ -9,9 +9,7 @@ Generated from `src/functional-helpers.ts`.
 ```ts
 export function getReturnOfExpression<RT>(
   expression: (...params: any[]) => RT
-): RT {
-  return (undefined as any) as RT;
-}
+): RT;
 ```
 
 ### Notes
