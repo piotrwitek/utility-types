@@ -45,6 +45,13 @@ _Found it useful? Want more updates?_
 * Secure and minimal - no third-party dependencies
 * No runtime cost - it's type-level only
 
+## API Documentation (Web)
+
+This repository can publish an auto-generated API documentation website (with search) via GitHub Pages.
+
+* Live site (after enabling GitHub Pages to use the `gh-pages` branch): https://piotrwitek.github.io/utility-types/
+* Local build: `npm run docs:build` (outputs to `docs/`)
+
 ## Installation
 
 ```bash
