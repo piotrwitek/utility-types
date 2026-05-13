@@ -9,6 +9,7 @@ var rootDir = path.resolve(__dirname, '..');
 var docsDir = path.join(rootDir, 'docs');
 var apiDir = path.join(docsDir, 'api');
 var srcDir = path.join(rootDir, 'src');
+var normalizedSrcDir = normalizePath(srcDir);
 var moduleTitles = {
   'aliases-and-guards.ts': 'Aliases & Type Guards',
   'mapped-types.ts': 'Mapped Types',
@@ -59,6 +60,10 @@ function readTsConfig() {
   return ts.parseJsonConfigFileContent(configFile.config, ts.sys, rootDir);
 }
 
+function normalizePath(filePath) {
+  return filePath.replace(/\\/g, '/');
+}
+
 function hasPrivateTag(node) {
   return ts.getJSDocTags(node).some(function(tag) {
     return tag.tagName && tag.tagName.text === 'private';
@@ -68,10 +73,11 @@ function hasPrivateTag(node) {
 function findPublicDeclaration(declarations) {
   return declarations.filter(function(declaration) {
     var sourceFile = declaration.getSourceFile();
+    var normalizedSourceFile = normalizePath(sourceFile.fileName);
     var fileName = path.basename(sourceFile.fileName);
 
     return (
-      sourceFile.fileName.indexOf(srcDir) === 0 &&
+      normalizedSourceFile.indexOf(normalizedSrcDir) === 0 &&
       fileName !== 'index.ts' &&
       fileName.indexOf('.spec') === -1 &&
       fileName.indexOf('.snap') === -1 &&
@@ -97,8 +103,12 @@ function displayPartsToString(parts) {
   return String(parts);
 }
 
+function normalizeNewlines(value) {
+  return value.replace(/\r\n?/g, '\n');
+}
+
 function getTagText(tag) {
-  return displayPartsToString(tag.text).trim();
+  return normalizeNewlines(displayPartsToString(tag.text)).trim();
 }
 
 function slugify(value) {
@@ -137,7 +147,9 @@ function getDeclarationSnippet(declaration, publicName, checker) {
 }
 
 function getSymbolDocumentation(symbol, checker) {
-  var docs = displayPartsToString(symbol.getDocumentationComment(checker)).trim();
+  var docs = normalizeNewlines(
+    displayPartsToString(symbol.getDocumentationComment(checker))
+  ).trim();
   var tags = symbol.getJsDocTags(checker);
   var descriptionTags = tags
     .filter(function(tag) {

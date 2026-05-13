@@ -28,6 +28,7 @@
     "test:update": "jest --config jest.config.json --no-cache -u && dts-jest-remap ./src/*.spec.ts --rename {{basename}}.snap.{{extname}}",
     "test:watch": "jest --config jest.config.json --watch",
     "docs:api": "node scripts/generate-api-docs.js",
+    "docs:api:check": "npm run docs:api && git diff --exit-code -- docs",
     "prebuild": "rm -rf dist/",
     "build": "tsc -p ./tsconfig.build.json --outDir dist/",
     "prepublishOnly": "npm run reinstall && npm run ci-check && npm run build"
