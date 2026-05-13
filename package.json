@@ -17,9 +17,9 @@
     }
   },
   "scripts": {
-    "ci-check": "npm run prettier && npm run lint && npm run tsc && npm run test",
+    "ci-check": "npm run prettier && npm run lint && npm run tsc && npm run test && npm run docs:build",
     "docs:build": "typedoc --options typedoc.json src/index.ts",
-    "reinstall": "rm -rf node_modules/ dist/ && npm install",
+    "reinstall": "rm -rf node_modules/ dist/ docs/ && npm install",
     "prettier": "prettier --list-different 'src/**/*.ts' || (echo '\nPlease fix code formatting by running:\nnpm run prettier:fix\n'; exit 1)",
     "prettier:fix": "prettier --write src/**/*.ts",
     "lint": "tslint --project ./tsconfig.json",
