@@ -13,10 +13,12 @@ const GROUP_TITLE = {
   './functional-helpers': 'Deprecated',
 };
 
-const EXPORT_BLOCK = /export\s*{([\s\S]*?)}\s*from\s*'([^']+)';/g;
+const EXPORT_BLOCK =
+  /export\s+(?:type\s+)?{([\s\S]*?)}\s*from\s*(["'])([^"']+)\2\s*;/g;
 
 function parseNames(block) {
   return block
+    .replace(/\/\*[\s\S]*?\*\//g, ' ')
     .split('\n')
     .map(line => line.replace(/\r/g, '').replace(/\/\/[^\r\n]*/g, '').trim())
     .join(' ')
@@ -40,7 +42,7 @@ function parseIndexExports(indexContent) {
   let match;
   while ((match = EXPORT_BLOCK.exec(indexContent)) !== null) {
     const block = match[1];
-    const sourcePath = match[2];
+    const sourcePath = match[3];
     const groupName = GROUP_TITLE[sourcePath] || sourcePath;
     const names = parseNames(block);
     if (!groups[groupName]) {
