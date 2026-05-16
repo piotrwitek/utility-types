@@ -75,6 +75,11 @@ I highly recommend adding a bounty to the issue that you're waiting for to attra
 
 We are open for contributions. If you're planning to contribute please make sure to read the contributing guide as it can save you from wasting your time: [CONTRIBUTING.md](/CONTRIBUTING.md)
 
+## Generated API Docs
+
+- Generated reference: [`docs/API.md`](./docs/API.md)
+- Regenerate after export changes: `npm run docs:api`
+
 ---
 
 * _(built-in)_ - types built-in TypeScript, no need to import
