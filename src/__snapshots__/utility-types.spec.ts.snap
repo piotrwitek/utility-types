@@ -22,6 +22,8 @@ exports[`$Keys testType<$Keys<Props>>() (type) should match snapshot 1`] = `"\\"
 
 exports[`$NonMaybeType testType<$NonMaybeType<string | null | undefined>>() (type) should match snapshot 1`] = `"string"`;
 
+exports[`$ObjMap testType<$ObjMap<ObjMapInput, MapToReturnType>>() (type) should match snapshot 1`] = `"$ObjMap<{ a: () => boolean; b: () => string; }, <V>(value: V) => V extends (...args: any[]) => infer R ? R : never>"`;
+
 exports[`$PropertyType testType<$PropertyType<[boolean, number], '0'>>() (type) should match snapshot 1`] = `"boolean"`;
 
 exports[`$PropertyType testType<$PropertyType<[boolean, number], '1'>>() (type) should match snapshot 1`] = `"number"`;

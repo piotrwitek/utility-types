@@ -98,6 +98,28 @@ export type $ElementType<
 > = T[K];
 
 /**
+ * $ObjMap
+ * @desc Creates an object type by mapping over `T` values with mapper function type `F`
+ * @see https://flow.org/en/docs/types/utilities/#toc-objmap
+ * @example
+ *   type Obj = {
+ *     a: () => boolean;
+ *     b: () => string;
+ *   };
+ *
+ *   type MapToReturnType = <V>(value: V) => V extends (...args: any[]) => infer R ? R : never;
+ *
+ *   // Expect: { a: boolean; b: string; }
+ *   type Mapped = $ObjMap<Obj, MapToReturnType>;
+ */
+export type $ObjMap<
+  T extends object,
+  F extends (value: any) => any
+> = {
+  [K in keyof T]: F extends (value: T[K]) => infer R ? R : never;
+};
+
+/**
  * $Call
  * @desc Get the return type from a given typeof expression
  * @see https://flow.org/en/docs/types/utilities/#toc-call

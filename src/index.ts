@@ -8,6 +8,7 @@ export {
   $Call,
   $Diff,
   $ElementType,
+  $ObjMap,
   $Keys,
   $NonMaybeType,
   $PropertyType,

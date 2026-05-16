@@ -148,6 +148,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`$Diff<T, U>`](#diff2)
 * [`$PropertyType<T, K>`](#propertytypet-k)
 * [`$ElementType<T, K>`](#elementtypet-k)
+* [`$ObjMap<T, F>`](#objmapt-f)
 * [`$Call<T>`](#callt)
 * [`$Shape<T>`](#shapet)
 * [`$NonMaybeType<T>`](#nonmaybetypet)
@@ -1067,6 +1068,30 @@ type ItemsType = $ElementType<Arr, number>;
 type Obj = { [key: string]: number };
 // Expect: number
 type ValuesType = $ElementType<Obj, string>;
+```
+
+[⇧ back to top](#flows-utility-types)
+
+### `$ObjMap<T, F>`
+
+create a new object type by mapping object values using mapper function type `F`<br>
+https://flow.org/en/docs/types/utilities/#toc-objmap
+
+**Usage:**
+
+```ts
+import { $ObjMap } from 'utility-types';
+
+type Obj = {
+  a: () => boolean;
+  b: () => string;
+};
+
+type MapToReturnType = <V>(value: V) =>
+  V extends (...args: any[]) => infer R ? R : never;
+
+// Expect: { a: boolean; b: string; }
+type Mapped = $ObjMap<Obj, MapToReturnType>;
 ```
 
 [⇧ back to top](#flows-utility-types)

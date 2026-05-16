@@ -7,6 +7,7 @@ import {
   $Diff,
   $PropertyType,
   $ElementType,
+  $ObjMap,
   $Shape,
   $NonMaybeType,
   Class,
@@ -76,6 +77,23 @@ class Foo {}
 
   // @dts-jest:pass:snap
   testType<$ElementType<{ [key: string]: number }, string>>();
+}
+
+// @dts-jest:group $ObjMap
+{
+  type ObjMapInput = {
+    a: () => boolean;
+    b: () => string;
+  };
+
+  type MapToReturnType = <V>(value: V) => V extends (
+    ...args: any[]
+  ) => infer R
+    ? R
+    : never;
+
+  // @dts-jest:pass:snap
+  testType<$ObjMap<ObjMapInput, MapToReturnType>>();
 }
 
 // @dts-jest:group $Call
