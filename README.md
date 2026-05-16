@@ -783,7 +783,7 @@ class Store {
   state = { ready: true };
 }
 
-// Expect: Store
+// Expect: { state: { ready: boolean } }
 type StoreInstance = InstanceType<typeof Store>;
 ```
 
