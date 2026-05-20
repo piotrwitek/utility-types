@@ -22,6 +22,14 @@ exports[`$Keys testType<$Keys<Props>>() (type) should match snapshot 1`] = `"\\"
 
 exports[`$NonMaybeType testType<$NonMaybeType<string | null | undefined>>() (type) should match snapshot 1`] = `"string"`;
 
+exports[`$ObjMap testType<Result>() (type) should match snapshot 1`] = `"$ObjMap<ObjMapInput, MapToReturnType>"`;
+
+exports[`$ObjMap testType<Result['a']>() (type) should match snapshot 1`] = `"boolean"`;
+
+exports[`$ObjMap testType<Result['b']>() (type) should match snapshot 1`] = `"\\"foo\\""`;
+
+exports[`$ObjMap testType<Result['c']>() (type) should match snapshot 1`] = `"1 | undefined"`;
+
 exports[`$PropertyType testType<$PropertyType<[boolean, number], '0'>>() (type) should match snapshot 1`] = `"boolean"`;
 
 exports[`$PropertyType testType<$PropertyType<[boolean, number], '1'>>() (type) should match snapshot 1`] = `"number"`;

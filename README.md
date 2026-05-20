@@ -149,6 +149,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`$PropertyType<T, K>`](#propertytypet-k)
 * [`$ElementType<T, K>`](#elementtypet-k)
 * [`$Call<T>`](#callt)
+* [`$ObjMap<T, Fn>`](#objmapt-fn)
 * [`$Shape<T>`](#shapet)
 * [`$NonMaybeType<T>`](#nonmaybetypet)
 * [`Class<T>`](#classt)
@@ -1096,6 +1097,33 @@ type PropType = $Call<ExtractPropType<Obj>>; // number
 type ExtractReturnType<T extends () => any> = (arg: T) => ReturnType<T>;
 type Fn = () => number;
 type FnReturnType = $Call<ExtractReturnType<Fn>>; // number
+```
+
+[⇧ back to top](#flows-utility-types)
+
+### `$ObjMap<T, Fn>`
+
+Maps each property value of a given object type `T` through a type-level mapper `Fn`.<br>
+https://flow.org/en/docs/types/utilities/#toc-objmap
+
+TypeScript does not support passing generic type aliases directly, so mapper types are defined as interfaces extending `$ObjMapFn`. The mapper receives each property value as `this['input']` and exposes the mapped result as `type`.
+
+**Usage:**
+
+```ts
+import { $ObjMap, $ObjMapFn } from 'utility-types';
+
+interface MapToReturnType extends $ObjMapFn {
+  type: this['input'] extends (...args: any[]) => infer R ? R : never;
+}
+
+type Props = {
+  a: () => boolean;
+  b: () => 'foo';
+};
+
+// Expect: { a: boolean; b: 'foo'; }
+type Result = $ObjMap<Props, MapToReturnType>;
 ```
 
 [⇧ back to top](#flows-utility-types)
