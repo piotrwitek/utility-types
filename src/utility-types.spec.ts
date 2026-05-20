@@ -7,6 +7,8 @@ import {
   $Diff,
   $PropertyType,
   $ElementType,
+  $ObjMap,
+  $ObjMapFn,
   $Shape,
   $NonMaybeType,
   Class,
@@ -19,6 +21,15 @@ import { _DeepReadonlyObject } from './mapped-types';
 
 type Props = { name: string; age: number; visible: boolean };
 type DefaultProps = { age: number };
+type ObjMapInput = {
+  a: () => boolean;
+  b: () => 'foo';
+  c?: () => 1;
+};
+
+interface MapToReturnType extends $ObjMapFn {
+  type: this['input'] extends (...args: any[]) => infer R ? R : never;
+}
 
 class Foo {}
 
@@ -95,6 +106,20 @@ class Foo {}
   type FnReturnType = $Call<ExtractReturnType<Fn>>;
   // @dts-jest:pass:snap
   testType<FnReturnType>();
+}
+
+// @dts-jest:group $ObjMap
+{
+  type Result = $ObjMap<ObjMapInput, MapToReturnType>;
+
+  // @dts-jest:pass:snap
+  testType<Result>();
+  // @dts-jest:pass:snap
+  testType<Result['a']>();
+  // @dts-jest:pass:snap
+  testType<Result['b']>();
+  // @dts-jest:pass:snap
+  testType<Result['c']>();
 }
 
 // @dts-jest:group $Shape

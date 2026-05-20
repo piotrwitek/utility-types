@@ -1,4 +1,4 @@
-import { SetComplement, DeepReadonly } from './mapped-types';
+import { SetComplement, DeepReadonly, NonUndefined } from './mapped-types';
 
 /**
  * $Keys
@@ -120,6 +120,39 @@ export type $Call<Fn extends (...args: any[]) => any> = Fn extends (
 ) => infer RT
   ? RT
   : never;
+
+/**
+ * $ObjMapFn
+ * @desc Base interface for defining type-level mappers consumed by `$ObjMap`.
+ * @example
+ *   interface MapToReturnType extends $ObjMapFn {
+ *     type: this['input'] extends (...args: any[]) => infer R ? R : never;
+ *   }
+ */
+export interface $ObjMapFn {
+  input: unknown;
+  type: unknown;
+}
+
+type $ObjMapApply<Fn extends $ObjMapFn, Input> = (Fn & {
+  input: Input;
+})['type'];
+
+/**
+ * $ObjMap
+ * @desc Map each property value of a given object type `T` through a type-level mapper `Fn`.
+ * @see https://flow.org/en/docs/types/utilities/#toc-objmap
+ * @example
+ *   interface MapToReturnType extends $ObjMapFn {
+ *     type: this['input'] extends (...args: any[]) => infer R ? R : never;
+ *   }
+ *
+ *   type Props = { a: () => boolean; b: () => 'foo' };
+ *   type Result = $ObjMap<Props, MapToReturnType>; // { a: boolean; b: 'foo' }
+ */
+export type $ObjMap<T extends object, Fn extends $ObjMapFn> = {
+  [K in keyof T]: $ObjMapApply<Fn, NonUndefined<T[K]>>;
+};
 
 /**
  * $Shape
