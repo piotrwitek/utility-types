@@ -101,6 +101,24 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`NonNullable<T>`](#nonnullablea) _(built-in)_
 * [`NonUndefined<T>`](#nonundefineda)
 
+## Standard Library Types (built-in)
+
+TypeScript provides several built-in utility types. Below are the most commonly used ones with practical use-case examples.
+
+* [`Partial<T>`](#partialt) _(built-in)_
+* [`Required<T>`](#requiredt) _(built-in)_
+* [`Readonly<T>`](#readonlyt) _(built-in)_
+* [`Pick<T, K>`](#pickt-k-built-in) _(built-in)_
+* [`Omit<T, K>`](#omitt-k-built-in) _(built-in)_
+* [`Record<K, T>`](#recordk-t-built-in) _(built-in)_
+* [`Exclude<A, B>`](#excludea-b) _(built-in)_
+* [`Extract<A, B>`](#extracta-b) _(built-in)_
+* [`NonNullable<T>`](#nonnullablea) _(built-in)_
+* [`Parameters<T>`](#parameterst-built-in) _(built-in)_
+* [`ConstructorParameters<T>`](#constructorparameterst-built-in) _(built-in)_
+* [`ReturnType<T>`](#returntypet) _(built-in)_
+* [`InstanceType<T>`](#instancetypet) _(built-in)_
+
 ## Object operators
 
 * [`FunctionKeys<T>`](#functionkeyst)
@@ -133,8 +151,6 @@ We are open for contributions. If you're planning to contribute please make sure
 
 ## Special operators
 
-* [`ReturnType<T>`](#returntypet) _(built-in)_
-* [`InstanceType<T>`](#instancetypet) _(built-in)_
 * [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
 * [`Brand<T, U>`](#brandt-u)
@@ -296,6 +312,13 @@ type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 
 Exclude `null` and `undefined` from set `A`
 
+**Usage:**
+
+```ts
+// Expect: string | number
+type Result = NonNullable<string | number | null | undefined>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `NonUndefined<A>`
@@ -308,15 +331,29 @@ Exclude `undefined` from set `A`
 
 Exclude subset `B` from set `A`
 
+**Usage:**
+
+```ts
+// Expect: 'a' | 'c'
+type Result = Exclude<'a' | 'b' | 'c', 'b'>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Extract<A, B>`
 
 Extract subset `B` from set `A`
 
+**Usage:**
+
+```ts
+// Expect: 'a'
+type Result = Extract<'a' | 'b' | 'c', 'a' | 'd'>;
+```
+
 [⇧ back to top](#table-of-contents)
 
-## Operations on objects
+## Operations on object keys
 
 ### `FunctionKeys<T>`
 
@@ -513,6 +550,19 @@ type Props = PickByValueExact<Props, number | undefined>;
 
 [⇧ back to top](#table-of-contents)
 
+### `Record<K, T>` _(built-in)_
+
+Construct an object type with property keys `K` and value type `T`
+
+**Usage:**
+
+```ts
+// Expect: { name: string; age: number; visible: boolean; }
+type Result = Record<'name' | 'age' | 'visible', string | number | boolean>;
+```
+
+[⇧ back to top](#table-of-contents)
+
 ### `Omit<T, K>`
 
 From `T` remove a set of properties by key `K`
@@ -691,6 +741,17 @@ type BinaryItems = ValuesType<BinaryArray>;
 
 Make all properties of object type optional
 
+Alias: `Optional<T>`
+
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { name?: string; age?: number; visible?: boolean; }
+type PartialProps = Partial<Props>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Required<T, K>`
@@ -716,6 +777,15 @@ type Props = Required<Props, 'age' | 'visible'>;
 
 Make all properties of object type readonly
 
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { readonly name: string; readonly age: number; readonly visible: boolean; }
+type ReadonlyProps = Readonly<Props>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Mutable<T>`
@@ -739,15 +809,57 @@ Mutable<Props>;
 
 [⇧ back to top](#table-of-contents)
 
+### `Parameters<T>` _(built-in)_
+
+Obtain the parameter types of a function type `T` as a tuple
+
+**Usage:**
+
+```ts
+// Expect: [string, number]
+type Result = Parameters<(name: string, age: number) => void>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `ConstructorParameters<T>` _(built-in)_
+
+Obtain the parameter types of a constructor function type `T` as a tuple
+
+**Usage:**
+
+```ts
+// Expect: [string, number]
+type Result = ConstructorParameters<new (name: string, age: number) => object>;
+```
+
+[⇧ back to top](#table-of-contents)
+
 ### `ReturnType<T>`
 
-Obtain the return type of a function
+Obtain the return type of a function type `T`
+
+**Usage:**
+
+```ts
+// Expect: string
+type Result = ReturnType<() => string>;
+```
 
 [⇧ back to top](#table-of-contents)
 
 ### `InstanceType<T>`
 
-Obtain the instance type of a class
+Obtain the instance type of a class constructor type `T`
+
+**Usage:**
+
+```ts
+class Animal { name: string = 'dog'; }
+
+// Expect: Animal
+type Result = InstanceType<typeof Animal>;
+```
 
 [⇧ back to top](#table-of-contents)
 
