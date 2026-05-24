@@ -694,10 +694,10 @@ Make all properties of object type optional
 **Usage:**
 
 ```ts
-type Props = { name: string; age: number; visible: boolean };
+type Props = { name: string; age: number; visible: boolean; };
 
 // Expect: { name?: string; age?: number; visible?: boolean; }
-type PartialProps = Partial<Props>;
+type Props = Partial<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -728,10 +728,10 @@ Make all properties of object type readonly
 **Usage:**
 
 ```ts
-type Props = { name: string; age: number; visible: boolean };
+type Props = { name: string; age: number; visible: boolean; };
 
 // Expect: { readonly name: string; readonly age: number; readonly visible: boolean; }
-type ReadonlyProps = Readonly<Props>;
+type Props = Readonly<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
