@@ -691,6 +691,15 @@ type BinaryItems = ValuesType<BinaryArray>;
 
 Make all properties of object type optional
 
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean; };
+
+// Expect: { name?: string; age?: number; visible?: boolean; }
+type Props = Partial<Props>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Required<T, K>`
@@ -715,6 +724,15 @@ type Props = Required<Props, 'age' | 'visible'>;
 ### `Readonly<T>`
 
 Make all properties of object type readonly
+
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean; };
+
+// Expect: { readonly name: string; readonly age: number; readonly visible: boolean; }
+type Props = Readonly<Props>;
+```
 
 [⇧ back to top](#table-of-contents)
 
@@ -743,11 +761,31 @@ Mutable<Props>;
 
 Obtain the return type of a function
 
+**Usage:**
+
+```ts
+type Fn = (name: string) => { greeting: string };
+
+// Expect: { greeting: string; }
+type FnReturn = ReturnType<Fn>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `InstanceType<T>`
 
 Obtain the instance type of a class
+
+**Usage:**
+
+```ts
+class Store {
+  state = { ready: true };
+}
+
+// Expect: Store
+type StoreInstance = InstanceType<typeof Store>;
+```
 
 [⇧ back to top](#table-of-contents)
 
