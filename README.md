@@ -77,7 +77,7 @@ We are open for contributions. If you're planning to contribute please make sure
 
 ---
 
-* _(built-in)_ - types built-in TypeScript, no need to import
+* _(built-in)_ - types built into TypeScript, no import required
 
 # Table of Contents
 
@@ -111,17 +111,11 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`OptionalKeys<T>`](#optionalkeyst)
 * [`UnionKeys<T>`](#unionkeysu)
 * [`Optional<T, K>`](#optionalt-k)
-* [`Partial<T>`](#partialt) _(built-in)_
-* [`DeepPartial<T>`](#deeppartialt)
-* [`Required<T, K>`](#requiredt-k)
-* [`DeepRequired<T>`](#deeprequiredt)
-* [`Readonly<T>`](#readonlyt) _(built-in)_
-* [`DeepReadonly<T>`](#deepreadonlyt)
-* [`Mutable<T>`](#mutablet)
-* [`Pick<T, K>` _(built-in)_](#pickt-k-built-in)
-* [`Omit<T, K>`](#omitt-k) _(built-in)_
+* [`Pick<T, K>`](#pickt-k) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
 * [`PickByValueExact<T, ValueType>`](#pickbyvalueexactt-valuetype)
+* [`Omit<T, K>`](#omitt-k) _(built-in)_
+* [`Record<K, T>`](#recordk-t) _(built-in)_
 * [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
 * [`OmitByValueExact<T, ValueType>`](#omitbyvalueexactt-valuetype)
 * [`Intersection<T, U>`](#intersectiont-u)
@@ -130,13 +124,23 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Overwrite<T, U>`](#overwritet-u)
 * [`Assign<T, U>`](#assignt-u)
 * [`ValuesType<T>`](#valuestypet)
+* [`Partial<T>`](#partialt) _(built-in)_
+* [`Required<T, K>`](#requiredt-k)
+* [`Readonly<T>`](#readonlyt) _(built-in)_
+* [`Mutable<T>`](#mutablet)
+* [`DeepReadonly<T>`](#deepreadonlyt)
+* [`DeepRequired<T>`](#deeprequiredt)
+* [`DeepNonNullable<T>`](#deepnonnullablet)
+* [`DeepPartial<T>`](#deeppartialt)
 
 ## Special operators
 
+* [`Parameters<T>`](#parameterst) _(built-in)_
 * [`ReturnType<T>`](#returntypet) _(built-in)_
+* [`ConstructorParameters<T>`](#constructorparameterst) _(built-in)_
 * [`InstanceType<T>`](#instancetypet) _(built-in)_
-* [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
+* [`PromiseType<T>`](#promisetypet)
 * [`Brand<T, U>`](#brandt-u)
 * [`UnionToIntersection<U>`](#uniontointersectionu)
 
@@ -316,7 +320,9 @@ Extract subset `B` from set `A`
 
 [⇧ back to top](#table-of-contents)
 
-## Operations on objects
+## Object operators
+
+#### Key query utilities
 
 ### `FunctionKeys<T>`
 
@@ -439,6 +445,8 @@ type Keys = UnionKeys<Props>;
 
 [⇧ back to top](#table-of-contents)
 
+#### Property key transforms
+
 ### `Optional<T, K>`
 
 From `T` make a set of properties by key `K` become optional
@@ -459,9 +467,11 @@ type Props = Optional<Props, 'age' | 'visible'>;
 [⇧ back to top](#table-of-contents)
 
 
-### `Pick<T, K>` _(built-in)_
+### `Pick<T, K>`
 
 From `T` pick a set of properties by key `K`
+
+This is a TypeScript built-in utility type.
 
 **Usage:**
 
@@ -469,10 +479,12 @@ From `T` pick a set of properties by key `K`
 type Props = { name: string; age: number; visible: boolean };
 
 // Expect: { age: number; }
-type Props = Pick<Props, 'age'>;
+type PickedProps = Pick<Props, 'age'>;
 ```
 
 [⇧ back to top](#table-of-contents)
+
+#### Property value and omission filters
 
 ### `PickByValue<T, ValueType>`
 
@@ -517,6 +529,8 @@ type Props = PickByValueExact<Props, number | undefined>;
 
 From `T` remove a set of properties by key `K`
 
+This is a TypeScript built-in utility type.
+
 **Usage:**
 
 ```ts
@@ -525,7 +539,34 @@ import { Omit } from 'utility-types';
 type Props = { name: string; age: number; visible: boolean };
 
 // Expect: { name: string; visible: boolean; }
-type Props = Omit<Props, 'age'>;
+type OmittedProps = Omit<Props, 'age'>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Record<K, T>`
+
+Construct an object type whose property keys are `K` and whose property values
+are `T`.
+
+This is a TypeScript built-in utility type.
+
+**Usage:**
+
+```ts
+type Role = 'admin' | 'editor' | 'viewer';
+
+type RoleConfig = {
+  permissions: string[];
+  label: string;
+};
+
+// Expect: {
+//   admin: RoleConfig;
+//   editor: RoleConfig;
+//   viewer: RoleConfig;
+// }
+type RoleMap = Record<Role, RoleConfig>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -568,6 +609,8 @@ type Props = OmitByValueExact<Props, number | undefined>;
 ```
 
 [⇧ back to top](#table-of-contents)
+
+#### Object comparison and composition
 
 ### `Intersection<T, U>`
 
@@ -659,6 +702,8 @@ type ExtendedProps = Assign<Props, NewProps>;
 
 [⇧ back to top](#table-of-contents)
 
+#### Object value helpers
+
 ### `ValuesType<T>`
 
 Get the union type of all the values in an object, tuple, array or array-like type `T`.
@@ -678,7 +723,7 @@ type NumberItems = ValuesType<NumberArray>;
 
 type ReadonlyNumberTuple = readonly [1, 2];
 // Expect: 1 | 2
-type AnotherNumberUnion = ValuesType<NumberTuple>;
+type AnotherNumberUnion = ValuesType<ReadonlyNumberTuple>;
 
 type BinaryArray = Uint8Array;
 // Expect: number
@@ -687,9 +732,22 @@ type BinaryItems = ValuesType<BinaryArray>;
 
 [⇧ back to top](#table-of-contents)
 
+#### Built-in object modifiers
+
 ### `Partial<T>`
 
 Make all properties of object type optional
+
+This is a TypeScript built-in utility type.
+
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { name?: string; age?: number; visible?: boolean; }
+type PartialProps = Partial<Props>;
+```
 
 [⇧ back to top](#table-of-contents)
 
@@ -716,6 +774,17 @@ type Props = Required<Props, 'age' | 'visible'>;
 
 Make all properties of object type readonly
 
+This is a TypeScript built-in utility type.
+
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { readonly name: string; readonly age: number; readonly visible: boolean; }
+type ReadonlyProps = Readonly<Props>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Mutable<T>`
@@ -734,54 +803,12 @@ type Props = {
 };
 
 // Expect: { name: string; age: number; visible: boolean; }
-Mutable<Props>;
+type MutableProps = Mutable<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
 
-### `ReturnType<T>`
-
-Obtain the return type of a function
-
-[⇧ back to top](#table-of-contents)
-
-### `InstanceType<T>`
-
-Obtain the instance type of a class
-
-[⇧ back to top](#table-of-contents)
-
-### `Unionize<T>`
-
-Disjoin object to form union of objects, each with single property
-
-**Usage:**
-
-```ts
-import { Unionize } from 'utility-types';
-
-type Props = { name: string; age: number; visible: boolean };
-
-// Expect: { name: string; } | { age: number; } | { visible: boolean; }
-type UnionizedType = Unionize<Props>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `PromiseType<T>`
-
-Obtain Promise resolve type
-
-**Usage:**
-
-```ts
-import { PromiseType } from 'utility-types';
-
-// Expect: string
-type Response = PromiseType<Promise<string>>;
-```
-
-[⇧ back to top](#table-of-contents)
+#### Deep object utilities
 
 ### `DeepReadonly<T>`
 
@@ -898,6 +925,116 @@ type PartialNestedProps = DeepPartial<NestedProps>;
 ```
 
 [⇧ back to top](#table-of-contents)
+
+## Special operators
+
+#### Function and class helpers
+
+### `Parameters<T>`
+
+Obtain the parameter types of a function type in a tuple.
+
+This is a TypeScript built-in utility type.
+
+**Usage:**
+
+```ts
+type SubmitHandler = (value: string, retry: boolean) => Promise<void>;
+
+// Expect: [string, boolean]
+type SubmitArgs = Parameters<SubmitHandler>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `ReturnType<T>`
+
+Obtain the return type of a function
+
+This is a TypeScript built-in utility type.
+
+**Usage:**
+
+```ts
+type Fn = (name: string) => { greeting: string };
+
+// Expect: { greeting: string; }
+type FnReturn = ReturnType<Fn>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `ConstructorParameters<T>`
+
+Obtain the parameter types of a constructor function type in a tuple.
+
+This is a TypeScript built-in utility type.
+
+**Usage:**
+
+```ts
+class User {
+  constructor(public id: string, public active: boolean) {}
+}
+
+// Expect: [string, boolean]
+type UserConstructorArgs = ConstructorParameters<typeof User>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `InstanceType<T>`
+
+Obtain the instance type of a class
+
+This is a TypeScript built-in utility type.
+
+**Usage:**
+
+```ts
+class Store {
+  state = { ready: true };
+}
+
+// Expect: Store
+type StoreInstance = InstanceType<typeof Store>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Unionize<T>`
+
+Disjoin object to form union of objects, each with single property
+
+**Usage:**
+
+```ts
+import { Unionize } from 'utility-types';
+
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { name: string; } | { age: number; } | { visible: boolean; }
+type UnionizedType = Unionize<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `PromiseType<T>`
+
+Obtain Promise resolve type
+
+**Usage:**
+
+```ts
+import { PromiseType } from 'utility-types';
+
+// Expect: string
+type Response = PromiseType<Promise<string>>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+#### Type branding and conversion
 
 ### `Brand<T, U>`
 
