@@ -113,6 +113,7 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`Optional<T, K>`](#optionalt-k)
 * [`Partial<T>`](#partialt) _(built-in)_
 * [`DeepPartial<T>`](#deeppartialt)
+* [`Record<K, T>`](#recordk-t) _(built-in)_
 * [`Required<T, K>`](#requiredt-k)
 * [`DeepRequired<T>`](#deeprequiredt)
 * [`Readonly<T>`](#readonlyt) _(built-in)_
@@ -135,6 +136,8 @@ We are open for contributions. If you're planning to contribute please make sure
 
 * [`ReturnType<T>`](#returntypet) _(built-in)_
 * [`InstanceType<T>`](#instancetypet) _(built-in)_
+* [`Parameters<T>`](#parameterst) _(built-in)_
+* [`ConstructorParameters<T>`](#constructorparameterst) _(built-in)_
 * [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
 * [`Brand<T, U>`](#brandt-u)
@@ -691,6 +694,15 @@ type BinaryItems = ValuesType<BinaryArray>;
 
 Make all properties of object type optional
 
+**Usage:**
+
+```ts
+type Props = { name: string; age: number; visible: boolean };
+
+// Expect: { name?: string; age?: number; visible?: boolean }
+type PartialProps = Partial<Props>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Required<T, K>`
@@ -715,6 +727,28 @@ type Props = Required<Props, 'age' | 'visible'>;
 ### `Readonly<T>`
 
 Make all properties of object type readonly
+
+**Usage:**
+
+```ts
+type Props = { name: string; age: number };
+
+// Expect: { readonly name: string; readonly age: number }
+type ReadonlyProps = Readonly<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Record<K, T>` _(built-in)_
+
+Construct an object type whose keys are `K` and values are `T`.
+
+**Usage:**
+
+```ts
+// Expect: { a: number; b: number }
+type Point = Record<'a' | 'b', number>;
+```
 
 [⇧ back to top](#table-of-contents)
 
@@ -743,11 +777,57 @@ Mutable<Props>;
 
 Obtain the return type of a function
 
+**Usage:**
+
+```ts
+declare function f(): string;
+// Expect: string
+type R = ReturnType<typeof f>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `InstanceType<T>`
 
 Obtain the instance type of a class
+
+**Usage:**
+
+```ts
+class C {}
+// Expect: C
+type I = InstanceType<typeof C>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Parameters<T>` _(built-in)_
+
+Obtain the parameters of a function type as a tuple.
+
+**Usage:**
+
+```ts
+declare function f(x: number, y: string): void;
+// Expect: [number, string]
+type P = Parameters<typeof f>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `ConstructorParameters<T>` _(built-in)_
+
+Obtain the parameters of a constructor function type as a tuple.
+
+**Usage:**
+
+```ts
+class C {
+  constructor(x: string, y: number) {}
+}
+// Expect: [string, number]
+type P = ConstructorParameters<typeof C>;
+```
 
 [⇧ back to top](#table-of-contents)
 
