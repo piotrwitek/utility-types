@@ -103,6 +103,8 @@ We are open for contributions. If you're planning to contribute please make sure
 
 ## Object operators
 
+**Key operators** — types that extract keys by their characteristics
+
 * [`FunctionKeys<T>`](#functionkeyst)
 * [`NonFunctionKeys<T>`](#nonfunctionkeyst)
 * [`MutableKeys<T>`](#mutablekeyst)
@@ -110,31 +112,47 @@ We are open for contributions. If you're planning to contribute please make sure
 * [`RequiredKeys<T>`](#requiredkeyst)
 * [`OptionalKeys<T>`](#optionalkeyst)
 * [`UnionKeys<T>`](#unionkeysu)
+
+**Modifiers** — types that change how properties are declared
+
 * [`Optional<T, K>`](#optionalt-k)
 * [`Partial<T>`](#partialt) _(built-in)_
-* [`DeepPartial<T>`](#deeppartialt)
 * [`Required<T, K>`](#requiredt-k)
-* [`DeepRequired<T>`](#deeprequiredt)
 * [`Readonly<T>`](#readonlyt) _(built-in)_
-* [`DeepReadonly<T>`](#deepreadonlyt)
 * [`Mutable<T>`](#mutablet)
+* [`DeepPartial<T>`](#deeppartialt)
+* [`DeepRequired<T>`](#deeprequiredt)
+* [`DeepReadonly<T>`](#deepreadonlyt)
+* [`DeepNonNullable<T>`](#deepnonnullablet)
+
+**Property filters** — types that keep or drop properties
+
 * [`Pick<T, K>` _(built-in)_](#pickt-k-built-in)
-* [`Omit<T, K>`](#omitt-k) _(built-in)_
 * [`PickByValue<T, ValueType>`](#pickbyvaluet-valuetype)
 * [`PickByValueExact<T, ValueType>`](#pickbyvalueexactt-valuetype)
+* [`Omit<T, K>`](#omitt-k) _(built-in)_
 * [`OmitByValue<T, ValueType>`](#omitbyvaluet-valuetype)
 * [`OmitByValueExact<T, ValueType>`](#omitbyvalueexactt-valuetype)
+
+**Object composition** — types that merge, diff and overwrite
+
 * [`Intersection<T, U>`](#intersectiont-u)
 * [`Diff<T, U>`](#difft-u)
 * [`Subtract<T, T1>`](#subtractt-t1)
 * [`Overwrite<T, U>`](#overwritet-u)
 * [`Assign<T, U>`](#assignt-u)
+
+**Constructors and accessors** — types that build object types from keys
+
+* [`Record<K, T>`](#recordk-t-built-in) _(built-in)_
 * [`ValuesType<T>`](#valuestypet)
 
 ## Special operators
 
 * [`ReturnType<T>`](#returntypet) _(built-in)_
 * [`InstanceType<T>`](#instancetypet) _(built-in)_
+* [`Parameters<T>`](#parameterst-built-in) _(built-in)_
+* [`ConstructorParameters<T>`](#constructorparameterst-built-in) _(built-in)_
 * [`PromiseType<T>`](#promisetypet)
 * [`Unionize<T>`](#unionizet)
 * [`Brand<T, U>`](#brandt-u)
@@ -296,6 +314,15 @@ type ResultSet = SymmetricDifference<'1' | '2' | '3', '2' | '3' | '4'>;
 
 Exclude `null` and `undefined` from set `A`
 
+**Usage:**
+
+```ts
+type MaybeId = string | number | null | undefined;
+
+// Expect: string | number
+type Id = NonNullable<MaybeId>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `NonUndefined<A>`
@@ -308,15 +335,37 @@ Exclude `undefined` from set `A`
 
 Exclude subset `B` from set `A`
 
+**Usage:**
+
+```ts
+type Status = 'pending' | 'active' | 'archived';
+
+// Expect: 'pending' | 'active'
+type NotArchived = Exclude<Status, 'archived'>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ### `Extract<A, B>`
 
 Extract subset `B` from set `A`
 
+**Usage:**
+
+```ts
+type Event = 'click' | 'scroll' | 'keydown' | 'blur';
+
+// Expect: 'click' | 'scroll'
+type PointerEvent = Extract<Event, 'click' | 'scroll' | 'touch'>;
+```
+
 [⇧ back to top](#table-of-contents)
 
 ## Operations on objects
+
+### Key operators
+
+Extract keys from an object type by their characteristics.
 
 ### `FunctionKeys<T>`
 
@@ -439,6 +488,10 @@ type Keys = UnionKeys<Props>;
 
 [⇧ back to top](#table-of-contents)
 
+### Modifiers
+
+Change how properties are declared: optional, required, readonly or mutable, including deep variants.
+
 ### `Optional<T, K>`
 
 From `T` make a set of properties by key `K` become optional
@@ -458,6 +511,195 @@ type Props = Optional<Props, 'age' | 'visible'>;
 
 [⇧ back to top](#table-of-contents)
 
+### `Partial<T>`
+
+Make all properties of object type optional
+
+**Usage:**
+
+```ts
+type Props = { name: string; age: number };
+
+// Expect: { name?: string; age?: number; }
+type PropsUpdate = Partial<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Required<T, K>`
+
+From `T` make a set of properties by key `K` become required
+
+**Usage:**
+
+```ts
+import { Required } from 'utility-types';
+
+type Props = { name?: string; age?: number; visible?: boolean; };
+
+// Expect: { name: string; age: number; visible: boolean; }
+type Props = Required<Props>
+// Expect: { name?: string; age: number; visible: boolean; }
+type Props = Required<Props, 'age' | 'visible'>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Readonly<T>`
+
+Make all properties of object type readonly
+
+**Usage:**
+
+```ts
+type Props = { name: string; age: number };
+
+// Expect: { readonly name: string; readonly age: number; }
+type LockedProps = Readonly<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `Mutable<T>`
+
+From `T` make all properties become mutable
+
+Alias: `Writable<T>`
+
+```ts
+import { Mutable } from 'utility-types';
+
+type Props = {
+  readonly name: string;
+  readonly age: number;
+  readonly visible: boolean;
+};
+
+// Expect: { name: string; age: number; visible: boolean; }
+Mutable<Props>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `DeepPartial<T>`
+
+Partial that works for deeply nested structures
+
+**Usage:**
+
+```ts
+import { DeepPartial } from 'utility-types';
+
+type NestedProps = {
+  first: {
+    second: {
+      name: string;
+    };
+  };
+};
+
+// Expect: {
+//   first?: {
+//     second?: {
+//       name?: string;
+//     };
+//   };
+// }
+type PartialNestedProps = DeepPartial<NestedProps>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `DeepRequired<T>`
+
+Required that works for deeply nested structures
+
+**Usage:**
+
+```ts
+import { DeepRequired } from 'utility-types';
+
+type NestedProps = {
+  first?: {
+    second?: {
+      name?: string;
+    };
+  };
+};
+
+// Expect: {
+//   first: {
+//     second: {
+//       name: string;
+//     };
+//   };
+// }
+type RequiredNestedProps = DeepRequired<NestedProps>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `DeepReadonly<T>`
+
+Readonly that works for deeply nested structures
+
+**Usage:**
+
+```ts
+import { DeepReadonly } from 'utility-types';
+
+type NestedProps = {
+  first: {
+    second: {
+      name: string;
+    };
+  };
+};
+
+// Expect: {
+//   readonly first: {
+//     readonly second: {
+//       readonly name: string;
+//     };
+//   };
+// }
+type ReadonlyNestedProps = DeepReadonly<NestedProps>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### `DeepNonNullable<T>`
+
+NonNullable that works for deeply nested structure
+
+**Usage:**
+
+```ts
+import { DeepNonNullable } from 'utility-types';
+
+type NestedProps = {
+  first?: null | {
+    second?: null | {
+      name?: string | null | undefined;
+    };
+  };
+};
+
+// Expect: {
+//   first: {
+//     second: {
+//       name: string;
+//     };
+//   };
+// }
+type RequiredNestedProps = DeepNonNullable<NestedProps>;
+```
+
+[⇧ back to top](#table-of-contents)
+
+### Property filters
+
+Keep or drop properties by key or by the type of their value.
 
 ### `Pick<T, K>` _(built-in)_
 
@@ -569,6 +811,10 @@ type Props = OmitByValueExact<Props, number | undefined>;
 
 [⇧ back to top](#table-of-contents)
 
+### Object composition
+
+Combine, compare and overwrite object types.
+
 ### `Intersection<T, U>`
 
 From `T` pick properties that exist in `U`
@@ -659,6 +905,29 @@ type ExtendedProps = Assign<Props, NewProps>;
 
 [⇧ back to top](#table-of-contents)
 
+### Constructors and accessors
+
+Create object types from keys and read the union of their values.
+
+### `Record<K, T>` _(built-in)_
+
+Construct an object type with keys `K` and values of type `T`
+
+**Usage:**
+
+```ts
+// Expect: { id: number; name: number; }
+type Counters = Record<'id' | 'name', number>;
+
+// A union of keys is handy for lookup tables
+type Permission = 'read' | 'write' | 'delete';
+
+// Expect: { read: boolean; write: boolean; delete: boolean; }
+type PermissionMap = Record<Permission, boolean>;
+```
+
+[⇧ back to top](#table-of-contents)
+
 ### `ValuesType<T>`
 
 Get the union type of all the values in an object, tuple, array or array-like type `T`.
@@ -687,61 +956,20 @@ type BinaryItems = ValuesType<BinaryArray>;
 
 [⇧ back to top](#table-of-contents)
 
-### `Partial<T>`
-
-Make all properties of object type optional
-
-[⇧ back to top](#table-of-contents)
-
-### `Required<T, K>`
-
-From `T` make a set of properties by key `K` become required
-
-**Usage:**
-
-```ts
-import { Required } from 'utility-types';
-
-type Props = { name?: string; age?: number; visible?: boolean; };
-
-// Expect: { name: string; age: number; visible: boolean; }
-type Props = Required<Props>
-// Expect: { name?: string; age: number; visible: boolean; }
-type Props = Required<Props, 'age' | 'visible'>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `Readonly<T>`
-
-Make all properties of object type readonly
-
-[⇧ back to top](#table-of-contents)
-
-### `Mutable<T>`
-
-From `T` make all properties become mutable
-
-Alias: `Writable<T>`
-
-```ts
-import { Mutable } from 'utility-types';
-
-type Props = {
-  readonly name: string;
-  readonly age: number;
-  readonly visible: boolean;
-};
-
-// Expect: { name: string; age: number; visible: boolean; }
-Mutable<Props>;
-```
-
-[⇧ back to top](#table-of-contents)
+## Special operators
 
 ### `ReturnType<T>`
 
 Obtain the return type of a function
+
+**Usage:**
+
+```ts
+const createUser = (id: number) => ({ id, createdAt: new Date() });
+
+// Expect: { id: number; createdAt: Date; }
+type User = ReturnType<typeof createUser>;
+```
 
 [⇧ back to top](#table-of-contents)
 
@@ -749,21 +977,47 @@ Obtain the return type of a function
 
 Obtain the instance type of a class
 
+**Usage:**
+
+```ts
+class Store {
+  constructor(public items: string[] = []) {}
+}
+
+// Expect: Store
+type StoreInstance = InstanceType<typeof Store>;
+```
+
 [⇧ back to top](#table-of-contents)
 
-### `Unionize<T>`
+### `Parameters<T>` _(built-in)_
 
-Disjoin object to form union of objects, each with single property
+Obtain the parameter types of a function as a tuple
 
 **Usage:**
 
 ```ts
-import { Unionize } from 'utility-types';
+type Handler = (event: string, retries?: number) => void;
 
-type Props = { name: string; age: number; visible: boolean };
+// Expect: [event: string, retries?: number]
+type HandlerArgs = Parameters<Handler>;
+```
 
-// Expect: { name: string; } | { age: number; } | { visible: boolean; }
-type UnionizedType = Unionize<Props>;
+[⇧ back to top](#table-of-contents)
+
+### `ConstructorParameters<T>` _(built-in)_
+
+Obtain the constructor parameter types of a class as a tuple
+
+**Usage:**
+
+```ts
+class HttpClient {
+  constructor(public baseUrl: string, public timeout = 5000) {}
+}
+
+// Expect: [baseUrl: string, timeout?: number]
+type HttpArgs = ConstructorParameters<typeof HttpClient>;
 ```
 
 [⇧ back to top](#table-of-contents)
@@ -783,118 +1037,19 @@ type Response = PromiseType<Promise<string>>;
 
 [⇧ back to top](#table-of-contents)
 
-### `DeepReadonly<T>`
+### `Unionize<T>`
 
-Readonly that works for deeply nested structures
-
-**Usage:**
-
-```ts
-import { DeepReadonly } from 'utility-types';
-
-type NestedProps = {
-  first: {
-    second: {
-      name: string;
-    };
-  };
-};
-
-// Expect: {
-//   readonly first: {
-//     readonly second: {
-//       readonly name: string;
-//     };
-//   };
-// }
-type ReadonlyNestedProps = DeepReadonly<NestedProps>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `DeepRequired<T>`
-
-Required that works for deeply nested structures
+Disjoin object to form union of objects, each with single property
 
 **Usage:**
 
 ```ts
-import { DeepRequired } from 'utility-types';
+import { Unionize } from 'utility-types';
 
-type NestedProps = {
-  first?: {
-    second?: {
-      name?: string;
-    };
-  };
-};
+type Props = { name: string; age: number; visible: boolean };
 
-// Expect: {
-//   first: {
-//     second: {
-//       name: string;
-//     };
-//   };
-// }
-type RequiredNestedProps = DeepRequired<NestedProps>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `DeepNonNullable<T>`
-
-NonNullable that works for deeply nested structure
-
-**Usage:**
-
-```ts
-import { DeepNonNullable } from 'utility-types';
-
-type NestedProps = {
-  first?: null | {
-    second?: null | {
-      name?: string | null | undefined;
-    };
-  };
-};
-
-// Expect: {
-//   first: {
-//     second: {
-//       name: string;
-//     };
-//   };
-// }
-type RequiredNestedProps = DeepNonNullable<NestedProps>;
-```
-
-[⇧ back to top](#table-of-contents)
-
-### `DeepPartial<T>`
-
-Partial that works for deeply nested structures
-
-**Usage:**
-
-```ts
-import { DeepPartial } from 'utility-types';
-
-type NestedProps = {
-  first: {
-    second: {
-      name: string;
-    };
-  };
-};
-
-// Expect: {
-//   first?: {
-//     second?: {
-//       name?: string;
-//     };
-//   };
-// }
-type PartialNestedProps = DeepPartial<NestedProps>;
+// Expect: { name: string; } | { age: number; } | { visible: boolean; }
+type UnionizedType = Unionize<Props>;
 ```
 
 [⇧ back to top](#table-of-contents)
