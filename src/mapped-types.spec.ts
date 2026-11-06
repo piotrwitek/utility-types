@@ -457,6 +457,12 @@ type RequiredOptionalProps = {
     identifier: 'id' as Identifier,
   });
 
+  type Amount = Brand<number, 'amount'>;
+  const amount: Amount = null as any as NonNullable<
+    DeepPartial<{ amount: Amount }>['amount']
+  >;
+  void amount;
+
   type NestedProps = {
     first: {
       second: {

@@ -521,6 +521,8 @@ export type _DeepPartial<T> = T extends Function
   ? _DeepPartialArray<U>
   : T extends string
   ? T | undefined
+  : T extends number
+  ? T | undefined
   : T extends object
   ? DeepPartial<T>
   : T | undefined;
