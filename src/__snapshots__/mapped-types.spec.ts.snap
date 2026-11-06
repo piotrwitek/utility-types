@@ -39,7 +39,16 @@ exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second'
 
 exports[`DeepNonNullable testType<DeepNonNullable<NestedProps>['first']['second']['name']>() (type) should match snapshot 1`] = `"string"`;
 
+exports[`DeepPartial testType<DeepPartial<{ identifier: Identifier }>>({
+      identifier: 'id' as Identifier,
+    }) (type) should match snapshot 1`] = `"DeepPartial<{ identifier: Brand<string, \\"identifier\\">; }>"`;
+
 exports[`DeepPartial testType<DeepPartial<NestedProps>>({}) (type) should match snapshot 1`] = `"DeepPartial<{ first: { second: { name: string; }; }; }>"`;
+
+exports[`DeepPartial testType<DeepPartial<Record<DictionaryKey, StringValues>>>({
+      x: 'foo',
+      y: 'barrel',
+    }) (type) should match snapshot 1`] = `"DeepPartial<Record<\\"x\\" | \\"y\\", \\"foo\\" | \\"bar\\" | (string & {})>>"`;
 
 exports[`DeepPartial testType<DeepPartial<T>>({}) (type) should match snapshot 1`] = `"DeepPartial<T>"`;
 

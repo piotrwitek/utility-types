@@ -443,6 +443,20 @@ type RequiredOptionalProps = {
 
 // @dts-jest:group DeepPartial
 {
+  type StringValues = 'foo' | 'bar' | (string & {});
+  type DictionaryKey = 'x' | 'y';
+  // @dts-jest:pass:snap -> DeepPartial<Record<"x" | "y", "foo" | "bar" | (string & {})>>
+  testType<DeepPartial<Record<DictionaryKey, StringValues>>>({
+    x: 'foo',
+    y: 'barrel',
+  });
+
+  type Identifier = Brand<string, 'identifier'>;
+  // @dts-jest:pass:snap -> DeepPartial<{ identifier: Brand<string, "identifier">; }>
+  testType<DeepPartial<{ identifier: Identifier }>>({
+    identifier: 'id' as Identifier,
+  });
+
   type NestedProps = {
     first: {
       second: {

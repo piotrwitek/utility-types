@@ -519,6 +519,10 @@ export type _DeepPartial<T> = T extends Function
   ? T
   : T extends Array<infer U>
   ? _DeepPartialArray<U>
+  : T extends string
+  ? T | undefined
+  : T extends number
+  ? T | undefined
   : T extends object
   ? DeepPartial<T>
   : T | undefined;
